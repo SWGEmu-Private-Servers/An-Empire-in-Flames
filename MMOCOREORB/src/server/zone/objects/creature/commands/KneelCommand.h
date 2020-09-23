@@ -26,7 +26,7 @@ public:
 
 		creature->setPosture(CreaturePosture::CROUCHED, true);
 
-		if (creature->isDizzied() && System::random(100) < 85)
+		if (creature->isDizzied() && System::random(100) < 15)
 			creature->queueDizzyFallEvent();
 
 		return SUCCESS;

@@ -129,6 +129,11 @@ void SharedWeaponObjectTemplate::readObject(LuaObject* templateData) {
 
 	//here goes server data only
 
+
+	pistolMode = templateData->getStringField("pistolMode");
+	carbineMode = templateData->getStringField("carbineMode");
+	rifleMode = templateData->getStringField("rifleMode");
+
 	xpType = templateData->getStringField("xpType");
 
 	damageType = templateData->getIntField("damageType");

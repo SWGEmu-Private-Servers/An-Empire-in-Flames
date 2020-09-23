@@ -9,7 +9,6 @@
 #define REPLACEFLASHSPEEDERSUICALLBACK_H_
 
 #include "server/zone/objects/player/sui/SuiCallback.h"
-#include "server/zone/objects/transaction/TransactionLog.h"
 
 class ReplaceFlashSpeederSuiCallback : public SuiCallback {
 
@@ -58,7 +57,6 @@ public:
 
 		inventory->broadcastObject(speederDeed, true);
 
-		TransactionLog trx(player, TrxCode::VEHICLEREPAIRS, FLASH_SPEEDER_COST, true);
 		player->subtractCredits(FLASH_SPEEDER_COST);
 
 		player->sendSystemMessage( "@veteran:flash_speeder_granted");  // "A Flash Speeder deed has been placed in your inventory."

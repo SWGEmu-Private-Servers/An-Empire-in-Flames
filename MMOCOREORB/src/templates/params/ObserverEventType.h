@@ -43,6 +43,7 @@ public:
 		GETATTRIBUTESBATCHCOMMAND,	// ManagedObject arg1 = target object arg2 = batch or single
 		HEALINGRECEIVED,			// ManagedObject arg1 = object doing healing, long arg2 = amount healed
 		STARTCOMBAT,				// ManagedObject arg1 = null, long arg2 = 0
+		STOPCOMBAT,				// ManagedObject arg1 = null, long arg2 = 0
 		DEFENDERADDED,				// ManagedObject arg1 = defender, long arg2 = 0
 		DEFENDERDROPPED,			// ManagedObject arg1 = defender, long arg2 = 0
 		OBJECTRADIALOPENED,			// ManagedObject arg1 = player who opened the radial
@@ -90,6 +91,8 @@ public:
 		BHTEFCHANGED,				// ManagedObject arg1 = null, long arg2 = 0
 		FACTIONCHANGED,				// ManagedObject arg1 = null, long arg2 = 0
 		SLICED,						// ManagedObject arg1 = player doing slicing, long arg2 = result (1/0)
+		MOUNTED,
+		DISMOUNTED,
 	};
 };
 

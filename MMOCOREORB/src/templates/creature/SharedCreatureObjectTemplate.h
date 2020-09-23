@@ -19,6 +19,7 @@ protected:
 	IntegerParam niche;
 	IntegerParam species;
 	IntegerParam race;
+	IntegerParam passengerCapacity;
 
 	VectorParam<FloatParam> acceleration;
 	VectorParam<FloatParam> speed;
@@ -117,6 +118,10 @@ public:
 
 	inline int getRace() const {
 		return race;
+	}
+
+	inline int getPassengerCapacity() const {
+		return passengerCapacity;
 	}
 
 	inline float getSlopeModAngle() const {

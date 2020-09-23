@@ -240,7 +240,7 @@ public:
 			buffPower = enhancePack->getEffectiveness();
 			buffPower = buffPower * patient->calculateBFRatio();
 		} else
-			buffPower = enhancePack->calculatePower(enhancer, patient);
+			buffPower = (enhancePack->calculatePower(enhancer, patient)); //reduce buff strength to 1/10 of rated
 
 		return buffPower;
 	}

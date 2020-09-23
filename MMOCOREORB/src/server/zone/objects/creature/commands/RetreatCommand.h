@@ -76,18 +76,24 @@ public:
 			return GENERALERROR;
 
 		float groupBurstRunMod = (float) player->getSkillMod("group_burst_run");
-		int hamCost = (int) (100.0f * (1.0f - (groupBurstRunMod / 100.0f))) * calculateGroupModifier(group);
+		int mindCost = (int) (1350.0f * (1.0f - (groupBurstRunMod / 100.0f))) * calculateGroupModifier(group);
+		int adjustedMindCost = creature->calculateCostAdjustment(CreatureAttribute::FOCUS, mindCost);
 
-		int actionCost = creature->calculateCostAdjustment(CreatureAttribute::QUICKNESS, hamCost);
-		int mindCost = creature->calculateCostAdjustment(CreatureAttribute::FOCUS, hamCost);
-
-		if (!inflictHAM(player, 0, actionCost, mindCost))
+		if (!inflictHAM(player, 0, 0, adjustedMindCost)){
 			return GENERALERROR;
+		}
 
-		for (int i = 1; i < group->getGroupSize(); ++i) {
+		if (!creature->checkCooldownRecovery("retreat")) {
+			creature->sendSystemMessage("Your group is too winded to retreat."); //You cannot burst run right now.
+			return GENERALERROR;
+		}
+
+
+	 	// Use i = 0 for the whole group, i=1 for everyone but the leader.
+		for (int i = 0; i < group->getGroupSize(); ++i) {
 			ManagedReference<CreatureObject*> member = group->getGroupMember(i);
 
-			if (member == nullptr || !member->isPlayerCreature())
+			if (member == nullptr || !member->isPlayerCreature() || member->getZone() != creature->getZone() || !member->isInRange(creature, 128.0))
 				continue;
 
 			if (!isValidGroupAbilityTarget(creature, member, false))
@@ -95,7 +101,7 @@ public:
 
 			Locker clocker(member, player);
 
-			sendCombatSpam(member);
+
 			doRetreat(member);
 
 			checkForTef(player, member);
@@ -118,6 +124,7 @@ public:
 		if (!checkRetreat(player))
 			return;
 
+		sendCombatSpam(player);
 		uint32 actionCRC = STRING_HASHCODE("retreat");
 
 		if (player->hasBuff(actionCRC)) {
@@ -132,12 +139,13 @@ public:
 		StringIdChatParameter startStringId("cbt_spam", "burstrun_start_single");
 		StringIdChatParameter endStringId("cbt_spam", "burstrun_stop_single");
 
-		int duration = 30;
+		int duration = 10;
 
 		ManagedReference<Buff*> buff = new Buff(player, actionCRC, duration, BuffType::SKILL);
 
 		Locker locker(buff);
 
+		buff->setSkillModifier("private_knockdown_defense", -75);
 		buff->setSpeedMultiplierMod(1.822f);
 		buff->setAccelerationMultiplierMod(1.822f);
 		buff->setStartMessage(startStringId);
@@ -145,7 +153,7 @@ public:
 
 		player->addBuff(buff);
 
-		player->updateCooldownTimer("retreat", 30000);
+		player->updateCooldownTimer("retreat", 40000);
 
 	}
 

@@ -20,10 +20,10 @@ public:
 
 	int doQueueCommand(CreatureObject* player, const uint64& target, const UnicodeString& arguments) const {
 
-		int cooldownMilli = 300000; // 5 min
+		int cooldownMilli = 60000; // 1 min
 		int durationSec =  60; // 1 min
 		int mindCost = player->calculateCostAdjustment(CreatureAttribute::FOCUS, 100 );
-		unsigned int buffCRC = STRING_HASHCODE("enragePet");
+		unsigned int buffCRC = STRING_HASHCODE("enhancePet");
 
 		if (!checkStateMask(player))
 			return INVALIDSTATE;
@@ -70,18 +70,17 @@ public:
 					continue;
 
 				// Check if pet already has buff
-				if ( pet->hasBuff(buffCRC) )
+				if ( pet->hasBuff(buffCRC) ){
+					pet->showFlyText("combat_effects","pet_embolden_no", 0, 153, 0); // "! Already Emboldened !"
 					continue;
+				}
 
 				// Check cooldown
-				if( pet->getCooldownTimerMap() == nullptr || !pet->getCooldownTimerMap()->isPast("enragePetsCooldown") )
+				if( pet->getCooldownTimerMap() == nullptr || !pet->getCooldownTimerMap()->isPast("enhancePetsCooldown") )
 					continue;
 
-				// Determine damage bonus (15% of average damage)
-				int damageBonus = (int) ((((float)pet->getDamageMin() + (float)pet->getDamageMax())/2) * 0.15);
-
-				// Determine damage susceptibility (half of damage bonus)
-				int damageSusceptibility = damageBonus / 2;
+				// Determine damage bonus (100% average damage - double damage while enraged)
+				int damageBonus = (int) (((float)pet->getDamageMin() + (float)pet->getDamageMax())/2);
 
 				// Build buff
 				ManagedReference<Buff*> buff = new Buff(pet, buffCRC, durationSec, BuffType::OTHER);
@@ -91,10 +90,10 @@ public:
 				buff->setStartFlyText("combat_effects", "go_berserk", 0, 0xFF, 0);
 				buff->setEndFlyText("combat_effects", "no_berserk", 0xFF, 0, 0);
 				buff->setSkillModifier("private_damage_bonus", damageBonus);
-				buff->setSkillModifier("private_damage_susceptibility", damageSusceptibility);
+				buff->setSkillModifier("private_attack_accuracy", 125);
 
 				pet->addBuff(buff);
-				pet->getCooldownTimerMap()->updateToCurrentAndAddMili("enragePetsCooldown", cooldownMilli);
+				pet->getCooldownTimerMap()->updateToCurrentAndAddMili("enhancePetsCooldown", cooldownMilli);
 				petEnraged = true;
 
 			} // end if creature

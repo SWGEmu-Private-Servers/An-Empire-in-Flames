@@ -674,7 +674,7 @@ void ServerCore::initialize() {
 
 		ObjectManager::instance()->scheduleUpdateToDatabase();
 
-		info("initialized", true);
+		info("initialized, bitches!", true);
 
 		System::flushStreams();
 
@@ -760,6 +760,17 @@ void ServerCore::shutdown() {
 
 		info("All players disconnected", true);
 
+		int galaxyID = configManager->getZoneGalaxyID();
+
+		StringBuffer query;
+		query << "Update `swgemu`.`galaxy` SET `status`='0' WHERE `galaxy_id`= " + String::valueOf(galaxyID);
+
+		try {
+			ServerDatabase::instance()->executeStatement(query);
+		}
+			catch (const DatabaseException& e) {
+			error(e.getMessage());
+		}
 		auto frsManager = zoneServer->getFrsManager();
 
 		if (frsManager != nullptr) {

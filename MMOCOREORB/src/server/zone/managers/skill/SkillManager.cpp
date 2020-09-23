@@ -261,6 +261,21 @@ bool SkillManager::awardSkill(const String& skillName, CreatureObject* creature,
 		return false;
 	}
 
+	//Check for precluded skills.
+	auto skillsPrecluded = skill->getSkillsPrecluded();
+	for (int i = 0; i < skillsPrecluded->size(); ++i) {
+		const String& precludedSkillName = skillsPrecluded->get(i);
+		Skill* precludedSkill = skillMap.get(precludedSkillName.hashCode());
+
+		if (precludedSkill == nullptr) {
+			continue;
+		}
+
+		if (creature->hasSkill(precludedSkillName)) {
+			return false;
+		}
+	}
+
 	//If they already have the skill, then return true.
 	if (creature->hasSkill(skill->getSkillName()))
 		return true;
@@ -590,6 +605,49 @@ void SkillManager::surrenderAllSkills(CreatureObject* creature, bool notifyClien
 				JediManager::instance()->onSkillRevoked(creature, skill);
 			}
 		}
+
+		if (skill->getSkillPointsRequired() == 0) {
+			if (skill->getSkillName().contains("species_"))
+				continue;
+
+			if (skill->getSkillName().contains("_language_"))
+				continue;
+
+			if (skill->getSkillName().contains("gcw_"))
+				continue;
+
+			if (skill->getSkillName().contains("admin_"))
+				continue;
+
+			if (skill->getSkillName().contains("special_"))
+				continue;
+
+			removeSkillRelatedMissions(creature, skill);
+
+			creature->removeSkill(skill, notifyClient);
+
+			//Remove skill modifiers
+			auto skillModifiers = skill->getSkillModifiers();
+
+			for (int i = 0; i < skillModifiers->size(); ++i) {
+				auto entry = &skillModifiers->elementAt(i);
+				creature->removeSkillMod(SkillModManager::SKILLBOX, entry->getKey(), entry->getValue(), notifyClient);
+			}
+
+			if (ghost != nullptr) {
+				//Give the player the used skill points back.
+				ghost->addSkillPoints(skill->getSkillPointsRequired());
+
+				//Remove abilities
+				auto abilityNames = skill->getAbilities();
+				removeAbilities(ghost, *abilityNames, notifyClient);
+
+				//Remove draft schematic groups
+				auto schematicsGranted = skill->getSchematicsGranted();
+				SchematicMap::instance()->removeSchematics(ghost, *schematicsGranted, notifyClient);
+				JediManager::instance()->onSkillRevoked(creature, skill);
+			}
+		}
 	}
 
 	SkillModManager::instance()->verifySkillBoxSkillMods(creature);
@@ -713,6 +771,20 @@ bool SkillManager::canLearnSkill(const String& skillName, CreatureObject* creatu
 		return false;
 	}
 
+	//Check for precluded skills.
+	auto skillsPrecluded = skill->getSkillsPrecluded();
+		for (int i = 0; i < skillsPrecluded->size(); ++i) {
+			const String& precludedSkillName = skillsPrecluded->get(i);
+			Skill* precludedSkill = skillMap.get(precludedSkillName.hashCode());
+
+			if (precludedSkill == nullptr) {
+				continue;
+			}
+
+			if (creature->hasSkill(precludedSkillName)) {
+				return false;
+			}
+		}
 
 	return true;
 }
@@ -735,6 +807,21 @@ bool SkillManager::fulfillsSkillPrerequisitesAndXp(const String& skillName, Crea
 			return false;
 		}
 	}
+
+	//Check for precluded skills.
+	auto skillsPrecluded = skill->getSkillsPrecluded();
+		for (int i = 0; i < skillsPrecluded->size(); ++i) {
+			const String& precludedSkillName = skillsPrecluded->get(i);
+			Skill* precludedSkill = skillMap.get(precludedSkillName.hashCode());
+
+			if (precludedSkill == nullptr) {
+				continue;
+			}
+
+			if (creature->hasSkill(precludedSkillName)) {
+				return false;
+			}
+		}
 
 	return true;
 }
@@ -775,6 +862,21 @@ bool SkillManager::fulfillsSkillPrerequisites(const String& skillName, CreatureO
 		}
 
 		if (!creature->hasSkill(requiredSkillName)) {
+			return false;
+		}
+	}
+
+	//Check for precluded skills.
+	auto skillsPrecluded = skill->getSkillsPrecluded();
+		for (int i = 0; i < skillsPrecluded->size(); ++i) {
+		const String& precludedSkillName = skillsPrecluded->get(i);
+		Skill* precludedSkill = skillMap.get(precludedSkillName.hashCode());
+
+		if (precludedSkill == nullptr) {
+			continue;
+		}
+
+		if (creature->hasSkill(precludedSkillName)) {
 			return false;
 		}
 	}

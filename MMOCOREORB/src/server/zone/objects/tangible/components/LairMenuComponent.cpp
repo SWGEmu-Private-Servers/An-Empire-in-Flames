@@ -31,7 +31,7 @@ void LairMenuComponent::fillObjectMenuResponse(SceneObject* sceneObject, ObjectM
 			break;
 	}
 
-	if(player->hasSkill("outdoors_scout_novice") && player->getDistanceTo(sceneObject) < 8 && lairObserver && lairObserver->getMobType() != LairTemplate::NPC) {
+	if(player->hasSkill("outdoors_ranger_novice") && player->getDistanceTo(sceneObject) < 8 && lairObserver && lairObserver->getMobType() != LairTemplate::NPC) {
 		menuResponse->addRadialMenuItem(50, 3, "@lair_n:search_lair"); //Search Lair
 	}
 
@@ -45,7 +45,7 @@ int LairMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject, Creature
 
 	if(selectedID == 50) {
 
-		if(player->isPlayerCreature() && player->hasSkill("outdoors_scout_novice") &&
+		if(player->isPlayerCreature() && player->hasSkill("outdoors_ranger_novice") &&
 				player->getDistanceTo(sceneObject) < 8) {
 
 			ForageManager* forageManager = player->getZoneProcessServer()->getForageManager();

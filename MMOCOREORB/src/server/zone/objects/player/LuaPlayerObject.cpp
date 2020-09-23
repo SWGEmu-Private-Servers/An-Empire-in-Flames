@@ -82,6 +82,7 @@ Luna<LuaPlayerObject>::RegType LuaPlayerObject::Register[] = {
 		{ "startSlicingSession", &LuaPlayerObject::startSlicingSession },
 		{ "setVisibility", &LuaPlayerObject::setVisibility },
 		{ "getPlayedTimeString", &LuaPlayerObject::getPlayedTimeString },
+		{ "setConversatingCreature", &LuaPlayerObject::setConversatingCreature },
 		{ 0, 0 }
 };
 
@@ -747,6 +748,17 @@ int LuaPlayerObject::getPlayedTimeString(lua_State* L) {
 	Locker locker(realObject);
 
 	lua_pushstring(L, realObject->getPlayedTimeString(verbose).toCharArray());
+
+	return 1;
+}
+
+
+int LuaPlayerObject::setConversatingCreature(lua_State* L) {
+	CreatureObject* target = (CreatureObject*)lua_touserdata(L, -1);
+
+	Locker locker(realObject);
+
+	realObject->setConversatingCreature(target);
 
 	return 1;
 }

@@ -184,6 +184,11 @@ public:
 
 				ManagedReference<TangibleObject*> targetTano = targetObject.castTo<TangibleObject*>();
 
+				if (targetTano != nullptr && targetTano->getPvpStatusBitmask() == CreatureFlag::FRIENDLY) {
+					creature->sendSystemMessage("You have no reason to attack this target!");
+					return GENERALERROR;
+				}
+
 				if (targetTano != nullptr && creature->getFaction() != 0 && targetTano->getFaction() != 0 && targetTano->getFaction() != creature->getFaction() && creature->getFactionStatus() != FactionStatus::OVERT) {
 					if (targetTano->isCreatureObject()) {
 						ManagedReference<CreatureObject*> targetCreature = targetObject.castTo<CreatureObject*>();
@@ -256,6 +261,11 @@ public:
 					}
 				}
 			}
+		}
+
+		if ( !(weapon->isJediWeapon() || weapon->isMeleeWeapon()) && creature->isBerserked()){
+				creature->sendSystemMessage("You cannot focus with your ranged weapon while berserk.");
+			return GENERALERROR;
 		}
 
 		CombatManager* combatManager = CombatManager::instance();

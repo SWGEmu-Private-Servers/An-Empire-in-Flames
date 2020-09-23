@@ -33,6 +33,8 @@ public:
 		float posX = creature->getPositionX(), posY = creature->getPositionY(), posZ = creature->getPositionZ();
 		uint64 parID = creature->getParentID();
 
+		ManagedReference<PlayerObject*> ghost = creature->getPlayerObject();
+
 		String objName = "", tempName = "object/mobile/boba_fett.iff";
 		bool baby = false;
 		String aiTemplate = "";
@@ -92,7 +94,7 @@ public:
 			if (!objName.isEmpty() && objName == "baby")
 				baby = true;
 
-			if (!objName.isEmpty() && objName == "event") {
+			if ((!objName.isEmpty() && objName == "event") || (ghost->getAdminLevel() == 1)) {
 				event = true;
 
 				if (tokenizer.hasMoreTokens()) {

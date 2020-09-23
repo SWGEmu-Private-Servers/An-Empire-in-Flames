@@ -117,27 +117,6 @@ void TangibleObjectImplementation::notifyLoadFromDatabase() {
 	}
 }
 
-void TangibleObjectImplementation::destroyObjectFromDatabase(bool destroyContainedObjects) {
-	if (hasAntiDecayKit()) {
-		AntiDecayKit* adk = antiDecayKitObject.castTo<AntiDecayKit*>();
-
-		if (adk != nullptr) {
-			auto strongAdkParent = adk->getParent().get();
-			error()
-				<< "destroyObjectFromDatabase oid: " << getObjectID()
-				<< " has AntiDecayKit(" << adk->getObjectID()
-				<< ") with parent: " << (strongAdkParent != nullptr ? strongAdkParent->getObjectID() : 0)
-				<< ", removing adk from database."
-				;
-			Locker lock(adk);
-			adk->destroyObjectFromDatabase(true);
-			antiDecayKitObject = nullptr;
-		}
-	}
-
-	SceneObjectImplementation::destroyObjectFromDatabase(destroyContainedObjects);
-}
-
 void TangibleObjectImplementation::sendBaselinesTo(SceneObject* player) {
 	debug("sending tano baselines");
 
@@ -539,19 +518,12 @@ void TangibleObjectImplementation::removeDefender(SceneObject* defender) {
 void TangibleObjectImplementation::fillAttributeList(AttributeListMessage* alm, CreatureObject* object) {
 	SceneObjectImplementation::fillAttributeList(alm, object);
 
+	if (isNoTrade())
+		alm->insertAttribute("notrade", " \\#ff0000\\NO TRADE\n");
+
 	if (maxCondition > 0) {
 		StringBuffer cond;
 		cond << (maxCondition-(int)conditionDamage) << "/" << maxCondition;
-
-		auto config = ConfigManager::instance();
-
-		if (isForceNoTrade()) {
-			cond << config->getForceNoTradeMessage();
-		} else if (antiDecayKitObject != nullptr && antiDecayKitObject->isForceNoTrade()) {
-			cond << config->getForceNoTradeADKMessage();
-		} else if (isNoTrade() || containsNoTradeObjectRecursive()) {
-			cond << config->getNoTradeMessage();
-		}
 
 		alm->insertAttribute("condition", cond);
 	}
@@ -1039,6 +1011,10 @@ void TangibleObjectImplementation::repair(CreatureObject* player) {
 	int roll = System::random(100);
 	int repairChance = roll;
 
+	/// use tool quality to lower chances if bad tool
+	float quality = 1.f - (((100.f - repairTool->getQuality()) / 2) / 100.f);
+	repairChance *= quality;
+
 	/// Profession Bonus
 	if (player->hasSkill(repairTemplate->getSkill()))
 		repairChance += 35;
@@ -1048,10 +1024,6 @@ void TangibleObjectImplementation::repair(CreatureObject* player) {
 	repairChance += player->getSkillMod("crafting_repair");
 	repairChance += player->getSkillMod("force_repair_bonus");
 
-	/// use tool quality to lower chances if bad tool
-	float quality = 1.f - (((100.f - repairTool->getQuality()) / 2) / 100.f);
-	repairChance *= quality;
-
 	ManagedReference<PlayerManager*> playerMan = player->getZoneServer()->getPlayerManager();
 
 	/// Increase if near station
@@ -1060,13 +1032,13 @@ void TangibleObjectImplementation::repair(CreatureObject* player) {
 	}
 
 	/// Subtract battle fatigue
-	repairChance -= (player->getShockWounds() / 2);
+//	repairChance -= (player->getShockWounds() / 2);
 
 	/// Subtract complexity
-	repairChance -= (getComplexity() / 3);
+	repairChance -= (getComplexity() / 10);
 
-	/// 5% random failure
-	if (getMaxCondition() < 20 || roll < 5)
+	/// low condition is failure
+	if(getMaxCondition() < 20)
 		repairChance = 0;
 
 	if (roll > 95)
@@ -1100,22 +1072,19 @@ bool TangibleObjectImplementation::isAttackableBy(TangibleObject* object) {
 }
 
 bool TangibleObjectImplementation::isAttackableBy(CreatureObject* object) {
-	if (object->isPlayerCreature()) {
-		Reference<PlayerObject*> ghost = object->getPlayerObject();
-		if (ghost != nullptr && ghost->hasCrackdownTefTowards(getFaction())) {
-			return true;
-		}
-		if (isImperial() && (!object->isRebel() || object->getFactionStatus() == 0)) {
-			return false;
-		}
-
-		if (isRebel() && (!object->isImperial() || object->getFactionStatus() == 0)) {
-			return false;
-		}
-	} else if (isImperial() && !(object->isRebel())) {
+	if (isImperial() && !(object->isRebel())) {
 		return false;
 	} else if (isRebel() && !(object->isImperial())) {
 		return false;
+	} else if (object->isPlayerCreature()) {
+		if (isImperial() && object->getFactionStatus() == 0) {
+			return false;
+		}
+
+		if (isRebel() && object->getFactionStatus() == 0) {
+			return false;
+		}
+
 	} else if (object->isAiAgent()) {
 		AiAgent* ai = object->asAiAgent();
 

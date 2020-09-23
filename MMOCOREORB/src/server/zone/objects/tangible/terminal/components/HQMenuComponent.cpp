@@ -9,6 +9,7 @@
 #include "server/zone/Zone.h"
 #include "server/zone/objects/player/PlayerObject.h"
 #include "server/zone/packets/object/ObjectMenuResponse.h"
+#include "server/ServerCore.h"
 
 #include "server/zone/objects/scene/SceneObjectType.h"
 #include "server/zone/objects/scene/SceneObject.h"
@@ -22,10 +23,20 @@
 void HQMenuComponent::fillObjectMenuResponse(SceneObject* sceneObject, ObjectMenuResponse* menuResponse, CreatureObject* player) const {
 	ManagedReference<BuildingObject*> building = sceneObject->getParentRecursively(SceneObjectType::FACTIONBUILDING).castTo<BuildingObject*>();
 
-	if (building == nullptr || player  == nullptr)
-		return;
+	if (building == nullptr){
+		const ContainerPermissions* permissions = sceneObject->getContainerPermissions();
+		uint64 ownerID = permissions->getOwnerID();
+		ZoneServer* zoneServer = ServerCore::getZoneServer();
+		Reference<SceneObject*> object = zoneServer->getObject(ownerID);
+		building = object.castTo<BuildingObject*>();
+		if (building == nullptr)
+			return;
+	}
 
 	Zone* zone = building->getZone();
+
+	if (player  == nullptr || player->isDead() || player->isIncapacitated())
+			return;
 
 	if (zone == nullptr)
 		return;
@@ -51,7 +62,7 @@ void HQMenuComponent::fillObjectMenuResponse(SceneObject* sceneObject, ObjectMen
 			return;
 	}
 
-	if (building->getFaction() == player->getFaction() && (building->getPvpStatusBitmask() & CreatureFlag::OVERT)) {
+	if ((building->getFaction() == player->getFaction()) && (player->getPvpStatusBitmask() & CreatureFlag::OVERT)) {
 		if (gcwMan->isShutdownSequenceStarted(building))
 			menuResponse->addRadialMenuItem(231, 3, "@hq:mnu_shutdown");  // Shutdown facility
 
@@ -82,8 +93,15 @@ void HQMenuComponent::fillObjectMenuResponse(SceneObject* sceneObject, ObjectMen
 int HQMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject, CreatureObject* creature, byte selectedID) const {
 	ManagedReference<BuildingObject*> building = sceneObject->getParentRecursively(SceneObjectType::FACTIONBUILDING).castTo<BuildingObject*>();
 
-	if (building == nullptr)
-		return 1;
+	if (building == nullptr){
+		const ContainerPermissions* permissions = sceneObject->getContainerPermissions();
+		uint64 ownerID = permissions->getOwnerID();
+		ZoneServer* zoneServer = ServerCore::getZoneServer();
+		Reference<SceneObject*> object = zoneServer->getObject(ownerID);
+		building = object.castTo<BuildingObject*>();
+		if (building == nullptr)
+			return 1;
+	}
 
 	Zone* zone = building->getZone();
 
@@ -105,7 +123,9 @@ int HQMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject, CreatureOb
 
 	if (creature->getFaction() != building->getFaction()) {
 		if (selectedID == 230) {
-			if (gcwMan->isFacilityRebooting(building)) {
+			if (creature->isInCombat()) {
+				creature->sendSystemMessage("You cannot activate the overload while you are in combat!");
+			} else if (gcwMan->isFacilityRebooting(building)) {
 				creature->sendSystemMessage("You must wait for the facility to reboot before activating the overload again.");
 			} else if (gcwMan->isPowerOverloaded(building) && creature->hasSkill("outdoors_squadleader_novice")) {
 				if (gcwMan->isShutdownSequenceStarted(building)) {
@@ -139,7 +159,9 @@ int HQMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject, CreatureOb
 			gcwMan->sendSelectDeedToDonate(building, creature);
 			return 0;
 		} else if (selectedID == 231) {
-			if (gcwMan->isShutdownSequenceStarted(building)) {
+			if (creature->isInCombat()) {
+				creature->sendSystemMessage("You cannot abort the overload while you are in combat!");
+			} else if (gcwMan->isShutdownSequenceStarted(building)) {
 				ShutdownSequenceTask* task = new ShutdownSequenceTask(gcwMan, building, creature, sceneObject, false);
 				task->execute();
 			}

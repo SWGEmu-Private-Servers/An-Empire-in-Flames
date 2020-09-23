@@ -108,7 +108,7 @@ void MapLocationEntry::setObject(SceneObject *obj) {
 			newName = "@map_loc_cat_n:terminal";
 		}
 
-	} else if (!object->isGCWBase()) { // Everything else except faction bases are just named by the city it's in
+	} else if (!object->isGCWBase() || category->getName() == "starport") { // Everything else except faction bases are just named by the city it's in
 		ManagedReference<PlanetManager*> planetManager = zone->getPlanetManager();
 
 		ManagedReference<CityRegion *> region = planetManager->getRegionAt(object->getWorldPositionX(), object->getWorldPositionY());

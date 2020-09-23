@@ -16,6 +16,10 @@ public:
 
 	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
 
+		if (!creature->isInCover()){
+			return INVALIDTARGET;
+		}
+
 		if (!checkStateMask(creature))
 			return INVALIDSTATE;
 

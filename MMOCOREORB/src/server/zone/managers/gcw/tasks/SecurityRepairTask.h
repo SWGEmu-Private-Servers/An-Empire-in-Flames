@@ -26,8 +26,15 @@ public:
 
 		ManagedReference<BuildingObject*> building = terminal->getParentRecursively(SceneObjectType::FACTIONBUILDING).castTo<BuildingObject*>();
 
-		if (building == nullptr)
-			return;
+		if (building == nullptr){
+			const ContainerPermissions* permissions = terminal->getContainerPermissions();
+			uint64 ownerID = permissions->getOwnerID();
+			ZoneServer* zoneServer = ServerCore::getZoneServer();
+			Reference<SceneObject*> object = zoneServer->getObject(ownerID);
+			building = object.castTo<BuildingObject*>();
+			if (building == nullptr)
+				return;
+		}
 
 		DataObjectComponentReference* data = building->getDataObjectComponent();
 

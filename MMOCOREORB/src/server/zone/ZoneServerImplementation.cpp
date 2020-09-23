@@ -187,11 +187,32 @@ void ZoneServerImplementation::initialize() {
 
 	//serverState = LOCKED;
 	serverState = ONLINE; //Test Center does not need to apply this change, but would be convenient for Dev Servers.
+	StringBuffer query;
+	query << "Update `swgemu`.`galaxy` SET `status`='2' WHERE `galaxy_id`= "+ String::valueOf(galaxyID);
+
+	try {
+		ServerDatabase::instance()->executeStatement(query);
+	}
+	catch (const DatabaseException& e) {
+		error(e.getMessage());
+	}
 
 	ObjectDatabaseManager::instance()->commitLocalTransaction();
 }
 
 void ZoneServerImplementation::startZones() {
+
+	StringBuffer query;
+	query << "Update `swgemu`.`galaxy` SET `status`='1' WHERE `galaxy_id`= " + String::valueOf(galaxyID);
+
+	try {
+		ServerDatabase::instance()->executeStatement(query);
+	}
+	catch (const DatabaseException& e) {
+		error(e.getMessage());
+	}
+	query.deleteAll();
+
 	info("Loading zones.");
 
 	auto enabledZones = configManager->getEnabledZones();
@@ -740,6 +761,16 @@ void ZoneServerImplementation::setServerStateLocked() {
 
 	serverState = LOCKED;
 
+	StringBuffer query;
+	query << "Update `swgemu`.`galaxy` SET `status`='3' WHERE `galaxy_id`= " + String::valueOf(galaxyID);
+
+	try {
+		ServerDatabase::instance()->executeStatement(query);
+	}
+	catch (const DatabaseException& e) {
+		error(e.getMessage());
+	}
+
 	StringBuffer msg;
 	msg << dec << "server locked";
 	info(msg, true);
@@ -749,6 +780,16 @@ void ZoneServerImplementation::setServerStateOnline() {
 	Locker locker(_this.getReferenceUnsafeStaticCast());
 
 	serverState = ONLINE;
+
+	StringBuffer query;
+	query << "Update `swgemu`.`galaxy` SET `status`='2' WHERE `galaxy_id`= " + String::valueOf(galaxyID);
+
+	try {
+		ServerDatabase::instance()->executeStatement(query);
+	}
+	catch (const DatabaseException& e) {
+		error(e.getMessage());
+	}
 
 	StringBuffer msg;
 	msg << dec << "server unlocked";

@@ -191,6 +191,7 @@ bool ContainerComponent::transferObject(SceneObject* sceneObject, SceneObject* o
 			for (int i = 0; i < descriptors->size(); ++i){
 				const String& childArrangement = descriptors->get(i);
 				if (slottedObjects->contains(childArrangement)) {
+					sceneObject->error("!slottedObjects->contains(childArrangement)");
 					return false;
 				}
 			}
@@ -199,6 +200,7 @@ bool ContainerComponent::transferObject(SceneObject* sceneObject, SceneObject* o
 				 slottedObjects->put(descriptors->get(i), object);
 			}
 		} else {
+			sceneObject->error("arrangementGroup > arrangement descriptor size");
 			return false;
 		}
 

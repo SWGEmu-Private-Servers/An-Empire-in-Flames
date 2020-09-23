@@ -315,6 +315,10 @@ void ChatManagerImplementation::initiateRooms() {
 	auctionRoom->setCanEnter(true);
 	auctionRoom->setChatRoomType(ChatRoom::AUCTION);
 
+	generalRoom = createRoom("GalaxyChat", galaxyRoom);
+	generalRoom->setCanEnter(true);
+	generalRoom->setTitle("Public Chat");
+
 }
 
 void ChatManagerImplementation::initiatePlanetRooms() {
@@ -941,18 +945,26 @@ void ChatManagerImplementation::broadcastGalaxy(const String& message, const Str
 
 	playerMap->resetIterator(false);
 
-	uint32 factionCRC = faction.hashCode();
-
-	while (playerMap->hasNext(false)) {
-		ManagedReference<CreatureObject*> playerObject = playerMap->getNextValue(false);
-
-		if (playerObject->getFaction() == factionCRC || playerObject->getPlayerObject()->hasGodMode())
+	if (faction == "all")
+		while (playerMap->hasNext(false)) {
+			ManagedReference<CreatureObject*> playerObject = playerMap->getNextValue(false);
 			playerObject->sendSystemMessage(message);
+		}
+
+	else {
+		uint32 factionCRC = faction.hashCode();
+	
+		while (playerMap->hasNext(false)) {
+			ManagedReference<CreatureObject*> playerObject = playerMap->getNextValue(false);
+
+			if (playerObject->getFaction() == factionCRC || playerObject->getPlayerObject()->hasGodMode())
+				playerObject->sendSystemMessage(message);
+		}
 	}
 }
 
 void ChatManagerImplementation::broadcastGalaxy(CreatureObject* player, const String& message) {
-	String firstName = "SKYNET";
+	String firstName = "Starsider";
 
 	if (player != nullptr)
 		firstName = player->getFirstName();
@@ -1666,7 +1678,7 @@ void ChatManagerImplementation::sendMail(const String& sendername, const Unicode
 	}, "SendMailLambda3", "slowQueue");
 }
 
-int ChatManagerImplementation::sendMail(const String& sendername, const UnicodeString& subject, const UnicodeString& body, const String& recipientName, StringIdChatParameterVector* stringIdParameters, WaypointChatParameterVector* waypointParameters, Reference<PersistentMessage* >* sentMail) {
+int ChatManagerImplementation::sendMail(const String& sendername, const UnicodeString& subject, const UnicodeString& body, const String& recipientName, StringIdChatParameterVector* stringIdParameters, WaypointChatParameterVector* waypointParameters) {
 	if (!playerManager->containsPlayer(recipientName))
 		return IM_OFFLINE;
 
@@ -1716,15 +1728,10 @@ int ChatManagerImplementation::sendMail(const String& sendername, const UnicodeS
 	uint64 receiverObjectID = playerManager->getObjectID(recipientName);
 	mail->setReceiverObjectID(receiverObjectID);
 
-	ObjectManager::instance()->persistObject(mail, 1, "mail");
-
-	if (sentMail != nullptr) {
-		*sentMail = mail;
-	}
-
 	Core::getTaskManager()->executeTask([=] () {
 		Reference<CreatureObject*> receiver = getPlayer(recipientName);
 		if (receiver == nullptr) {
+			ObjectManager::instance()->persistObject(mail, 1, "mail");
 			ManagedReference<PendingMessageList*> list = getPendingMessages(receiverObjectID);
 			Locker locker(list);
 			list->addPendingMessage(mail->getObjectID());
@@ -1732,11 +1739,10 @@ int ChatManagerImplementation::sendMail(const String& sendername, const UnicodeS
 			Locker locker(receiver);
 			PlayerObject* receiverPlayerObject = receiver->getPlayerObject();
 
-			if ((receiverPlayerObject == nullptr) || (receiverPlayerObject->isIgnoring(sendername) && !godMode)) {
-				ObjectManager::instance()->destroyObjectFromDatabase(mail->getObjectID());
-				mail->setPersistent(0);
+			if ((receiverPlayerObject == nullptr) || (receiverPlayerObject->isIgnoring(sendername) && !godMode))
 				return;
-			}
+
+			ObjectManager::instance()->persistObject(mail, 1, "mail");
 
 			PlayerObject* ghost = receiver->getPlayerObject();
 

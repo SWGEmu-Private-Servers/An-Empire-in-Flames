@@ -15,6 +15,7 @@
 class SharedBuildingObjectTemplate : public SharedStructureObjectTemplate {
 	StringParam terrainModificationFileName;
 	StringParam interiorLayoutFileName;
+	StringParam controlDeviceObject;
 
 	Vector<ChildCreatureObject> childCreatureObjects;
 	int medicalRating;
@@ -85,6 +86,10 @@ public:
 
 	inline const String& getInteriorLayoutFileName() const {
 		return interiorLayoutFileName.get();
+	}
+
+	inline String getControlDeviceObject() const {
+		return controlDeviceObject.get();
 	}
 
 	inline const Vector3& getEjectionPoint() const {

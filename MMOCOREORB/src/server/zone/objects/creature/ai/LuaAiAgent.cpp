@@ -125,6 +125,7 @@ Luna<LuaAiAgent>::RegType LuaAiAgent::Register[] = {
 		{ "setLevel", &LuaAiAgent::setLevel },
 		{ "hasReactionChatMessages", &LuaAiAgent::hasReactionChatMessages },
 		{ "sendReactionChat", &LuaAiAgent::sendReactionChat },
+		{ "sendConversationStartTo", &LuaAiAgent::sendConversationStartTo },
 		{ "addPatrolPoint", &LuaAiAgent::addPatrolPoint },
 		{ "runAwarenessLogicCheck", &LuaAiAgent::runAwarenessLogicCheck },
 		{ "runStartAwarenessInterrupt", &LuaAiAgent::runStartAwarenessInterrupt },
@@ -961,6 +962,18 @@ int LuaAiAgent::sendReactionChat(lua_State* L) {
 	Locker locker(realObject);
 
 	realObject->sendReactionChat(type, state);
+
+	return 0;
+}
+
+int LuaAiAgent::sendConversationStartTo(lua_State* L) {
+	SceneObject* target = static_cast<SceneObject*>(lua_touserdata(L, -1));
+
+	Locker locker(realObject);
+
+	realObject->sendConversationStartTo(target);
+
+	realObject->notifyObservers(ObserverEventType::STARTCONVERSATION, target);
 
 	return 0;
 }

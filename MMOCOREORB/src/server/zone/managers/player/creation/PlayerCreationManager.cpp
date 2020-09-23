@@ -25,7 +25,6 @@
 #include "templates/customization/CustomizationIdManager.h"
 #include "server/zone/managers/skill/imagedesign/ImageDesignManager.h"
 #include "server/zone/managers/jedi/JediManager.h"
-#include "server/zone/objects/transaction/TransactionLog.h"
 
 PlayerCreationManager::PlayerCreationManager() :
 		Logger("PlayerCreationManager") {
@@ -328,8 +327,8 @@ bool PlayerCreationManager::createCharacter(ClientCreateCharacterCallback* callb
 
 	auto client = callback->getClient();
 
-	if (client->getCharacterCount(zoneServer.get()->getGalaxyID()) >= 10) {
-		ErrorMessage* errMsg = new ErrorMessage("Create Error", "You are limited to 10 characters per galaxy.", 0x0);
+	if (client->getCharacterCount(zoneServer.get()->getGalaxyID()) >= 3) {
+		ErrorMessage* errMsg = new ErrorMessage("Create Error", "You are limited to 3 characters per galaxy.", 0x0);
 		client->sendMessage(errMsg);
 
 		return false;
@@ -412,14 +411,8 @@ bool PlayerCreationManager::createCharacter(ClientCreateCharacterCallback* callb
 	// Set starting cash and starting bank
 	playerCreature->clearCashCredits(false);
 	playerCreature->clearBankCredits(false);
-	{
-		TransactionLog trx(TrxCode::CHARACTERCREATION, playerCreature, startingCash, true);
-		playerCreature->addCashCredits(startingCash, false);
-	}
-	{
-		TransactionLog trx(TrxCode::CHARACTERCREATION, playerCreature, startingBank, false);
-		playerCreature->addBankCredits(startingBank, false);
-	}
+	playerCreature->addCashCredits(startingCash, false);
+	playerCreature->addBankCredits(startingBank, false);
 
 	ManagedReference<PlayerObject*> ghost = playerCreature->getPlayerObject();
 
@@ -483,7 +476,7 @@ bool PlayerCreationManager::createCharacter(ClientCreateCharacterCallback* callb
 
 							Time timeVal(sec);
 
-							if (timeVal.miliDifference() < 3600000) {
+							if (timeVal.miliDifference() < 60000) {
 								ErrorMessage* errMsg = new ErrorMessage("Create Error", "You are only permitted to create one character per hour. Repeat attempts prior to 1 hour elapsing will reset the timer.", 0x0);
 								client->sendMessage(errMsg);
 
@@ -500,7 +493,7 @@ bool PlayerCreationManager::createCharacter(ClientCreateCharacterCallback* callb
 					if (lastCreatedCharacter.containsKey(accID)) {
 						Time lastCreatedTime = lastCreatedCharacter.get(accID);
 
-						if (lastCreatedTime.miliDifference() < 3600000) {
+						if (lastCreatedTime.miliDifference() < 60000) {
 							ErrorMessage* errMsg = new ErrorMessage("Create Error", "You are only permitted to create one character per hour. Repeat attempts prior to 1 hour elapsing will reset the timer.", 0x0);
 							client->sendMessage(errMsg);
 
@@ -573,6 +566,14 @@ bool PlayerCreationManager::createCharacter(ClientCreateCharacterCallback* callb
 
 	//Join auction chat room
 	ghost->addChatRoom(chatManager->getAuctionRoom()->getRoomID());
+	ghost->addChatRoom(chatManager->getChatRoomByFullPath("SWG." + zoneServer->getGalaxyName() + ".GalaxyChat")->getRoomID());
+
+	String fullName = firstName;
+
+	if (lastName != "")
+		fullName = fullName + " " + lastName;
+
+	chatManager->broadcastGalaxy(" \\#FFFF33\\ " + fullName + "\\#FFFFFF has joined " + zoneServer->getGalaxyName() + "!", "all");
 
 	ManagedReference<SuiMessageBox*> box = new SuiMessageBox(playerCreature, SuiWindowType::NONE);
 	box->setPromptTitle("PLEASE NOTE");
@@ -658,11 +659,11 @@ void PlayerCreationManager::addStartingItems(CreatureObject* creature,
 
 		if (item != nullptr) {
 			String error;
-			if (creature->canAddObject(item, 4, error) == 0) {
+//			if (creature->canAddObject(item, 4, error) == 0) {
 				creature->transferObject(item, 4, false);
-			} else {
-				item->destroyObjectFromDatabase(true);
-			}
+//			} else {
+//				item->destroyObjectFromDatabase(true);
+//			}
 		}
 
 	}
@@ -732,15 +733,15 @@ void PlayerCreationManager::addProfessionStartingItems(CreatureObject* creature,
 
 		if (item != nullptr) {
 			String error;
-			if (creature->canAddObject(item, 4, error) == 0) {
+//			if (creature->canAddObject(item, 4, error) == 0) {
 				creature->transferObject(item, 4, false);
-			} else {
-				item->destroyObjectFromDatabase(true);
-			}
-		} else {
-			error(
-					"could not create item in PlayerCreationManager::addProfessionStartingItems: "
-							+ itemTemplate);
+//			} else {
+//				item->destroyObjectFromDatabase(true);
+//			}
+//		} else {
+//			error(
+//					"could not create item in PlayerCreationManager::addProfessionStartingItems: "
+//							+ itemTemplate);
 		}
 	}
 
@@ -790,14 +791,14 @@ void PlayerCreationManager::addHair(CreatureObject* creature,
 		return;
 	}
 
-	if (hairAssetData->getServerPlayerTemplate()
+/*	if (hairAssetData->getServerPlayerTemplate()
 			!= creature->getObjectTemplate()->getFullTemplateString()) {
 		error(
 				"hair " + hairTemplate
 						+ " is not compatible with this creature player "
 						+ creature->getObjectTemplate()->getFullTemplateString());
 		return;
-	}
+	} */
 
 	if (!hairAssetData->isAvailableAtCreation()) {
 		error("hair " + hairTemplate + " not available at creation");
@@ -932,6 +933,7 @@ void PlayerCreationManager::addStartingItemsInto(CreatureObject* creature,
 
 void PlayerCreationManager::addStartingWeaponsInto(CreatureObject* creature,
 		SceneObject* container) const {
+
 	if (creature == nullptr || container == nullptr || !creature->isPlayerCreature())
 		return;
 

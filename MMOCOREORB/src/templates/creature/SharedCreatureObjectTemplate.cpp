@@ -65,6 +65,8 @@ void SharedCreatureObjectTemplate::parseVariableData(const String& varName, LuaO
 		niche = Lua::getIntParameter(state);
 	} else if (varName == "race") {
 		race = Lua::getIntParameter(state);
+	} else if (varName == "passengerCapacity") {
+		passengerCapacity = Lua::getIntParameter(state);
 	} else if (varName == "slopeModPercent") {
 		slopeModPercent = Lua::getFloatParameter(state);
 	} else if (varName == "slopeModAngle") {

@@ -130,8 +130,8 @@ public:
 		if (res != SUCCESS)
 			return res;
 
-		if (isWearingArmor(creature))
-			return NOJEDIARMOR;
+//		if (isWearingArmor(creature))
+//			return NOJEDIARMOR;
 
 		for (int i=0; i < blockingCRCs.size(); ++i) {
 			if (creature->hasBuff(blockingCRCs.get(i))) {

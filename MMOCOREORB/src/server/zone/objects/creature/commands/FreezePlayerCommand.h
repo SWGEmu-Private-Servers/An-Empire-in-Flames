@@ -71,6 +71,8 @@ public:
 
 			targetGhost->setMutedState(true);
 			targetPlayer->setRootedState(3600);
+		 	targetPlayer->addSkillMod(SkillModManager::BUFF, "private_damage_multiplier", (-1 * targetPlayer->getSkillMod("private_damage_multiplier")) + 1);
+				targetPlayer->addSkillMod(SkillModManager::BUFF, "private_damage_divisor", (-1 * targetPlayer->getSkillMod("private_damage_divisor")) + 1);
 			targetPlayer->setSpeedMultiplierBase(0.f, true);
 
 			if(fullReason.toString().isEmpty()) {

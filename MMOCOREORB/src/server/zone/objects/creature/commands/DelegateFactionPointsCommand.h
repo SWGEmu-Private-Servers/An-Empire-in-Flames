@@ -139,6 +139,9 @@ public:
 
 		uint32 targetsRank = targetCreature->getFactionRank();
 		int targetsCap = FactionManager::instance()->getFactionPointsCap(targetsRank);
+		//fix for hung up faction
+		if (targetsCap < 1000)
+			targetsCap = 1000;
 
 		int currentFactionPoints = delegator->getFactionStanding(faction);
 		int targetsCurrentPoints = targetPlayerObject->getFactionStanding(faction);

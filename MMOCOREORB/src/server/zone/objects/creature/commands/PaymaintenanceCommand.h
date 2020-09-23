@@ -64,7 +64,7 @@ public:
 			if (amount > 0)
 				structureManager->payMaintenance(structure, creature, amount);
 		} catch (Exception& e) {
-			structureManager->promptPayMaintenance(structure, creature);
+			structureManager->promptPayMaintenance(structure, creature, structure);
 		}
 
 		return SUCCESS;

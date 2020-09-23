@@ -10,7 +10,6 @@
 #include "server/zone/objects/creature/sui/LotteryDroidSuiCallback.h"
 #include "server/zone/objects/tangible/deed/eventperk/EventPerkDeed.h"
 #include "server/zone/objects/tangible/components/EventPerkDataComponent.h"
-#include "server/zone/objects/transaction/TransactionLog.h"
 
 void LotteryDroidImplementation::initializeTransientMembers() {
 	TangibleObjectImplementation::initializeTransientMembers();
@@ -325,7 +324,6 @@ void LotteryDroidImplementation::endGame() {
 		if (winner != nullptr) {
 			Locker crossLocker(winner, _this.get());
 
-			TransactionLog trx(_this.getReferenceUnsafeStaticCast(), winner, TrxCode::LOTTERYDROID, winnerPayout, false);
 			winner->addBankCredits(winnerPayout, true);
 
 			ChatManager* chatManager = server->getZoneServer()->getChatManager();
@@ -341,7 +339,6 @@ void LotteryDroidImplementation::endGame() {
 		if (perkOwner != nullptr) {
 			Locker crossLocker(perkOwner, _this.get());
 
-			TransactionLog trx(_this.getReferenceUnsafeStaticCast(), perkOwner, TrxCode::LOTTERYDROID, ownerPayout, false);
 			perkOwner->addBankCredits(ownerPayout, true);
 
 			ChatManager* chatManager = server->getZoneServer()->getChatManager();

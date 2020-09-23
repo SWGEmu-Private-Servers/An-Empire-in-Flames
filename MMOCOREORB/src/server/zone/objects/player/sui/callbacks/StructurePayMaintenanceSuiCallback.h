@@ -12,6 +12,7 @@
 #include "server/zone/objects/creature/CreatureObject.h"
 #include "server/zone/objects/structure/StructureObject.h"
 #include "server/zone/managers/structure/StructureManager.h"
+#include "server/zone/objects/intangible/HouseControlDevice.h"
 
 
 class StructurePayMaintenanceSuiCallback : public SuiCallback {
@@ -37,6 +38,14 @@ public:
 			return;
 		}
 
+		if (obj->isHouseControlDevice())
+		{
+			HouseControlDevice* controlledDev = cast<HouseControlDevice*>(obj.get());
+			StructureObject* controlledObject = cast<StructureObject*>(controlledDev->getControlledObject());
+			StructureManager::instance()->payMaintenance(controlledObject, creature, amount);
+		}
+		else
+		{
 		//Deposit/Withdraw the maintenance
 		StructureObject* structure = cast<StructureObject*>(obj.get());
 
@@ -49,6 +58,7 @@ public:
 		Locker _lock(structure, creature);
 
 		StructureManager::instance()->payMaintenance(structure, creature, amount);
+		}
 	}
 };
 

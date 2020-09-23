@@ -150,7 +150,7 @@
 #include "server/zone/objects/creature/commands/DeactivateQuestCommand.h"
 #include "server/zone/objects/creature/commands/DeathBlowCommand.h"
 #include "server/zone/objects/creature/commands/DeathCountCommand.h"
-#include "server/zone/objects/creature/commands/DeclareOvertCommand.h"
+//#include "server/zone/objects/creature/commands/DeclareOvertCommand.h"
 #include "server/zone/objects/creature/commands/DeclareresidenceCommand.h"
 #include "server/zone/objects/creature/commands/DeclineCommand.h"
 #include "server/zone/objects/creature/commands/DefaultAttackCommand.h"
@@ -550,7 +550,7 @@ void CommandConfigManager::registerCommands2() {
 	commandFactory.registerCommand<DeactivateQuestCommand>(String("deactivateQuest").toLowerCase());
 	commandFactory.registerCommand<DeathBlowCommand>(String("deathBlow").toLowerCase());
 	commandFactory.registerCommand<DeathCountCommand>(String("deathCount").toLowerCase());
-	commandFactory.registerCommand<DeclareOvertCommand>(String("declareOvert").toLowerCase());
+//	commandFactory.registerCommand<DeclareOvertCommand>(String("declareOvert").toLowerCase());
 	commandFactory.registerCommand<DeclareresidenceCommand>(String("declareresidence").toLowerCase());
 	commandFactory.registerCommand<DeclineCommand>(String("decline").toLowerCase());
 	commandFactory.registerCommand<DefaultAttackCommand>(String("defaultAttack").toLowerCase());

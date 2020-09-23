@@ -11,6 +11,7 @@
 #include "server/zone/objects/player/sui/SuiCallback.h"
 #include "server/zone/objects/scene/SceneObjectType.h"
 #include "server/zone/managers/gcw/GCWManager.h"
+#include "server/ServerCore.h"
 
 class JamUplinkSuiCallback : public SuiCallback {
 public:
@@ -37,8 +38,15 @@ public:
 
 		ManagedReference<BuildingObject*> building = obj->getParentRecursively(SceneObjectType::FACTIONBUILDING).castTo<BuildingObject*>();
 
-		if (building == nullptr)
-			return;
+		if (building == nullptr){
+			const ContainerPermissions* permissions = obj->getContainerPermissions();
+			uint64 ownerID = permissions->getOwnerID();
+			ZoneServer* zoneServer = ServerCore::getZoneServer();
+			Reference<SceneObject*> object = zoneServer->getObject(ownerID);
+			building = object.castTo<BuildingObject*>();
+			if (building == nullptr)
+				return;
+		}
 
 		GCWManager* gcwMan = player->getZone()->getGCWManager();
 

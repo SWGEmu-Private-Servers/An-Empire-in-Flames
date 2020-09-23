@@ -470,6 +470,11 @@ class WeaponObject extends TangibleObject {
 		return weaponTemplate.isDerivedFrom("object/weapon/ranged/rifle/rifle_acid_beam.iff");
 	}
 
+	@dirty
+	public boolean isRocketLauncher() {
+		return attackType == SharedWeaponObjectTemplate.HEAVYROCKETLAUNCHERATTACK;
+	}
+
 	@read
 	public boolean isCarbineWeapon() {
 		return super.gameObjectType == SceneObjectType.CARBINE;
@@ -558,6 +563,22 @@ class WeaponObject extends TangibleObject {
 		speedSlice = 1 - value;
 	}
 
+	public float getDamageSlice() {
+		return damageSlice;
+	}
+
+	public float getSpeedSlice() {
+		return speedSlice;
+	}
+
+	public void setManualDamageSlice(float value) {
+		damageSlice = value;
+	}
+
+	public void setManualSpeedSlice(float value) {
+		speedSlice = value;
+	}
+
 	@read
 	public abstract native void applySkillModsTo(CreatureObject creature);
 
@@ -572,5 +593,23 @@ class WeaponObject extends TangibleObject {
 	@read
 	public final VectorMap<string, int> getWearableSkillMods() {
 		return wearableSkillMods;
+	}
+
+	@dirty
+	public native void convertWeapon(CreatureObject player, string newWeaponTemplate);
+
+	@read
+	public string getPistolMode() {
+		return weaponTemplate.getPistolMode();
+	}
+
+	@read
+	public string getCarbineMode() {
+		return weaponTemplate.getCarbineMode();
+	}
+
+	@read
+	public string getRifleMode() {
+		return weaponTemplate.getRifleMode();
 	}
 }

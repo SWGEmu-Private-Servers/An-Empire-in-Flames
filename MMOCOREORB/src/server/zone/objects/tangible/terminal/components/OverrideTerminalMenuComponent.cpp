@@ -7,6 +7,7 @@
 
 #include "OverrideTerminalMenuComponent.h"
 #include "server/zone/Zone.h"
+#include "server/ServerCore.h"
 #include "server/zone/packets/object/ObjectMenuResponse.h"
 #include "server/zone/objects/scene/SceneObject.h"
 #include "server/zone/objects/creature/CreatureObject.h"
@@ -17,8 +18,15 @@ void OverrideTerminalMenuComponent::fillObjectMenuResponse(SceneObject* sceneObj
 
 	ManagedReference<BuildingObject*> building = sceneObject->getParentRecursively(SceneObjectType::FACTIONBUILDING).castTo<BuildingObject*>();
 
-	if (building == nullptr)
-		return;
+	if (building == nullptr){
+		const ContainerPermissions* permissions = sceneObject->getContainerPermissions();
+		uint64 ownerID = permissions->getOwnerID();
+		ZoneServer* zoneServer = ServerCore::getZoneServer();
+		Reference<SceneObject*> object = zoneServer->getObject(ownerID);
+		building = object.castTo<BuildingObject*>();
+		if (building == nullptr)
+			return;
+	}
 
 	if (player  == nullptr || player->isDead() || player->isIncapacitated())
 			return;
@@ -47,8 +55,15 @@ int OverrideTerminalMenuComponent::handleObjectMenuSelect(SceneObject* sceneObje
 	ManagedReference<BuildingObject*> building = sceneObject->getParentRecursively(SceneObjectType::FACTIONBUILDING).castTo<BuildingObject*>();
 	ManagedReference<TangibleObject*> overrideTerminal = cast<TangibleObject*>(sceneObject);
 
-	if (building == nullptr)
-		return 1;
+	if (building == nullptr){
+		const ContainerPermissions* permissions = sceneObject->getContainerPermissions();
+		uint64 ownerID = permissions->getOwnerID();
+		ZoneServer* zoneServer = ServerCore::getZoneServer();
+		Reference<SceneObject*> object = zoneServer->getObject(ownerID);
+		building = object.castTo<BuildingObject*>();
+		if (building == nullptr)
+			return 1;
+	}
 
 	Zone* zone = building->getZone();
 
@@ -82,8 +97,8 @@ int OverrideTerminalMenuComponent::handleObjectMenuSelect(SceneObject* sceneObje
 	} else if (overrideTerminal->getDistanceTo(player) > 15) {
 		player->sendSystemMessage("You are too far away from the override terminal to continue sequencing!");
 		return 1;
-	} else if (!player->hasSkill("outdoors_bio_engineer_novice")) {
-		player->sendSystemMessage("Only a bio-engineer could expect to forge a suitable DNA sequence.");
+	} else if (!player->hasSkill("science_doctor_novice")) {
+		player->sendSystemMessage("Only a doctor could expect to forge a suitable DNA sequence.");
 		return 1;
 	}
 

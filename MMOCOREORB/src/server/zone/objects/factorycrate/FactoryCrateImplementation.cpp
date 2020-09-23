@@ -14,7 +14,6 @@
 #include "server/zone/managers/object/ObjectManager.h"
 #include "server/zone/packets/scene/AttributeListMessage.h"
 #include "server/zone/packets/chat/ChatSystemMessage.h"
-#include "server/zone/objects/transaction/TransactionLog.h"
 
 void FactoryCrateImplementation::initializeTransientMembers() {
 	TangibleObjectImplementation::initializeTransientMembers();
@@ -132,11 +131,6 @@ bool FactoryCrateImplementation::extractObjectToInventory(CreatureObject* player
 
 	Locker locker(_this.getReferenceUnsafeStaticCast());
 
-	if (!isValidFactoryCrate()) {
-		error() << "extractObjectToInventory(player=" << player->getObjectID() << "): !isValidFactoryCrate() : " << *asSceneObject();
-		return false;
-	}
-
 	if(getUseCount() < 1) {
 		this->setUseCount(0, true);
 		return false;
@@ -186,15 +180,6 @@ bool FactoryCrateImplementation::extractObjectToInventory(CreatureObject* player
 			protoclone->addMagicBit(false);
 		}
 
-		TransactionLog trx(asSceneObject(), player, protoclone, TrxCode::EXTRACTCRATE);
-		trx.addState("useCount", getUseCount() - 1);
-		trx.addState("protoMapSize", protoclone->getContainerObjectsSize());
-
-		if (protoclone->getContainerObjectsSize() > 0) {
-			trx.setDebug(true);
-			trx.addRelatedObject(protoclone->getObjectID(), true);
-		}
-
 		inventory->transferObject(protoclone, -1, true);
 		inventory->broadcastObject(protoclone, true);
 
@@ -209,11 +194,6 @@ bool FactoryCrateImplementation::extractObjectToInventory(CreatureObject* player
 Reference<TangibleObject*> FactoryCrateImplementation::extractObject(int count) {
 
 	Locker locker(_this.getReferenceUnsafeStaticCast());
-
-	if (!isValidFactoryCrate()) {
-		error() << "extractObject(count=" << count << "): !isValidFactoryCrate(): " << *asSceneObject();
-		return nullptr;
-	}
 
 	if(count > getUseCount())
 		return nullptr;
@@ -254,11 +234,6 @@ Reference<TangibleObject*> FactoryCrateImplementation::extractObject(int count) 
 }
 
 void FactoryCrateImplementation::split(int newStackSize) {
-	if (!isValidFactoryCrate()) {
-		error() << "split(newStackSize=" << newStackSize << "): !isValidFactoryCrate(): " << *asSceneObject();
-		return;
-	}
-
 	if (getUseCount() <= newStackSize)
 		return;
 
@@ -338,18 +313,4 @@ void FactoryCrateImplementation::setUseCount(uint32 newUseCount, bool notifyClie
 	dfcty3->close();
 
 	broadcastMessage(dfcty3, true);
-}
-
-bool FactoryCrateImplementation::isValidFactoryCrate() {
-	auto prototype = getContainerObject(0).castTo<TangibleObject*>();
-
-	if (prototype == nullptr) {
-		return false;
-	}
-
-	if (prototype->getContainerObjectsSize() > 0) {
-		return false;
-	}
-
-	return true;
 }

@@ -36,7 +36,7 @@ public:
 		return pack;
 	}
 
-	void addGalaxy(uint32 gid, const String& address, uint16 port, uint16 pingport) {
+	void addGalaxy(uint32 gid, const String& address, uint16 port, uint16 pingport, uint32 status) {
 		insertInt(gid); //Zone Server ID
 
 		insertAscii(address); //IP Address
@@ -45,11 +45,11 @@ public:
 		insertShort(pingport); //Ping Server Port
 
 		insertInt(100); //Population
-		insertInt(0x00000CB2);
-		insertInt(0x00000008);
-		insertInt(0xFFFF8F80);
-		insertInt(0x00000002); //status
-		insertByte(0);
+		insertInt(0x00000CB2); // Max Cap (3250)
+		insertInt(0x00000008); // Max Char Per Server
+		insertInt(0xFFFF8F80); //Distance
+		insertInt(status); //status
+		insertByte(0); // Recommended
 	}
 
 	static void parse(Packet* pack) {

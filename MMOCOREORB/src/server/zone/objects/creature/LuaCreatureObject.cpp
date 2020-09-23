@@ -17,7 +17,8 @@
 #include "server/zone/managers/player/PlayerManager.h"
 #include "server/zone/managers/skill/SkillManager.h"
 #include "server/zone/objects/tangible/threat/ThreatMap.h"
-#include "server/zone/objects/transaction/TransactionLog.h"
+#include "server/zone/objects/creature/VehicleObject.h"
+#include "server/zone/objects/creature/ai/Creature.h"
 
 const char LuaCreatureObject::className[] = "LuaCreatureObject";
 
@@ -99,6 +100,8 @@ Luna<LuaCreatureObject>::RegType LuaCreatureObject::Register[] = {
 		{ "getGroupSize", &LuaCreatureObject::getGroupSize},
 		{ "getGroupMember", &LuaCreatureObject::getGroupMember},
 		{ "setOptionsBitmask", &LuaCreatureObject::setOptionsBitmask},
+		{ "getHeight", &LuaCreatureObject::getHeight},
+		{ "setHeight", &LuaCreatureObject::setHeight},
 		{ "setOptionBit", &LuaTangibleObject::setOptionBit},
 		{ "clearOptionBit", &LuaTangibleObject::clearOptionBit},
 		{ "setPvpStatusBitmask", &LuaTangibleObject::setPvpStatusBitmask},
@@ -129,6 +132,8 @@ Luna<LuaCreatureObject>::RegType LuaCreatureObject::Register[] = {
 		{ "healDamage", &LuaCreatureObject::healDamage },
 		{ "getGroupID", &LuaCreatureObject::getGroupID },
 		{ "enhanceCharacter", &LuaCreatureObject::enhanceCharacter },
+		{ "getWounds", &LuaCreatureObject::getWounds },
+		{ "getShockWounds", &LuaCreatureObject::getShockWounds },
 		{ "setWounds", &LuaCreatureObject::setWounds },
 		{ "setShockWounds", &LuaCreatureObject::setShockWounds },
 		{ "getForceSensitiveSkillCount", &LuaCreatureObject::getForceSensitiveSkillCount },
@@ -142,6 +147,10 @@ Luna<LuaCreatureObject>::RegType LuaCreatureObject::Register[] = {
 		{ "getSkillMod", &LuaCreatureObject::getSkillMod },
 		{ "getGender", &LuaCreatureObject::getGender },
 		{ "isRidingMount", &LuaCreatureObject::isRidingMount },
+		{ "setTargetID", &LuaCreatureObject::setTargetID },
+		{ "sendExecuteConsoleCommand", &LuaCreatureObject::sendExecuteConsoleCommand },
+		{ "slotPassenger", &LuaCreatureObject::slotPassenger },
+		{ "holocommClothes", &LuaCreatureObject::holocommClothes },
 		{ "dismount", &LuaCreatureObject::dismount },
 		{ 0, 0 }
 };
@@ -545,6 +554,25 @@ int LuaCreatureObject::getMaxHAM(lua_State* L) {
 	return 1;
 }
 
+int LuaCreatureObject::getWounds(lua_State* L) {
+	int type = lua_tonumber(L, -1);
+
+	int value = realObject->getWounds(type);
+
+	lua_pushnumber(L, value);
+
+	return 1;
+}
+
+int LuaCreatureObject::getShockWounds(lua_State* L) {
+
+	int value = realObject->getShockWounds();
+
+	lua_pushnumber(L, value);
+
+	return 1;
+}
+
 int LuaCreatureObject::inflictDamage(lua_State* L) {
  //int inflictDamage(TangibleObject attacker, int damageType, int damage, boolean destroy, boolean notifyClient = true);
 	int destroy = lua_tonumber(L, -1);
@@ -677,10 +705,7 @@ int LuaCreatureObject::getCashCredits(lua_State* L) {
 int LuaCreatureObject::subtractCashCredits(lua_State* L) {
 	Locker locker(realObject);
 
-	int credits = lua_tointeger(L, -1);
-	TransactionLog trx(realObject, TrxCode::LUASCRIPT, credits, true);
-	trx.addContextFromLua(L);
-	realObject->subtractCashCredits(credits);
+	realObject->subtractCashCredits(lua_tointeger(L, -1));
 
 	return 0;
 }
@@ -688,10 +713,7 @@ int LuaCreatureObject::subtractCashCredits(lua_State* L) {
 int LuaCreatureObject::subtractBankCredits(lua_State* L) {
 	Locker locker(realObject);
 
-	int credits = lua_tointeger(L, -1);
-	TransactionLog trx(realObject, TrxCode::LUASCRIPT, credits, false);
-	trx.addContextFromLua(L);
-	realObject->subtractBankCredits(credits);
+	realObject->subtractBankCredits(lua_tointeger(L, -1));
 
 	return 0;
 }
@@ -702,8 +724,6 @@ int LuaCreatureObject::addCashCredits(lua_State* L) {
 
 	Locker locker(realObject);
 
-	TransactionLog trx(TrxCode::LUASCRIPT, realObject, credits, true);
-	trx.addContextFromLua(L);
 	realObject->addCashCredits(credits, notifyClient);
 
 	return 0;
@@ -715,8 +735,6 @@ int LuaCreatureObject::addBankCredits(lua_State* L) {
 
 	Locker locker(realObject);
 
-	TransactionLog trx(TrxCode::LUASCRIPT, realObject, credits, false);
-	trx.addContextFromLua(L);
 	realObject->addBankCredits(credits, notifyClient);
 
 	return 0;
@@ -797,6 +815,23 @@ int LuaCreatureObject::setOptionsBitmask(lua_State* L) {
 	Locker locker(realObject);
 
 	realObject->setOptionsBitmask(bitmask, true);
+
+	return 0;
+}
+
+int LuaCreatureObject::getHeight(lua_State* L) {
+
+	lua_pushnumber(L, realObject->getHeight());
+
+	return 1;
+}
+
+int LuaCreatureObject::setHeight(lua_State* L) {
+	float height = lua_tonumber(L, -1);
+
+	Locker locker(realObject);
+
+	realObject->setHeight(height, true);
 
 	return 0;
 }
@@ -1030,6 +1065,8 @@ int LuaCreatureObject::setWounds(lua_State* L) {
 int LuaCreatureObject::setShockWounds(lua_State* L) {
 	int amount = lua_tointeger(L, -1);
 
+	Locker locker(realObject);
+
 	realObject->setShockWounds(amount, true);
 
 	return 0;
@@ -1117,11 +1154,102 @@ int LuaCreatureObject::getGender(lua_State* L) {
 }
 
 int LuaCreatureObject::isRidingMount(lua_State* L) {
-	bool isMounted = realObject->isRidingMount();
-
-	lua_pushboolean(L, isMounted);
+	lua_pushboolean(L, realObject->isRidingMount());
 
 	return 1;
+}
+
+
+int LuaCreatureObject::setTargetID(lua_State* L) {
+	uint64 targetID = (uint64) lua_tointeger(L, -1);
+
+	realObject->setTargetID(targetID, true);
+
+	return 1;
+}
+
+
+int LuaCreatureObject::sendExecuteConsoleCommand(lua_State* L) {
+	String value = lua_tostring(L, -1);
+	realObject->sendExecuteConsoleCommand(value);
+
+	return 0;
+}
+
+int LuaCreatureObject::slotPassenger(lua_State* L) {
+	CreatureObject* passenger = (CreatureObject*) lua_touserdata(L, -1);
+
+	SceneObject* vehicle = realObject->getParent().get().get();
+	if (!vehicle->isCreatureObject()) {
+		lua_pushboolean(L, false);
+		return 1;
+	}
+
+
+	if (vehicle->isVehicleObject()) {
+		VehicleObject* speeder = static_cast<VehicleObject*>(vehicle);
+		if (!speeder->hasOpenSeat()) {
+			lua_pushboolean(L, false);
+			return 1;
+		} else {
+			speeder->slotPassenger(passenger);
+			lua_pushboolean(L, true);
+			return 1;
+		}
+	} else {
+		Creature* mount = static_cast<Creature*>(vehicle);
+		if (!mount->hasOpenSeat()) {
+			lua_pushboolean(L, false);
+			return 1;
+		} else {
+			mount->slotPassenger(passenger);
+			lua_pushboolean(L, true);
+			return 1;
+		}
+
+	}
+}
+
+int LuaCreatureObject::holocommClothes(lua_State* L) {
+	CreatureObject* original = (CreatureObject*)lua_touserdata(L, -1);
+
+	const WearablesDeltaVector* clothingVector = original->getWearablesDeltaVector();
+
+
+	Locker locker(realObject);
+
+	for (int i = 0; i < clothingVector->size(); ++i) {
+		TangibleObject* tano = clothingVector->get(i);
+		if (tano != nullptr) {
+			String fileName = tano->getObjectTemplate()->getTemplateFileName();
+			if (fileName.beginsWith("character") || fileName.beginsWith("unarmed") || fileName.beginsWith("holo") || fileName.beginsWith("ring"))
+				continue;
+			fileName = "object/tangible/holocomm/" + fileName + "_holo.iff";
+			Logger::console.error("holocommClothes filename: " + fileName);	
+
+			ZoneServer* zoneServer = ServerCore::getZoneServer();
+			Zone* zone = zoneServer->getZone("naboo");
+
+			if (zone == nullptr) {
+				return 1;
+			}
+			//ManagedReference<TangibleObject*> tanoWearable = nullptr;
+			//tanoWearable = zoneServer->createObject(fileName.hashCode(), 0).castTo<TangibleObject*>();
+
+			ManagedReference<SceneObject*> sceno = zoneServer->createObject(fileName.hashCode(), 0);
+
+			// if (tanoWearable != nullptr) {	
+			if (sceno != nullptr) {	
+				Logger::console.error("adding object to holo-NPC: " + fileName);	
+				//realObject->addWearableObject(tanoWearable, true);
+				realObject->transferObject(sceno, 4, true);
+			}
+		}
+	}
+
+
+
+	return 0;
 }
 
 int LuaCreatureObject::dismount(lua_State* L) {

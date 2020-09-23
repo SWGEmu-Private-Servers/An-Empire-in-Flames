@@ -7,8 +7,12 @@ package server.zone.objects.tangible.wearables;
 import server.zone.objects.tangible.Container;
 import server.zone.packets.scene.AttributeListMessage;
 import server.zone.objects.creature.CreatureObject;
+import server.zone.objects.tangible.TangibleObject;
+include server.zone.objects.manufactureschematic.craftingvalues.CraftingValues;
+include server.zone.objects.tangible.attachment.Attachment;
 
 include system.util.VectorMap;
+
 
 @json
 class WearableContainerObject extends Container {
@@ -17,8 +21,8 @@ class WearableContainerObject extends Container {
 
 	public WearableContainerObject() {
 		super();
-		Logger.setLoggingName("WearableContainerObject");
 		wearableSkillMods.setAllowOverwriteInsertPlan();
+		Logger.setLoggingName("WearableContainerObject");
 	}
 
 	public native void initializeTransientMembers();

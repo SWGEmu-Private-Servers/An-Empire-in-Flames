@@ -277,3 +277,37 @@ void QueueCommand::checkForTef(CreatureObject* creature, CreatureObject* target)
 		}
 	}
 }
+
+bool QueueCommand::checkForCellPermission(CreatureObject* creature, CreatureObject* target) const {
+	if (!creature->isPlayerCreature() || creature == target)
+		return true;
+
+	if (creature->isPlayerCreature() && target->getParentID() != 0 && creature->getParentID() != target->getParentID()) {
+		Reference<CellObject*> targetCell = target->getParent().get().castTo<CellObject*>();
+
+		if (targetCell != nullptr) {
+			const ContainerPermissions* perms = targetCell->getContainerPermissions();
+
+			if (!perms->hasInheritPermissionsFromParent()) {
+				if (!targetCell->checkContainerPermission(creature, ContainerPermissions::WALKIN)) {
+					creature->sendSystemMessage("@combat_effects:cansee_fail"); // You cannot see your target.
+					return false;
+				}
+			}
+
+
+			ManagedReference<SceneObject*> parentSceneObject = targetCell->getParent().get();
+
+			if (parentSceneObject != nullptr) {
+				BuildingObject* buildingObject = parentSceneObject->asBuildingObject();
+
+				if (buildingObject != nullptr && !buildingObject->isAllowedEntry(creature)) {
+					creature->sendSystemMessage("@combat_effects:cansee_fail"); // You cannot see your target.
+					return false;
+				}
+			}
+		}
+	}
+
+	return true;
+}

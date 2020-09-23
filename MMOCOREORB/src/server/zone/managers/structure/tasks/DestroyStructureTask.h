@@ -36,8 +36,10 @@ public:
 
 		ManagedReference<Zone*> zone = structureObject->getZone();
 
-		if (zone == nullptr)
+		if (zone == nullptr) {
+			structureObject->destroyObjectFromDatabase(true);
 			return;
+		}
 
 		ZoneServer* zoneServer = structureObject->getZoneServer();
 
@@ -113,6 +115,20 @@ public:
 
 			if (ghost != nullptr && ghost->isPlayerObject()) {
 				PlayerObject* playerObject = cast<PlayerObject*>(ghost.get());
+
+				//remove extra lots assigned to a building
+				if (structureObject->isBuildingObject())
+				{
+					ManagedReference<BuildingObject*> buildingObject = cast<BuildingObject*>(structureObject.get());
+					int extraLots = buildingObject->getExtraAssignedLots();
+					if (extraLots > 0)
+					{
+						playerObject->setMaximumLots(playerObject->getMaximumLots() + extraLots);
+						buildingObject->removeExtraAssignedLots(extraLots);
+					}
+				}
+				//end of extra lots code
+
 				playerObject->removeOwnedStructure(structureObject);
 
 				uint64 waypointID = structureObject->getWaypointID();

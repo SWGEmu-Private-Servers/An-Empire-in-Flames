@@ -148,6 +148,40 @@ int WearableObjectImplementation::socketsUsed() const {
 	}
 }
 
+void WearableObjectImplementation::craftAttachment(Attachment* attachment) {
+
+		if (wearableSkillMods.size() < 6) {
+			HashTable<String, int>* mods = attachment->getSkillMods();
+			HashTableIterator<String, int> iterator = mods->iterator();
+			
+			String statName;
+			int newValue;
+
+			SortedVector< ModSortingHelper > sortedMods;
+			for( int i = 0; i < mods->size(); i++){
+				iterator.getNextKeyAndValue(statName, newValue);
+				sortedMods.put( ModSortingHelper( statName, newValue));
+			}
+
+			// Select the next mod in the SEA, sorted high-to-low. If that skill mod is already on the
+			// wearable, with higher or equal value, don't apply and continue. Break once one mod
+			// is applied.
+			for( int i = 0; i < sortedMods.size(); i++ ) {
+				String modName = sortedMods.elementAt(i).getKey();
+				int modValue = sortedMods.elementAt(i).getValue();
+
+				int existingValue = -26;
+				if(wearableSkillMods.contains(modName))
+					existingValue = wearableSkillMods.get(modName);
+
+				if( modValue > existingValue) {
+					wearableSkillMods.put( modName, modValue );
+					break;
+				}
+			}
+		}
+}
+
 void WearableObjectImplementation::applyAttachment(CreatureObject* player,
 		Attachment* attachment) {
 	if (!isASubChildOf(player))
@@ -252,20 +286,20 @@ bool WearableObjectImplementation::isEquipped() {
 String WearableObjectImplementation::repairAttempt(int repairChance) {
 	String message = "@error_message:";
 
-	if(repairChance < 25) {
+	if(repairChance < 5) {
 		message += "sys_repair_failed";
 		setMaxCondition(1, true);
 		setConditionDamage(0, true);
-	} else if(repairChance < 50) {
+	} else if(repairChance < 30) {
 		message += "sys_repair_imperfect";
-		setMaxCondition(getMaxCondition() * .65f, true);
-		setConditionDamage(0, true);
-	} else if(repairChance < 75) {
 		setMaxCondition(getMaxCondition() * .80f, true);
+		setConditionDamage(0, true);
+	} else if(repairChance < 85) {
+		setMaxCondition(getMaxCondition() * .90f, true);
 		setConditionDamage(0, true);
 		message += "sys_repair_slight";
 	} else {
-		setMaxCondition(getMaxCondition() * .95f, true);
+		setMaxCondition(getMaxCondition() * 0.99f, true);
 		setConditionDamage(0, true);
 		message += "sys_repair_perfect";
 	}

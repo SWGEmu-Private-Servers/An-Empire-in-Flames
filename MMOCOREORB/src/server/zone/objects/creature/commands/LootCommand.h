@@ -8,7 +8,6 @@
 #include "server/zone/objects/scene/SceneObject.h"
 #include "server/zone/managers/player/PlayerManager.h"
 #include "server/zone/managers/group/GroupLootTask.h"
-#include "server/zone/objects/transaction/TransactionLog.h"
 
 class LootCommand : public QueueCommand {
 
@@ -80,7 +79,7 @@ public:
 
 		//If player and their group don't own the corpse, pick up any owned items left on corpse due to full inventory, then fail.
 		if (!groupIsOwner) {
-			int pickupResult = pickupOwnedItems(ai, creature, lootContainer);
+			int pickupResult = pickupOwnedItems(creature, lootContainer);
 			if (pickupResult < 2) { //Player didn't pickup an item nor is one available for them.
 				StringIdChatParameter noPermission("error_message","no_corpse_permission"); //"You do not have permission to access this corpse."
 				creature->sendSystemMessage(noPermission);
@@ -94,7 +93,7 @@ public:
 		}
 
 		//If looter's group is the owner, attempt to pick up any owned items, then process group loot rule.
-		int pickupResult = pickupOwnedItems(ai, creature, lootContainer);
+		int pickupResult = pickupOwnedItems(creature, lootContainer);
 		switch (pickupResult) {
 		case NOPICKUPITEMS: //No items available for anyone to pickup.
 			break;
@@ -121,7 +120,7 @@ public:
 
 	}
 
-	int pickupOwnedItems(AiAgent* ai, CreatureObject* creature, SceneObject* lootContainer) const {
+	int pickupOwnedItems(CreatureObject* creature, SceneObject* lootContainer) const {
 		/* Return codes:
 		 * NOPICKUPITEMS: No items available for anyone to pickup.
 		 * ITEMFOROTHER: No items available for looter to pickup, but one is available for someone else.
@@ -163,14 +162,10 @@ public:
 
 				uint64 originalOwner = contPerms->getOwnerID();
 				contPerms->setOwner(creature->getObjectID());
-				TransactionLog trx(ai, creature, object, TrxCode::NPCLOOTCLAIM);
 
 				if (creature->getZoneServer()->getObjectController()->transferObject(object, playerInventory, -1, true)) {
 					itemPerms->clearDenyPermission("player", ContainerPermissions::OPEN);
 					itemPerms->clearDenyPermission("player", ContainerPermissions::MOVECONTAINER);
-					trx.commit();
-				} else {
-					trx.abort() << "Failed to transferObject to player";
 				}
 
 				contPerms->setOwner(originalOwner);

@@ -10,7 +10,6 @@
 
 #include "server/zone/objects/player/sui/SuiCallback.h"
 #include "server/zone/objects/creature/VehicleObject.h"
-#include "server/zone/objects/transaction/TransactionLog.h"
 
 class RepairVehicleSuiCallback : public SuiCallback {
 public:
@@ -58,10 +57,7 @@ public:
 			return;
 		}
 
-		{
-			TransactionLog trx(player, TrxCode::VEHICLEREPAIRS, repairCost);
-			player->subtractBankCredits(repairCost);
-		}
+		player->subtractBankCredits(repairCost);
 
 		StringIdChatParameter params("@base_player:prose_pay_success_no_target"); //You successfully make a payment of %DI credits.
 		params.setDI(repairCost);

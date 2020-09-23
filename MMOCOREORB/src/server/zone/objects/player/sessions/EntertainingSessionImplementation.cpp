@@ -103,7 +103,7 @@ void EntertainingSessionImplementation::doEntertainerPatronEffects() {
 			try {
 				//**VERIFY THE PATRON IS NOT ON THE DENY SERVICE LIST
 
-				if (creo->isInRange(patron, 10.0f)) {
+				if (creo->isInRange(patron, 64.0f)) {
 					healWounds(patron, woundHeal*(flourishCount+1), shockHeal*(flourishCount+1));
 					increaseEntertainerBuff(patron);
 
@@ -205,7 +205,7 @@ void EntertainingSessionImplementation::addHealingXpGroup(int xp) {
 			if (groupMember != nullptr && groupMember->isPlayerCreature()) {
 				Locker clocker(groupMember, entertainer);
 
-				if (groupMember->isEntertaining() && groupMember->isInRange(entertainer, 40.0f)
+				if (groupMember->isEntertaining() && groupMember->isInRange(entertainer, 64.0f)
 					&& groupMember->hasSkill("social_entertainer_novice")) {
 					String healxptype("entertainer_healing");
 
@@ -617,7 +617,7 @@ void EntertainingSessionImplementation::doFlourish(int flourishNumber, bool gran
 
 			// Grant Experience
 			if(grantXp && flourishCount < 2)
-				flourishXp += performance->getFlourishXpMod() / 2;
+				flourishXp += performance->getFlourishXpMod();
 
 			flourishCount++;
 		}
@@ -628,12 +628,29 @@ void EntertainingSessionImplementation::doFlourish(int flourishNumber, bool gran
 }
 
 void EntertainingSessionImplementation::addEntertainerBuffDuration(CreatureObject* creature, int performanceType, float duration) {
+	ManagedReference<CreatureObject*> entertainer = this->entertainer.get();
 	int buffDuration = getEntertainerBuffDuration(creature, performanceType);
-
+ 	int skillMaxDuration = 0;
 	buffDuration += duration;
 
-	if (buffDuration > (120.0f + (10.0f / 60.0f)) ) // 2 hrs 10 seconds
-		buffDuration = (120.0f + (10.0f / 60.0f)); // 2hrs 10 seconds
+	int standardMaxDuration = 120.0f + (10.0f / 60.0f);
+	if(dancing) {
+ 		skillMaxDuration = entertainer->getSkillMod("healing_dance_mind");
+ 	}
+ 	else if (playingMusic) {
+ 		skillMaxDuration = entertainer->getSkillMod("healing_music_mind");
+ 	}
+
+	if (skillMaxDuration > standardMaxDuration){
+		if ( buffDuration > skillMaxDuration){
+			buffDuration = skillMaxDuration;
+			creature->sendSystemMessage("You have reached the max for your entertainer buff.");
+		}
+	} else {
+		if ( buffDuration > standardMaxDuration){
+			buffDuration = standardMaxDuration;
+			creature->sendSystemMessage("You have reached the max for your entertainer buff.");
+		}	}
 
 	setEntertainerBuffDuration(creature, performanceType, buffDuration);
 }
@@ -649,13 +666,17 @@ void EntertainingSessionImplementation::addEntertainerBuffStrength(CreatureObjec
 	float maxBuffStrength = 0.0f;	//cap based on enhancement skill
 	if(dancing) {
 		maxBuffStrength = (float) entertainer->getSkillMod("healing_dance_mind");
+		if(maxBuffStrength > 190.0f)
+			maxBuffStrength = 190.0f;	//cap at 19% power ( buff strength is reduced by 10 in PerformanceBuffImplementation)
+
 	}
 	else if (playingMusic) {
 		maxBuffStrength = (float) entertainer->getSkillMod("healing_music_mind");
+		if(maxBuffStrength > 160.0f)
+			maxBuffStrength = 160.0f;	//cap at 16% power ( buff strength is reduced by 10 in PerformanceBuffImplementation)
 	}
 
-	if(maxBuffStrength > 125.0f)
-		maxBuffStrength = 125.0f;	//cap at 125% power
+
 
 	float factionPerkStrength = entertainer->getSkillMod("private_faction_buff_mind");
 
@@ -1074,7 +1095,7 @@ void EntertainingSessionImplementation::awardEntertainerExperience() {
 							Locker clocker(groupMember, player);
 
 							if (groupMember != player && groupMember->isEntertaining() &&
-								groupMember->isInRange(player, 40.0f) &&
+								groupMember->isInRange(player, 64.0f) &&
 								groupMember->hasSkill("social_entertainer_novice")) {
 								++groupBonusCount;
 							}
@@ -1096,6 +1117,9 @@ void EntertainingSessionImplementation::awardEntertainerExperience() {
 			float totalBonus = 1.f + groupMod + audienceMod + applauseMod;
 
 			xpAmount = ceil(xpAmount * totalBonus);
+
+			if (isPlayingMusic())
+				xpAmount *= 2;
 
 			if (playerManager != nullptr)
 				playerManager->awardExperience(player, xptype, xpAmount, true);
@@ -1161,7 +1185,7 @@ int EntertainingSessionImplementation::getBandAudienceSize() {
 				Locker clocker(groupMember, player);
 
 				if (groupMember != player && groupMember->isEntertaining() &&
-					groupMember->isInRange(player, 40.0f) &&
+					groupMember->isInRange(player, 64.0f) &&
 					groupMember->hasSkill("social_entertainer_novice")) {
 					ManagedReference<EntertainingSession *> session = groupMember->getActiveSession(
 							SessionFacadeType::ENTERTAINING).castTo<EntertainingSession *>();

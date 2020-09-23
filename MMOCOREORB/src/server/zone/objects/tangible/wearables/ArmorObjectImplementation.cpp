@@ -73,14 +73,14 @@ void ArmorObjectImplementation::fillAttributeList(AttributeListMessage* alm, Cre
 	WearableObjectImplementation::fillAttributeList(alm, object);
 
 	//Armor Rating
-	if (rating == LIGHT)
-		alm->insertAttribute("armorrating", "@obj_attr_n:armor_pierce_light"); //Light
-	else if (rating == MEDIUM)
-		alm->insertAttribute("armorrating", "@obj_attr_n:armor_pierce_medium"); //Medium
-	else if (rating == HEAVY)
-		alm->insertAttribute("armorrating", "@obj_attr_n:armor_pierce_heavy"); //Heavy
-	else
-		alm->insertAttribute("armorrating", "@obj_attr_n:armor_pierce_none"); //None
+//	if (rating == LIGHT)
+//		alm->insertAttribute("armorrating", "@obj_attr_n:armor_pierce_light"); //Light
+//	else if (rating == MEDIUM)
+//		alm->insertAttribute("armorrating", "@obj_attr_n:armor_pierce_medium"); //Medium
+//	else if (rating == HEAVY)
+//		alm->insertAttribute("armorrating", "@obj_attr_n:armor_pierce_heavy"); //Heavy
+//	else
+//		alm->insertAttribute("armorrating", "@obj_attr_n:armor_pierce_none"); //None
 
 	//Check for special protections
 	if ((isSpecial(SharedWeaponObjectTemplate::KINETIC) || isVulnerable(SharedWeaponObjectTemplate::KINETIC)) && getKinetic() >= 0.5) {
@@ -262,20 +262,19 @@ float ArmorObjectImplementation::getTypeValue(int type, float value) const {
 		newValue = value;
 
 	else if (isSpecial(type)) {
-		newValue = specialProtection + value;
-
-		if (newValue > 80)
-			newValue = 80;
+		newValue = (specialProtection + value) * effectivenessSlice;
+		if(newValue > 60)
+			newValue = 60;
 	} else {
 		newValue = baseProtection + value;
 		newValue *= effectivenessSlice;
 
-		if(sliced && effectivenessSlice > 1) {
-			if(newValue > 90)
-				newValue = 90;
+		if (sliced && effectivenessSlice > 1) {
+			if(newValue > 60)
+				newValue = 60;
 		} else {
-			if(newValue > 80)
-				newValue = 80;
+			if(newValue > 60)
+				newValue = 60;
 		}
 	}
 

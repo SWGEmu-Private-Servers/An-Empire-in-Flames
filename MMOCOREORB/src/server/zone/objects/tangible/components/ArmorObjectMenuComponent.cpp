@@ -79,24 +79,30 @@ int ArmorObjectMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject, C
 
 		if (server != nullptr) {		
 
-		// The color index.
-		String appearanceFilename = sceneObject->getObjectTemplate()->getAppearanceFilename();
-		VectorMap<String, Reference<CustomizationVariable*> > variables;
-		AssetCustomizationManagerTemplate::instance()->getCustomizationVariables(appearanceFilename.hashCode(), variables, false);
+			// The color index.
+			String appearanceFilename = sceneObject->getObjectTemplate()->getAppearanceFilename();
+			VectorMap<String, Reference<CustomizationVariable*> > variables;
+			AssetCustomizationManagerTemplate::instance()->getCustomizationVariables(appearanceFilename.hashCode(), variables, false);
 
-		// The Sui Box.
-		ManagedReference<SuiColorBox*> cbox = new SuiColorBox(player, SuiWindowType::COLOR_ARMOR);
-		cbox->setCallback(new ColorArmorSuiCallback(server));
-		cbox->setColorPalette(variables.elementAt(1).getKey()); // First one seems to be the frame of it? Skip to 2nd.
-		cbox->setUsingObject(sceneObject);
+			//following code was a rewrite by Phoenix of MtG, expanding the original SWGEmu code to allow for more variables
+			for(int i = 0; i < variables.size(); i++)
+			{
+				String varkey = variables.elementAt(i).getKey();
+				if (varkey.contains("color")){
+				    // The Sui Box.
+				    ManagedReference<SuiColorBox*> cbox = new SuiColorBox(player, SuiWindowType::COLOR_ARMOR);
+				    cbox->setCallback(new ColorArmorSuiCallback(server));
+				    cbox->setColorPalette(variables.elementAt(i).getKey());
+				    cbox->setUsingObject(sceneObject);
 
-		// Add to player.
-		ManagedReference<PlayerObject*> ghost = player->getPlayerObject();
-		ghost->addSuiBox(cbox);
-		player->sendMessage(cbox->generateMessage());
+				    // Add to player.
+				    ManagedReference<PlayerObject*> ghost = player->getPlayerObject();
+				    ghost->addSuiBox(cbox);
+				    player->sendMessage(cbox->generateMessage());
+				}
+			}
 		}
-
 	}
-	
+
 	return WearableObjectMenuComponent::handleObjectMenuSelect(sceneObject, player, selectedID);
 }

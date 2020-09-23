@@ -26,8 +26,7 @@ public:
 			return GENERALERROR;
 
 		creature->setPosture(CreaturePosture::PRONE);
-
-		if (creature->isDizzied() && System::random(100) < 85)
+		if (creature->isDizzied() && System::random(100) < 25)
 			creature->queueDizzyFallEvent();
 
 		return SUCCESS;

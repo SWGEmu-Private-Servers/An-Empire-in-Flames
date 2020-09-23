@@ -42,13 +42,10 @@ public:
 		if (!checkGroupLeader(player, group))
 			return GENERALERROR;
 
-		int hamCost = (int) (100.0f * calculateGroupModifier(group));
+		int mindCost = (int) (1350.0f * calculateGroupModifier(group));
+		int adjustedMindCost = creature->calculateCostAdjustment(CreatureAttribute::FOCUS, mindCost);
 
-		int healthCost = creature->calculateCostAdjustment(CreatureAttribute::STRENGTH, hamCost);
-		int actionCost = creature->calculateCostAdjustment(CreatureAttribute::QUICKNESS, hamCost);
-		int mindCost = creature->calculateCostAdjustment(CreatureAttribute::FOCUS, hamCost);
-
-		if (!inflictHAM(player, healthCost, actionCost, mindCost))
+		if (!inflictHAM(player, 0, 0, adjustedMindCost))
 			return GENERALERROR;
 
 //		shoutCommand(player, group);

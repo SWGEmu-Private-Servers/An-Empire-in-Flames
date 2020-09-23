@@ -19,9 +19,9 @@ void ForageManagerImplementation::startForaging(CreatureObject* player, int fora
 
 	Locker playerLocker(player);
 
-	int actionCostForage = 50;
-	int mindCostShellfish = 100;
-	int actionCostShellfish =  100;
+	int actionCostForage = 2550;
+	int mindCostShellfish = 2500;
+	int actionCostShellfish =  2500;
 
 	//Check if already foraging.
 	Reference<Task*> pendingForage = player->getPendingTask("foraging");
@@ -247,8 +247,6 @@ bool ForageManagerImplementation::forageGiveItems(CreatureObject* player, int fo
 	String lootGroup = "";
 	String resName = "";
 
-	TransactionLog trx(TrxCode::FORAGED, player);
-
 	if (forageType == ForageManager::SHELLFISH){
 		bool mullosks = false;
 		if (System::random(100) > 50) {
@@ -258,21 +256,20 @@ bool ForageManagerImplementation::forageGiveItems(CreatureObject* player, int fo
 		else
 			resName = "seafood_crustacean";
 
-		if(forageGiveResource(trx, player, forageX, forageY, planet, resName)) {
+		if(forageGiveResource(player, forageX, forageY, planet, resName)) {
 			if (mullosks)
 				player->sendSystemMessage("@harvesting:found_mollusks");
 			else
 				player->sendSystemMessage("@harvesting:found_crustaceans");
-			trx.commit(true);
 			return true;
 		}
 		else {
 			player->sendSystemMessage("@harvesting:found_nothing");
-			trx.discard();
 			return false;
 		}
 
 	}
+
 
 	if (forageType == ForageManager::SCOUT) {
 
@@ -288,7 +285,7 @@ bool ForageManagerImplementation::forageGiveItems(CreatureObject* player, int fo
 				lootGroup = "forage_rare";
 			}
 
-			lootManager->createLoot(trx, inventory, lootGroup, level);
+			lootManager->createLoot(inventory, lootGroup, level);
 		}
 
 	} else if (forageType == ForageManager::MEDICAL) { //Medical Forage
@@ -299,13 +296,11 @@ bool ForageManagerImplementation::forageGiveItems(CreatureObject* player, int fo
 			lootGroup = "forage_food";
 
 		} else if (dice > 39 && dice < 110) { //Resources.
-			if(forageGiveResource(trx, player, forageX, forageY, planet, resName)) {
+			if(forageGiveResource(player, forageX, forageY, planet, resName)) {
 				player->sendSystemMessage("@skl_use:sys_forage_success");
-				trx.commit(true);
 				return true;
 			} else {
 				player->sendSystemMessage("@skl_use:sys_forage_fail");
-				trx.discard();
 				return false;
 			}
 		} else if (dice > 109 && dice < 170) { //Average components.
@@ -319,7 +314,7 @@ bool ForageManagerImplementation::forageGiveItems(CreatureObject* player, int fo
 			level = 200;
 		}
 
-		lootManager->createLoot(trx, inventory, lootGroup, level);
+		lootManager->createLoot(inventory, lootGroup, level);
 
 	} else if (forageType == ForageManager::LAIR) { //Lair Search
 		dice = System::random(109);
@@ -330,34 +325,29 @@ bool ForageManagerImplementation::forageGiveItems(CreatureObject* player, int fo
 		}
 		else if (dice > 39 && dice < 110) { // Eggs
 			resName = "meat_egg";
-			if(forageGiveResource(trx, player, forageX, forageY, planet, resName)) {
+			if(forageGiveResource(player, forageX, forageY, planet, resName)) {
 				player->sendSystemMessage("@lair_n:found_eggs");
-				trx.commit(true);
 				return true;
 			} else {
 				player->sendSystemMessage("@lair_n:found_nothing");
-				trx.discard();
 				return false;
 			}
 		}
 
-		if(!lootManager->createLoot(trx, inventory, lootGroup, level)) {
+		if(!lootManager->createLoot(inventory, lootGroup, level)) {
 			player->sendSystemMessage("Unable to create loot for lootgroup " + lootGroup);
-			trx.abort() << "Unabled to create loot for lootgroup " << lootGroup;
 			return false;
 		}
 
 		player->sendSystemMessage("@lair_n:found_bugs");
-		trx.commit(true);
 		return true;
 	}
 
 	player->sendSystemMessage("@skl_use:sys_forage_success");
-	trx.commit(true);
 	return true;
 }
 
-bool ForageManagerImplementation::forageGiveResource(TransactionLog& trx, CreatureObject* player, float forageX, float forageY, const String& planet, String& resType) {
+bool ForageManagerImplementation::forageGiveResource(CreatureObject* player, float forageX, float forageY, const String& planet, String& resType) {
 	if (player == nullptr)
 		return false;
 
@@ -403,6 +393,6 @@ bool ForageManagerImplementation::forageGiveResource(TransactionLog& trx, Creatu
 	}
 
 	int quantity = System::random(30) + 10;
-	resourceManager->harvestResourceToPlayer(trx, player, resource, quantity);
+	resourceManager->harvestResourceToPlayer(player, resource, quantity);
 	return true;
 }

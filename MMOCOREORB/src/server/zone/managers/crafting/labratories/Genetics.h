@@ -213,7 +213,7 @@ public:
 	}
 
 	static uint32 initialValue(float maxValue) {
-		return round(maxValue * ((maxValue/(float)1000)+0.15));
+		return round(maxValue * ((maxValue/(float)1000)+0.40));
 	}
 
 	static float determineMinResistance(float input) {

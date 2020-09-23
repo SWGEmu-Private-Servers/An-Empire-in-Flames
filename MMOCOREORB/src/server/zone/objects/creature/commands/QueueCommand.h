@@ -10,6 +10,8 @@
 
 #include "server/zone/objects/creature/CreatureObject.h"
 #include "server/zone/ZoneProcessServer.h"
+#include "server/zone/objects/building/BuildingObject.h"
+#include "server/zone/objects/cell/CellObject.h"
 
 namespace server {
 namespace zone {
@@ -325,6 +327,9 @@ public:
 	int doCommonMedicalCommandChecks(CreatureObject* creature) const;
 
 	void checkForTef(CreatureObject* creature, CreatureObject* target) const;
+
+	bool checkForCellPermission(CreatureObject* creature, CreatureObject* target) const;
+
 };
 
 

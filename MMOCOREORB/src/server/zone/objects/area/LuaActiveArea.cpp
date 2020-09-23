@@ -21,6 +21,8 @@ Luna<LuaActiveArea>::RegType LuaActiveArea::Register[] = {
 		{ "setCellObjectID", &LuaActiveArea::setCellObjectID },
 		{ "getCellObjectID", &LuaActiveArea::getCellObjectID },
 		{ "setNoSpawnArea", &LuaActiveArea::setNoSpawnArea },
+		{ "attachScenery", &LuaActiveArea::attachScenery },
+		{ "clearScenery", &LuaActiveArea::clearScenery },
 		{ 0, 0 }
 };
 
@@ -101,6 +103,24 @@ int LuaActiveArea::setNoSpawnArea(lua_State* L) {
 	bool val = lua_toboolean(L, -1);
 	Locker realObjectLocker(realObject);
 	realObject->setNoSpawnArea(val);
+
+	return 0;
+}
+
+int LuaActiveArea::attachScenery(lua_State* L) {
+	SceneObject* obj = (SceneObject*) lua_touserdata(L, -1);
+
+	Locker realObjectLocker(realObject);
+	Locker clocker(obj, realObject);
+
+	realObject->attachScenery(obj);
+
+	return 0;
+}
+
+int LuaActiveArea::clearScenery(lua_State* L) {
+
+	realObject->clearScenery();
 
 	return 0;
 }

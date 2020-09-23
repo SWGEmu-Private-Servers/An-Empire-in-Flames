@@ -90,6 +90,8 @@ namespace creature {
 		int getGroupSize(lua_State* L);
 		int getGroupMember(lua_State* L);
 		int setOptionsBitmask(lua_State* L);
+		int getHeight(lua_State* L);
+		int setHeight(lua_State* L);
 		int addDotState(lua_State* L);
 		int checkCooldownRecovery(lua_State* L);
 		int addCooldown(lua_State* L);
@@ -115,6 +117,8 @@ namespace creature {
 		int enhanceCharacter(lua_State* L);
 		int setWounds(lua_State* L);
 		int setShockWounds(lua_State* L);
+		int getWounds(lua_State* L);
+		int getShockWounds(lua_State* L);
 		int getForceSensitiveSkillCount(lua_State* L);
 		int villageKnightPrereqsMet(lua_State* L);
 		int getDamageDealerList(lua_State* L);
@@ -122,6 +126,10 @@ namespace creature {
 		int getSkillMod(lua_State* L);
 		int getGender(lua_State* L);
 		int isRidingMount(lua_State* L);
+		int setTargetID(lua_State* L);
+		int sendExecuteConsoleCommand(lua_State* L);
+		int slotPassenger(lua_State* L);
+		int holocommClothes(lua_State* L);
 		int dismount(lua_State* L);
 	private:
 		// The pointer to the 'real object' defined in object.cc

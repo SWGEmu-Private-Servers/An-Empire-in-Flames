@@ -97,6 +97,11 @@ class PlayerObject extends IntangibleObject {
 	@dereferenced
 	protected SortedVector<unsigned long> ownedStructures;
 
+
+	//Need SceneObject Structure, control device OID < -- for deletion
+	@dereferenced
+	protected VectorMap<unsigned long, SceneObject> packedUpStructures;
+
 	@dereferenced
 	protected SortedVector<unsigned long> ownedVendors;
 
@@ -243,11 +248,6 @@ class PlayerObject extends IntangibleObject {
 	protected Time lastGcwPvpCombatActionTimestamp;
 
 	@dereferenced
-	protected Time lastCrackdownGcwCombatActionTimestamp;
-
-	protected unsigned int crackdownFactionTefCrc;
-
-	@dereferenced
 	protected transient Reference<PvpTefRemovalTask> pvpTefTask;
 
 	@dereferenced
@@ -377,8 +377,6 @@ class PlayerObject extends IntangibleObject {
 
 		lastBhPvpCombatActionTimestamp.updateToCurrentTime();
 		lastGcwPvpCombatActionTimestamp.updateToCurrentTime();
-		lastCrackdownGcwCombatActionTimestamp.updateToCurrentTime();
-		crackdownFactionTefCrc = 0;
 
 		lastDigestion.updateToCurrentTime();
 
@@ -1538,6 +1536,10 @@ class PlayerObject extends IntangibleObject {
 
 	public native void activateMissions();
 
+	public native void handleGCWControl();
+
+	public native void regrantSkills();
+
 	@read
 	public string getCommandMessageString(unsigned int actionCRC) {
 		return commandMessageStrings.get(actionCRC);
@@ -1731,19 +1733,11 @@ class PlayerObject extends IntangibleObject {
 	@read
 	public native Time getLastGcwPvpCombatActionTimestamp();
 
-	@dereferenced
-	@local
-	@read
-	public native Time getLastGcwCrackdownCombatActionTimestamp();
-
-	public native void updateLastCombatActionTimestamp(boolean updateGcwCrackdownAction, boolean updateGcwAction, boolean updateBhAction);
+	public native void updateLastPvpCombatActionTimestamp(boolean updateGcwAction, boolean updateBhAction);
 
 	public native void updateLastBhPvpCombatActionTimestamp();
 
 	public native void updateLastGcwPvpCombatActionTimestamp();
-
-	@read
-	public native boolean hasTef();
 
 	@read
 	public native boolean hasPvpTef();
@@ -1751,15 +1745,7 @@ class PlayerObject extends IntangibleObject {
 	@read
 	public native boolean hasBhTef();
 
-	public native void setCrackdownTefTowards(unsigned int factionCrc, boolean scheduleTefRemovalTask = true);
-
-	@read
-	public native boolean hasCrackdownTefTowards(unsigned int factionCrc);
-
-	@read
-	public native boolean hasCrackdownTef();
-
-	public native void schedulePvpTefRemovalTask(boolean removeCrackdownGcwTefNow, boolean removeGcwTefNow, boolean removeBhTefNow);
+	public native void schedulePvpTefRemovalTask(boolean removeGcwTefNow, boolean removeBhTefNow);
 
 	public native void schedulePvpTefRemovalTask(boolean removeNow = false);
 
@@ -1920,6 +1906,14 @@ class PlayerObject extends IntangibleObject {
 		reactionFineMailTimestamp.updateToCurrentTime();
 	}
 
+	public void addPackedUpStructure(unsigned long controlDeviceID, SceneObject structure) {
+		packedUpStructures.put(controlDeviceID, structure);
+	}
+
+	public void removePackedUpStructure(unsigned long i) {
+		packedUpStructures.drop(i);
+	}
+
 	@local
 	public Time getReactionFineTimestamp() {
 		return reactionFineTimestamp;
@@ -1982,6 +1976,18 @@ class PlayerObject extends IntangibleObject {
 			rating = PVP_RATING_FLOOR;
 
 		pvpRating = rating;
+	}
+
+	@local
+	@preLocked
+	public VectorMap<unsigned long, SceneObject> getPackedUpStructureMap() {
+		return packedUpStructures;
+	}
+
+	@local
+	@dirty
+	public int getPackedUpStructuresSize() {
+		return packedUpStructures.size();
 	}
 
 	@read

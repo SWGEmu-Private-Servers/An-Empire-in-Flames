@@ -1,6 +1,7 @@
 
 #include "PetMenuComponent.h"
 #include "server/zone/objects/creature/ai/AiAgent.h"
+#include "server/zone/objects/creature/ai/Creature.h"
 #include "server/zone/objects/creature/ai/DroidObject.h"
 #include "server/zone/objects/player/PlayerObject.h"
 #include "server/zone/packets/object/ObjectMenuResponse.h"
@@ -31,6 +32,19 @@ void PetMenuComponent::fillObjectMenuResponse(SceneObject* sceneObject, ObjectMe
 
 	if (pet->isIncapacitated() && pet->isAttackableBy(player))
 		menuResponse->addRadialMenuItem(6, 3, "@ui_radial:combat_death_blow"); // Death Blow
+
+	if (pet->getLinkedCreature().get() != player) {
+		ManagedReference<GroupObject*> group = player->getGroup();
+		if (group != nullptr) {
+			CreatureObject* petOwner = pet->getLinkedCreature().get();
+			if (petOwner != nullptr)
+				if (group->hasMember(petOwner) && pet->hasRidingCreature()) {
+					Creature* mount = cast<Creature*>(pet);
+						if (mount->hasOpenSeat()) 
+							menuResponse->addRadialMenuItem(205, 1, "@pet/pet_menu:menu_mount");
+				}
+		}
+	}
 
 	if (!player->getPlayerObject()->isPrivileged() && pet->getLinkedCreature().get() != player) {
 		return;

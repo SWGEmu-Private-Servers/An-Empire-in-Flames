@@ -64,7 +64,7 @@ public:
 		}
 
 		player->sendSystemMessage("@innate:roar_active"); // You let out a mighty roar.
-		player->addCooldown("innate_roar", 300 * 1000); // 5min reuse time.
+		player->addCooldown("innate_roar", 10 * 1000); // 10sec reuse time.
 
 		if (res == GENERALERROR)
 			creature->sendSystemMessage("@combat_effects:wookiee_roar_miss");

@@ -21,14 +21,15 @@ void AttachmentImplementation::initializeTransientMembers() {
 
 void AttachmentImplementation::updateCraftingValues(CraftingValues* values, bool firstUpdate) {
 	int level = values->getMaxValue("creatureLevel");
-	int roll = System::random(100);
+	//int roll = System::random(100);
 	int modCount = 1;
 
-	if(roll > 99)
-		modCount += 2;
 
-	if(roll < 5)
-		modCount += 1;
+	// if(false && roll > 99)
+	// 	modCount += 2;
+	//
+	// if(false && roll < 5)
+	// 	modCount += 1;
 
 	for(int i = 0; i < modCount; ++i) {
 		//Mods can't be lower than -1 or greater than 25
@@ -76,6 +77,29 @@ void AttachmentImplementation::fillAttributeList(AttributeListMessage* msg, Crea
 		name << "cat_skill_mod_bonus.@stat_n:" << key;
 
 		msg->insertAttribute(name.toString(), value);
+
+		if (customName.isEmpty()){
+
+			StringId SEAName;
+	
+			SEAName.setStringId("stat_n", key);
+
+			setCustomObjectName("", false);
+
+			setObjectName(SEAName, false);
+
+			setCustomObjectName(getDisplayedName() + " +" + String::valueOf(value), true);
+
+			StringId originalName;
+
+			if (isArmorAttachment())
+				originalName.setStringId("item_n", "socket_gem_armor");
+
+			else
+				originalName.setStringId("item_n", "socket_gem_clothing");
+
+			setObjectName(originalName, true);
+		}
 
 		name.deleteAll();
 	}

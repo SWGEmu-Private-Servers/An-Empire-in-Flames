@@ -16,9 +16,9 @@
 #include "server/zone/objects/player/PlayerObject.h"
 #include "server/zone/objects/structure/StructureObject.h"
 #include "server/zone/objects/tangible/deed/structure/StructureDeed.h"
+#include "server/zone/objects/intangible/HouseControlDevice.h"
 #include "templates/tangible/SharedStructureObjectTemplate.h"
 #include "server/zone/objects/area/areashapes/CircularAreaShape.h"
-#include "server/zone/objects/transaction/TransactionLog.h"
 #include "server/zone/Zone.h"
 
 
@@ -43,7 +43,6 @@ int PlaceStructureSessionImplementation::constructStructure(float x, float y, in
 		return cancelSession(); //Something happened, the server template is not a structure template or temporaryNoBuildZone already set.
 
 	placeTemporaryNoBuildZone(serverTemplate);
-
 	String barricadeServerTemplatePath = serverTemplate->getConstructionMarkerTemplate();
 	int constructionDuration = 100; //Set the duration for 100ms as a fall back if it doesn't have a barricade template.
 
@@ -70,6 +69,27 @@ int PlaceStructureSessionImplementation::constructStructure(float x, float y, in
 			constructionBarricade = barricade;
 		}
 	}
+
+	ManagedReference<SceneObject*> datapad = creature->getSlottedObject("datapad");
+	for (int i=0; i < datapad->getContainerObjectsSize(); ++i)
+		{
+		ManagedReference<SceneObject*> datapadObject = datapad->getContainerObject(i);
+		ManagedReference<PlayerObject*> ghost = creature->getPlayerObject();
+			if (datapadObject->getObjectID() == deed->getControlDeviceID())
+			{
+				Locker lock(datapadObject);
+				HouseControlDevice* hcd = datapadObject.castTo<HouseControlDevice*>();
+				TangibleObject* house = hcd->getControlledObject();
+				if (house != nullptr)
+				{
+					Locker hlock(house);
+					house->destroyObjectFromDatabase();
+				}
+				ghost->removePackedUpStructure(deed->getControlDeviceID());
+				datapadObject->destroyObjectFromWorld(true);
+				datapadObject->destroyObjectFromDatabase();
+			}
+		}
 
 	Reference<Task*> task = new StructureConstructionCompleteTask(creature);
 	task->schedule(constructionDuration);
@@ -127,7 +147,6 @@ int PlaceStructureSessionImplementation::completeSession() {
 
 		barricade->destroyObjectFromWorld(true);
 	}
-
 	ManagedReference<StructureDeed*> deed = deedObject.get();
 	ManagedReference<CreatureObject*> creature = creatureObject.get();
 	ManagedReference<Zone*> thisZone = zone.get();
@@ -136,14 +155,10 @@ int PlaceStructureSessionImplementation::completeSession() {
 		return cancelSession();
 
 	String serverTemplatePath = deed->getGeneratedObjectTemplate();
-
 	StructureManager* structureManager = StructureManager::instance();
 	ManagedReference<StructureObject*> structureObject = structureManager->placeStructure(creature, serverTemplatePath, positionX, positionY, directionAngle);
 
 	removeTemporaryNoBuildZone();
-
-	TransactionLog trx(deed, creature, structureObject, TrxCode::STRUCTUREDEED);
-	trx.addState("subjectTemplate", serverTemplatePath);
 
 	if (structureObject == nullptr) {
 		ManagedReference<SceneObject*> inventory = creature->getSlottedObject("inventory");
@@ -162,6 +177,23 @@ int PlaceStructureSessionImplementation::completeSession() {
 
 	ManagedReference<PlayerObject*> ghost = creature->getPlayerObject();
 
+	Locker lock(deed);
+
+	Reference<BuildingObject*> build = structureObject.castTo<BuildingObject*>();
+
+	if (deed->getChildrenSize() > 0)
+	{
+		for (int i=0; i < deed->getChildrenSize(); ++i)
+		{
+
+			ManagedReference<CellObject*> cell = build->getCell(deed->getChildMap()->elementAt(i).getValue());
+			Reference<SceneObject*> child = deed->getChildMap()->elementAt(i).getKey();
+			Locker lock(child);
+	        cell->transferObject(child, -1, true);
+		 }
+
+	}
+
 	if (ghost != nullptr) {
 
 		//Create Waypoint
@@ -174,6 +206,7 @@ int PlaceStructureSessionImplementation::completeSession() {
 		waypointObject->setPosition(positionX, 0, positionY);
 		waypointObject->setPlanetCRC(thisZone->getZoneCRC());
 		structureObject->setWaypointID(waypointObject->getObjectID());
+		structureObject->setIsPackedUp(false);
 
 		ghost->addWaypoint(waypointObject, false, true);
 
@@ -193,15 +226,29 @@ int PlaceStructureSessionImplementation::completeSession() {
 		}
 
 		if (structureObject->isBuildingObject()) {
+			info("Structure is a building");
 			BuildingObject* building = cast<BuildingObject*>(structureObject.get());
 
-			if (building->getSignObject() != nullptr) {
-				if (building->isCivicStructure() || building->isCommercialStructure())
-					building->setCustomObjectName(structureObject->getDisplayedName(), true);
+			if (building->isCivicStructure())
+				building->setCustomObjectName(structureObject->getDisplayedName(), true);
+			else
+			{
+				info("Structure is not civic");
+				if (deed->getDisplayedName() != "")
+				{
+					info("Deed name is " + deed->getDisplayedName());
+					building->setCustomObjectName(deed->getDisplayedName(),true);
+				}
 				else
+				{
 					building->setCustomObjectName(creature->getFirstName() + "'s House", true);
+				}
 			}
 		}
+
+		int extraLots = deed->getAdditionalLots();
+		if (extraLots != 0 && build != nullptr)
+			build->setAdditionalAssignedLots(extraLots);
 	}
 
 	return cancelSession(); //Canceling the session just removes the session from the player's map.

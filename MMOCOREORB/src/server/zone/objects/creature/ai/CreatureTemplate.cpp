@@ -68,6 +68,9 @@ CreatureTemplate::CreatureTemplate() {
 	containerComponentTemplate = "";
 	reactionStf = "";
 	personalityStf = "";
+	passengerCapacity = 0;
+	passengerSeatString = "";
+
 }
 
 CreatureTemplate::~CreatureTemplate() {
@@ -112,6 +115,8 @@ void CreatureTemplate::readObject(LuaObject* templateData) {
 	pvpBitmask = templateData->getIntField("pvpBitmask");
 	creatureBitmask = templateData->getIntField("creatureBitmask");
 	diet = templateData->getIntField("diet");
+	passengerCapacity = templateData->getIntField("passengerCapacity");
+	passengerSeatString = templateData->getStringField("passengerSeatString").trim();
 	optionsBitmask = templateData->getIntField("optionsBitmask");
 	patrolPathTemplate = templateData->getStringField("patrolPathTemplate");
 	defaultWeapon = templateData->getStringField("defaultWeapon");

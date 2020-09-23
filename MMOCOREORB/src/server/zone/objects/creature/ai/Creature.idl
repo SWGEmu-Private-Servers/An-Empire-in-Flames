@@ -242,5 +242,20 @@ class Creature extends AiAgent {
 
 		return super.npcTemplate.getLevel();
 	}
+
+	@dirty
+	public native int getPassengerCapacity();
+
+	@dirty
+	public native string getPassengerSeatName();
+
+	@dirty
+	public native boolean hasOpenSeat();
+
+	@dirty
+	public native int getOpenSeat();
+
+	@dirty
+	public native boolean slotPassenger(CreatureObject passenger);
 }
 

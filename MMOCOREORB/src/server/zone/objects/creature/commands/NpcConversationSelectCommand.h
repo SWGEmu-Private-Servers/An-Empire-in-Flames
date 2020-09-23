@@ -39,6 +39,12 @@ public:
 				ValidatedPosition* validPosition = ghost->getLastValidatedPosition();
 				uint64 parentid = validPosition->getParent();
 
+				if (object->getParentID() == player->getObjectID()){
+					object->selectConversationOption(option, player);
+					object->notifyObservers(ObserverEventType::SELECTCONVERSATION, creature, option);
+					return SUCCESS;
+				}
+
 				if (parentid != object->getParentID())
 					return TOOFAR;
 

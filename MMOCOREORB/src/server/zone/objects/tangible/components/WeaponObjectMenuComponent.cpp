@@ -30,6 +30,19 @@ void WeaponObjectMenuComponent::fillObjectMenuResponse(SceneObject* sceneObject,
 		if(weapon->getConditionDamage() > 0 && weapon->canRepair(player)) {
 			menuResponse->addRadialMenuItem(70, 3, "@sui:repair"); // Slice
 		}
+
+		if (weapon->getPistolMode() != "") {
+			menuResponse->addRadialMenuItem(190, 3, "Sidearm Mode"); // Convert to pistol
+		}
+
+		if (weapon->getCarbineMode() != "") {
+			menuResponse->addRadialMenuItem(191, 3, "Assault Mode"); // Convert to carbine
+		}
+
+		if (weapon->getRifleMode() != "") {
+			menuResponse->addRadialMenuItem(192, 3, "Sniper Mode"); // Convert to rifle
+		}
+
 	}
 
 	TangibleObjectMenuComponent::fillObjectMenuResponse(sceneObject, menuResponse, player);
@@ -88,6 +101,31 @@ int WeaponObjectMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject, 
 			StringIdChatParameter message("powerup", "prose_remove_powerup"); //You detach your powerup from %TT.
 			message.setTT(weapon->getDisplayedName()); 
 			player->sendSystemMessage(message);
+
+			return 1;
+		}
+
+		if(selectedID == 190) {
+
+			String pistolMode = weapon->getPistolMode();
+
+			weapon->convertWeapon(player, pistolMode);
+
+			return 1;
+		}
+
+		if(selectedID == 191) {
+			String carbineMode = weapon->getCarbineMode();
+
+			weapon->convertWeapon(player, carbineMode);
+
+			return 1;
+		}
+
+		if(selectedID == 192) {
+			String rifleMode = weapon->getRifleMode();
+
+			weapon->convertWeapon(player, rifleMode);
 
 			return 1;
 		}

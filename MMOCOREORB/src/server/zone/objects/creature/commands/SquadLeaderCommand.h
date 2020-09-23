@@ -15,6 +15,7 @@ class SquadLeaderCommand : public CombatQueueCommand {
 protected:
 	String action;
 	uint32 actionCRC;
+	float defaultSquadLeaderTime;
 
 public:
 
@@ -22,6 +23,8 @@ public:
 		combatSpam = "";
 		action = "";
 		actionCRC = 0;
+		defaultSquadLeaderTime = 0.5f;
+
 	}
 
 	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
@@ -123,6 +126,7 @@ public:
 */
 
 	float calculateGroupModifier(GroupObject* group) const {
+
 		if (group == nullptr)
 			return 0;
 
@@ -196,7 +200,9 @@ public:
 	}
 
 	float getCommandDuration(CreatureObject* object, const UnicodeString& arguments) const {
-		return defaultTime;
+		//TODO: Rework to take into affect LUA if it exists.
+		//return CombatManager::instance()->calculateWeaponAttackSpeed(object, object->getWeapon(), speedMultiplier);
+		return defaultSquadLeaderTime;
 	}
 
 	const String& getAction() const {

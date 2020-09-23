@@ -193,8 +193,11 @@ public:
 			x = p.getPositionX() + sin(dirRadians) * distance;
 			y = p.getPositionY() + cos(dirRadians) * distance;
 		}
-
-		creature->switchZone(arrivalZone->getZoneName(), x, p.getPositionZ(), y, 0);
+		creature->sendSystemMessage("Boarding shuttle...");
+		if (arrivalPlanet == departurePlanet)
+			creature->teleport(x, p.getPositionZ(), y, 0);
+		else			
+			creature->switchZone(arrivalZone->getZoneName(), x, p.getPositionZ(), y, 0);
 
 		// Update the nearest mission for group waypoint for both the arrival and departure planet.
 		if (creature->isGrouped()) {

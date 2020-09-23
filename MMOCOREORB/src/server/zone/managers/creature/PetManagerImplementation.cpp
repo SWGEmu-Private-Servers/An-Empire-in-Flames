@@ -407,9 +407,9 @@ bool PetManagerImplementation::handleCommandTraining(CreatureObject* speaker, Ai
 	// No renaming of faction pets
 	if (petType == FACTIONPET)
 		return true;
-	// no renaming of converse style droids with personalities installed.
-	if ( (pet->getOptionsBitmask() & OptionBitmask::CONVERSE) && petType == DROIDPET )
-		return true;
+	// no renaming of converse style droids with personalities installed - removed for EiF
+	//if ( (pet->getOptionsBitmask() & OptionBitmask::CONVERSE) && petType == DROIDPET )
+	//	return true;
 	// Check for naming string
 	StringTokenizer tokenizer(message);
 	tokenizer.setDelimeter(" ");

@@ -233,27 +233,27 @@ void WeaponObjectImplementation::fillAttributeList(AttributeListMessage* alm, Cr
 			alm->insertAttribute(statname, value);
 	}
 
-	String ap;
+//	String ap;
 
-	switch (armorPiercing) {
-	case SharedWeaponObjectTemplate::NONE:
-		ap = "None";
-		break;
-	case SharedWeaponObjectTemplate::LIGHT:
-		ap = "Light";
-		break;
-	case SharedWeaponObjectTemplate::MEDIUM:
-		ap = "Medium";
-		break;
-	case SharedWeaponObjectTemplate::HEAVY:
-		ap = "Heavy";
-		break;
-	default:
-		ap = "Unknown";
-		break;
-	}
+//	switch (armorPiercing) {
+//	case SharedWeaponObjectTemplate::NONE:
+//		ap = "None";
+//		break;
+//	case SharedWeaponObjectTemplate::LIGHT:
+//		ap = "Light";
+//		break;
+//	case SharedWeaponObjectTemplate::MEDIUM:
+//		ap = "Medium";
+//		break;
+//	case SharedWeaponObjectTemplate::HEAVY:
+//		ap = "Heavy";
+//		break;
+//	default:
+//		ap = "Unknown";
+//		break;
+//	}
 
-	alm->insertAttribute("wpn_armor_pierce_rating", ap);
+//	alm->insertAttribute("wpn_armor_pierce_rating", ap);
 
 	alm->insertAttribute("wpn_attack_speed", Math::getPrecision(getAttackSpeed(), 1));
 
@@ -301,9 +301,17 @@ void WeaponObjectImplementation::fillAttributeList(AttributeListMessage* alm, Cr
 	float minDmg = round(getMinDamage());
 	float maxDmg = round(getMaxDamage());
 
-	alm->insertAttribute("damage.wpn_damage_min", minDmg);
+//	alm->insertAttribute("damage.wpn_damage_min", minDmg);
 
-	alm->insertAttribute("damage.wpn_damage_max", maxDmg);
+//	alm->insertAttribute("damage.wpn_damage_max", maxDmg);
+
+	StringBuffer damageRange;
+
+	damageRange << minDmg << " - " << maxDmg;
+
+	alm->insertAttribute("damage.damage", damageRange);
+
+	alm->insertAttribute("damage.wpn_dps", Math::getPrecision((getMinDamage() + getMaxDamage()) / (getAttackSpeed() * 2), 1));
 
 	StringBuffer woundsratio;
 
@@ -442,6 +450,11 @@ void WeaponObjectImplementation::fillAttributeList(AttributeListMessage* alm, Cr
 
 	if (sliced == 1)
 		alm->insertAttribute("wpn_attr", "@obj_attr_n:hacked1");
+
+
+//	alm->insertAttribute("damage.pistol_mode", getPistolMode());
+//	alm->insertAttribute("damage.carbine_mode", getCarbineMode());
+//	alm->insertAttribute("damage.rifle_mode", getRifleMode());
 
 }
 
@@ -689,20 +702,20 @@ void WeaponObjectImplementation::decreasePowerupUses(CreatureObject* player) {
 String WeaponObjectImplementation::repairAttempt(int repairChance) {
 	String message = "@error_message:";
 
-	if(repairChance < 25) {
+	if(repairChance < 5) {
 		message += "sys_repair_failed";
 		setMaxCondition(1, true);
 		setConditionDamage(0, true);
 	} else if(repairChance < 50) {
 		message += "sys_repair_imperfect";
-		setMaxCondition(getMaxCondition() * .65f, true);
+		setMaxCondition(getMaxCondition() * .75f, true);
 		setConditionDamage(0, true);
 	} else if(repairChance < 75) {
-		setMaxCondition(getMaxCondition() * .80f, true);
+		setMaxCondition(getMaxCondition() * .90f, true);
 		setConditionDamage(0, true);
 		message += "sys_repair_slight";
 	} else {
-		setMaxCondition(getMaxCondition() * .95f, true);
+		setMaxCondition(getMaxCondition() * 0.99f, true);
 		setConditionDamage(0, true);
 		message += "sys_repair_perfect";
 	}
@@ -716,7 +729,7 @@ void WeaponObjectImplementation::decay(CreatureObject* user) {
 	}
 
 	int roll = System::random(100);
-	int chance = 5;
+	int chance = 40;
 
 	if (hasPowerup())
 		chance += 10;
@@ -739,7 +752,12 @@ void WeaponObjectImplementation::decay(CreatureObject* user) {
 				}
 			}
 		} else {
-			inflictDamage(_this.getReferenceUnsafeStaticCast(), 0, 1, true, true);
+			if (getWeaponType() == "rifle")
+				inflictDamage(_this.getReferenceUnsafeStaticCast(), 0, 2, true, true);
+			else if (getWeaponType() == "carbine")
+				inflictDamage(_this.getReferenceUnsafeStaticCast(), 0, (1 + System::random(1)), true, true);
+			else
+				inflictDamage(_this.getReferenceUnsafeStaticCast(), 0, 1, true, true);
 
 			if (((float)conditionDamage - 1 / (float)maxCondition < 0.75) && ((float)conditionDamage / (float)maxCondition > 0.75))
 				user->sendSystemMessage("@combat_effects:weapon_quarter");
@@ -821,4 +839,111 @@ Reference<PowerupObject*> WeaponObjectImplementation::removePowerup() {
 	removeMagicBit(true);
 
 	return pup;
+}
+
+//function to convert a weapon into a different weapon
+//written by Skyyyr for the E-11; converted by Halyn for generic use
+void WeaponObjectImplementation::convertWeapon(CreatureObject* player, String& newWeaponTemplate) {
+	//First we don't want it to be equiped while they attempt to change the 'variant'
+	ManagedReference<SceneObject*> parent = getParent().get();//This is to check for equip or unequip
+	if (parent != nullptr && parent->isPlayerCreature()){
+		player->sendSystemMessage("You must unequip your weapon before changing its configuration.");
+		return;
+	}
+
+	const String templatePath = newWeaponTemplate;
+
+	ManagedReference<SceneObject*> inventory = player->getSlottedObject("inventory");//Inventory check
+	Reference<SharedObjectTemplate*> shot = TemplateManager::instance()->getTemplate(newWeaponTemplate.hashCode());
+	ManagedReference<TangibleObject*> temp = (player->getZoneServer()->createObject(shot->getServerObjectCRC(), 1)).castTo<TangibleObject*>();
+
+	WeaponObject* newWeapon = cast<WeaponObject*>(temp.get());//This is the new weapon
+
+	//We don't want them to have the weapon equiped to make sure the weapon transfer works perfectly
+	if (parent != nullptr && parent->isPlayerCreature()){
+		player->sendSystemMessage("You must unequip your weapon before changing its configuration.");
+		return;
+	}
+	//Don't want an issue with the object not exising or broken
+	if (temp == nullptr) {
+		return;
+	}
+	//Don't want to overload the inventroy
+	if (inventory == nullptr || inventory->isContainerFullRecursive()) {
+		player->sendSystemMessage("Your inventory is full.");
+		return;
+	}
+
+	//calculate range modifier change for converting between pistols, carbines, and rifles
+	int pointBlankAccuracyModifier = 0;
+	int idealAccuracyModifier = 0;
+	int idealRangeModifier = 0;
+	int maxRangeAccuracyModifier = 0;
+	String oldWeaponType = getWeaponType();
+	String newWeaponType = newWeapon->getWeaponType();
+	String crafterName = getCraftersName();
+
+	if (oldWeaponType == "pistol" && newWeaponType == "rifle") {
+		pointBlankAccuracyModifier = -140;
+		idealAccuracyModifier = 40;
+		idealRangeModifier = 25;
+		maxRangeAccuracyModifier = 200;
+	} else if (oldWeaponType == "pistol" && newWeaponType == "carbine") {
+		pointBlankAccuracyModifier = -50;
+		idealAccuracyModifier = 10;
+		idealRangeModifier = 20;
+		maxRangeAccuracyModifier = 20;
+	} else if (oldWeaponType == "carbine" && newWeaponType == "pistol") {
+		pointBlankAccuracyModifier = 50;
+		idealAccuracyModifier = -10;
+		idealRangeModifier = -20;
+		maxRangeAccuracyModifier = -20;
+	} else if (oldWeaponType == "carbine" && newWeaponType == "rifle") {
+		pointBlankAccuracyModifier = -90;
+		idealAccuracyModifier = 30;
+		idealRangeModifier = 5;
+		maxRangeAccuracyModifier = 180;
+	} else if (oldWeaponType == "rifle" && newWeaponType == "pistol") {
+		pointBlankAccuracyModifier = 140;
+		idealAccuracyModifier = -40;
+		idealRangeModifier = -25;
+		maxRangeAccuracyModifier = -200;
+	} else if (oldWeaponType == "rifle" && newWeaponType == "carbine") {
+		pointBlankAccuracyModifier = 90;
+		idealAccuracyModifier = -30;
+		idealRangeModifier = -5;
+		maxRangeAccuracyModifier = -180;
+	}
+
+
+	//If Success then transfer item, configure new weapon using old weapon's information plus modifiers, and delete old weapon.
+	Locker locker(temp);
+	if (inventory->transferObject(temp, -1, true)) {
+		inventory->broadcastObject(temp, true);
+		newWeapon->setMinDamage(getMinDamage(false) / getDamageSlice());
+		newWeapon->setMaxDamage(getMaxDamage(false) / getDamageSlice());
+		newWeapon->setAttackSpeed(getAttackSpeed(false) / getSpeedSlice());
+		newWeapon->setManualSpeedSlice(getSpeedSlice());
+		newWeapon->setManualDamageSlice(getDamageSlice());
+		newWeapon->setWoundsRatio(getWoundsRatio(false));
+		newWeapon->setHealthAttackCost(getHealthAttackCost(false));
+		newWeapon->setActionAttackCost(getActionAttackCost(false));
+		newWeapon->setMindAttackCost(getMindAttackCost(false));
+		newWeapon->setMaxRangeAccuracy(getMaxRangeAccuracy(false) + maxRangeAccuracyModifier);
+		newWeapon->setIdealAccuracy(getIdealAccuracy(false) + idealAccuracyModifier);
+		newWeapon->setMaxRange(getMaxRange(false));
+		newWeapon->setIdealRange(getIdealRange(false) + idealRangeModifier);
+		newWeapon->setPointBlankAccuracy(getPointBlankAccuracy(false) + pointBlankAccuracyModifier);
+		newWeapon->setSliced(isSliced());
+		newWeapon->setSerialNumber(getSerialNumber());
+		newWeapon->setCraftersName(crafterName);
+		newWeapon->setMaxCondition(getMaxCondition());
+		newWeapon->setConditionDamage(getConditionDamage());
+		if (hasPowerup())
+			newWeapon->applyPowerup(player, removePowerup());
+		destroyObjectFromWorld(true);
+		destroyObjectFromDatabase(true);
+		return;
+	}
+	return;
 }

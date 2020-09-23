@@ -11,6 +11,7 @@
 #include "templates/customization/AssetCustomizationManagerTemplate.h"
 #include "templates/appearance/PaletteTemplate.h"
 #include "server/zone/objects/player/FactionStatus.h"
+#include "server/zone/objects/tangible/weapon/WeaponObject.h"
 
 const char LuaTangibleObject::className[] = "LuaTangibleObject";
 
@@ -38,6 +39,7 @@ Luna<LuaTangibleObject>::RegType LuaTangibleObject::Register[] = {
 		{ "isNeutral", &LuaTangibleObject::isNeutral },
 		{ "hasActiveArea", &LuaTangibleObject::hasActiveArea},
 		{ "isInvisible", &LuaTangibleObject::isInvisible },
+		{ "toggleInvisible", &LuaTangibleObject::toggleInvisible },
 		{ "getLuaStringData", &LuaTangibleObject::getLuaStringData },
 		{ "setLuaStringData", &LuaTangibleObject::setLuaStringData },
 		{ "deleteLuaStringData", &LuaTangibleObject::deleteLuaStringData },
@@ -50,6 +52,10 @@ Luna<LuaTangibleObject>::RegType LuaTangibleObject::Register[] = {
 		{ "isBroken", &LuaTangibleObject::isBroken},
 		{ "isSliced", &LuaTangibleObject::isSliced},
 		{ "isNoTrade", &LuaTangibleObject::isNoTrade},
+		{ "removeDefenders", &LuaTangibleObject::removeDefenders},
+		{ "convertWeapon", &LuaTangibleObject::convertWeapon },
+		{ "getCustomizationString", &LuaTangibleObject::getCustomizationString },
+		{ "setCustomizationString", &LuaTangibleObject::setCustomizationString },
 		{ 0, 0 }
 };
 
@@ -269,6 +275,16 @@ int LuaTangibleObject::isInvisible(lua_State* L) {
 	return 1;
 }
 
+int LuaTangibleObject::toggleInvisible(lua_State* L) {
+	bool retVal = realObject->isInvisible();
+	if (retVal)
+		realObject->setInvisible(false);
+	else
+		realObject->setInvisible(true);
+
+	return 1;
+}
+
 int LuaTangibleObject::setLuaStringData(lua_State *L) {
 	Locker locker(realObject);
 
@@ -309,11 +325,22 @@ int LuaTangibleObject::setOptionBit(lua_State* L) {
 }
 
 int LuaTangibleObject::clearOptionBit(lua_State* L) {
-	uint32 bit = lua_tointeger(L, -1);
+
+	int numberOfArguments = lua_gettop(L) - 1;
+	uint32 bit;
+	bool notifyClient = true;
+
+	if (numberOfArguments == 2) {
+		bit = lua_tointeger(L, -2);
+		notifyClient = lua_toboolean(L, -1);				
+
+	} else {
+		bit = lua_tointeger(L, -1);
+	}
 
 	Locker locker(realObject);
 
-	realObject->clearOptionBit(bit, true);
+	realObject->clearOptionBit(bit, notifyClient);
 
 	return 0;
 }
@@ -379,4 +406,49 @@ int LuaTangibleObject::isNoTrade(lua_State* L){
 	lua_pushboolean(L, noTrade);
 
 	return 1;
+}
+
+int LuaTangibleObject::removeDefenders(lua_State* L){
+	realObject->removeDefenders();
+
+	return 1;
+}
+
+int LuaTangibleObject::convertWeapon(lua_State* L) {
+	String weaponPath = lua_tostring(L, -2);
+	CreatureObject* player = (CreatureObject*) lua_touserdata(L, -1);
+
+	WeaponObject* obj = cast<WeaponObject*>(realObject);
+
+
+	Locker locker(obj);
+
+	obj->convertWeapon(player, weaponPath);
+
+	return 0;
+}
+
+
+
+int LuaTangibleObject::getCustomizationString(lua_State* L) {
+
+	String customizationData = "TEST";
+
+	realObject->getCustomizationString(customizationData);
+//	realObject->getCustomizationStringConverted(customizationData);
+	lua_pushstring(L, customizationData.toCharArray());
+
+	return 1;
+}
+
+
+
+int LuaTangibleObject::setCustomizationString(lua_State* L) {
+	String customizationData = lua_tostring(L, -1);
+
+	Locker locker(realObject);
+
+	realObject->setCustomizationString(customizationData);
+
+	return 0;
 }

@@ -177,7 +177,6 @@ void SpawnAreaMap::readAreaObject(LuaObject& areaObj) {
 	}
 
 	area->setTier(tier);
-	area->initializePosition(x, 0, y);
 
 	if (tier & SPAWNAREA) {
 		area->setMaxSpawnLimit(areaObj.getIntAt(7));

@@ -58,6 +58,10 @@ protected:
 
 	uint32 weaponType;
 
+	String pistolMode;
+	String carbineMode;
+	String rifleMode;
+
 public:
 	enum APType {
 		NONE,
@@ -114,7 +118,8 @@ public:
 		LIGHTNINGRIFLEWEAPON = 0x1000,
 		ONEHANDJEDIWEAPON = 0x2000,
 		TWOHANDJEDIWEAPON = 0x4000,
-		POLEARMJEDIWEAPON = 0x8000
+		POLEARMJEDIWEAPON = 0x8000,
+		ROTARYWEAPON = 0x10000,
 	};
 
 
@@ -147,6 +152,10 @@ public:
 		attackSpeed = 0;
 
 		weaponType = 0xFFFFFFFF;
+
+		pistolMode = "none";
+		carbineMode = "none";
+		rifleMode = "none";
 	}
 
 	~SharedWeaponObjectTemplate() {
@@ -403,6 +412,18 @@ public:
 
 	void setWeaponType(uint32 weaponType) {
 		this->weaponType = weaponType;
+	}
+
+	const String& getPistolMode() const {
+		return pistolMode;
+	}
+
+	const String& getCarbineMode() const {
+		return carbineMode;
+	}
+
+	const String& getRifleMode() const {
+		return rifleMode;
 	}
 };
 

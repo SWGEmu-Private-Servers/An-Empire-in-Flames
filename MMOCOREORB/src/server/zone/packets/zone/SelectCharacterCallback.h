@@ -284,3 +284,4 @@ public:
 
 
 #endif /* SELECTCHARACTERCALLBACK_H_ */
+

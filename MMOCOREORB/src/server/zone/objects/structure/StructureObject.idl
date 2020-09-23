@@ -34,6 +34,8 @@ class StructureObject extends TangibleObject {
 	@dereferenced
 	protected Time powerExpires;
 
+	protected CreatureObject owner;
+	protected SceneObject controlDevice;
 	protected unsigned long ownerObjectID;
 	protected unsigned long deedObjectID;
 	protected unsigned long waypointID;
@@ -44,6 +46,8 @@ class StructureObject extends TangibleObject {
 	protected boolean maintenanceReduced;
 
 	protected boolean permissionsFixed;
+
+	protected boolean isPackedUp;
 
 	public StructureObject() {
 		Logger.setLoggingName("StructureObject");
@@ -67,6 +71,12 @@ class StructureObject extends TangibleObject {
 		permissionsFixed = false;
 
 		navArea = null;
+
+		isPackedUp = false;
+
+		controlDevice = null;
+
+		owner = null;
 	}
 
 	public native void initializeTransientMembers();
@@ -82,6 +92,24 @@ class StructureObject extends TangibleObject {
 	@local
 	public native void loadTemplateData(SharedObjectTemplate templateData);
 
+	public native void setOwner(CreatureObject co)
+	{
+		owner = co;
+	}
+
+	public CreatureObject getOwner()
+	{
+		return owner;
+	}
+
+	public native void setControlDevice(SceneObject cd)
+	{
+		controlDevice = cd;
+	}
+	public SceneObject getControlDevice()
+	{
+		return controlDevice;
+	}
 	/**
 	 * Gets called when this objects is loaded from database
 	 * @pre { this locked }
@@ -160,6 +188,16 @@ class StructureObject extends TangibleObject {
 	 */
 	@read
 	public native boolean isOnAdminList(CreatureObject player);
+
+	public native boolean packedUp()
+	{
+		return isPackedUp;
+	}
+
+	public native void setIsPackedUp(boolean b)
+	{
+		isPackedUp = b;
+	}
 
 	/**
 	 * Checks if the player/guild is on the admin list.
@@ -309,7 +347,7 @@ class StructureObject extends TangibleObject {
 		maintenanceReduced = value;
 	}
 
-	@read
+	
 	public native float getMaintenanceRate();
 
 	@read

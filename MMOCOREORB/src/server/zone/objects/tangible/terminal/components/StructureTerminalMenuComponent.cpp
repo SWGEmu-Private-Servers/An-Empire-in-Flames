@@ -50,6 +50,7 @@ void StructureTerminalMenuComponent::fillObjectMenuResponse(SceneObject* sceneOb
 				menuResponse->addRadialMenuItemToRadialID(118, 50, 3, "@player_structure:management_name_structure"); //Name Structure
 				menuResponse->addRadialMenuItemToRadialID(118, 201, 3, "@player_structure:delete_all_items"); //Delete all items
 				menuResponse->addRadialMenuItemToRadialID(118, 202, 3, "@player_structure:move_first_item"); //Find Lost Items
+				menuResponse->addRadialMenuItemToRadialID(118, 121, 3, "@player_structure:permission_admin"); //Administrator List
 
 				// Not all civic buildings have signs.  Check to see if build already has one before allowing a change
 				BuildingObject* building = cast<BuildingObject*>(structureObject.get());
@@ -63,9 +64,26 @@ void StructureTerminalMenuComponent::fillObjectMenuResponse(SceneObject* sceneOb
 
 	if (structureObject->isOnAdminList(creature)) {
 		menuResponse->addRadialMenuItem(118, 3, "@player_structure:management"); //Structure Management
+		menuResponse->addRadialMenuItemToRadialID(118, 210, 3, "Packup House"); //House Packup
 		menuResponse->addRadialMenuItemToRadialID(118, 128, 3, "@player_structure:permission_destroy"); //Destroy Structure
 		menuResponse->addRadialMenuItemToRadialID(118, 124, 3, "@player_structure:management_status"); //Status
 		menuResponse->addRadialMenuItemToRadialID(118, 129, 3, "@player_structure:management_pay"); //Pay Maintenance
+		if (structureObject->isOwnerOf(creature))
+		{
+			PlayerObject* player = creature->getPlayerObject();
+			if (player->hasLotsRemaining(1))
+			{
+				menuResponse->addRadialMenuItemToRadialID(118, 204, 3, "Add Additional Lots");
+			}
+			if (structureObject->isBuildingObject())
+			{
+				BuildingObject* building = cast<BuildingObject*>(structureObject.get());
+				if (building->getExtraAssignedLots() > 0)
+				{
+					menuResponse->addRadialMenuItemToRadialID(118, 205, 3, "Withdrawl Additional Lots");
+				}
+			}
+		}
 
 		if (structureObject->isGuildHall()) {
 			menuResponse->addRadialMenuItemToRadialID(118, 70, 3, "@player_structure:take_maintenance"); // Withdraw Maintenance
@@ -93,7 +111,7 @@ void StructureTerminalMenuComponent::fillObjectMenuResponse(SceneObject* sceneOb
 			menuResponse->addRadialMenuItemToRadialID(118, 127, 3, "@player_structure:management_residence"); //Declare Residence
 			menuResponse->addRadialMenuItemToRadialID(118, 125, 3, "@player_structure:management_privacy"); //Privacy
 
-			if (creature->hasSkill("crafting_artisan_business_01") && structureObject->isOnAdminList(creature)) {
+			if (creature->hasSkill("crafting_merchant_novice") && structureObject->isOnAdminList(creature)) {
 				BuildingObject* building = cast<BuildingObject*>(structureObject.get());
 				if(!building->hasAccessFee())
 					menuResponse->addRadialMenuItemToRadialID(118, 68, 3, "@player_structure:management_add_turnstile"); //Set Access Fee
@@ -102,7 +120,7 @@ void StructureTerminalMenuComponent::fillObjectMenuResponse(SceneObject* sceneOb
 
 			}
 
-			if (creature->hasSkill("crafting_artisan_business_03"))
+			if (creature->hasSkill("crafting_merchant_novice"))
 				menuResponse->addRadialMenuItemToRadialID(118, 130, 3, "@player_structure:create_vendor"); //Create Vendor
 
 
@@ -120,7 +138,7 @@ void StructureTerminalMenuComponent::fillObjectMenuResponse(SceneObject* sceneOb
 			menuResponse->addRadialMenuItemToRadialID(117, 122, 3, "@player_structure:permission_vendor"); //Vendor List
 		}
 	} else if(structureObject->isOnPermissionList("VENDOR", creature)) {
-		if (creature->hasSkill("crafting_artisan_business_03")) {
+		if (creature->hasSkill("crafting_merchant_novice")) {
 			menuResponse->addRadialMenuItem(118, 3, "@player_structure:management"); //Structure Management
 			menuResponse->addRadialMenuItemToRadialID(118, 130, 3, "@player_structure:create_vendor"); //Create Vendor
 		}
@@ -165,6 +183,9 @@ int StructureTerminalMenuComponent::handleObjectMenuSelect(SceneObject* sceneObj
 			case 128:
 				creature->executeObjectControllerAction(0x18FC1726, structureObject->getObjectID(), ""); //destroyStructure
 				break;
+			case 121:
+				structureObject->sendPermissionListTo(creature, "ADMIN");
+				break;
 			case 50:
 				structureManager->promptNameStructure(creature, structureObject, nullptr);
 				break;
@@ -183,10 +204,29 @@ int StructureTerminalMenuComponent::handleObjectMenuSelect(SceneObject* sceneObj
 	if (structureObject->isOnAdminList(creature)) {
 
 		StructureManager* structureManager = StructureManager::instance();
+		BuildingObject* building = cast<BuildingObject*>(structureObject.get());
 
 		Locker structureLocker(structureObject, creature);
+		Locker buildLocker(building, creature);
+		String arg;
 
 		switch (selectedID) {
+		case 204:
+			if (structureObject->isBuildingObject())
+			{
+				arg = "add";
+				building->promptAddRemoveAdditionalLots(building, creature, arg);
+			}
+			break;
+		case 205:
+			if (structureObject->isBuildingObject())
+			{
+				arg = "subtract";
+				building->promptAddRemoveAdditionalLots(building, creature, arg);
+			}
+		case 210:
+			structureManager->sendHousePackupRequest(creature, structureObject);
+			break;
 		case 201:
 			structureManager->promptDeleteAllItems(creature, structureObject);
 			break;
@@ -225,7 +265,6 @@ int StructureTerminalMenuComponent::handleObjectMenuSelect(SceneObject* sceneObj
 			break;
 		case 68:
 			if(structureObject->isBuildingObject()) {
-				BuildingObject* building = cast<BuildingObject*>(structureObject.get());
 				if(!building->hasAccessFee()) {
 
 					if(!building->canChangeAccessFee()) {
@@ -261,7 +300,7 @@ int StructureTerminalMenuComponent::handleObjectMenuSelect(SceneObject* sceneObj
 	}
 
 	if(selectedID == 130 && (structureObject->isOnAdminList(creature) || structureObject->isOnPermissionList("VENDOR", creature))) {
-		if (creature->hasSkill("crafting_artisan_business_03")) {
+		if (creature->hasSkill("crafting_merchant_novice")) {
 			creature->executeObjectControllerAction(STRING_HASHCODE("createvendor")); // Create Vendor
 		}
 	}

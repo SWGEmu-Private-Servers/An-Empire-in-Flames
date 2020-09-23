@@ -8,6 +8,7 @@
 #include "server/zone/objects/scene/SceneObject.h"
 #include "server/zone/packets/player/EnterStructurePlacementModeMessage.h"
 #include "templates/manager/TemplateManager.h"
+#include "server/zone/objects/intangible/HouseControlDevice.h"
 
 class PlaceStructureModeCommand : public QueueCommand {
 public:
@@ -17,7 +18,8 @@ public:
 
 	}
 
-	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
+	 int checkStructurePlacement(CreatureObject* creature, const uint64& target) const {
+
 		ManagedReference<PlayerObject*> ghost = creature->getPlayerObject();
 
 		if (ghost == nullptr)
@@ -42,7 +44,7 @@ public:
 
 		ManagedReference<CityRegion*> city = creature->getCityRegion().get();
 
-		if (city != nullptr && city->isClientRegion()) {
+		if (city != nullptr && city->isClientRegion() && ghost->getAdminLevel() < 14) {
 			creature->sendSystemMessage("@player_structure:not_permitted"); //Building is not permitted here.
 			return INVALIDPARAMETERS;
 		}
@@ -65,23 +67,62 @@ public:
 		Reference<SharedStructureObjectTemplate*> serverTemplate = dynamic_cast<SharedStructureObjectTemplate*>(templateManager->getTemplate(serverTemplatePath.hashCode()));
 
 		if (serverTemplate == nullptr)
+		{
 			return GENERALERROR; //Template is unknown.
+		}
 
 		int lots = serverTemplate->getLotSize();
 
-		if (!ghost->hasLotsRemaining(lots)) {
+		if (!ghost->hasLotsRemaining(lots) && ghost->getAdminLevel() < 14) {
 			StringIdChatParameter param("@player_structure:not_enough_lots");
 			param.setDI(lots);
 			creature->sendSystemMessage(param);
 			return GENERALERROR;
 		}
 
-		String clientTemplatePath = templateManager->getTemplateFile(serverTemplate->getClientObjectCRC());
-
-		EnterStructurePlacementModeMessage* espmm = new EnterStructurePlacementModeMessage(deed->getObjectID(), clientTemplatePath);
-		creature->sendMessage(espmm);
-
 		return SUCCESS;
+	}
+
+
+	 int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const
+	 {
+
+		ManagedReference<PlayerObject*> ghost = creature->getPlayerObject();
+
+		StructureDeed* deedObject = server->getZoneServer()->getObject(target).castTo<StructureDeed*>();
+
+		ManagedReference<SceneObject*> obj = server->getZoneServer()->getObject(target);
+
+		Deed* deed = cast<Deed*>(obj.get());
+
+		if (checkStructurePlacement(creature, target)  == QueueCommand::SUCCESS)
+		{
+
+			TemplateManager* templateManager = TemplateManager::instance();
+
+			String serverTemplatePath = deed->getGeneratedObjectTemplate();
+			Reference<SharedStructureObjectTemplate*> serverTemplate = dynamic_cast<SharedStructureObjectTemplate*>(templateManager->getTemplate(serverTemplatePath.hashCode()));
+			Locker lock(deed);
+			String clientTemplatePath = templateManager->getTemplateFile(serverTemplate->getClientObjectCRC());
+			EnterStructurePlacementModeMessage* espmm = new EnterStructurePlacementModeMessage(deed->getObjectID(), clientTemplatePath);
+			creature->sendMessage(espmm);
+			return SUCCESS;
+
+		}
+		else
+		{
+			if (deedObject->getControlDeviceID() != 0)
+			{
+				Locker lock(deedObject);
+				Reference<HouseControlDevice*> controlDevice = server->getZoneServer()->getObject(deedObject->getControlDeviceID()).castTo<HouseControlDevice*>();
+				Reference<SceneObject*> structure = controlDevice->getControlledObject();
+				ghost->addPackedUpStructure(deedObject->getControlDeviceID(),structure);
+				deedObject->destroyObjectFromWorld(true);
+				deedObject->destroyObjectFromDatabase();
+			}
+			return GENERALERROR;
+		}
+
 	}
 };
 

@@ -368,7 +368,7 @@ void InstallationObjectImplementation::updateHopper(Time& workingTime, bool shut
 
 	int elapsedTime = (harvestUntil - lastHopperUpdate);
 
-	float harvestAmount = (elapsedTime / 60.0) * (spawnDensity * getExtractionRate());
+	float harvestAmount = (elapsedTime / 60.0) * ((spawnDensity / 0.66) * getExtractionRate());
 
 	int availableCapacity = (int)(getHopperSizeMax() - getHopperSize());
 	harvestAmount = harvestAmount > availableCapacity ? availableCapacity : harvestAmount;
@@ -639,7 +639,7 @@ float InstallationObjectImplementation::getActualRate() {
 	if (resourceHopper.size() == 0)
 		return 0;
 
-	return extractionRate * spawnDensity;
+	return ((extractionRate / 0.66f) * spawnDensity);
 }
 
 void InstallationObjectImplementation::setExtractionRate(float rate){
@@ -667,13 +667,6 @@ void InstallationObjectImplementation::updateStructureStatus() {
 bool InstallationObjectImplementation::isAggressiveTo(CreatureObject* target) {
 	if (!isAttackableBy(target) || target->isVehicleObject())
 		return false;
-
-	if (target->isPlayerCreature()) {
-		Reference<PlayerObject*> ghost = target->getPlayerObject();
-		if (ghost != nullptr && ghost->hasCrackdownTefTowards(getFaction())) {
-			return true;
-		}
-	}
 
 	if (getFaction() != 0 && target->getFaction() != 0 && getFaction() != target->getFaction())
 		return true;
@@ -724,6 +717,13 @@ bool InstallationObjectImplementation::isAttackableBy(CreatureObject* object) {
 	unsigned int thisFaction = getFaction();
 	unsigned int otherFaction = object->getFaction();
 
+	if (otherFaction != 0 && thisFaction != 0) {
+		if (otherFaction == thisFaction) {
+			return false;
+		}
+
+	}
+
 	if (object->isPet()) {
 		ManagedReference<CreatureObject*> owner = object->getLinkedCreature().get();
 
@@ -732,27 +732,12 @@ bool InstallationObjectImplementation::isAttackableBy(CreatureObject* object) {
 
 		return isAttackableBy(owner);
 
-	} else if (object->isPlayerCreature()) {
-		if (thisFaction != 0) {
-			Reference<PlayerObject*> ghost = object->getPlayerObject();
-			if (ghost != nullptr && ghost->hasCrackdownTefTowards(thisFaction)) {
-				return true;
-			}
-			if (otherFaction != 0 && otherFaction == thisFaction) {
-				return false;
-			}
-			if (object->getFactionStatus() == 0) {
-				return false;
-			}
-
-			if ((getPvpStatusBitmask() & CreatureFlag::OVERT) && object->getFactionStatus() != FactionStatus::OVERT) {
-				return false;
-			}
+	} else if (object->isPlayerCreature() && thisFaction != 0) {
+		if (object->getFactionStatus() == 0) {
+			return false;
 		}
-	}
 
-	if (otherFaction != 0 && thisFaction != 0) {
-		if (otherFaction == thisFaction) {
+		if ((getPvpStatusBitmask() & CreatureFlag::OVERT) && object->getFactionStatus() != FactionStatus::OVERT) {
 			return false;
 		}
 	}

@@ -72,6 +72,9 @@ class ShipControlDevice extends ControlDevice {
 	public native boolean canBeTradedTo(CreatureObject player, CreatureObject receiver, int numberInTrade);
 
 	@dirty
+	public native int canBeDestroyed(CreatureObject player);
+
+	@dirty
 	public boolean isShipControlDevice() {
 		return true;
 	}

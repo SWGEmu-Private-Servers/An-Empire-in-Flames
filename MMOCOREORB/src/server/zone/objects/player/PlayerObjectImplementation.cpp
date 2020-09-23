@@ -73,6 +73,7 @@
 #include "server/zone/objects/player/sui/messagebox/SuiMessageBox.h"
 #include "server/chat/PendingMessageList.h"
 #include "server/zone/managers/director/DirectorManager.h"
+#include "server/zone/managers/gcw/GCWManager.h"
 #include "server/db/ServerDatabase.h"
 #include "server/ServerCore.h"
 #ifdef WITH_SESSION_API
@@ -123,7 +124,6 @@ void PlayerObjectImplementation::checkPendingMessages() {
 
 		for (uint64 messageID : pendingMessages) {
 			ManagedReference<PersistentMessage*> mail = Core::getObjectBroker()->lookUp(messageID).castTo<PersistentMessage*>();
-
 			if (mail != nullptr && isIgnoring(mail->getSenderName())) {
 				objectManager->destroyObjectFromDatabase(mail->getObjectID());
 				continue;
@@ -257,9 +257,7 @@ void PlayerObjectImplementation::unload() {
 
 	notifyOffline();
 
-	if (creature->isRidingMount()) {
-		creature->executeObjectControllerAction(STRING_HASHCODE("dismount"));
-	}
+	creature->executeObjectControllerAction(STRING_HASHCODE("dismount"));
 
 	unloadSpawnedChildren();
 
@@ -1395,6 +1393,8 @@ void PlayerObjectImplementation::notifyOnline() {
 	}
 
 	playerCreature->schedulePersonalEnemyFlagTasks();
+
+	playerCreature->executeObjectControllerAction(STRING_HASHCODE("dismount"));
 }
 
 void PlayerObjectImplementation::notifyOffline() {
@@ -2102,7 +2102,11 @@ void PlayerObjectImplementation::setOnline() {
 
 	doRecovery(1000);
 
+	regrantSkills();
+
 	activateMissions();
+
+	handleGCWControl();
 }
 
 void PlayerObjectImplementation::reload(ZoneClientSession* client) {
@@ -2331,22 +2335,13 @@ Time PlayerObjectImplementation::getLastGcwPvpCombatActionTimestamp() const {
 	return lastGcwPvpCombatActionTimestamp;
 }
 
-Time PlayerObjectImplementation::getLastGcwCrackdownCombatActionTimestamp() const {
-	return lastCrackdownGcwCombatActionTimestamp;
-}
-
-void PlayerObjectImplementation::updateLastCombatActionTimestamp(bool updateGcwCrackdownAction, bool updateGcwAction, bool updateBhAction) {
+void PlayerObjectImplementation::updateLastPvpCombatActionTimestamp(bool updateGcwAction, bool updateBhAction) {
 	ManagedReference<CreatureObject*> parent = getParent().get().castTo<CreatureObject*>();
 
 	if (parent == nullptr)
 		return;
 
-	bool alreadyHasTef = hasTef();
-
-	if (updateGcwCrackdownAction) {
-		lastCrackdownGcwCombatActionTimestamp.updateToCurrentTime();
-		lastCrackdownGcwCombatActionTimestamp.addMiliTime(FactionManager::TEFTIMER);
-	}
+	bool alreadyHasTef = hasPvpTef();
 
 	if (updateBhAction) {
 		bool alreadyHasBhTef = hasBhTef();
@@ -2371,15 +2366,11 @@ void PlayerObjectImplementation::updateLastCombatActionTimestamp(bool updateGcwC
 }
 
 void PlayerObjectImplementation::updateLastBhPvpCombatActionTimestamp() {
-	updateLastCombatActionTimestamp(false, false, true);
+	updateLastPvpCombatActionTimestamp(false, true);
 }
 
 void PlayerObjectImplementation::updateLastGcwPvpCombatActionTimestamp() {
-	updateLastCombatActionTimestamp(false, true, false);
-}
-
-bool PlayerObjectImplementation::hasTef() const {
-	return hasCrackdownTef() || hasPvpTef();
+	updateLastPvpCombatActionTimestamp(true, false);
 }
 
 bool PlayerObjectImplementation::hasPvpTef() const {
@@ -2390,41 +2381,19 @@ bool PlayerObjectImplementation::hasBhTef() const {
 	return !lastBhPvpCombatActionTimestamp.isPast();
 }
 
-void PlayerObjectImplementation::setCrackdownTefTowards(unsigned int factionCrc, bool scheduleTefRemovalTask) {
-	crackdownFactionTefCrc = factionCrc;
-	if (scheduleTefRemovalTask) {
-		updateLastCombatActionTimestamp(true, false, false);
-	}
-}
-
-bool PlayerObjectImplementation::hasCrackdownTefTowards(unsigned int factionCrc) const {
-	return !lastCrackdownGcwCombatActionTimestamp.isPast() && factionCrc != 0 && crackdownFactionTefCrc == factionCrc;
-}
-
-bool PlayerObjectImplementation::hasCrackdownTef() const {
-	return !lastCrackdownGcwCombatActionTimestamp.isPast() && crackdownFactionTefCrc != 0;
-}
-
-void PlayerObjectImplementation::schedulePvpTefRemovalTask(bool removeCrackdownGcwTefNow, bool removeGcwTefNow, bool removeBhTefNow) {
+void PlayerObjectImplementation::schedulePvpTefRemovalTask(bool removeGcwTefNow, bool removeBhTefNow) {
 	ManagedReference<CreatureObject*> parent = getParent().get().castTo<CreatureObject*>();
 
-	if (parent == nullptr) {
+	if (parent == nullptr)
 		return;
-	}
 
 	if (pvpTefTask == nullptr) {
 		pvpTefTask = new PvpTefRemovalTask(parent);
 	}
 
-	if (removeCrackdownGcwTefNow || removeGcwTefNow || removeBhTefNow) {
-		if (removeCrackdownGcwTefNow) {
-			crackdownFactionTefCrc = 0;
-			lastCrackdownGcwCombatActionTimestamp.updateToCurrentTime();
-		}
-
-		if (removeGcwTefNow) {
+	if (removeGcwTefNow || removeBhTefNow) {
+		if (removeGcwTefNow)
 			lastGcwPvpCombatActionTimestamp.updateToCurrentTime();
-		}
 
 		if (removeBhTefNow) {
 			lastBhPvpCombatActionTimestamp.updateToCurrentTime();
@@ -2437,13 +2406,10 @@ void PlayerObjectImplementation::schedulePvpTefRemovalTask(bool removeCrackdownG
 	}
 
 	if (!pvpTefTask->isScheduled()) {
-		if (hasTef()) {
-			auto gcwCrackdownTefMs = getLastGcwCrackdownCombatActionTimestamp().miliDifference();
+		if (hasPvpTef()) {
 			auto gcwTefMs = getLastGcwPvpCombatActionTimestamp().miliDifference();
 			auto bhTefMs = getLastBhPvpCombatActionTimestamp().miliDifference();
-			auto scheduleTime = gcwTefMs < bhTefMs ? gcwTefMs : bhTefMs;
-			scheduleTime = gcwCrackdownTefMs < scheduleTime ? gcwCrackdownTefMs : scheduleTime;
-			pvpTefTask->schedule(llabs(scheduleTime));
+			pvpTefTask->schedule(llabs(gcwTefMs < bhTefMs ? gcwTefMs : bhTefMs));
 		} else {
 			pvpTefTask->execute();
 		}
@@ -2451,7 +2417,7 @@ void PlayerObjectImplementation::schedulePvpTefRemovalTask(bool removeCrackdownG
 }
 
 void PlayerObjectImplementation::schedulePvpTefRemovalTask(bool removeNow) {
-	schedulePvpTefRemovalTask(removeNow, removeNow, removeNow);
+	schedulePvpTefRemovalTask(removeNow, removeNow);
 }
 
 Vector3 PlayerObjectImplementation::getTrainerCoordinates() const {
@@ -2613,14 +2579,21 @@ int PlayerObjectImplementation::getLotsRemaining() {
 
 	int lotsRemaining = maximumLots;
 
-	for (int i = 0; i < ownedStructures.size(); ++i) {
-		auto oid = ownedStructures.get(i);
+	for (int i = 0; i < ownedStructures.size(); ++i)
+	{
+		unsigned long oid = ownedStructures.get(i);
 
 		Reference<StructureObject*> structure = getZoneServer()->getObject(oid).castTo<StructureObject*>();
 
 		if (structure != nullptr) {
 			lotsRemaining = lotsRemaining - structure->getLotSize();
 		}
+	}
+
+	for (int i = 0; i < packedUpStructures.size(); ++i)
+	{
+		Reference<StructureObject*> packed = this->getPackedUpStructureMap()->elementAt(i).getValue().castTo<StructureObject*>();
+		lotsRemaining = lotsRemaining - packed->getLotSize();
 	}
 
 	return lotsRemaining;
@@ -2884,7 +2857,7 @@ void PlayerObjectImplementation::doFieldFactionChange(int newStatus) {
 
 	int curStatus = parent->getFactionStatus();
 
-	if (curStatus == FactionStatus::OVERT || curStatus == newStatus)
+	if (curStatus == newStatus)
 		return;
 
 	if (parent->getFutureFactionStatus() != -1)
@@ -2903,6 +2876,8 @@ void PlayerObjectImplementation::doFieldFactionChange(int newStatus) {
 		inputbox->setPromptText("@gcw:gcw_status_change_covert"); // You are changing your GCW Status to 'Combatant'. This transition will take 30 seconds. It will allow you to attack and be attacked by enemy NPC's. Type YES in this box to confirm the change.
 	} else if (newStatus == FactionStatus::OVERT) {
 		inputbox->setPromptText("@gcw:gcw_status_change_overt"); // You are changing your GCW Status to 'Special Forces'. This transition will take 5 minutes. It will allow you to attack and be attacked by hostile players and NPC's.Type YES in this box to confirm the change.
+	} else if (newStatus == FactionStatus::ONLEAVE) {
+		inputbox->setPromptText("You are changing your GCW Status to 'On Leave'. This transition will take 5 minutes. While on leave, you will be unable to attack enemy faction NPCs or players. Type YES in this box to confirm the change.");
 	}
 
 	addSuiBox(inputbox);
@@ -2943,6 +2918,136 @@ void PlayerObjectImplementation::checkAndShowTOS() {
 
 	addSuiBox(box);
 	creature->sendMessage(box->generateMessage());
+}
+
+void PlayerObjectImplementation::handleGCWControl(){
+
+  /* Logging Disabled
+	Logger gcwLog;
+	gcwLog.setLoggingName("gcwControl");
+	StringBuffer fileName;
+	fileName << "log/admin/gcw.log";
+	gcwLog.setFileLogger(fileName.toString(), true);
+	gcwLog.setLogging(true);
+	*/
+
+	ManagedReference<CreatureObject*> creature = dynamic_cast<CreatureObject*>(parent.get().get());
+
+	if (creature == nullptr) {
+		return;
+	}
+	uint32 winningFaction = -1;
+	ZoneServer* zoneServer = server->getZoneServer();
+	SkillManager* skillManager = SkillManager::instance();
+	ManagedReference<CreatureObject*> player = getParentRecursively(SceneObjectType::PLAYERCREATURE).castTo<CreatureObject*>();
+	Vector<String>* planets =  new Vector<String> ();
+	planets->add("corellia");
+	planets->add("dantooine");
+	planets->add("dathomir");
+	planets->add("endor");
+	planets->add("naboo");
+	planets->add("taanab");
+	planets->add("yavin4");
+
+	for ( int i = 0; i < planets->size(); i++)
+	{
+		String planet = planets->get(i);
+		Zone* currentZone = server->getZoneServer()->getZone(planet);
+		GCWManager* gcwMan = currentZone->getGCWManager();
+		// Remove Existing GCW Control Skills
+		skillManager->surrenderSkill("gcw_"+planet+"_04",creature);
+		skillManager->surrenderSkill("gcw_"+planet+"_03",creature);
+		skillManager->surrenderSkill("gcw_"+planet+"_02",creature);
+		skillManager->surrenderSkill("gcw_"+planet+"_01",creature);
+		// Add Skills
+
+		// Check to see if the are apart of the winning faction
+		//StringBuffer logEntry;
+		//logEntry << planet << " winning faction : " << gcwMan->getWinningFaction() << " and player Faction = " << creature->getFaction();
+
+		if ( gcwMan->getWinningFaction() == 0) {
+				gcwMan->performGCWTasks(true);
+				//logEntry << endl << "Faction Tied: " << gcwMan->getRebelScore() << " For Rebels " << gcwMan->getImperialScore() << " For imps" ;
+				//logEntry<< "New Winning Faction for " << planet << " is " << gcwMan->getWinningFaction();
+		}
+		//gcwLog.info(logEntry.toString());
+		if (gcwMan->getWinningFaction() != 0 && creature->getFaction() != 0) {
+			if (gcwMan->getWinningFaction() == creature->getFaction())
+			{
+					uint rank = creature->getFactionRank();
+					bool grantedSkill = false;
+
+			 		if ( rank >= 1 && rank <= 4){
+					 // Tier 1
+					 bool grantedSkill = skillManager->awardSkill("gcw_"+planet+"_01",creature, true, true, true);
+					 /*StringBuffer logEntry;
+ 						logEntry << " Player Faction Rank = " << creature->getFactionRank() << " Granting SKill "<<grantedSkill << " gcw_"+planet+"_01";
+ 						gcwLog.info(logEntry.toString());*/
+				 } else if ( rank >= 5 && rank <= 9){
+					  // Tier 2
+						bool grantedSkill = skillManager->awardSkill("gcw_"+planet+"_02",creature, true, true, true);
+						/*StringBuffer logEntry;
+						 logEntry << " Player Faction Rank = " << creature->getFactionRank() << " Granting SKill "<<grantedSkill << " gcw_"+planet+"_02";
+						 gcwLog.info(logEntry.toString());*/
+				 } else if ( rank >= 10 && rank <= 15){
+					 	// Tier 3
+						bool grantedSkill = skillManager->awardSkill("gcw_"+planet+"_03",creature, true, true, true);
+						/*StringBuffer logEntry;
+						 logEntry << " Player Faction Rank = " << creature->getFactionRank() << " Granting SKill "<< grantedSkill << " gcw_"+planet+"_03";
+						 gcwLog.info(logEntry.toString());*/
+				 } else if ( rank >= 16 ){
+					 // Tier 4
+					 bool grantedSkill = skillManager->awardSkill("gcw_"+planet+"_04",creature, true, true, true);
+					 /*StringBuffer logEntry;
+						logEntry << " Player Faction Rank = " << creature->getFactionRank() << " Granting SKill "<< grantedSkill << " gcw_"+planet+"_04";
+						gcwLog.info(logEntry.toString());*/
+				 }
+			}
+		}
+	}
+}
+
+
+void PlayerObjectImplementation::regrantSkills(){
+		ZoneServer* zoneServer = server->getZoneServer();
+		SkillManager* skillManager = SkillManager::instance();
+		ManagedReference<CreatureObject*> player = getParentRecursively(SceneObjectType::PLAYERCREATURE).castTo<CreatureObject*>();
+		const SkillList* skillList = player->getSkillList();
+
+		String skillName = "";
+		Vector<String> listOfNames;
+		skillList->getStringList(listOfNames);
+		SkillList copyOfList;
+		copyOfList.loadFromNames(listOfNames);
+
+		std::map<String,int> experienceListCopy; 
+		DeltaVectorMap<String, int>* currentXPList = getExperienceList();
+
+		for ( int i = 0; i < currentXPList->size(); i++ ) {
+			String key = currentXPList->getKeyAt(i);
+			int value = currentXPList->get(key);
+			experienceListCopy.insert(std::pair<String,int>(key,value));
+		}
+
+
+		for (int i = 0; i < copyOfList.size(); i++) {
+			Skill* skill = copyOfList.get(i);
+			String skillName = skill->getSkillName();
+			if (!skillName.beginsWith("admin") && !skillName.beginsWith("species") && !skillName.beginsWith("special"))
+				skillManager->surrenderSkill(skillName, player, false);
+		}
+
+
+		for (int i = 0; i < copyOfList.size(); i++) {
+			Skill* skill = copyOfList.get(i);
+			String skillName = skill->getSkillName();
+			if (!skillName.beginsWith("admin") && !skillName.beginsWith("species") && !skillName.beginsWith("special"))
+				bool skillGranted = skillManager->awardSkill(skillName, player, false, true, true);
+		}
+
+		for ( int i = 0; i < currentXPList->size(); i++ ) {
+			currentXPList->set(currentXPList->getKeyAt(i),experienceListCopy[currentXPList->getKeyAt(i)]);
+		}
 }
 
 void PlayerObjectImplementation::recalculateForcePower() {

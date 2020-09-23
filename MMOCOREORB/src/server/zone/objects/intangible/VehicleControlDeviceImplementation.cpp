@@ -17,6 +17,7 @@
 #include "server/zone/objects/region/CityRegion.h"
 #include "server/zone/objects/player/sessions/TradeSession.h"
 #include "server/zone/managers/player/PlayerManager.h"
+#include "server/zone/managers/structure/StructureManager.h"
 
 void VehicleControlDeviceImplementation::generateObject(CreatureObject* player) {
 	if (player->isDead() || player->isIncapacitated())
@@ -81,6 +82,11 @@ void VehicleControlDeviceImplementation::generateObject(CreatureObject* player) 
 
 	if(player->getCurrentCamp() == nullptr && player->getCityRegion() == nullptr) {
 
+		if (getServerObjectCRC() == 0xC8B1FC0E || getServerObjectCRC() == 0xB1E14CFD || getServerObjectCRC() == 0x9D84910C) { //Airspeeder PCDs
+			player->sendSystemMessage("Airspeeders can only be called at garages!");
+			return;
+		}
+
 		Reference<CallMountTask*> callMount = new CallMountTask(_this.getReferenceUnsafeStaticCast(), player, "call_mount");
 
 		StringIdChatParameter message("pet/pet_menu", "call_vehicle_delay");
@@ -97,6 +103,13 @@ void VehicleControlDeviceImplementation::generateObject(CreatureObject* player) 
 		player->registerObserver(ObserverEventType::STARTCOMBAT, vehicleControlObserver);
 
 	} else {
+		if (getServerObjectCRC() == 0xC8B1FC0E || getServerObjectCRC() == 0xB1E14CFD || getServerObjectCRC() == 0x9D84910C) { //Airspeeder PCDs
+			Reference<SceneObject*> garage = StructureManager::instance()->getInRangeParkingGarage(player);
+			if (garage == nullptr) {
+				player->sendSystemMessage("Airspeeders can only be called at garages!");
+				return;	
+			}		
+		}
 
 		Locker clocker(controlledObject, player);
 		spawnObject(player);
@@ -148,6 +161,13 @@ void VehicleControlDeviceImplementation::spawnObject(CreatureObject* player) {
 	if (vehicle != nullptr && controlledObject->getServerObjectCRC() == 0x32F87A54) // Jetpack
 	{
 		controlledObject->setCustomizationVariable("/private/index_hover_height", 40, true); // Illusion of flying.
+		player->executeObjectControllerAction(STRING_HASHCODE("mount"), controlledObject->getObjectID(), ""); // Auto mount.
+	}
+
+	if (vehicle != nullptr && (controlledObject->getServerObjectCRC() == 0xC3B01BAA || controlledObject->getServerObjectCRC() == 0xFD3544BF || controlledObject->getServerObjectCRC() == 0x89066146)) //Airspeeders
+	{
+		controlledObject->setCustomizationVariable("/private/index_hover_height", 125, true); // Illusion of flying.		
+		player->sendSystemMessage("Happy flying!"); // You can only unpack vehicles while Outside and not in Combat.
 		player->executeObjectControllerAction(STRING_HASHCODE("mount"), controlledObject->getObjectID(), ""); // Auto mount.
 	}
 

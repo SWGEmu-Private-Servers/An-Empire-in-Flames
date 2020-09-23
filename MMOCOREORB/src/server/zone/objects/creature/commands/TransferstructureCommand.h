@@ -10,7 +10,6 @@
 #include "server/zone/managers/city/CityManager.h"
 #include "server/zone/managers/player/PlayerManager.h"
 #include "templates/tangible/SharedStructureObjectTemplate.h"
-#include "server/zone/objects/transaction/TransactionLog.h"
 
 class TransferstructureCommand : public QueueCommand {
 public:
@@ -62,6 +61,12 @@ public:
 		if (structure->isBuildingObject()) {
 
 			BuildingObject* building = cast<BuildingObject*>(structure);
+
+			if (building->getExtraAssignedLots() > 0)
+			{
+				creature->sendSystemMessage("You must remove additional lots before transferring the structure.");
+				return GENERALERROR;
+			}
 
 			for (int i = 1; i <= building->getTotalCellNumber(); ++i) {
 				ManagedReference<CellObject*> cell = building->getCell(i);
@@ -118,6 +123,7 @@ public:
 		}
 
 		return doTransferStructure(creature, targetCreature, structure);
+
 	}
 
 	// pre: creature, targetCreature, and structure are not locked
@@ -152,6 +158,7 @@ public:
 
 		if (!targetGhost->hasLotsRemaining(lotSize)) {
 			if ( !bForceTransfer) {
+				System::out << "lotsize: " << lotSize << endl;
 				StringIdChatParameter params("@player_structure:not_able_to_own"); //%NT is not able to own this structure.
 				params.setTT(targetCreature->getObjectID());
 				creature->sendSystemMessage(params);
@@ -190,15 +197,6 @@ public:
 			locker.release();
 		}
 
-		Locker targetLock(targetCreature);
-		Locker clocker(structure, targetCreature);
-
-		TransactionLog trx(creature, targetCreature, structure, TrxCode::TRANSFERSTRUCT);
-		trx.addState("surplusMaintenance", structure->getSurplusMaintenance());
-		trx.addState("surplusPower", structure->getSurplusPower());
-		trx.addRelatedObject(structure->getObjectID(), true);
-		trx.setExportRelatedObjects(true);
-
 		if (ghost != nullptr) {
 			Locker lock(creature);
 
@@ -207,7 +205,11 @@ public:
 			lock.release();
 		}
 
+		Locker targetLock(targetCreature);
+
 		targetGhost->addOwnedStructure(structure);
+
+		Locker clocker(structure, targetCreature);
 
 		//Setup permissions.
 		structure->revokeAllPermissions(targetCreature->getObjectID());

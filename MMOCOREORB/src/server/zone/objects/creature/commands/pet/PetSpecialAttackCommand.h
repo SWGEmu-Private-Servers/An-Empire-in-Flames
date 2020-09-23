@@ -58,7 +58,7 @@ public:
 		if (player == nullptr)
 			return GENERALERROR;
 
-		if (!CollisionManager::checkLineOfSight(player, targetObject)) {
+		if (!CollisionManager::checkLineOfSight(player, targetObject) && !CollisionManager::checkLineOfSight(creature, targetObject)) {
 			pet->showFlyText("npc_reaction/flytext","confused", 204, 0, 0);  // "?!!?!?!"
 			return INVALIDTARGET;
 		}

@@ -17,6 +17,7 @@ class Galaxy {
 	uint32 port = 0;
 	uint32 pingPort = 0;
 	uint32 population = 0;
+	uint32 status = 0;
 #ifdef USE_RANDOM_EXTRA_PORTS
 	Vector<uint32> extraPorts;
 #endif // USE_RANDOM_EXTRA_PORTS
@@ -30,11 +31,12 @@ public:
 		port = result->getUnsignedInt(3);
 		pingPort = result->getUnsignedInt(4);
 		population = result->getUnsignedInt(5);
+		status = result->getUnsignedInt(6);
 #ifdef USE_RANDOM_EXTRA_PORTS
 		extraPorts.add(port);
 
 		try {
-			String extraPortStrings = result->getString(6);
+			String extraPortStrings = result->getString(7);
 
 			if (!extraPortStrings.isEmpty()) {
 				StringTokenizer tokenizer(extraPortStrings);
@@ -81,6 +83,10 @@ public:
 		return population;
 	}
 
+	uint32 getStatus() const {
+		return status;
+	}
+
 	uint16 getRandomPort() const {
 #ifdef USE_RANDOM_EXTRA_PORTS
 		const static auto type = ConfigManager::instance()->getInt("Core3.ZonePortsBalancer", 1);
@@ -115,6 +121,7 @@ public:
 			<< ", port: " << port
 			<< ", pingPort: " << pingPort
 			<< ", population: " << population
+			<< ", status: " << status
 		;
 #ifdef USE_RANDOM_EXTRA_PORTS
 
@@ -211,6 +218,10 @@ public:
 
 	uint32 getPopulation() const {
 		return current.getPopulation();
+	}
+
+	uint32 getStatus() const {
+		return current.getStatus();
 	}
 
 	String toString() const {

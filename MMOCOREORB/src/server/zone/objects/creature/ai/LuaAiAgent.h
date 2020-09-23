@@ -124,6 +124,7 @@ namespace ai {
 		int setLevel(lua_State* L);
 		int hasReactionChatMessages(lua_State* L);
 		int sendReactionChat(lua_State* L);
+		int sendConversationStartTo(lua_State* L);
 		int addPatrolPoint(lua_State* L);
 		int runAwarenessLogicCheck(lua_State* L);
 		int runStartAwarenessInterrupt(lua_State* L);

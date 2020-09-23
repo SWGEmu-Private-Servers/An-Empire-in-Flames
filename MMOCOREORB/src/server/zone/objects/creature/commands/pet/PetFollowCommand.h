@@ -92,6 +92,20 @@ public:
 		pet->setFollowObject(targetObject);
 		pet->storeFollowObject();
 
+		if (player == targetObject) {
+			ManagedReference<PlayerObject*> ghost = player->getPlayerObject();
+			int activePets = ghost->getActivePetsSize();
+			activePets -= 1;
+			for (int i = 1; i < activePets; ++i) {
+				ManagedReference<AiAgent*> lastPet = ghost->getActivePet(i - 1);
+				ManagedReference<AiAgent*> currentPet = ghost->getActivePet(i);
+				if(lastPet == nullptr || currentPet == nullptr)
+					continue;
+				currentPet->setFollowObject(lastPet);
+				currentPet->storeFollowObject();
+			}
+		}
+
 		Locker clocker(controlDevice, creature);
 		controlDevice->setLastCommand(PetManager::FOLLOW);
 

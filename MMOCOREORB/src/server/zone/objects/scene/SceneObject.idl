@@ -103,6 +103,7 @@ class SceneObject extends QuadTreeEntry implements Logger, Metrics {
 
 	protected boolean forceSend;
 	protected boolean staticObject;
+	protected boolean protectedObject;
 
 	@dereferenced
 	protected VectorMap<unsigned int, Facade> objectActiveSessions;
@@ -134,10 +135,6 @@ class SceneObject extends QuadTreeEntry implements Logger, Metrics {
 
 	@dereferenced
 	protected ContainerObjectsMap containerObjects;
-
-	protected unsigned long originalObjectID;
-
-	protected boolean forceNoTrade;
 
 	/**
 	 * SceneObject constructor, used to initialize the object.
@@ -1255,13 +1252,18 @@ class SceneObject extends QuadTreeEntry implements Logger, Metrics {
 	public float getSpecialDirectionAngle() {
 		return direction.getSpecialDegrees();
 	}
-
 	/**
 	 * Rotates an object by a specified number of degrees.
 	 * @param degrees How many degrees to rotate the object with 0 being North.
 	 * TODO: @param notifyClient
 	 */
 	public native void rotate(int degrees);
+
+	/**
+	* Rotate on the "Roll" X Axis and "Pitch" Y Axis. 
+	*/
+	public native void rotateXaxis(int degrees); 
+	public native void rotateYaxis(int degrees);
 
 	/**
 	 * Sets this objects direction so that the object is facing the specified object.
@@ -1451,18 +1453,9 @@ class SceneObject extends QuadTreeEntry implements Logger, Metrics {
 	public native void setContainerComponent(final string name);
 	public native void setZoneComponent(final string name);
 
-	public void setForceNoTrade(boolean newForceNoTrade) {
-		forceNoTrade = newForceNoTrade;
-	}
-
 	@read
-	public abstract boolean isNoTrade() {
-		return forceNoTrade || templateObject.isNoTrade();
-	}
-
-	@read
-	public boolean isForceNoTrade() {
-		return forceNoTrade;
+	public boolean isNoTrade() {
+		return templateObject.isNoTrade();
 	}
 
 	@read
@@ -1922,12 +1915,22 @@ class SceneObject extends QuadTreeEntry implements Logger, Metrics {
 		staticObject = val;
 	}
 
+	public void setProtectedObject(boolean val) {
+		protectedObject = val;
+	}
+
 	@read
 	public abstract native unsigned int getPlanetCRC();
 
 	@read
 	public boolean isClientObject() {
 		return staticObject;
+	}
+
+
+	@read
+	public boolean isProtectedObject() {
+		return protectedObject;
 	}
 
 	@dirty
@@ -1978,6 +1981,11 @@ class SceneObject extends QuadTreeEntry implements Logger, Metrics {
 
 	@dirty
 	public abstract boolean isShipControlDevice() {
+		return false;
+	}
+
+	@dirty
+	public abstract boolean isHouseControlDevice() {
 		return false;
 	}
 

@@ -5,6 +5,8 @@
 #ifndef SURPRISESHOTCOMMAND_H_
 #define SURPRISESHOTCOMMAND_H_
 
+#include "CombatQueueCommand.h"
+
 class SurpriseShotCommand : public CombatQueueCommand {
 public:
 
@@ -14,13 +16,19 @@ public:
 
 	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
 
-		if (!checkStateMask(creature))
+		if (!creature->isInCover()){
+			return INVALIDTARGET;
+		}
+
+		if (!checkStateMask(creature)){
 			return INVALIDSTATE;
+		}
 
-		if (!checkInvalidLocomotions(creature))
+		if (!checkInvalidLocomotions(creature)){
 			return INVALIDLOCOMOTION;
+		}
 
-		return SUCCESS;
+		return doCombatAction(creature, target);
 	}
 
 };

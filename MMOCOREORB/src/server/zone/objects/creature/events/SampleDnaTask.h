@@ -175,7 +175,7 @@ public:
 				player->sendSystemMessage("@bio_engineer:harvest_dna_succeed");
 				creature->incDnaSampleCount();
 				award(cl,rollMod,skillMod);
-				if (creature->getDnaSampleCount() > 5) {
+				if (creature->getDnaSampleCount() > 6) {
 					creature->setDnaState(CreatureManager::DNASAMPLED);
 				}
 				if (death) {

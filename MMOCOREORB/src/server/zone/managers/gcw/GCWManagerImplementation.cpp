@@ -8,6 +8,7 @@
 #include "server/zone/managers/gcw/GCWManager.h"
 #include "server/zone/Zone.h"
 #include "server/zone/ZoneServer.h"
+#include "server/ServerCore.h"
 #include "server/zone/objects/building/BuildingObject.h"
 #include "server/zone/objects/player/PlayerObject.h"
 #include "server/zone/objects/creature/ai/AiAgent.h"
@@ -82,8 +83,6 @@ void GCWManagerImplementation::loadLuaConfig() {
 	racialPenaltyEnabled = lua->getGlobalInt("racialPenaltyEnabled");
 	initialVulnerabilityDelay = lua->getGlobalInt("initialVulnerabilityDelay");
 	spawnDefenses = lua->getGlobalInt("spawnDefenses");
-	crackdownScansEnabled = lua->getGlobalBoolean("crackdownScansEnabled");
-	crackdownScanPrivilegedPlayers = lua->getGlobalBoolean("crackdownScanPrivilegedPlayers");
 
 	LuaObject nucleotides = lua->getGlobalObject("dnaNucleotides");
 	if (nucleotides.isValidTable()) {
@@ -380,11 +379,9 @@ void GCWManagerImplementation::updateWinningFaction() {
 	}
 
 	int scaling = 0;
-	if (score > 0) {
-		for (int i = 0; i < difficultyScalingThresholds.size(); i++) {
-			if (score >= difficultyScalingThresholds.get(i)) {
-				scaling++;
-			}
+	for (int i = 0; i < difficultyScalingThresholds.size(); i++) {
+		if (score >= difficultyScalingThresholds.get(i)) {
+			scaling++;
 		}
 	}
 	winnerDifficultyScaling = scaling;
@@ -892,8 +889,15 @@ bool GCWManagerImplementation::isUplinkJammed(BuildingObject* building) {
 bool GCWManagerImplementation::isTerminalDamaged(TangibleObject* securityTerminal) {
 	ManagedReference<BuildingObject*> building = securityTerminal->getParentRecursively(SceneObjectType::FACTIONBUILDING).castTo<BuildingObject*>();
 
-	if (building == nullptr)
-		return true;
+	if (building == nullptr){
+		const ContainerPermissions* permissions = securityTerminal->getContainerPermissions();
+		uint64 ownerID = permissions->getOwnerID();
+		ZoneServer* zoneServer = ServerCore::getZoneServer();
+		Reference<SceneObject*> object = zoneServer->getObject(ownerID);
+		building = object.castTo<BuildingObject*>();
+		if (building == nullptr)
+			return true;
+	}
 
 	DestructibleBuildingDataComponent* baseData = getDestructibleBuildingData(building);
 
@@ -1125,6 +1129,16 @@ bool GCWManagerImplementation::canStartSlice(CreatureObject* creature, TangibleO
 
 	ManagedReference<BuildingObject*> building = tano->getParentRecursively(SceneObjectType::FACTIONBUILDING).castTo<BuildingObject*>();
 
+	if (building == nullptr){
+		const ContainerPermissions* permissions = tano->getContainerPermissions();
+		uint64 ownerID = permissions->getOwnerID();
+		ZoneServer* zoneServer = ServerCore::getZoneServer();
+		Reference<SceneObject*> object = zoneServer->getObject(ownerID);
+		building = object.castTo<BuildingObject*>();
+		if (building == nullptr)
+			return false;
+	}
+
 	if (!isBaseVulnerable(building))
 		return false;
 
@@ -1159,8 +1173,15 @@ bool GCWManagerImplementation::canStartSlice(CreatureObject* creature, TangibleO
 void GCWManagerImplementation::completeSecuritySlice(CreatureObject* creature, TangibleObject* securityTerminal) {
 	ManagedReference<BuildingObject*> building = securityTerminal->getParentRecursively(SceneObjectType::FACTIONBUILDING).castTo<BuildingObject*>();
 
-	if (building == nullptr)
-		return;
+	if (building == nullptr){
+		const ContainerPermissions* permissions = securityTerminal->getContainerPermissions();
+		uint64 ownerID = permissions->getOwnerID();
+		ZoneServer* zoneServer = ServerCore::getZoneServer();
+		Reference<SceneObject*> object = zoneServer->getObject(ownerID);
+		building = object.castTo<BuildingObject*>();
+		if (building == nullptr)
+			return;
+	}
 
 	DestructibleBuildingDataComponent* baseData = getDestructibleBuildingData(building);
 
@@ -1180,8 +1201,15 @@ void GCWManagerImplementation::failSecuritySlice(TangibleObject* securityTermina
 
 	ManagedReference<BuildingObject*> building = securityTerminal->getParentRecursively(SceneObjectType::FACTIONBUILDING).castTo<BuildingObject*>();
 
-	if (building == nullptr)
-		return;
+	if (building == nullptr){
+		const ContainerPermissions* permissions = securityTerminal->getContainerPermissions();
+		uint64 ownerID = permissions->getOwnerID();
+		ZoneServer* zoneServer = ServerCore::getZoneServer();
+		Reference<SceneObject*> object = zoneServer->getObject(ownerID);
+		building = object.castTo<BuildingObject*>();
+		if (building == nullptr)
+			return;
+	}
 
 	if (!isBaseVulnerable(building))
 		return;
@@ -1205,8 +1233,15 @@ void GCWManagerImplementation::repairTerminal(CreatureObject* creature, Tangible
 
 	ManagedReference<BuildingObject*> building = securityTerminal->getParentRecursively(SceneObjectType::FACTIONBUILDING).castTo<BuildingObject*>();
 
-	if (building == nullptr)
-		return;
+	if (building == nullptr){
+		const ContainerPermissions* permissions = securityTerminal->getContainerPermissions();
+		uint64 ownerID = permissions->getOwnerID();
+		ZoneServer* zoneServer = ServerCore::getZoneServer();
+		Reference<SceneObject*> object = zoneServer->getObject(ownerID);
+		building = object.castTo<BuildingObject*>();
+		if (building == nullptr)
+			return;
+	}
 
 
 	DestructibleBuildingDataComponent* baseData = getDestructibleBuildingData(building);
@@ -1316,7 +1351,17 @@ void GCWManagerImplementation::sendDNASampleMenu(CreatureObject* creature, Build
 void GCWManagerImplementation::processDNASample(CreatureObject* creature, TangibleObject* overrideTerminal, const int index) {
 	ManagedReference<BuildingObject*> building = overrideTerminal->getParentRecursively(SceneObjectType::FACTIONBUILDING).castTo<BuildingObject*>();
 
-	if (building == nullptr || creature == nullptr)
+	if (building == nullptr){
+		const ContainerPermissions* permissions = overrideTerminal->getContainerPermissions();
+		uint64 ownerID = permissions->getOwnerID();
+		ZoneServer* zoneServer = ServerCore::getZoneServer();
+		Reference<SceneObject*> object = zoneServer->getObject(ownerID);
+		building = object.castTo<BuildingObject*>();
+		if (building == nullptr)
+			return;
+	}
+
+	if (creature == nullptr)
 		return;
 
 	DestructibleBuildingDataComponent* baseData = getDestructibleBuildingData(building);
@@ -1450,8 +1495,15 @@ void GCWManagerImplementation::sendPowerRegulatorControls(CreatureObject* creatu
 void GCWManagerImplementation::handlePowerRegulatorSwitch(CreatureObject* creature, TangibleObject* powerRegulator, int index) {
 	ManagedReference<BuildingObject*> building = powerRegulator->getParentRecursively(SceneObjectType::FACTIONBUILDING).castTo<BuildingObject*>();
 
-	if (building == nullptr)
-		return;
+	if (building == nullptr){
+		const ContainerPermissions* permissions = powerRegulator->getContainerPermissions();
+		uint64 ownerID = permissions->getOwnerID();
+		ZoneServer* zoneServer = ServerCore::getZoneServer();
+		Reference<SceneObject*> object = zoneServer->getObject(ownerID);
+		building = object.castTo<BuildingObject*>();
+		if (building == nullptr)
+			return;
+	}
 
 	DestructibleBuildingDataComponent* baseData = getDestructibleBuildingData(building);
 
@@ -1686,7 +1738,7 @@ void GCWManagerImplementation::startAbortSequenceDelay(BuildingObject* building,
 
 	creature->sendSystemMessage("@hq:vulnerability_reset_request_received"); // Structure shutdown request received. Please stand by while the command is processed. Remain with the terminal.
 	Reference<Task*> newTask = new BaseShutdownTask(_this.getReferenceUnsafeStaticCast(), building, creature, hqTerminal);
-	creature->addPendingTask("base_shutdown", newTask, 60000);
+	creature->addPendingTask("base_shutdown", newTask, 15000);
 
 	GCWBaseShutdownObserver* observer = new GCWBaseShutdownObserver();
 	observer->setObserverType(ObserverType::GCWBASESHUTDOWN);
@@ -1715,7 +1767,7 @@ void GCWManagerImplementation::abortShutdownSequence(BuildingObject* building, C
 		broadcastBuilding(building, reloadMessage);
 
 		Reference<Task*> newTask = new BaseRebootTask(_this.getReferenceUnsafeStaticCast(), building, baseData);
-		newTask->schedule(60000);
+		newTask->schedule(15000);
 	}
 }
 
@@ -2580,18 +2632,15 @@ int GCWManagerImplementation::isStrongholdCity(String& city) {
 }
 
 void GCWManagerImplementation::runCrackdownScan(AiAgent* scanner, CreatureObject* player) {
-	if (!crackdownScansEnabled || !player->isPlayerCreature() || !scanner->isInRange(player, 16) || !CollisionManager::checkLineOfSight(scanner, player)) {
-		return;
-	}
-
-	if (!crackdownScanPrivilegedPlayers && player->isPlayerObject() && player->getPlayerObject()->isPrivileged()) {
+/*	if (!player->isPlayerCreature() || !scanner->isInRange(player, 16) || !CollisionManager::checkLineOfSight(scanner, player)) {
 		return;
 	}
 
 	if (scanner->checkCooldownRecovery("crackdown_scan") && player->checkCooldownRecovery("crackdown_scan")) {
-		ContrabandScanSession* contrabandScanSession = new ContrabandScanSession(scanner, player, getWinningFaction(), getWinningFactionDifficultyScaling());
+		ContrabandScanSession* contrabandScanSession = new ContrabandScanSession(scanner, player);
 		contrabandScanSession->initializeSession();
-	}
+	}*/
+	return;
 }
 
 void GCWManagerImplementation::spawnBaseTerminals(BuildingObject* bldg) {

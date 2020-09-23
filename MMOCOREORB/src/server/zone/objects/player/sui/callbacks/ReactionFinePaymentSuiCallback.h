@@ -3,7 +3,6 @@
 
 #include "server/zone/objects/player/sui/SuiCallback.h"
 #include "server/zone/objects/player/PlayerObject.h"
-#include "server/zone/objects/transaction/TransactionLog.h"
 
 class ReactionFinePaymentSuiCallback : public SuiCallback {
 
@@ -50,7 +49,6 @@ public:
 				chatManager->broadcastChatMessage(emoteTarget, reactionManager->getReactionQuip(41), 0, 0, emoteTarget->getMoodID());
 			}
 
-			TransactionLog trx(creature, TrxCode::FINES, playerCredits, true);
 			creature->subtractCashCredits(playerCredits);
 			playerObject->subtractFromReactionFines(playerCredits);
 
@@ -72,7 +70,6 @@ public:
 				tauntMsg = "point_accusingly";
 				randomQuip = 42 + System::random(3);
 			}
-			TransactionLog trx(creature, TrxCode::FINES, totalFine, true);
 			creature->subtractCashCredits(totalFine);
 			playerObject->setReactionFines(0);
 

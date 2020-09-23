@@ -602,7 +602,12 @@ void TemplateManager::registerGlobals() {
 	luaTemplatesInstance->setGlobalInt("ENEMY", CreatureFlag::ENEMY);
 	luaTemplatesInstance->setGlobalInt("WILLBEDECLARED", CreatureFlag::WILLBEDECLARED);
 	luaTemplatesInstance->setGlobalInt("WASDECLARED", CreatureFlag::WASDECLARED);
+	luaTemplatesInstance->setGlobalInt("FRIENDLY", CreatureFlag::FRIENDLY);
+	luaTemplatesInstance->setGlobalInt("COMBATVEHICLE", CreatureFlag::COMBATVEHICLE);
+	luaTemplatesInstance->setGlobalInt("TEMPVEHICLE", CreatureFlag::TEMPVEHICLE);
+	luaTemplatesInstance->setGlobalInt("ALWAYSON", CreatureFlag::ALWAYSON);
 
+	luaTemplatesInstance->setGlobalInt("ACTIVATED", OptionBitmask::ACTIVATED);
 	luaTemplatesInstance->setGlobalInt("CONVERSABLE", OptionBitmask::CONVERSE);
 	luaTemplatesInstance->setGlobalInt("AIENABLED", OptionBitmask::AIENABLED);
 	luaTemplatesInstance->setGlobalInt("INVULNERABLE", OptionBitmask::INVULNERABLE);

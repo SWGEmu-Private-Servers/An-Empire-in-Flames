@@ -48,10 +48,10 @@ public:
 
 		NameManager* nameManager = server->getNameManager();
 
-		if (nameManager->validateName(newName, -1) != NameManagerResult::ACCEPTED) {
+/*		if (nameManager->validateName(newName, -1) != NameManagerResult::ACCEPTED) {
 			creature->sendSystemMessage("That name was rejected by the name filter.");
 			return GENERALERROR;
-		}
+		} */
 
 		String oldName = targetObj->getDisplayedName();
 

@@ -41,6 +41,14 @@ public:
 				Locker clocker(creatureObject, creature);
 				ValidatedPosition* validPosition = ghost->getLastValidatedPosition();
 				uint64 parentid = validPosition->getParent();
+
+				if (creatureObject->getParentID() == player->getObjectID()){
+					ghost->setConversatingCreature(creatureObject);
+					if (creatureObject->sendConversationStartTo(creature))
+						creatureObject->notifyObservers(ObserverEventType::STARTCONVERSATION, player);
+					return SUCCESS;
+				}
+
 				if (parentid != creatureObject->getParentID()) {
 					return TOOFAR;
 				}

@@ -8,10 +8,7 @@
 #ifndef LAMBDASHUTTLEWITHREINFORCEMENTSTASK_H_
 #define LAMBDASHUTTLEWITHREINFORCEMENTSTASK_H_
 
-#include "server/chat/ChatManager.h"
-#include "server/zone/objects/creature/ai/AiAgent.h"
 #include "server/zone/objects/creature/CreatureObject.h"
-#include "server/zone/managers/combat/CombatManager.h"
 #include "server/zone/managers/creature/CreatureManager.h"
 #include "templates/faction/Factions.h"
 
@@ -21,21 +18,8 @@ class LambdaShuttleWithReinforcementsTask : public Task {
 	Vector<WeakReference<CreatureObject*>> containmentTeam;
 	int difficulty;
 	int spawnNumber;
-	String chatMessageId;
-	Vector3 spawnPosition;
-	Quaternion spawnDirection;
 
 	const String LAMBDATEMPLATE = "object/creature/npc/theme_park/lambda_shuttle.iff";
-	const int TIMETILLSHUTTLELANDING = 100;
-	const int LANDINGTIME = 18000;
-	const int SPAWNDELAY = 750;
-	const int CLEANUPTIME = 30000;
-	const int CLEANUPRESCHEDULETIME = 1000;
-
-	const int TROOPSSPAWNPERDIFFICULTY = 5;
-
-	const int MAXDIFFICULTY = 2;
-	const int MINDIFFICULTY = 1;
 
 	struct LambdaTroop {
 		const String troopTemplate;
@@ -57,17 +41,17 @@ class LambdaShuttleWithReinforcementsTask : public Task {
 	};
 
 	LambdaTroop REBELTROOPS[11] = {
-			{"crackdown_rebel_guard_captain", true},
-			{"crackdown_rebel_cadet", false},
-			{"crackdown_rebel_soldier", false},
-			{"crackdown_rebel_liberator", false},
-			{"crackdown_rebel_soldier", false},
-			{"crackdown_rebel_guardsman", false},
-			{"crackdown_rebel_elite_sand_rat", false},
-			{"crackdown_rebel_command_security_guard", false},
-			{"crackdown_rebel_commando", false},
-			{"crackdown_rebel_comm_operator", false},
-			{"crackdown_rebel_soldier", false}
+			{"rebel_sergeant", true},
+			{"rebel_sergeant", false},
+			{"rebel_sergeant", false},
+			{"rebel_sergeant", false},
+			{"rebel_sergeant", false},
+			{"rebel_sergeant", false},
+			{"rebel_sergeant", false},
+			{"rebel_sergeant", false},
+			{"rebel_sergeant", false},
+			{"rebel_sergeant", false},
+			{"rebel_sergeant", false}
 	};
 
 	enum LamdaShuttleState {
@@ -83,58 +67,42 @@ class LambdaShuttleWithReinforcementsTask : public Task {
 
 	LambdaTroop* troops;
 
-	void spawnSingleTroop(SceneObject* lambdaShuttle, CreatureObject* player, const String& creatureTemplate, float xOffset, float yOffset) {
-		Quaternion offset = Quaternion(0, xOffset, 0, yOffset);
-		Quaternion rotation = Quaternion(Vector3(0, 1, 0), spawnDirection.getRadians());
-		offset = rotation * offset * rotation.getConjugate();  // Rotate offset quaternion to match spawnDirection.
-
+	void spawnSingleTroop(SceneObject* lambdaShuttle, const String& creatureTemplate, float xOffset, float yOffset) {
 		Zone* zone = lambdaShuttle->getZone();
-		float x = lambdaShuttle->getPositionX() + offset.getX();
-		float y = lambdaShuttle->getPositionY() + offset.getZ();
+		float x = lambdaShuttle->getPositionX() + xOffset;
+		float y = lambdaShuttle->getPositionY() + yOffset;
 		float z = zone->getHeight(x, y);
-
-		AiAgent* npc = cast<AiAgent*>(zone->getCreatureManager()->spawnCreature(creatureTemplate.hashCode(), 0, x, z, y, 0, false, spawnDirection.getRadians()));
-
+		CreatureObject* npc = zone->getCreatureManager()->spawnCreature(creatureTemplate.hashCode(), 0, x, z, y, 0, false);
 		if (npc != nullptr) {
-			Locker npcLock(npc);
-			npc->activateLoad("");
-			CombatManager::instance()->startCombat(npc, player);
 			containmentTeam.add(npc);
-
-			if (spawnNumber == 0) {
-				StringIdChatParameter chatMessage;
-				chatMessage.setStringId(chatMessageId);
-				zone->getZoneServer()->getChatManager()->broadcastChatMessage(npc, chatMessage, player->getObjectID(), 0, 0);
-			}
 		}
 	}
 
-	void spawnOneSetOfTroops(SceneObject* lambdaShuttle, CreatureObject* player) {
+	void spawnOneSetOfTroops(SceneObject* lambdaShuttle) {
 		if (troops[spawnNumber].singleSpawn) {
-			spawnSingleTroop(lambdaShuttle, player, troops[spawnNumber].troopTemplate, 0.0f, 0.0f);
+			spawnSingleTroop(lambdaShuttle, troops[spawnNumber].troopTemplate, 0.0f, 0.0f);
 		} else {
-			spawnSingleTroop(lambdaShuttle, player, troops[spawnNumber].troopTemplate, 0.5f, spawnNumber * 1.0f);
-			spawnSingleTroop(lambdaShuttle, player, troops[spawnNumber].troopTemplate, -0.5f, spawnNumber * 1.0f);
+			spawnSingleTroop(lambdaShuttle, troops[spawnNumber].troopTemplate, 0.5f, spawnNumber * 1.0f);
+			spawnSingleTroop(lambdaShuttle, troops[spawnNumber].troopTemplate, -0.5f, spawnNumber * 1.0f);
 		}
 		spawnNumber++;
 	}
 
-	void spawnTroops(SceneObject* lambdaShuttle, CreatureObject* player) {
-		spawnOneSetOfTroops(lambdaShuttle, player);
-		if (spawnNumber > difficulty * TROOPSSPAWNPERDIFFICULTY) {
+	void spawnTroops(SceneObject* lambdaShuttle) {
+		spawnOneSetOfTroops(lambdaShuttle);
+		if (spawnNumber > difficulty) {
 			state = TAKEOFF;
 		}
-		reschedule(SPAWNDELAY);
+		reschedule(750);
 	}
 
 	void lambdaShuttleSpawn(SceneObject* lambdaShuttle, CreatureObject* player) {
-		lambdaShuttle->initializePosition(spawnPosition.getX(), spawnPosition.getZ(), spawnPosition.getY());
-		lambdaShuttle->setDirection(spawnDirection);
+		lambdaShuttle->initializePosition(player->getPositionX(), player->getPositionZ(), player->getPositionY());
 		player->getZone()->transferObject(lambdaShuttle, -1, true);
 		lambdaShuttle->createChildObjects();
 		lambdaShuttle->_setUpdated(true);
 
-		reschedule(TIMETILLSHUTTLELANDING);
+		reschedule(6000);
 		state = LAND;
 	}
 
@@ -142,7 +110,7 @@ class LambdaShuttleWithReinforcementsTask : public Task {
 		CreatureObject* lambdaShuttleCreature = lambdaShuttle->asCreatureObject();
 		lambdaShuttleCreature->setPosture(CreaturePosture::PRONE);
 
-		reschedule(LANDINGTIME);
+		reschedule(18000);
 		state = SPAWNTROOPS;
 	}
 
@@ -150,8 +118,8 @@ class LambdaShuttleWithReinforcementsTask : public Task {
 		CreatureObject* lambdaShuttleCreature = lambdaShuttle->asCreatureObject();
 		lambdaShuttleCreature->setPosture(CreaturePosture::UPRIGHT);
 
-		reschedule(CLEANUPTIME);
 		state = CLEANUP;
+		reschedule(30000);
 	}
 
 	void cleanUp(SceneObject* lambdaShuttle) {
@@ -166,9 +134,7 @@ class LambdaShuttleWithReinforcementsTask : public Task {
 				if (npc->isInCombat()) {
 					rescheduleTask = true;
 				} else {
-					if (!npc->isDead()) {
-						npc->destroyObjectFromWorld(true);
-					}
+					npc->destroyObjectFromWorld(true);
 					containmentTeam.remove(i);
 				}
 			} else {
@@ -177,7 +143,7 @@ class LambdaShuttleWithReinforcementsTask : public Task {
 		}
 
 		if (rescheduleTask) {
-			reschedule(CLEANUPRESCHEDULETIME);
+			reschedule(1000);
 		} else {
 			state = FINISHED;
 		}
@@ -201,13 +167,13 @@ class LambdaShuttleWithReinforcementsTask : public Task {
 	}
 
 public:
-	LambdaShuttleWithReinforcementsTask(CreatureObject* player, unsigned int faction, unsigned int difficulty, String chatMessageId, Vector3 position, Quaternion direction) {
+	LambdaShuttleWithReinforcementsTask(CreatureObject* player, unsigned int faction, unsigned int difficulty) {
 		weakPlayer = player;
 		state = SPAWN;
-		if (difficulty > MAXDIFFICULTY) {
-			this->difficulty = MAXDIFFICULTY;
-		} else if (difficulty < MINDIFFICULTY) {
-			this->difficulty = MINDIFFICULTY;
+		if (difficulty > 10) {
+			this->difficulty = 10;
+		} else if (difficulty < 3) {
+			this->difficulty = 3;
 		} else {
 			this->difficulty = difficulty;
 		}
@@ -216,10 +182,7 @@ public:
 		} else {
 			troops = REBELTROOPS;
 		}
-		this->chatMessageId = chatMessageId;
 		spawnNumber = 0;
-		spawnPosition = position;
-		spawnDirection = direction;
 	}
 
 	void run() {
@@ -245,7 +208,7 @@ public:
 			lambdaShuttleLanding(lambdaShuttle);
 			break;
 		case SPAWNTROOPS:
-			spawnTroops(lambdaShuttle, player);
+			spawnTroops(lambdaShuttle);
 			break;
 		case TAKEOFF:
 			lambdaShuttleTakeoff(lambdaShuttle);

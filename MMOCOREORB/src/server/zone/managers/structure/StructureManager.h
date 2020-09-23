@@ -7,6 +7,7 @@
 
 #include "templates/manager/TemplateManager.h"
 #include "templates/tangible/SharedStructureObjectTemplate.h"
+#include "server/zone/ZoneServer.h"
 
 namespace server {
 namespace zone {
@@ -55,12 +56,19 @@ public:
 
 	void loadPlayerStructures(const String& zoneName);
 
+	void loadPackedPlayerStructures();
+
 	int placeStructureFromDeed(CreatureObject* creature, StructureDeed* deed, float x, float y, int angle);
 
 	/**
 	 * Simply creates and places a structure at the provided coordinates.
 	 */
 	StructureObject* placeStructure(CreatureObject* creature, const String& structureTemplatePath, float x, float y, int angle, int persistenceLevel = 1);
+
+	/**
+	 * Creates and places a structure in a different zone - for use by Director Manager, EiF code addition
+	 */
+	StructureObject* spawnStructure(CreatureObject* creature, const String& structureTemplatePath, float x, float y, int angle, Zone* zone);
 
 	/**
 	 * Destroys the structure after the confirmation of the player.
@@ -102,7 +110,7 @@ public:
 	 * @param creature The creature receiving the report.
 	 * @param structure The structure the report is about.
 	 */
-	void reportStructureStatus(CreatureObject* creature, StructureObject* structure);
+	void reportStructureStatus(CreatureObject* creature, SceneObject* structure);
 
 	/**
 	 * Sends a Sui prompt to the player asking them to enter a name for the structure.
@@ -188,6 +196,10 @@ public:
 	void withdrawMaintenance(StructureObject* structure, CreatureObject* creature, int amount);
 
 	int getStructureFootprint(SharedStructureObjectTemplate* objectTemplate, int angle, float& l0, float& w0, float& l1, float& w1);
+
+	void sendHousePackupRequest(CreatureObject* creature, StructureObject* structure);
+
+	void PackUpHouse(CreatureObject* creature,StructureObject* structure);
 
 	bool isInStructureFootprint(StructureObject* structure, float positionX, float positionY, int extraFootprintMargin);
 

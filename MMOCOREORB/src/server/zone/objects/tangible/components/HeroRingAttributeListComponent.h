@@ -25,6 +25,8 @@ public:
 		if (data == nullptr || !data->isHeroRingData())
 			return;
 
+		alm->insertAttribute("notrade", " \\#ff0000\\NO TRADE\n");
+
 		int charges = data->getCharges();
 
 		alm->insertAttribute("effect", "@quest/hero_of_tatooine/system_messages:restore");

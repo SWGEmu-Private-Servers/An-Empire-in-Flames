@@ -132,7 +132,7 @@
 #include "DeactivateQuestCommand.h"
 #include "DeathBlowCommand.h"
 #include "DeathCountCommand.h"
-#include "DeclareOvertCommand.h"
+//#include "DeclareOvertCommand.h"
 #include "DeclareresidenceCommand.h"
 #include "DeclineCommand.h"
 #include "DefaultAttackCommand.h"
@@ -838,8 +838,18 @@
 #include "InspacerrCommand.h"
 #include "RequestSpaceTrainerCommand.h"
 
+//EiF Additions
 
+#include "FireCannonsCommand.h"
+#include "TakeCommandCommand.h"
+#include "RattleCommand.h"
+//#include "RequestLeaveCommand.h"
+#include "DashCommand.h"
+#include "ShootFirstCommand.h"
+#include "LuckyStrikeCommand.h"
+#include "SkulkCommand.h"
+#include "HolocommCommand.h"
+#include "HolocronCommand.h"
 
 
 #endif /* COMMANDSNEW_H_ */
-

@@ -94,22 +94,22 @@ void SurveyToolImplementation::sendRangeSui(CreatureObject* player) {
 	suiToolRangeBox->setPromptTitle("@base_player:swg");
 	suiToolRangeBox->setPromptText("@survey:select_range");
 
-	if (surveyMod >= 20)
+	if (surveyMod >= 10)
 		suiToolRangeBox->addMenuItem("64m x 3pts", 0);
 
-	if (surveyMod >= 35)
+	if (surveyMod >= 25)
 		suiToolRangeBox->addMenuItem("128m x 4pts", 1);
 
-	if (surveyMod >= 55)
+	if (surveyMod >= 40)
 		suiToolRangeBox->addMenuItem("192m x 4pts", 2);
 
-	if (surveyMod >= 75)
+	if (surveyMod >= 60)
 		suiToolRangeBox->addMenuItem("256m x 5pts", 3);
 
-	if (surveyMod >= 100)
+	if (surveyMod >= 80)
 		suiToolRangeBox->addMenuItem("320m x 5pts", 4);
 
-	if (surveyMod >= 120)
+	if (surveyMod >= 110)
 		suiToolRangeBox->addMenuItem("384m x 5pts", 5);
 
 	suiToolRangeBox->setUsingObject(_this.getReferenceUnsafeStaticCast());
@@ -131,17 +131,17 @@ int SurveyToolImplementation::getRange(CreatureObject* player) {
 
 int SurveyToolImplementation::getSkillBasedRange(int skillLevel) {
 
-	if (skillLevel >= 120)
+	if (skillLevel >= 110)
 		return 384;
-	else if (skillLevel >= 100)
+	else if (skillLevel >= 80)
 		return 320;
-	else if (skillLevel >= 75)
+	else if (skillLevel >= 60)
 		return 256;
-	else if (skillLevel >= 55)
+	else if (skillLevel >= 40)
 		return 192;
-	else if (skillLevel >= 35)
+	else if (skillLevel >= 25)
 		return 128;
-	else if (skillLevel >= 20)
+	else if (skillLevel >= 10)
 		return 64;
 
 	return 0;

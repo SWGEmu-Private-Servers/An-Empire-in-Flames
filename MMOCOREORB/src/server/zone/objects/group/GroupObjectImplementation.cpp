@@ -119,7 +119,7 @@ void GroupObjectImplementation::addMember(CreatureObject* newMember) {
 			addGroupModifiers(newMember);
 		}
 
-		scheduleUpdateNearestMissionForGroup(newMember->getPlanetCRC());
+		immediateUpdateNearestMissionForGroup(newMember->getPlanetCRC());
 	}
 
 	updatePvPStatusNearCreature(newMember);
@@ -178,7 +178,7 @@ void GroupObjectImplementation::removeMember(CreatureObject* member) {
 		Zone* zone = member->getZone();
 
 		if (zone != nullptr) {
-			scheduleUpdateNearestMissionForGroup(zone->getPlanetCRC());
+			immediateUpdateNearestMissionForGroup(zone->getPlanetCRC());
 		}
 	}
 
@@ -520,10 +520,34 @@ void GroupObjectImplementation::scheduleUpdateNearestMissionForGroup(unsigned in
 	}
 
 	if (task->isScheduled()) {
-		task->reschedule(30000);
+		task->reschedule(60000);
 	}
 	else {
-		task->schedule(30000);
+		task->schedule(60000);
+	}
+}
+
+
+void GroupObjectImplementation::immediateUpdateNearestMissionForGroup(unsigned int planetCRC) {
+	Reference<UpdateNearestMissionForGroupTask*> task = nullptr;
+
+	if (updateNearestMissionForGroupTasks.contains(planetCRC)) {
+		task = updateNearestMissionForGroupTasks.get(planetCRC);
+		if (task == nullptr) {
+			updateNearestMissionForGroupTasks.drop(planetCRC);
+		}
+	}
+
+	if (task == nullptr) {
+		task = new UpdateNearestMissionForGroupTask(_this.getReferenceUnsafeStaticCast(), planetCRC);
+		updateNearestMissionForGroupTasks.put(planetCRC, task);
+	}
+
+	if (task->isScheduled()) {
+		task->reschedule(1000);
+	}
+	else {
+		task->schedule(1000);
 	}
 }
 

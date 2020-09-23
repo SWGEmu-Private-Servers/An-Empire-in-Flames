@@ -6,7 +6,6 @@
 #include "server/zone/managers/combat/CombatManager.h"
 #include "server/zone/managers/creature/CreatureManager.h"
 #include "server/zone/objects/creature/CreatureObject.h"
-#include "server/zone/objects/transaction/TransactionLog.h"
 #include "engine/engine.h"
 
 class MilkCreatureTask : public Task {
@@ -128,8 +127,7 @@ public:
 			quantityExtracted = int(quantityExtracted * 0.50f);
 		}
 
-		TransactionLog trx(TrxCode::HARVESTED, player, resourceSpawn);
-		resourceManager->harvestResourceToPlayer(trx, player, resourceSpawn, quantityExtracted);
+		resourceManager->harvestResourceToPlayer(player, resourceSpawn, quantityExtracted);
 
 		updateMilkState(CreatureManager::ALREADYMILKED);
 	}

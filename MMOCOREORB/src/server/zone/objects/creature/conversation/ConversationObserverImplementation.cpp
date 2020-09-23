@@ -61,6 +61,10 @@ int ConversationObserverImplementation::notifyObserverEvent(unsigned int eventTy
 		if (session != nullptr) {
 			ManagedReference<CreatureObject*> sessionNpc = session->getNPC().get();
 
+			if (sessionNpc->getParent() == npc){
+				return 0;
+			}
+
 			if (sessionNpc == nullptr || npc->getDistanceTo(sessionNpc) > 7.f) {
 				cancelConversationSession(npc, session->getNPC().get(), true);
 				return 0;

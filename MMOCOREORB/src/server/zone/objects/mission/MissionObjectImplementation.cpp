@@ -242,7 +242,7 @@ void MissionObjectImplementation::updateMissionLocation() {
 			Core::getTaskManager()->executeTask([group, playerCreature] () {
 				Locker locker(group);
 
-				group->scheduleUpdateNearestMissionForGroup(playerCreature->getPlanetCRC());
+				group->immediateUpdateNearestMissionForGroup(playerCreature->getPlanetCRC());
 			}, "updateMissionLocationLambda");
 		}
 	}

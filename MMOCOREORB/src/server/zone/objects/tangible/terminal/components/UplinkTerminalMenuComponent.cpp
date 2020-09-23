@@ -7,6 +7,7 @@
 
 #include "UplinkTerminalMenuComponent.h"
 #include "server/zone/Zone.h"
+#include "server/ServerCore.h"
 #include "server/zone/packets/object/ObjectMenuResponse.h"
 #include "server/zone/objects/scene/SceneObject.h"
 #include "server/zone/objects/creature/CreatureObject.h"
@@ -18,7 +19,17 @@ void UplinkTerminalMenuComponent::fillObjectMenuResponse(SceneObject* sceneObjec
 
 	ManagedReference<BuildingObject*> building = sceneObject->getParentRecursively(SceneObjectType::FACTIONBUILDING).castTo<BuildingObject*>();
 
-	if (building == nullptr || player->isDead() || player->isIncapacitated())
+	if (building == nullptr){
+		const ContainerPermissions* permissions = sceneObject->getContainerPermissions();
+		uint64 ownerID = permissions->getOwnerID();
+		ZoneServer* zoneServer = ServerCore::getZoneServer();
+		Reference<SceneObject*> object = zoneServer->getObject(ownerID);
+		building = object.castTo<BuildingObject*>();
+		if (building == nullptr)
+			return;
+	}
+
+	if (player  == nullptr || player->isDead() || player->isIncapacitated())
 		return;
 
 	Zone* zone = building->getZone();
@@ -44,8 +55,15 @@ int UplinkTerminalMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject
 	ManagedReference<BuildingObject*> building = sceneObject->getParentRecursively(SceneObjectType::FACTIONBUILDING).castTo<BuildingObject*>();
 	ManagedReference<TangibleObject*> uplinkTerminal = cast<TangibleObject*>(sceneObject);
 
-	if (building == nullptr)
-		return 1;
+	if (building == nullptr){
+		const ContainerPermissions* permissions = sceneObject->getContainerPermissions();
+		uint64 ownerID = permissions->getOwnerID();
+		ZoneServer* zoneServer = ServerCore::getZoneServer();
+		Reference<SceneObject*> object = zoneServer->getObject(ownerID);
+		building = object.castTo<BuildingObject*>();
+		if (building == nullptr)
+			return 1;
+	}
 
 	Zone* zone = sceneObject->getZone();
 

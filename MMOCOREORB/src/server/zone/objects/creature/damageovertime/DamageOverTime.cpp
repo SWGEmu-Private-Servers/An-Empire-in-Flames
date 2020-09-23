@@ -121,7 +121,7 @@ uint32 DamageOverTime::applyDot(CreatureObject* victim) {
 	switch(type) {
 	case CreatureState::BLEEDING:
 		power = doBleedingTick(victim, attacker);
-		nextTick.addMiliTime(20000);
+		nextTick.addMiliTime(4000);
 		break;
 	case CreatureState::POISONED:
 		power = doPoisonTick(victim, attacker);
@@ -129,7 +129,7 @@ uint32 DamageOverTime::applyDot(CreatureObject* victim) {
 		break;
 	case CreatureState::DISEASED:
 		power = doDiseaseTick(victim, attacker);
-		nextTick.addMiliTime(40000);
+		nextTick.addMiliTime(20000);
 		break;
 	case CreatureState::ONFIRE:
 		power = doFireTick(victim, attacker);
@@ -152,7 +152,7 @@ uint32 DamageOverTime::initDot(CreatureObject* victim, CreatureObject* attacker)
 	switch(type) {
 	case CreatureState::BLEEDING:
 		absorptionMod = Math::max(0, Math::min(50, victim->getSkillMod("absorption_bleeding")));
-		nextTick.addMiliTime(20000);
+		nextTick.addMiliTime(4000);
 		break;
 	case CreatureState::ONFIRE:
 		absorptionMod = Math::max(0, Math::min(50, victim->getSkillMod("absorption_fire")));
@@ -164,7 +164,7 @@ uint32 DamageOverTime::initDot(CreatureObject* victim, CreatureObject* attacker)
 		break;
 	case CreatureState::DISEASED:
 		absorptionMod = Math::max(0, Math::min(50, victim->getSkillMod("absorption_disease")));
-		nextTick.addMiliTime(40000);
+		nextTick.addMiliTime(20000);
 		break;
 	case CommandEffect::FORCECHOKE:
 		nextTick.addMiliTime(5000);
@@ -232,7 +232,15 @@ uint32 DamageOverTime::doFireTick(CreatureObject* victim, CreatureObject* attack
 		damage = attr - 1;
 	}
 
-	int woundsToApply = (int)(secondaryStrength * (1.f + victim->getShockWounds() / 100.0f));
+
+	// Wounds should now only be 10% max of the pool. POOL * 10% / Duration / tick Interval
+	// Exapmle: 5000 * 0.1 / 60s / 10s per tick
+	int numTicks = this->duration / 10;
+	int intervalMaxWound = (victim->getBaseHAM(attribute) * 0.1) / numTicks;
+  int woundsToApply = (int)(secondaryStrength * (1.f + victim->getShockWounds() / 100.0f));
+
+	woundsToApply = Math::min(woundsToApply, intervalMaxWound);
+
 	int maxWoundsToApply = victim->getBaseHAM(attribute) - 1 - victim->getWounds(attribute);
 
 	woundsToApply = Math::min(woundsToApply, maxWoundsToApply);
@@ -256,7 +264,7 @@ uint32 DamageOverTime::doFireTick(CreatureObject* victim, CreatureObject* attack
 			victimRef->addWounds(attribute, woundsToApply, true, false);
 		}
 
-		victimRef->addShockWounds((int)(secondaryStrength * 0.075f));
+		victimRef->addShockWounds((int)(secondaryStrength * 0.0075f));
 
 		victimRef->inflictDamage(attackerRef, attribute - attribute % 3, damage, true);
 		if (victimRef->hasAttackDelay())
@@ -312,7 +320,12 @@ uint32 DamageOverTime::doDiseaseTick(CreatureObject* victim, CreatureObject* att
 	// absorption reduces the strength of a dot by the given %.
 	// make sure that the CM dots modify the strength
 	int damage = (int)(strength * (1.f - absorptionMod / 100.f) * (1.f + victim->getShockWounds() / 100.0f));
-	int maxDamage = victim->getBaseHAM(attribute) - 1 - victim->getWounds(attribute);
+	int numTicks = this->duration / 20;
+	int intervalMaxWound = (victim->getMaxHAM(attribute) * .1) / numTicks;
+
+	damage = Math::min(damage, intervalMaxWound);
+
+	int maxDamage = victim->getMaxHAM(attribute) - 1 - victim->getWounds(attribute);
 
 	damage = Math::min(damage, maxDamage);
 
@@ -334,7 +347,7 @@ uint32 DamageOverTime::doDiseaseTick(CreatureObject* victim, CreatureObject* att
 			victimRef->addWounds(attribute, damage, true, false);
 		}
 
-		victimRef->addShockWounds((int)(strength * 0.075f));
+		victimRef->addShockWounds((int)(strength * 0.0075f));
 
 		if (victimRef->hasAttackDelay())
 			victimRef->removeAttackDelay();

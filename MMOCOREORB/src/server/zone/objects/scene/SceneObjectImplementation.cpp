@@ -80,10 +80,6 @@ void SceneObjectImplementation::initializeTransientMembers() {
 	setLogging(false);
 
 	setLoggingName("SceneObject");
-
-	if (originalObjectID == 0) {
-		originalObjectID = getObjectID();
-	}
 }
 
 void SceneObjectImplementation::initializePrivateData() {
@@ -118,6 +114,7 @@ void SceneObjectImplementation::initializePrivateData() {
 
 	forceSend = false;
 	staticObject = false;
+	protectedObject = false;
 
 	zone = nullptr;
 
@@ -135,10 +132,6 @@ void SceneObjectImplementation::initializePrivateData() {
 	childObjects.setNoDuplicateInsertPlan();
 
 	collidableObject = false;
-
-	originalObjectID = 0;
-
-	forceNoTrade = false;
 }
 
 void SceneObjectImplementation::loadTemplateData(SharedObjectTemplate* templateData) {
@@ -500,7 +493,7 @@ void SceneObjectImplementation::sendContainerObjectsTo(SceneObject* player, bool
 }
 
 void SceneObjectImplementation::sendDestroyTo(SceneObject* player) {
-	if (staticObject)
+	if (staticObject || protectedObject)
 		return;
 
 	BaseMessage* msg = new SceneObjectDestroyMessage(asSceneObject());
@@ -511,9 +504,6 @@ void SceneObjectImplementation::sendAttributeListTo(CreatureObject* object) {
 	AttributeListMessage* alm = new AttributeListMessage(asSceneObject());
 
 	try {
-        	if (attributeListComponent == nullptr) {
-			throw Exception("nullptr attribute list component");
-		}
 
 		attributeListComponent->fillAttributeList(alm, object, asSceneObject());
 
@@ -1180,6 +1170,16 @@ void SceneObjectImplementation::setDirection(const Quaternion& dir) {
 
 void SceneObjectImplementation::rotate(int degrees) {
 	Vector3 unity(0, 1, 0);
+	direction.rotate(unity, degrees);
+}
+
+void SceneObjectImplementation::rotateXaxis(int degrees) {
+	Vector3 unity(1, 0, 0);
+	direction.rotate(unity, degrees);
+}
+
+void SceneObjectImplementation::rotateYaxis(int degrees) {
+	Vector3 unity(0, 0, 1);
 	direction.rotate(unity, degrees);
 }
 

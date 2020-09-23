@@ -40,16 +40,17 @@ public:
 		if (!checkGroupLeader(player, group))
 			return GENERALERROR;
 
-		int hamCost = (int) (50.0f * calculateGroupModifier(group));
+		int mindCost = (int) (1350.0f * calculateGroupModifier(group));
+		int adjustedMindCost = creature->calculateCostAdjustment(CreatureAttribute::FOCUS, mindCost);
 
-		int healthCost = creature->calculateCostAdjustment(CreatureAttribute::STRENGTH, hamCost);
-		int actionCost = creature->calculateCostAdjustment(CreatureAttribute::QUICKNESS, hamCost);
-		int mindCost = creature->calculateCostAdjustment(CreatureAttribute::FOCUS, hamCost);
-
-		if (!inflictHAM(player, healthCost, actionCost, mindCost))
+		if (!inflictHAM(player, 0, 0, adjustedMindCost)){
 			return GENERALERROR;
+		}
 
-//		shoutCommand(player, group);
+			if (!player->checkCooldownRecovery("formup")) {
+				player->sendSystemMessage("Your is not ready to form up yet."); //You cannot burst run right now.
+				return GENERALERROR;
+			}
 
 		if (!doFormUp(player, group))
 			return GENERALERROR;
@@ -66,12 +67,13 @@ public:
 	bool doFormUp(CreatureObject* leader, GroupObject* group) const {
 		if (leader == nullptr || group == nullptr)
 			return false;
+		leader->updateCooldownTimer("formup", 10000);
 
 		for (int i = 0; i < group->getGroupSize(); i++) {
 
 			ManagedReference<CreatureObject*> member = group->getGroupMember(i);
 
-			if (member == nullptr || !member->isPlayerCreature())
+			if (member == nullptr || !member->isPlayerCreature() || member->getZone() != leader->getZone() ||  !member->isInRange(leader, 128.0))
 				continue;
 
 			if (!isValidGroupAbilityTarget(leader, member, false))
@@ -83,9 +85,12 @@ public:
 
 			if (member->isDizzied())
 				member->removeStateBuff(CreatureState::DIZZY);
-					
+
 			if (member->isStunned())
 				member->removeStateBuff(CreatureState::STUNNED);
+
+			if ( member->isIntimidated())
+				member->removeStateBuff(CreatureState::INTIMIDATED);
 
 			checkForTef(leader, member);
 		}

@@ -12,6 +12,7 @@
 
 #include "templates/building/SharedBuildingObjectTemplate.h"
 
+#include "server/zone/objects/player/sui/transferbox/SuiTransferBox.h" //added for additional lots function
 #include "server/zone/objects/player/sui/messagebox/SuiMessageBox.h"
 #include "server/zone/objects/tangible/sign/SignObject.h"
 #include "server/zone/packets/tangible/TangibleObjectMessage3.h"
@@ -24,6 +25,7 @@
 #include "server/zone/managers/vendor/VendorManager.h"
 #include "server/zone/managers/collision/CollisionManager.h"
 
+#include "server/zone/objects/player/sui/callbacks/StructureAdjustLotsSuiCallback.h" //added for additional lots function
 #include "server/zone/objects/player/sui/callbacks/StructurePayAccessFeeSuiCallback.h"
 #include "server/zone/objects/building/tasks/RevokePaidAccessTask.h"
 #include "tasks/EjectObjectEvent.h"
@@ -35,7 +37,8 @@
 
 #include "server/zone/objects/building/components/GCWBaseContainerComponent.h"
 #include "server/zone/objects/building/components/EnclaveContainerComponent.h"
-#include "server/zone/objects/transaction/TransactionLog.h"
+#include "templates/building/CloneSpawnPoint.h"
+#include "templates/building/CloningBuildingObjectTemplate.h"
 
 void BuildingObjectImplementation::initializeTransientMembers() {
 	StructureObjectImplementation::initializeTransientMembers();
@@ -383,6 +386,7 @@ bool BuildingObjectImplementation::isCityBanned(CreatureObject* player) {
 }
 
 bool BuildingObjectImplementation::isAllowedEntry(CreatureObject* player) {
+
 	GCWBaseContainerComponent* conComp = containerComponent.castTo<GCWBaseContainerComponent*>();
 
 	if (conComp != nullptr) {
@@ -828,6 +832,15 @@ void BuildingObjectImplementation::onEnter(CreatureObject* player) {
 		}
 	}
 
+	//faction cloners eject opposite-faction players
+	const PlanetMapCategory* planetMapCategory = getPlanetMapCategory();
+	if (planetMapCategory != nullptr)
+		if (planetMapCategory->getName() == "cloningfacility")
+			if ((this->isRebel() && player->isImperial()) || (this->isImperial() && player->isRebel()))
+			{
+				ejectObject(player);
+				return;
+			}
 	EnclaveContainerComponent* encComp = containerComponent.castTo<EnclaveContainerComponent*>();
 
 	if (encComp != nullptr && !encComp->checkContainerPermission(asBuildingObject(), player, ContainerPermissions::WALKIN)) {
@@ -903,7 +916,7 @@ void BuildingObjectImplementation::onExit(CreatureObject* player, uint64 parenti
 
 uint32 BuildingObjectImplementation::getMaximumNumberOfPlayerItems() {
 	if (isCivicStructure() )
-		return 250;
+		return 750;
 
 	SharedStructureObjectTemplate* ssot = dynamic_cast<SharedStructureObjectTemplate*> (templateObject.get());
 
@@ -919,7 +932,7 @@ uint32 BuildingObjectImplementation::getMaximumNumberOfPlayerItems() {
 
 	auto maxItems = MAXPLAYERITEMS;
 
-	return Math::min(maxItems, lots * 100);
+	return ((lots + extraAssignedLots) * 150);
 }
 
 int BuildingObjectImplementation::notifyObjectInsertedToChild(SceneObject* object, SceneObject* child, SceneObject* oldParent) {
@@ -954,6 +967,66 @@ int BuildingObjectImplementation::notifyObjectInsertedToChild(SceneObject* objec
 				CellObject* cell = static_cast<CellObject*>(child);
 
 				if (cell != nullptr) {
+
+					//cell close objects list
+					if (child->getCloseObjects() != nullptr)
+					{
+						if (!child->getCloseObjects()->contains(object))
+						{
+							child->addInRangeObject(object, false);
+							object->sendTo(child, true, false);
+						}
+					}
+					else
+						{
+							child->notifyInsert(object);
+						}
+			
+
+					if (object->getCloseObjects() != nullptr)
+					{
+						if (!object->getCloseObjects()->contains(child))
+						{
+							object->addInRangeObject(child, false);
+							child->sendTo(object, true, false);
+						}
+					}
+					else
+						{
+							object->notifyInsert(child);
+						}
+
+
+					//building closeobjects list
+
+					SceneObject* building = static_cast<SceneObject*>(asBuildingObject());
+
+					if (building->getCloseObjects() != nullptr)
+					{
+						if (!building->getCloseObjects()->contains(object))
+						{
+							building->addInRangeObject(object, false);
+							object->sendTo(building, true, false);
+						}
+					}
+					else
+						{
+							building->notifyInsert(object);
+						}
+			
+					if (object->getCloseObjects() != nullptr)
+					{
+						if (!object->getCloseObjects()->contains(building))
+						{
+							object->addInRangeObject(building, false);
+							building->sendTo(object, true, false);
+						}
+					}
+					else
+						{
+							object->notifyInsert(building);
+						}
+			
 					for (int j = 0; j < cell->getContainerObjectsSize(); ++j) {
 						ManagedReference<SceneObject*> cobj = cell->getContainerObject(j);
 
@@ -1127,6 +1200,36 @@ void BuildingObjectImplementation::unregisterProfessional(CreatureObject* player
 	}
 }
 
+void BuildingObjectImplementation::promptAddRemoveAdditionalLots(BuildingObject* building, CreatureObject* creature, String& args) {
+
+	ManagedReference<PlayerObject*> ghost = creature->getPlayerObject();
+	if (ghost == nullptr)
+		return;
+	int availableLots = ghost->getLotsRemaining();
+	String arg = args;
+
+	int extraAssignedLots = building->getExtraAssignedLots();
+
+	ManagedReference<SuiTransferBox*> sui = new SuiTransferBox(creature,
+			SuiWindowType::STRUCTURE_MODIFY_LOTS);
+	sui->setCallback(new StructureAdjustLotsSuiCallback(creature->getZoneServer(),arg));
+	sui->setPromptTitle("@player_structure:select_amount"); //Select Amount
+	sui->setUsingObject(building);
+	sui->setPromptText("Current additional Assigned Lots: " + String::valueOf(extraAssignedLots));
+	if (arg == "add")
+	{
+		sui->addFrom("Available Lots", String::valueOf(availableLots), String::valueOf(availableLots), "1");
+		sui->addTo("To Add", "0", "0", "1");
+	}
+	if (arg == "subtract")
+	{
+		sui->addFrom("Additional Lots", String::valueOf(extraAssignedLots), String::valueOf(extraAssignedLots), "1");
+		sui->addTo("To Withdrawl", "0", "0", "1");
+	}
+	ghost->addSuiBox(sui);
+	creature->sendMessage(sui->generateMessage());
+}
+
 void BuildingObjectImplementation::promptPayAccessFee(CreatureObject* player) {
 	if(!player->isPlayerCreature())
 		return;
@@ -1166,22 +1269,16 @@ void BuildingObjectImplementation::payAccessFee(CreatureObject* player) {
 		return;
 	}
 
-	ManagedReference<CreatureObject*> owner = getOwnerCreatureObject();
-
-	TransactionLog trx(player, owner, TrxCode::ACCESSFEE, accessFee, true);
-	trx.setAutoCommit(false);
-
 	player->subtractCashCredits(accessFee);
+
+	ManagedReference<CreatureObject*> owner = getOwnerCreatureObject();
 
 	if (owner != nullptr) {
 		Locker clocker(owner, player);
 		owner->addBankCredits(accessFee, true);
 	} else {
 		error("Unable to pay access fee credits to owner");
-		trx.errorMessage() << "Unable to pay access fee to owner";
 	}
-
-	trx.commit();
 
 	if (paidAccessList.contains(player->getObjectID()))
 		paidAccessList.drop(player->getObjectID());
@@ -1298,6 +1395,7 @@ void BuildingObjectImplementation::createChildObjects() {
 
 			SharedObjectTemplate* thisTemplate = TemplateManager::instance()->getTemplate(child->getTemplateFile().hashCode());
 
+
 			if (thisTemplate == nullptr || thisTemplate->getGameObjectType() == SceneObjectType::NPCCREATURE || thisTemplate->getGameObjectType() == SceneObjectType::CREATURE)
 				continue;
 
@@ -1306,6 +1404,9 @@ void BuildingObjectImplementation::createChildObjects() {
 			if (thisTemplate->getGameObjectType() == SceneObjectType::MINEFIELD || thisTemplate->getGameObjectType() == SceneObjectType::DESTRUCTIBLE || thisTemplate->getGameObjectType() == SceneObjectType::STATICOBJECT) {
 				dbString = "playerstructures";
 			}
+			if (thisTemplate->getGameObjectType() == SceneObjectType::NPCCREATURE || thisTemplate->getGameObjectType() == SceneObjectType::CREATURE){
+				dbString = "clientobjects";
+}
 
 			ManagedReference<SceneObject*> obj = server->createObject(child->getTemplateFile().hashCode(), dbString, getPersistenceLevel());
 
@@ -1314,10 +1415,10 @@ void BuildingObjectImplementation::createChildObjects() {
 
 			Locker crossLocker(obj, asBuildingObject());
 
-			if (obj->isCreatureObject()) {
-				obj->destroyObjectFromDatabase(true);
-				continue;
-			}
+//			if (obj->isCreatureObject()) {
+//				obj->destroyObjectFromDatabase(true);
+//				continue;
+//			}
 
 			Vector3 childPosition = child->getPosition();
 			childObjects.put(obj);
@@ -1468,6 +1569,13 @@ void BuildingObjectImplementation::spawnChildSceneObject(String& templatePath, f
 	object->createChildObjects();
 
 	childObjects.put(object);
+
+	ContainerPermissions* permissions = object->getContainerPermissionsForUpdate();
+	permissions->setOwner(getObjectID());
+	permissions->setInheritPermissionsFromParent(false);
+	permissions->setDefaultDenyPermission(ContainerPermissions::MOVECONTAINER);
+	permissions->setDenyPermission("owner", ContainerPermissions::MOVECONTAINER);
+
 }
 
 void BuildingObjectImplementation::spawnChildCreaturesFromTemplate() {

@@ -37,7 +37,6 @@
 #include "server/zone/objects/tangible/LairObject.h"
 #include "server/zone/objects/building/PoiBuilding.h"
 #include "server/zone/objects/intangible/TheaterObject.h"
-#include "server/zone/objects/transaction/TransactionLog.h"
 
 Mutex CreatureManagerImplementation::loadMutex;
 
@@ -346,7 +345,8 @@ CreatureObject* CreatureManagerImplementation::spawnCreatureAsEventMob(uint32 te
 	return creo;
 }
 
-CreatureObject* CreatureManagerImplementation::spawnCreature(uint32 templateCRC, uint32 objectCRC, float x, float z, float y, uint64 parentID, bool persistent, float direction) {
+CreatureObject* CreatureManagerImplementation::spawnCreature(uint32 templateCRC, uint32 objectCRC, float x, float z, float y, uint64 parentID, bool persistent) {
+
 	CreatureTemplate* creoTempl = creatureTemplateManager->getTemplate(templateCRC);
 
 	if (creoTempl == nullptr)
@@ -366,11 +366,13 @@ CreatureObject* CreatureManagerImplementation::spawnCreature(uint32 templateCRC,
 	if (creature != nullptr && creature->isAiAgent()) {
 		AiAgent* npc = cast<AiAgent*>(creature);
 		npc->loadTemplateData(creoTempl);
+		if (creature->getPvpStatusBitmask() == CreatureFlag::COMBATVEHICLE) 
+			npc->setOptionBit(0x1000);
 	} else if (creature == nullptr) {
 		error("could not spawn template " + templateToSpawn);
 	}
 
-	placeCreature(creature, x, z, y, parentID, direction);
+	placeCreature(creature, x, z, y, parentID);
 
 	return creature;
 }
@@ -411,7 +413,7 @@ CreatureObject* CreatureManagerImplementation::createCreature(uint32 templateCRC
 	return creature;
 }
 
-void CreatureManagerImplementation::placeCreature(CreatureObject* creature, float x, float z, float y, uint64 parentID, float direction) {
+void CreatureManagerImplementation::placeCreature(CreatureObject* creature, float x, float z, float y, uint64 parentID) {
 	if (creature == nullptr)
 		return;
 
@@ -429,7 +431,6 @@ void CreatureManagerImplementation::placeCreature(CreatureObject* creature, floa
 	}
 
 	creature->initializePosition(x, z, y);
-	creature->setDirection(Quaternion(Vector3(0, 1, 0), direction));
 
 	if (cellParent != nullptr) {
 		cellParent->transferObject(creature, -1);
@@ -523,8 +524,6 @@ int CreatureManagerImplementation::notifyDestruction(TangibleObject* destructor,
 
 	threatMap->removeObservers();
 
-	auto destructorObjectID = destructor->getObjectID();
-
 	if (destructedObject != destructor)
 		destructor->unlock();
 
@@ -588,22 +587,14 @@ int CreatureManagerImplementation::notifyDestruction(TangibleObject* destructor,
 
 			if (destructedObject->isNonPlayerCreatureObject() && !destructedObject->isEventMob()) {
 				destructedObject->clearCashCredits();
-				int credits = lootManager->calculateLootCredits(destructedObject->getLevel());
-				TransactionLog trx(TrxCode::NPCLOOT, destructedObject, credits, true);
-				trx.addState("destructor", destructorObjectID);
-				destructedObject->addCashCredits(credits);
+				destructedObject->addCashCredits(lootManager->calculateLootCredits(destructedObject->getLevel()));
 			}
 
 			Locker locker(creatureInventory);
 
-			TransactionLog trx(TrxCode::NPCLOOT, destructedObject);
 			creatureInventory->setContainerOwnerID(ownerID);
 
-			if (lootManager->createLoot(trx, creatureInventory, destructedObject)) {
-				trx.commit(true);
-			} else {
-				trx.abort() << "createLoot failed for ai object.";
-			}
+			lootManager->createLoot(creatureInventory, destructedObject);
 		}
 
 		Reference<AiAgent*> strongReferenceDestructedObject = destructedObject;
@@ -736,19 +727,14 @@ void CreatureManagerImplementation::droidHarvest(Creature* creature, CreatureObj
 		return;
 	}
 
-	TransactionLog trx(TrxCode::HARVESTED, owner, resourceSpawn);
-
 	if (pet->hasStorage()) {
-		bool didit = resourceManager->harvestResourceToPlayer(trx, droid, resourceSpawn, quantityExtracted);
+		bool didit = resourceManager->harvestResourceToPlayer(droid, resourceSpawn, quantityExtracted);
 		if (!didit) {
-			trx.addState("droidOverflow", true);
-			resourceManager->harvestResourceToPlayer(trx, owner, resourceSpawn, quantityExtracted);
+			resourceManager->harvestResourceToPlayer(owner, resourceSpawn, quantityExtracted);
 		}
 	} else {
-		resourceManager->harvestResourceToPlayer(trx, owner, resourceSpawn, quantityExtracted);
+		resourceManager->harvestResourceToPlayer(owner, resourceSpawn, quantityExtracted);
 	}
-
-	trx.commit();
 
 	/// Send System Messages
 	StringIdChatParameter harvestMessage("skl_use", creatureHealth);
@@ -896,9 +882,7 @@ void CreatureManagerImplementation::harvest(Creature* creature, CreatureObject* 
 	if (creature->getParent().get() != nullptr)
 		quantityExtracted = 1;
 
-	TransactionLog trx(TrxCode::HARVESTED, player, resourceSpawn);
-	resourceManager->harvestResourceToPlayer(trx, player, resourceSpawn, quantityExtracted);
-	trx.commit();
+	resourceManager->harvestResourceToPlayer(player, resourceSpawn, quantityExtracted);
 
 	/// Send System Messages
 	StringIdChatParameter harvestMessage("skl_use", creatureHealth);
@@ -976,7 +960,9 @@ void CreatureManagerImplementation::tame(Creature* creature, CreatureObject* pla
 		return;
 
 	int templateLevel = creatureTemplate->getLevel();
-	int maxLevelofPets = player->getSkillMod("tame_level");
+	int maxLevelofPets = player->getSkillModOfType("tame_level", SkillModManager::PERMANENTMOD);
+	maxLevelofPets += player->getSkillModOfType("tame_level", SkillModManager::TEMPLATE);
+	maxLevelofPets += player->getSkillModOfType("tame_level", SkillModManager::SKILLBOX);
 
 	if (!player->hasSkill("outdoors_creaturehandler_novice") || (templateLevel > maxLevelofPets)) {
 		player->sendSystemMessage("@pet/pet_menu:sys_lack_skill"); // You lack the skill to be able to tame that creature.

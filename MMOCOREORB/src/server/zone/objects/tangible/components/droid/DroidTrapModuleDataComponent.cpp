@@ -211,7 +211,7 @@ void DroidTrapModuleDataComponent::handleInsertTrap(CreatureObject* player, Tang
 		return;
 	}
 
-	if (!player->hasSkill("outdoors_scout_novice") || !compatibleTrap(player, input->getServerObjectCRC()) ) {
+	if (!player->hasSkill("outdoors_ranger_novice") || !compatibleTrap(player, input->getServerObjectCRC()) ) {
 		player->sendSystemMessage("@pet/droid_modules:insufficient_skill");
 		return;
 	}

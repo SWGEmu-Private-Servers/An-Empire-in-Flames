@@ -7,16 +7,19 @@ package server.zone.objects.tangible.deed.structure;
 import server.zone.objects.structure.StructureObject;
 import server.zone.objects.creature.CreatureObject;
 import server.zone.objects.tangible.deed.Deed;
+import server.zone.objects.scene.SceneObject;
 include server.zone.packets.scene.AttributeListMessage;
 include server.zone.objects.tangible.deed.components.PlaceStructureComponent;
 include server.zone.objects.manufactureschematic.craftingvalues.CraftingValues;
+include system.util.VectorMap;
 
-@json
 class StructureDeed extends Deed {
 	protected unsigned int surplusMaintenance;
 	protected unsigned int surplusPower;
 	protected float extractionRate;
 	protected float hopperSizeMax;
+	protected unsigned long controlDeviceID;
+	protected unsigned int additionalLots;
 
 	protected transient PlaceStructureComponent placeStructureComponent;
 
@@ -27,7 +30,12 @@ class StructureDeed extends Deed {
 		surplusPower = 0;
 		extractionRate = 0;
 		hopperSizeMax = 0;
+		controlDeviceID = 0;
+		additionalLots = 0;
 	}
+
+	@dereferenced
+	protected VectorMap<SceneObject, int> children;
 
 	@local
 	@dirty
@@ -60,6 +68,14 @@ class StructureDeed extends Deed {
 		surplusMaintenance = maint;
 	}
 
+	public void setControlDeviceID(unsigned long oid) {
+		controlDeviceID = oid;
+	}
+
+	public void setChildren(SceneObject child, int cellID) {
+		children.put(child, cellID);
+	}
+
 	public void setSurplusPower(unsigned int power) {
 		surplusPower = power;
 	}
@@ -70,6 +86,10 @@ class StructureDeed extends Deed {
 
 	public void setHopperSize(float size) {
 		hopperSizeMax = size;
+	}
+
+	public void setAdditionalLots(int size) {
+		additionalLots = size;
 	}
 
 	@read
@@ -92,8 +112,38 @@ class StructureDeed extends Deed {
 		return hopperSizeMax;
 	}
 
+	@read
+	public int getAdditionalLots() {
+		return additionalLots;
+	}
+
 	@dirty
 	public boolean isStructureDeed() {
 		return true;
+	}
+
+	@local
+	@dirty
+	public int getChild(int i) 
+	{
+		return children.get(i);
+	}
+
+	@local
+	@dirty
+	public int getChildrenSize() {
+		return children.size();
+	}
+
+	@local
+	@dirty
+	public unsigned long getControlDeviceID() {
+		return controlDeviceID;
+	}
+
+	@local
+	@preLocked
+	public VectorMap<SceneObject, int> getChildMap() {
+		return children;
 	}
 }

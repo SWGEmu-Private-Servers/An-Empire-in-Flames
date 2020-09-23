@@ -38,6 +38,9 @@ namespace area {
 		int getCellObjectID(lua_State* L);
 
 		int setNoSpawnArea(lua_State* L);
+
+		int attachScenery(lua_State* L);
+		int clearScenery(lua_State* L);
 	private:
 		ActiveArea* realObject;
 	};

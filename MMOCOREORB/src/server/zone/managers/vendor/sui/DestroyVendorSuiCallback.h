@@ -10,7 +10,6 @@
 
 #include "server/zone/objects/player/sui/SuiCallback.h"
 #include "server/zone/managers/vendor/VendorManager.h"
-#include "server/zone/objects/transaction/TransactionLog.h"
 
 class DestroyVendorSuiCallback : public SuiCallback {
 public:
@@ -38,15 +37,6 @@ public:
 			return;
 
 		Locker clocker(vendor, player);
-
-		TransactionLog trx(player, vendor, TrxCode::VENDORLIFECYCLE);
-
-		if (trx.isVerbose()) {
-			// Force a synchronous export because the object will be deleted before we can export it!
-			trx.addRelatedObject(object, true);
-			trx.setExportRelatedObjects(true);
-			trx.exportRelated();
-		}
 
 		VendorManager::instance()->destroyVendor(vendor);
 	}

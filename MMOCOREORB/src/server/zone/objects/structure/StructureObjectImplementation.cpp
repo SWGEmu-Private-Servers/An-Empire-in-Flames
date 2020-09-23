@@ -6,6 +6,7 @@
  */
 
 #include "server/zone/objects/structure/StructureObject.h"
+#include "server/zone/objects/building/BuildingObject.h" //added for additional lots function
 #include "server/zone/ZoneServer.h"
 #include "server/zone/Zone.h"
 #include "server/zone/ZoneProcessServer.h"
@@ -14,6 +15,7 @@
 #include "server/zone/objects/player/PlayerObject.h"
 #include "server/zone/objects/guild/GuildObject.h"
 #include "server/zone/objects/tangible/terminal/guild/GuildTerminal.h"
+#include "server/zone/objects/scene/SceneObject.h"
 
 #include "templates/tangible/SharedStructureObjectTemplate.h"
 #include "server/zone/managers/city/PayPropertyTaxTask.h"
@@ -24,7 +26,6 @@
 #include "server/zone/managers/player/PlayerManager.h"
 #include "server/chat/ChatManager.h"
 #include "server/zone/managers/stringid/StringIdManager.h"
-#include "server/zone/objects/transaction/TransactionLog.h"
 
 void StructureObjectImplementation::loadTemplateData(SharedObjectTemplate* templateData) {
 	TangibleObjectImplementation::loadTemplateData(templateData);
@@ -170,8 +171,8 @@ void StructureObjectImplementation::notifyInsertToZone(Zone* zone) {
 	TangibleObjectImplementation::notifyInsertToZone(zone);
 
 	if (isCivicStructure()) {
-		if (structurePermissionList.containsList("ADMIN"))
-			structurePermissionList.dropList("ADMIN");
+/*		if (structurePermissionList.containsList("ADMIN"))
+			structurePermissionList.dropList("ADMIN");*/
 
 		if (structurePermissionList.containsList("ENTRY"))
 			structurePermissionList.dropList("ENTRY");
@@ -182,8 +183,8 @@ void StructureObjectImplementation::notifyInsertToZone(Zone* zone) {
 		if (structurePermissionList.containsList("BAN"))
 			structurePermissionList.dropList("BAN");
 
-		if (structurePermissionList.containsList("VENDOR"))
-			structurePermissionList.dropList("VENDOR");
+/*		if (structurePermissionList.containsList("VENDOR"))
+			structurePermissionList.dropList("VENDOR");*/
 	}
 
 	if (!staticObject && getBaseMaintenanceRate() != 0 && !isTurret() && !isMinefield()) {
@@ -268,8 +269,20 @@ CreatureObject* StructureObjectImplementation::getOwnerCreatureObject() const {
 	}
 }
 
-float StructureObjectImplementation::getMaintenanceRate() const {
-	float rate = getBaseMaintenanceRate();
+float StructureObjectImplementation::getMaintenanceRate() {
+	//original function re-written for additional lots maintenance additions
+	BuildingObject* building = asBuildingObject();
+	float rate = 0.0f;
+	if (isBuildingObject())
+	{
+		int extraLots = building->getExtraAssignedLots();
+		float extraLotsCost = extraLots * 10;
+		rate = getBaseMaintenanceRate() + extraLotsCost;
+	}
+	else
+	{
+		rate = getBaseMaintenanceRate();
+	}
 
 #if DEBUG_STRUCTURE_RAPID_DECAY
 	rate *= 10000.0f; // Make structures really expensive
@@ -315,6 +328,8 @@ String StructureObjectImplementation::getTimeString(uint32 timestamp) const {
 
 //Only gets called when maintenance has been changed by an outside source
 void StructureObjectImplementation::scheduleMaintenanceExpirationEvent() {
+	SceneObject* structure = asSceneObject();
+	Locker lock(structure);
 	if (getMaintenanceRate() <= 0) {
 		if (getOwnerObjectID() == 0)
 			return;
@@ -417,9 +432,10 @@ void StructureObjectImplementation::scheduleMaintenanceTask(int secondsFromNow) 
 }
 
 void StructureObjectImplementation::destroyObjectFromWorld(bool sendSelfDestroy) {
-	if (structureMaintenanceTask != nullptr) {
+	if (structureMaintenanceTask != nullptr && !packedUp()) {
 		if (structureMaintenanceTask->isScheduled()) {
 			structureMaintenanceTask->cancel();
+		//	info("Structure maint canceled", true);
 		}
 
 		structureMaintenanceTask = nullptr;
@@ -618,43 +634,25 @@ int StructureObjectImplementation::getDecayPercentage() {
 void StructureObjectImplementation::payMaintenance(int maintenance, CreditObject* creditObj, bool cashFirst) {
 	//Pay maintenance.
 
-	auto structure = _this.getReferenceUnsafeStaticCast();
 	int payedSoFar;
 	if (cashFirst) {
 		if (creditObj->getCashCredits() >= maintenance) {
-			TransactionLog trx(creditObj, structure, TrxCode::STRUCTUREMAINTANENCE, maintenance, true);
 			creditObj->subtractCashCredits(maintenance);
-			addMaintenance(maintenance);
 		} else {
 			payedSoFar = creditObj->getCashCredits();
-
-			TransactionLog trxCash(creditObj, structure, TrxCode::STRUCTUREMAINTANENCE, payedSoFar, true);
 			creditObj->subtractCashCredits(payedSoFar);
-			addMaintenance(payedSoFar);
-
-			TransactionLog trxBank(creditObj, structure, TrxCode::STRUCTUREMAINTANENCE, maintenance - payedSoFar, false);
-			trxBank.groupWith(trxCash);
 			creditObj->subtractBankCredits(maintenance - payedSoFar);
-			addMaintenance(maintenance - payedSoFar);
 		}
 	} else {
 		if (creditObj->getBankCredits() >= maintenance) {
-			TransactionLog trx(creditObj, structure, TrxCode::STRUCTUREMAINTANENCE, maintenance, false);
 			creditObj->subtractBankCredits(maintenance);
-			addMaintenance(maintenance);
 		} else {
 			payedSoFar = creditObj->getBankCredits();
-
-			TransactionLog trxCash(creditObj, structure, TrxCode::STRUCTUREMAINTANENCE, payedSoFar, false);
 			creditObj->subtractBankCredits(payedSoFar);
-			addMaintenance(payedSoFar);
-
-			TransactionLog trxBank(creditObj, structure, TrxCode::STRUCTUREMAINTANENCE, maintenance - payedSoFar, true);
-			trxBank.groupWith(trxCash);
 			creditObj->subtractCashCredits(maintenance - payedSoFar);
-			addMaintenance(maintenance - payedSoFar);
 		}
 	}
+	addMaintenance(maintenance);
 }
 
 bool StructureObjectImplementation::isCampStructure() const {
@@ -757,6 +755,7 @@ int StructureObjectImplementation::getBasePowerRate() const {
 
 float StructureObjectImplementation::getDelayDestroyHours() const {
     return 30.0f * 24.0f; // Destroy after 30 days in the hole on maintenance
+	//return 0.10f; // 6 min or 1/10th of an hour for testing
 }
 
 bool StructureObjectImplementation::isOnAdminList(CreatureObject* player) const {

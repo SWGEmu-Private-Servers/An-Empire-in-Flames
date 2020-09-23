@@ -32,16 +32,13 @@ public:
 		if (!checkGroupLeader(player, group))
 			return GENERALERROR;
 
-		int hamCost = (int) (100.0f * calculateGroupModifier(group));
+		int mindCost = (int) (1350.0f * calculateGroupModifier(group));
+		int adjustedMindCost = creature->calculateCostAdjustment(CreatureAttribute::FOCUS, mindCost);
 
-		int healthCost = creature->calculateCostAdjustment(CreatureAttribute::STRENGTH, hamCost);
-		int actionCost = creature->calculateCostAdjustment(CreatureAttribute::QUICKNESS, hamCost);
-		int mindCost = creature->calculateCostAdjustment(CreatureAttribute::FOCUS, hamCost);
-
-		if (!inflictHAM(player, healthCost, actionCost, mindCost))
+		if (!inflictHAM(player, 0, 0, adjustedMindCost))
 			return GENERALERROR;
 
-		int chance = 75;
+		int chance = 65 + player->getSkillMod("group_ranged_defense");
 
 		if (System::random(100) > chance) {
 			player->sendSystemMessage("@cbt_spam:rally_fail_single"); //"You fail to rally the group!"
@@ -58,15 +55,16 @@ public:
 		if (leader == nullptr || group == nullptr)
 			return false;
 
-		int duration = 30;
+		int duration = 20;
 
 		leader->sendSystemMessage("@cbt_spam:rally_success_single"); //"You rally the group!"
 		sendRallyCombatSpam(leader, group, true);
 
+		// Use i = 0 for the whole group, i=1 for everyone but the leader.
 		for (int i = 0; i < group->getGroupSize(); i++) {
 			ManagedReference<CreatureObject*> member = group->getGroupMember(i);
 
-			if (member == nullptr)
+			if (member == nullptr || member->getZone() != leader->getZone() || !member->isInRange(leader, 128.0))
 				continue;
 
 			if (!isValidGroupAbilityTarget(leader, member, true))
@@ -91,8 +89,8 @@ public:
 				}
 			}
 
-			buff->setSkillModifier("private_group_ranged_defense", 30);
-			buff->setSkillModifier("private_group_melee_defense", 30);
+			buff->setSkillModifier("private_group_ranged_defense", 15);
+			buff->setSkillModifier("private_group_melee_defense", 15);
 
 			member->addBuff(buff);
 

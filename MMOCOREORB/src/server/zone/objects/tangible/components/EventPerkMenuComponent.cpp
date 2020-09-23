@@ -118,7 +118,7 @@ int EventPerkMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject, Cre
 			return 1;
 		}
 
-		if (ghost == nullptr || (!ghost->isPrivileged() && ghost->getEventPerkCount() > 5)) {
+		if (ghost == nullptr || (!ghost->isPrivileged() && ghost->getEventPerkCount() > 50)) {
 			player->sendSystemMessage("@event_perk:redeed_too_many_deeds"); // You have too many rental deeds in your possession and cannot redeed this rental.
 			return 1;
 		}

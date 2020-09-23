@@ -48,6 +48,7 @@ namespace tangible {
 		int isNeutral(lua_State *L);
 		int hasActiveArea(lua_State* L);
 		int isInvisible(lua_State* L);
+		int toggleInvisible(lua_State* L);
 		int getLuaStringData(lua_State *L);
 		int setLuaStringData(lua_State *L);
 		int deleteLuaStringData(lua_State *L);
@@ -60,6 +61,10 @@ namespace tangible {
 		int isBroken(lua_State* L);
 		int isSliced(lua_State* L);
 		int isNoTrade(lua_State* L);
+		int removeDefenders(lua_State* L);
+		int convertWeapon(lua_State *L);
+		int getCustomizationString(lua_State *L);
+		int setCustomizationString(lua_State *L);
 
 	protected:
 		TangibleObject* realObject;

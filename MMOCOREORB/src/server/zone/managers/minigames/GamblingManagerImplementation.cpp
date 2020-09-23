@@ -20,7 +20,6 @@
 #include "server/zone/objects/player/sui/callbacks/GamblingRouletteSuiCallback.h"
 #include "server/zone/objects/player/sui/callbacks/GamblingSlotPayoutSuiCallback.h"
 #include "server/zone/managers/minigames/GamblingBet.h"
-#include "server/zone/objects/transaction/TransactionLog.h"
 
 void GamblingManagerImplementation::registerPlayer(GamblingTerminal* terminal, CreatureObject* player) {
 	if (terminal == nullptr || player == nullptr)
@@ -295,10 +294,7 @@ void GamblingManagerImplementation::bet(GamblingTerminal* terminal, CreatureObje
 			} else {
 				Locker _locker(terminal);
 
-				{
-					TransactionLog trx(player, TrxCode::GAMBLINGSLOTSTANDARD, amount, true);
-					player->subtractCashCredits(amount);
-				}
+				player->subtractCashCredits(amount);
 
 				StringIdChatParameter textPlayer("base_player","prose_pay_success");
 				textPlayer.setDI(amount);
@@ -348,10 +344,7 @@ void GamblingManagerImplementation::bet(GamblingTerminal* terminal, CreatureObje
 
 			} else {
 				Locker _locker(terminal);
-				{
-					TransactionLog trx(player, TrxCode::GAMBLINGROULETTE, amount, true);
-					player->subtractCashCredits(amount);
-				}
+				player->subtractCashCredits(amount);
 				terminal->getBets()->add(new GamblingBet(player, amount, roulette.get(target)));
 				StringIdChatParameter textPlayer("gambling/default_interface","prose_bet_placed");
 				textPlayer.setDI(amount);
@@ -543,6 +536,7 @@ void GamblingManagerImplementation::calculateOutcome(GamblingTerminal* terminal)
 
 				ManagedReference<CreatureObject*> player = terminal->getPlayersWindows()->elementAt(0).getKey();
 
+
 				if ((bet != nullptr) && (player != nullptr)) {
 
 					if (terminal->getFirst() == terminal->getSecond() && terminal->getSecond() == terminal->getThird()) {
@@ -555,10 +549,7 @@ void GamblingManagerImplementation::calculateOutcome(GamblingTerminal* terminal)
 						textPlayer.setDI(win);
 						player->sendSystemMessage(textPlayer);
 
-						{
-							TransactionLog trx(TrxCode::GAMBLINGSLOTSTANDARD, player, win, true);
-							player->addCashCredits(win, true);
-						}
+						player->addCashCredits(win, true);
 
 					} else if ((0 < terminal->getFirst() && terminal->getFirst() < 4) && (0 < terminal->getSecond() && terminal->getSecond() < 4) && (0 < terminal->getThird() && terminal->getThird() < 4)) {
 
@@ -570,10 +561,8 @@ void GamblingManagerImplementation::calculateOutcome(GamblingTerminal* terminal)
 						textPlayer.setDI(win);
 						player->sendSystemMessage(textPlayer);
 
-						{
-							TransactionLog trx(TrxCode::GAMBLINGSLOTSTANDARD, player, win, true);
-							player->addCashCredits(win, true);
-						}
+						player->addCashCredits(win, true);
+
 					} else {
 
 						player->sendSystemMessage("Sorry, you did not win this round. Please try again.");
@@ -733,10 +722,7 @@ void GamblingManagerImplementation::calculateOutcome(GamblingTerminal* terminal)
 							textPlayer.setDI(winnings->get(i));
 							player->sendSystemMessage(textPlayer);
 
-							{
-								TransactionLog trx(TrxCode::GAMBLINGROULETTE, player, winnings->get(i), true);
-								player->addCashCredits(winnings->get(i), true);
-							}
+							player->addCashCredits(winnings->get(i), true);
 						}
 					}
 				}

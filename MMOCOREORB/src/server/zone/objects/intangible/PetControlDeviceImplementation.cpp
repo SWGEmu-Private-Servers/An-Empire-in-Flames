@@ -154,7 +154,9 @@ void PetControlDeviceImplementation::callObject(CreatureObject* player) {
 
 		if (ch) {
 			maxPets = player->getSkillMod("keep_creature");
-			maxLevelofPets = player->getSkillMod("tame_level");
+			maxLevelofPets = player->getSkillModOfType("tame_level", SkillModManager::PERMANENTMOD);
+			maxLevelofPets += player->getSkillModOfType("tame_level", SkillModManager::TEMPLATE);
+			maxLevelofPets += player->getSkillModOfType("tame_level", SkillModManager::SKILLBOX);
 		}
 
 		if (creaturePet->getAdultLevel() > maxLevelofPets) {
@@ -188,10 +190,10 @@ void PetControlDeviceImplementation::callObject(CreatureObject* player) {
 
 				spawnedLevel += object->getLevel();
 
-				if ((spawnedLevel + level) > maxLevelofPets) {
-					player->sendSystemMessage("@pet/pet_menu:control_exceeded"); // Calling this pet would exceed your Control Level ability.
-					return;
-				}
+//				if ((spawnedLevel + level) > maxLevelofPets) {
+//					player->sendSystemMessage("@pet/pet_menu:control_exceeded"); // Calling this pet would exceed your Control Level ability.
+//					return;
+//				}
 			} else if (object->isNonPlayerCreatureObject() && petType == PetManager::FACTIONPET) {
 				if (++currentlySpawned >= maxPets) {
 					player->sendSystemMessage("@pet/pet_menu:at_max"); // You already have the maximum number of pets of this type that you can call.
@@ -201,10 +203,10 @@ void PetControlDeviceImplementation::callObject(CreatureObject* player) {
 				const CreatureTemplate* activePetTemplate = object->getCreatureTemplate();
 				const CreatureTemplate* callingPetTemplate = pet->getCreatureTemplate();
 
-				if (activePetTemplate == nullptr || callingPetTemplate == nullptr || activePetTemplate->getTemplateName() != "at_st")
+				if (activePetTemplate == nullptr || callingPetTemplate == nullptr || (activePetTemplate->getTemplateName() != "at_st" && activePetTemplate->getTemplateName() != "at_xt"))
 					continue;
 
-				if (++currentlySpawned >= maxPets || (activePetTemplate->getTemplateName() == "at_st" && callingPetTemplate->getTemplateName() == "at_st")) {
+				if (++currentlySpawned >= maxPets || (activePetTemplate->getTemplateName() == "at_st" && callingPetTemplate->getTemplateName() == "at_st") || (activePetTemplate->getTemplateName() == "at_xt" && callingPetTemplate->getTemplateName() == "at_xt")) {
 					player->sendSystemMessage("@pet/pet_menu:at_max"); // You already have the maximum number of pets of this type that you can call.
 					return;
 				}
@@ -425,6 +427,24 @@ void PetControlDeviceImplementation::spawnObject(CreatureObject* player) {
 	pet->setNextStepPosition(player->getPositionX(), player->getPositionZ(), player->getPositionY(), parent);
 	pet->clearPatrolPoints();
 	if (petType == PetManager::CREATUREPET) {
+		if (getUseRanged()){
+			toggleUseRanged();
+			pet->selectWeapon();
+		}
+		if (growthStage >= 10) {
+			bool ch = player->hasSkill("outdoors_creaturehandler_novice");
+			int maxLevelofPets = 10;
+			if (ch) {
+				maxLevelofPets = player->getSkillMod("tame_level");
+				if (maxLevelofPets > 100)
+					maxLevelofPets = 100;
+			}
+			ManagedReference<Creature*> playerPet = cast<Creature*>(pet);
+			pet->clearBuffs(true, true);
+			pet->reloadTemplate();
+			playerPet->setPetLevel(maxLevelofPets);
+			pet->setCustomObjectName(this->getCustomObjectName().toString(), true);
+		}
 		pet->setCreatureBitmask(CreatureFlag::PET);
 	}
 	if (petType == PetManager::DROIDPET) {
@@ -499,6 +519,10 @@ void PetControlDeviceImplementation::storeObject(CreatureObject* player, bool fo
 
 	// Store non-faction pets immediately.  Store faction pets after 60sec delay.
 	if (petType != PetManager::FACTIONPET || force || player->getPlayerObject()->isPrivileged()) {
+		if (getUseRanged()){
+			toggleUseRanged();
+			pet->selectWeapon();
+		}
 		task->execute();
 	}
 	else {
@@ -767,7 +791,9 @@ bool PetControlDeviceImplementation::canBeTradedTo(CreatureObject* player, Creat
 
 		if (ch) {
 			maxStoredPets += receiver->getSkillMod("stored_pets");
-			maxLevelofPets = receiver->getSkillMod("tame_level");
+			maxLevelofPets = player->getSkillModOfType("tame_level", SkillModManager::PERMANENTMOD);
+			maxLevelofPets += player->getSkillModOfType("tame_level", SkillModManager::TEMPLATE);
+			maxLevelofPets += player->getSkillModOfType("tame_level", SkillModManager::SKILLBOX);
 		}
 
 		if (level > maxLevelofPets) {

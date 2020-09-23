@@ -36,6 +36,8 @@ Luna<LuaBuildingObject>::RegType LuaBuildingObject::Register[] = {
 		{ "initializeStaticGCWBase", &LuaBuildingObject::initializeStaticGCWBase },
 		{ "isPrivateStructure", &LuaBuildingObject::isPrivateStructure },
 		{ "getCellName", &LuaBuildingObject::getCellName },
+		{ "isAllowedEntry", &LuaBuildingObject::isAllowedEntry },
+		{ "setDeedObjectID", &LuaBuildingObject::setDeedObjectID },
 		{ 0, 0 }
 };
 
@@ -157,6 +159,7 @@ int LuaBuildingObject::spawnChildSceneObject(lua_State* L) {
 }
 
 int LuaBuildingObject::destroyChildObjects(lua_State* L) {
+	Locker locker(realObject);
 	realObject->destroyChildObjects();
 
 	return 0;
@@ -199,5 +202,27 @@ int LuaBuildingObject::getCellName(lua_State* L) {
 
 	String text = realObject->getCellName(cellNum);
 	lua_pushstring(L, text.toCharArray());
+	return 1;
+}
+
+int LuaBuildingObject::isAllowedEntry(lua_State* L) {
+	CreatureObject* obj = (CreatureObject*)lua_touserdata(L, -1);
+
+	bool ret = realObject->isAllowedEntry(obj);
+
+	lua_pushboolean(L, ret);
+
+	return 1;
+}
+
+
+
+int LuaBuildingObject::setDeedObjectID(lua_State* L) {
+	unsigned long number = lua_tonumber(L, -1);
+
+	Locker dlocker(realObject);
+
+	realObject->setDeedObjectID(number);
+
 	return 1;
 }

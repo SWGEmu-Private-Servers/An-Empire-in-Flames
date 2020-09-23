@@ -6,9 +6,18 @@
  */
 
 #include "server/zone/objects/creature/CreatureObject.h"
+#include "server/zone/managers/objectcontroller/ObjectController.h"
 #include "server/zone/objects/creature/buffs/PrivateSkillMultiplierBuff.h"
 
 void PrivateSkillMultiplierBuffImplementation::applySkillModifiers() {
+
+/*	Logger adminLog;
+	adminLog.setLoggingName("SkillMods");
+	StringBuffer fileName;
+	fileName << "log/admin/skillMods.log";
+	adminLog.setFileLogger(fileName.toString(), true);
+	adminLog.setLogging(true);
+*/
 	ManagedReference<CreatureObject*> strongCreo = creature.get();
 	if (strongCreo == nullptr)
 		return;
@@ -27,12 +36,24 @@ void PrivateSkillMultiplierBuffImplementation::applySkillModifiers() {
 		int prevMod = strongCreo->getSkillMod(key);
 
 		strongCreo->addSkillMod(SkillModManager::BUFF, key, prevMod == 0 ? value : prevMod*(value-1), true);
+//		StringBuffer logEntry;
+//		logEntry << strongCreo->getDisplayedName() << " Skill Mod: " << key
+//									<< "' value: "  << strongCreo->getSkillMod(key) << "'";
+//		adminLog.info(logEntry.toString());
 	}
 
 	creature.get()->updateSpeedAndAccelerationMods();
 }
 
 void PrivateSkillMultiplierBuffImplementation::removeSkillModifiers() {
+
+/*	Logger adminLog;
+	adminLog.setLoggingName("SkillMods");
+	StringBuffer fileName;
+	fileName << "log/admin/skillMods.log";
+	adminLog.setFileLogger(fileName.toString(), true);
+	adminLog.setLogging(true);
+*/
 	ManagedReference<CreatureObject*> strongCreo = creature.get();
 	if (strongCreo == nullptr)
 		return;
@@ -49,13 +70,12 @@ void PrivateSkillMultiplierBuffImplementation::removeSkillModifiers() {
 			continue;
 
 		int prevMod = strongCreo->getSkillMod(key);
-
+//	  StringBuffer logEntry;
 		strongCreo->addSkillMod(SkillModManager::BUFF, key, prevMod <= value ? -prevMod : (int)(prevMod*((1/(float)(value))-1)), true);
-
+//		logEntry << strongCreo->getDisplayedName() << " Skill Mod: " << key
+//									<< "' value: "  << strongCreo->getSkillMod(key) << "'";
+//		adminLog.info(logEntry.toString());
 	}
 
 	creature.get()->updateSpeedAndAccelerationMods();
 }
-
-
-

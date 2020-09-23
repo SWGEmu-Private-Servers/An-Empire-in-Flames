@@ -10,7 +10,6 @@
 #include "server/zone/objects/player/PlayerObject.h"
 #include "server/zone/objects/tangible/tool/antidecay/AntiDecayKit.h"
 #include "server/zone/managers/auction/AuctionsMap.h"
-#include "server/zone/objects/transaction/TransactionLog.h"
 
 
 class ServerDestroyObjectCommand : public QueueCommand {
@@ -74,8 +73,6 @@ public:
 			}
 		}
 
-		TransactionLog trx(creature, TrxCode::SERVERDESTROYOBJECT, object);
-
 		if (object->isASubChildOf(creature)){
 
 			if(object->isTangibleObject()){
@@ -118,9 +115,6 @@ public:
 								Locker adkLocker(adk);
 								adk->setUsed(false);
 
-								TransactionLog trxADK(object, creature, adk, TrxCode::ADKREMOVE);
-								trxADK.groupWith(trx);
-
 								inventory->transferObject(adk, -1, false);
 								adk->sendTo(creature, true);
 								creature->sendSystemMessage("@veteran_new:kit_created"); // "This item had Anti Decay applied to it. A new Anti Decay Kit has been placed in your inventory."
@@ -128,13 +122,6 @@ public:
 						}
 					}
 				}
-			}
-
-			if (trx.isVerbose()) {
-				// Force a synchronous export because the object will be deleted before we can export it!
-				trx.addRelatedObject(object, true);
-				trx.setExportRelatedObjects(true);
-				trx.exportRelated();
 			}
 
 			destroyObject(object, creature);

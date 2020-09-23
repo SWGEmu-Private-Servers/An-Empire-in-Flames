@@ -180,6 +180,17 @@
 #include "server/zone/objects/creature/commands/InspacereloadCommand.h"
 #include "server/zone/objects/creature/commands/InspacerrCommand.h"
 #include "server/zone/objects/creature/commands/RequestSpaceTrainerCommand.h"
+#include "server/zone/objects/creature/commands/FireCannonsCommand.h"
+#include "server/zone/objects/creature/commands/HolocommCommand.h"
+#include "server/zone/objects/creature/commands/HolocronCommand.h"
+#include "server/zone/objects/creature/commands/LuckyStrikeCommand.h"
+#include "server/zone/objects/creature/commands/RattleCommand.h"
+//#include "server/zone/objects/creature/commands/RequestLeaveCommand.h"
+#include "server/zone/objects/creature/commands/ShootFirstCommand.h"
+#include "server/zone/objects/creature/commands/SkulkCommand.h"
+#include "server/zone/objects/creature/commands/TakeCommandCommand.h"
+
+
 
 
 using namespace server::zone::managers::objectcontroller::command;
@@ -325,4 +336,15 @@ void CommandConfigManager::registerCommands4() {
 	commandFactory.registerCommand<InspacereloadCommand>(String("inspacereload").toLowerCase());
 	commandFactory.registerCommand<InspacerrCommand>(String("inspacerr").toLowerCase());
 	commandFactory.registerCommand<RequestSpaceTrainerCommand>(String("requestSpaceTrainer").toLowerCase());
+
+	//added commands - EiF
+	commandFactory.registerCommand<FireCannonsCommand>(String("fireCannons").toLowerCase());
+	commandFactory.registerCommand<HolocommCommand>(String("holocomm").toLowerCase());
+	commandFactory.registerCommand<HolocronCommand>(String("holocron").toLowerCase());
+	commandFactory.registerCommand<LuckyStrikeCommand>(String("luckyStrike").toLowerCase());
+	commandFactory.registerCommand<RattleCommand>(String("rattle").toLowerCase());
+//	commandFactory.registerCommand<RequestLeaveCommand>(String("requestLeave").toLowerCase());
+	commandFactory.registerCommand<ShootFirstCommand>(String("shootFirst").toLowerCase());
+	commandFactory.registerCommand<SkulkCommand>(String("skulk").toLowerCase());
+	commandFactory.registerCommand<TakeCommandCommand>(String("takeCommand").toLowerCase());
 }

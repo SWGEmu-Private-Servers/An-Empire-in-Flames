@@ -241,7 +241,7 @@ void CreatureImplementation::notifyDespawn(Zone* zone) {
 
 bool CreatureImplementation::canHarvestMe(CreatureObject* player) {
 
-	if(!player->isInRange(_this.getReferenceUnsafeStaticCast(), 10.0f) || player->isInCombat() || !player->hasSkill("outdoors_scout_novice")
+	if(!player->isInRange(_this.getReferenceUnsafeStaticCast(), 10.0f) || player->isInCombat()
 			|| player->isDead() || player->isIncapacitated() || isPet())
 		return false;
 
@@ -269,7 +269,7 @@ bool CreatureImplementation::canHarvestMe(CreatureObject* player) {
 bool CreatureImplementation::canDroidHarvestMe(CreatureObject* player,CreatureObject* droid) {
 
 	// droid should be able to harvest if in range, with current AI
-	if(!droid->isInRange(_this.getReferenceUnsafeStaticCast(), (10.0f + droid->getTemplateRadius() + getTemplateRadius())) || droid->isInCombat() || !player->hasSkill("outdoors_scout_novice")
+	if(!droid->isInRange(_this.getReferenceUnsafeStaticCast(), (10.0f + droid->getTemplateRadius() + getTemplateRadius())) || droid->isInCombat() || !player->hasSkill("outdoors_ranger_novice")
 			|| droid->isDead() || droid->isIncapacitated() || isPet()) {
 		return false;
 	}
@@ -300,9 +300,6 @@ bool CreatureImplementation::canDroidHarvestMe(CreatureObject* player,CreatureOb
 }
 
 bool CreatureImplementation::hasSkillToHarvestMe(CreatureObject* player) {
-
-	if(!player->hasSkill("outdoors_scout_novice"))
-		return false;
 
 	if (!hasOrganics())
 		return false;
@@ -475,6 +472,15 @@ void CreatureImplementation::setPetLevel(int newLevel) {
 }
 
 bool CreatureImplementation::isMount() {
+
+	CreatureTemplate* creatureTemplate = npcTemplate.get();
+
+	if (creatureTemplate == NULL)
+		return false;
+
+	if (creatureTemplate->getPvpBitmask() & CreatureFlag::COMBATVEHICLE)
+		return true;
+
 	if (!isPet())
 		return false;
 
@@ -507,4 +513,94 @@ void CreatureImplementation::sendMessage(BasePacket* msg) {
 #endif
 		delete msg;
 	}
+}
+
+
+
+int CreatureImplementation::getPassengerCapacity() {
+	CreatureTemplate* creatureTemplate = npcTemplate.get();
+
+	return creatureTemplate->getPassengerCapacity();
+}
+
+String CreatureImplementation::getPassengerSeatName() {
+	CreatureTemplate* creatureTemplate = npcTemplate.get();
+
+	return creatureTemplate->getPassengerSeatString();
+
+}
+
+bool CreatureImplementation::hasOpenSeat() {
+	int passengerSeats = getPassengerCapacity();
+
+	if (passengerSeats == 0)
+		return false;
+
+	bool openSeat = false;
+
+	for (int i = 1; i <= passengerSeats; ++i){
+		String text = "rider";
+		text += String::valueOf(i);
+		CreatureObject* seat = this->getSlottedObject(text).castTo<CreatureObject*>();
+		if (seat == nullptr) {
+			openSeat = true;
+		}
+	}
+
+	return openSeat;
+}
+
+int CreatureImplementation::getOpenSeat() {
+	int passengerSeats = getPassengerCapacity();
+
+	if (passengerSeats == 0)
+		return 0;
+
+	for (int i = 1; i <= passengerSeats; ++i){
+		String text = "rider";
+		text += String::valueOf(i);
+		CreatureObject* seat = this->getSlottedObject(text).castTo<CreatureObject*>();
+		if (seat == nullptr) {
+			return i;
+		}
+	}
+
+	return 0;
+}
+
+bool CreatureImplementation::slotPassenger(CreatureObject* passenger) {
+	Locker plocker(passenger);
+	auto owner = getLinkedCreature().get();
+	int seatNumber = getOpenSeat();
+	String seat = "passenger_" + getPassengerSeatName() + "_" + String::valueOf(seatNumber);
+	Zone* zone = getZone();
+	float x = owner->getWorldPositionX();
+	float y = owner->getWorldPositionY();
+	float z = owner->getWorldPositionZ();
+	CreatureManager* creatureManager = zone->getCreatureManager();
+	CreatureObject* seatObject = creatureManager->spawnCreature(seat.hashCode(), 0, x, z, y, 0);
+	Locker slocker(seatObject);
+	uint32 crcSaddle = String("saddle").hashCode();
+	ManagedReference<Buff*> saddleBuff = new Buff(seatObject, crcSaddle, 36000, BuffType::OTHER);
+	Locker blocker(saddleBuff);
+	saddleBuff->setSpeedMultiplierMod(0.01f);
+	saddleBuff->setAccelerationMultiplierMod(0.01f);
+	seatObject->addBuff(saddleBuff);
+	seatObject->setOptionBit(0x1000);
+	transferObject(seatObject, 4 + seatNumber, true);
+	seatObject->setPosition(x, z, y);
+	seatObject->transferObject(passenger, 4, true);
+	passenger->setState(CreatureState::RIDINGMOUNT);
+	passenger->teleport(x, z, y, 0);
+	passenger->setPosition(x, z, y);
+	passenger->synchronizeCloseObjects();
+	uint32 crc = String("passenger").hashCode();
+	ManagedReference<Buff*> buff = new Buff(passenger, crc, 36000, BuffType::OTHER);
+	Locker locker(buff);
+	buff->setSpeedMultiplierMod(0.01f);
+	buff->setAccelerationMultiplierMod(0.01f);
+	passenger->addBuff(buff);
+	teleport(x, z, y, 0);
+	synchronizeCloseObjects();
+	return true;
 }

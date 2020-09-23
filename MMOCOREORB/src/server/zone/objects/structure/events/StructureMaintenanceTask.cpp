@@ -24,6 +24,8 @@ void StructureMaintenanceTask::run() {
 	if (strongRef == nullptr)
 		return;
 
+//	strongRef->info("Structure maintenance cycle started.", true);
+
 	ZoneServer* zoneServer = strongRef->getZoneServer();
 
 	if (zoneServer == nullptr || zoneServer->isServerShuttingDown())
@@ -39,15 +41,15 @@ void StructureMaintenanceTask::run() {
 	uint64 oid = strongRef->getOwnerObjectID();
 	String name = playerManager->getPlayerName(oid);
 
+	if (name.isEmpty()) {
+		destroyStructureWithReason(strongRef, "player structure has nullptr owner ghost.");
+		return;
+	}
+
 	ManagedReference<CreditObject*> creditObj = CreditManager::getCreditObject(oid);
 
 	if (creditObj == nullptr) {
 		destroyStructureWithReason(strongRef, "player does not have a valid credit object.");
-		return;
-	}
-
-	if (name.isEmpty()) {
-		destroyStructureWithReason(strongRef, "player structure has nullptr owner ghost.");
 		return;
 	}
 
@@ -134,8 +136,34 @@ void StructureMaintenanceTask::run() {
 				reschedule(decayCycleSeconds * 1000);
 			} else {
 				sendMailDestroy(name, strongRef);
+				StructureObject* structure = strongRef.castTo<StructureObject*>();
+				Locker lock(structure);
+				
 
-				destroyStructureWithReason(strongRef, "decayed, out of maintenance for " + String::valueOf(outOfMaintenanceHrs) + " hour(s).");
+				if (structure->getControlDevice() != NULL)
+				{
+					BuildingObject* building = strongRef.castTo<BuildingObject*>();
+					SceneObject* cd = structure->getControlDevice();
+					CreatureObject* owner = structure->getOwner();
+					PlayerObject* player = owner->getPlayerObject();
+					Locker locks(structure, player);
+					Locker lock(cd);
+					int extraLots = building->getExtraAssignedLots();
+					if (extraLots > 0)
+					{
+						player->setMaximumLots(player->getMaximumLots() + extraLots);
+						building->removeExtraAssignedLots(extraLots);
+					}
+					player->removePackedUpStructure(structure->getObjectID());
+					//WARNING Possibly not destroying items from database. Not sure.
+					cd->destroyObjectFromWorld(true);
+					cd->destroyObjectFromDatabase();
+					structure->destroyObjectFromDatabase(true);
+				}
+				else
+				{
+					destroyStructureWithReason(strongRef, "decayed, out of maintenance for " + String::valueOf(outOfMaintenanceHrs) + " hour(s).");
+				}
 			}
 		}
 	}
@@ -146,6 +174,7 @@ void StructureMaintenanceTask::destroyStructureWithReason(StructureObject* struc
 	structure->info("Will not be destroyed because DEBUG_STRUCTURE_TASK_NO_DESTROY is set, should destroy because " + reason, true);
 #else // DEBUG_STRUCTURE_TASK_NO_DESTROY
 	structure->info("Destroying because " + reason);
+	//structure->setIsPackedUp(false);
 	StructureManager::instance()->destroyStructure(structure);
 #endif // DEBUG_STRUCTURE_TASK_NO_DESTROY
 }
@@ -156,15 +185,19 @@ void StructureMaintenanceTask::sendMailMaintenanceWithdrawnFromBank(const String
 	if (chatManager != nullptr) {
 		UnicodeString subject = "@player_structure:structure_maintenance_empty_subject";
 
-		String zoneName = "the void";
-		if (structure->getZone() != nullptr) {
-			zoneName = structure->getZone()->getZoneName();
-		}
-
 		//Your %TT %TO has an empty maintenance pool. It will start deducting from your bank account automatically.
 		StringIdChatParameter emailBody("@player_structure:structure_maintenance_empty_body");
 		emailBody.setTT(structure->getObjectName());
-		emailBody.setTO("(" + String::valueOf((int)structure->getPositionX()) + ", " + String::valueOf((int)structure->getPositionY()) + " on " + zoneName + ")");
+
+		String zoneName = "the void";
+		if (structure->getZone() != nullptr) {
+			zoneName = structure->getZone()->getZoneName();
+			emailBody.setTO("(" + String::valueOf((int)structure->getPositionX()) + ", " + String::valueOf((int)structure->getPositionY()) + " on " + zoneName + ")");
+		}
+		else
+		{
+			emailBody.setTO("in your datapad");
+		}
 
 		chatManager->sendMail("@player_structure:your_structure_prefix", subject, emailBody, creoName);
 	}
@@ -182,15 +215,18 @@ void StructureMaintenanceTask::sendMailDecay(const String& creoName, StructureOb
 			//Your %TT %TO is currently at %DI percent condition. It will be condemned if it reaches 0. If you wish to keep this structure, you should immediately add maintenance.
 			bodyName = "mail_structure_damage_condemn";
 		}
-
+		StringIdChatParameter emailBody("@player_structure:" + bodyName);
 		String zoneName = "the void";
 		if (structure->getZone() != nullptr) {
 			zoneName = structure->getZone()->getZoneName();
+			emailBody.setTO("(" + String::valueOf((int)structure->getPositionX()) + ", " + String::valueOf((int)structure->getPositionY()) + " on " + zoneName + ")");
+		}
+		else
+		{
+			emailBody.setTO("in your datapad ");
 		}
 
-		StringIdChatParameter emailBody("@player_structure:" + bodyName);
 		emailBody.setTT(structure->getObjectName());
-		emailBody.setTO("(" + String::valueOf((int)structure->getPositionX()) + ", " + String::valueOf((int)structure->getPositionY()) + " on " + zoneName + ")");
 		emailBody.setDI(structure->getDecayPercentage());
 
 		chatManager->sendMail("@player_structure:your_structure_prefix", subject, emailBody, creoName);
@@ -204,15 +240,20 @@ void StructureMaintenanceTask::sendMailCondemned(const String& creoName, Structu
 	if (chatManager != nullptr) {
 		UnicodeString subject = "@player_structure:structure_condemned_subject";
 
+		StringIdChatParameter emailBody("@player_structure:structure_condemned_body");
 		String zoneName = "the void";
 		if (structure->getZone() != nullptr) {
 			zoneName = structure->getZone()->getZoneName();
+			emailBody.setTO("(" + String::valueOf((int)structure->getPositionX()) + ", " + String::valueOf((int)structure->getPositionY()) + " on " + zoneName + ")");
 		}
+		else
+		{
+			emailBody.setTO("in your datapad ");
+		}
+		
 
 		//Your %TT %TO has been condemned by the order of the Empire due to lack of maintenance. You must pay %DI credits to uncondemn this structure.
-		StringIdChatParameter emailBody("@player_structure:structure_condemned_body");
 		emailBody.setTT(structure->getObjectName());
-		emailBody.setTO("(" + String::valueOf((int)structure->getPositionX()) + ", " + String::valueOf((int)structure->getPositionY()) + " on " + zoneName + ")");
 		emailBody.setDI(-structure->getSurplusMaintenance());
 		chatManager->sendMail("@player_structure:your_structure_prefix", subject, emailBody, creoName);
 	}
@@ -220,7 +261,7 @@ void StructureMaintenanceTask::sendMailCondemned(const String& creoName, Structu
 
 void StructureMaintenanceTask::sendMailDestroy(const String& creoName, StructureObject* structure) {
 	ManagedReference<ChatManager*> chatManager = structure->getZoneServer()->getChatManager();
-
+	Locker lock(structure);
 	if (chatManager == nullptr)
 	    return;
 

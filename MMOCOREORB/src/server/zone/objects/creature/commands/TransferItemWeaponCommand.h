@@ -19,6 +19,10 @@ public:
 
 	}
 
+	float getCommandDuration(CreatureObject* object, const UnicodeString& arguments) const {
+		return 1.5;
+	}
+
 	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
 
 		if (!checkStateMask(creature))
@@ -68,8 +72,10 @@ public:
 			return GENERALERROR;
 
 		if (!objectToTransfer->isWeaponObject() && !objectToTransfer->isInstrument() && !objectToTransfer->isFishingPoleObject()) {
-			creature->error("objectToTransfer is neither a weapon object nor an instrument/fishing pole in transferItemWeapon");
-			return GENERALERROR;
+			if (objectToTransfer->getObjectTemplate()->getFullTemplateString() != "object/tangible/item/item_holoprojector.iff") {
+				creature->error("objectToTransfer is neither a weapon object nor an instrument/fishing pole in transferItemWeapon");
+				return GENERALERROR;
+			}
 		}
 
 		if (!objectToTransfer->isASubChildOf(creature))
@@ -146,9 +152,13 @@ public:
 
 						PlayerObject* ghost = playerCreature->getPlayerObject();
 
-						if (creature->hasBuff(STRING_HASHCODE("centerofbeing")))
+						if (creature->hasBuff(STRING_HASHCODE("centerofbeing"))) {
 							creature->removeBuff(STRING_HASHCODE("centerofbeing"));
-
+						}
+						if (creature->isBerserked()){
+							creature->sendSystemMessage("You are no longer berserking.");
+							creature->removeStateBuff(CreatureState::BERSERK);
+						}
 						ManagedReference<PlayerManager*> playerManager = creature->getZoneServer()->getPlayerManager();
 						if (playerManager != nullptr) {
 							creature->setLevel(playerManager->calculatePlayerLevel(creature));
@@ -168,4 +178,3 @@ public:
 };
 
 #endif //TRANSFERITEMWEAPONCOMMAND_H_
-

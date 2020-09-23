@@ -59,3 +59,4 @@ public:
 };
 
 #endif // SETFIRSTNAMECOMMAND_H_
+

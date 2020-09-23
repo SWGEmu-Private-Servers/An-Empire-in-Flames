@@ -80,6 +80,7 @@ namespace scene {
 		int getObjectName(lua_State* L);
 		int setDirectionalHeading(lua_State* L);
 		int getTemplateObjectPath(lua_State* L);
+		int getTemplateFileName(lua_State* L);
 		int teleport(lua_State* L);
 		int switchZone(lua_State* L);
 		int setObjectMenuComponent(lua_State* L);
@@ -103,6 +104,9 @@ namespace scene {
 		int info(lua_State* L);
 		int getPlayersInRange(lua_State* L);
 		int isInNavMesh(lua_State* L);
+		int getCityRegion(lua_State* L);
+		int setProtected(lua_State* L);
+		int updatePosition(lua_State* L);
 
 	protected:
 		SceneObject* _getRealSceneObject() {

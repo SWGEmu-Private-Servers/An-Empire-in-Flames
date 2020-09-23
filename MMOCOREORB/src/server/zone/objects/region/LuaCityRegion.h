@@ -21,6 +21,9 @@ namespace region {
 		int _setObject(lua_State* L);
 		int _getObject(lua_State* L);
 		int isClientRegion(lua_State* L);
+		int isCitizen(lua_State* L);
+		int getRegionDisplayedName(lua_State* L);
+		int getRegion(lua_State* L);
 
 	protected:
 		CityRegion* _getRealCityRegion() {

@@ -9,6 +9,7 @@
 #include "server/zone/objects/draftschematic/DraftSchematic.h"
 #include "server/zone/objects/tangible/component/Component.h"
 #include "server/zone/objects/manufactureschematic/ingredientslots/ComponentSlot.h"
+#include "server/zone/objects/tangible/wearables/WearableContainerObject.h"
 
 ResourceLabratory::ResourceLabratory() {
 	setLoggingName("ResourceLabratory");
@@ -159,7 +160,16 @@ bool ResourceLabratory::applyComponentStats(TangibleObject* prototype, Manufactu
 
 		ManagedReference<TangibleObject*> tano = compSlot->getPrototype();
 
-		if (tano == nullptr || !tano->isComponent())
+		if (tano == nullptr)
+			continue;
+
+		if (tano->getObjectTemplate()->getObjectName() == "@item_n:socket_gem_armor"){
+			WearableObject* armor = cast<WearableObject*>(prototype);
+			Attachment* attachment = cast<Attachment*>(tano.get());
+			armor->craftAttachment(attachment);
+			isYellow = true;
+		}
+		if (!tano->isComponent())
 			continue;
 
 		ManagedReference<Component*> component = cast<Component*>( tano.get());
@@ -184,6 +194,40 @@ bool ResourceLabratory::applyComponentStats(TangibleObject* prototype, Manufactu
 						precision = component->getAttributePrecision(property);
 						int preciseValue = Math::getPrecision(currentvalue, precision);
 						WearableObject* clothing = cast<WearableObject*>(prototype);
+						const VectorMap<String, int>* clothingMods = clothing->getWearableSkillMods();
+
+						int existingValue = 0;
+						if(clothingMods->contains(key)) {
+							existingValue = clothingMods->get(key);
+						}
+						preciseValue += existingValue;
+						if (preciseValue > 25)
+							preciseValue = 25;
+						clothing->addSkillMod(SkillModManager::WEARABLE, key, preciseValue);
+						isYellow = true;
+					}
+				}
+			}
+		} else if ( prototype->isWearableContainerObject() ) {
+
+			if (component->getObjectTemplate()->getObjectName() == "@craft_clothing_ingredients_n:reinforced_fiber_panels" || component->getObjectTemplate()->getObjectName() == "@craft_clothing_ingredients_n:synthetic_cloth"){
+
+				for (int k = 0; k < component->getPropertyCount(); ++k) {
+					const String property = component->getProperty(k);
+
+					if (property == "" || property == "null") {
+						continue;
+					}
+
+					String key = checkBioSkillMods(property);
+
+					if (key == "") {
+						continue;
+					} else {
+						currentvalue = component->getAttributeValue(property);
+						precision = component->getAttributePrecision(property);
+						int preciseValue = Math::getPrecision(currentvalue, precision);
+						WearableContainerObject* clothing = cast<WearableContainerObject*>(prototype);
 						const VectorMap<String, int>* clothingMods = clothing->getWearableSkillMods();
 
 						int existingValue = 0;

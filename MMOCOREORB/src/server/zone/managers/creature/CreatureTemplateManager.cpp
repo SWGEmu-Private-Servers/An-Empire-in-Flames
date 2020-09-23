@@ -50,6 +50,10 @@ CreatureTemplateManager::CreatureTemplateManager() : Logger("CreatureTemplateMan
 	lua->setGlobalInt("ENEMY", CreatureFlag::ENEMY);
 	lua->setGlobalInt("WILLBEDECLARED", CreatureFlag::WILLBEDECLARED);
 	lua->setGlobalInt("WASDECLARED", CreatureFlag::WASDECLARED);
+	lua->setGlobalInt("FRIENDLY", CreatureFlag::FRIENDLY);
+	lua->setGlobalInt("COMBATVEHICLE", CreatureFlag::COMBATVEHICLE);
+	lua->setGlobalInt("TEMPVEHICLE", CreatureFlag::TEMPVEHICLE);
+	lua->setGlobalInt("ALWAYSON", CreatureFlag::ALWAYSON);
 
 	lua->setGlobalInt("CONVERSABLE", OptionBitmask::CONVERSE);
 	lua->setGlobalInt("AIENABLED", OptionBitmask::AIENABLED);
@@ -76,6 +80,8 @@ CreatureTemplateManager::CreatureTemplateManager() : Logger("CreatureTemplateMan
 	lua->setGlobalInt("NAME_R3", NameManagerType::R3);
 	lua->setGlobalInt("NAME_R4", NameManagerType::R4);
 	lua->setGlobalInt("NAME_R5", NameManagerType::R5);
+	lua->setGlobalInt("NAME_C1", NameManagerType::C1);
+	lua->setGlobalInt("NAME_BB", NameManagerType::BB);
 	lua->setGlobalInt("NAME_3PO", NameManagerType::DROID_3P0);
 	lua->setGlobalInt("NAME_EG6", NameManagerType::DROID_EG6);
 	lua->setGlobalInt("NAME_WED", NameManagerType::DROID_WED);

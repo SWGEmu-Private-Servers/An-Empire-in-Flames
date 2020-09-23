@@ -7,6 +7,7 @@
 
 #include "server/zone/objects/mission/DestroyMissionObjective.h"
 #include "server/zone/objects/area/MissionSpawnActiveArea.h"
+#include "server/zone/objects/group/GroupObject.h"
 
 #include "server/zone/objects/waypoint/WaypointObject.h"
 #include "server/zone/Zone.h"
@@ -81,6 +82,16 @@ void DestroyMissionObjectiveImplementation::activate() {
 	waypoint->setActive(true);
 
 	mission->updateMissionLocation();
+
+	ManagedReference<CreatureObject*> player = getPlayerOwner();
+
+	if (player->isGrouped() && player->getGroup() != nullptr) {
+		Reference<GroupObject*> group = player->getGroup();
+
+		Locker locker(group);
+
+		group->immediateUpdateNearestMissionForGroup(player->getPlanetCRC());
+	}
 }
 
 Vector3 DestroyMissionObjectiveImplementation::findValidSpawnPosition(Zone* zone) {
@@ -244,6 +255,14 @@ void DestroyMissionObjectiveImplementation::spawnLair() {
 		Locker llocker(lairObject);
 
 		zone->transferObject(lairObject, -1, true);
+	}
+
+	if (player->isGrouped() && player->getGroup() != nullptr) {
+		Reference<GroupObject*> group = player->getGroup();
+
+		Locker locker(group);
+
+		group->immediateUpdateNearestMissionForGroup(player->getPlanetCRC());
 	}
 }
 

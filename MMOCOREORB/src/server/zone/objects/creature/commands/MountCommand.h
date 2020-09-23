@@ -7,6 +7,7 @@
 
 #include "server/zone/objects/scene/SceneObject.h"
 #include "server/zone/managers/objectcontroller/ObjectController.h"
+#include "server/zone/managers/creature/CreatureManager.h"
 
 class MountCommand : public QueueCommand {
 	Vector<uint32> restrictedBuffCRCs;
@@ -60,7 +61,32 @@ public:
 		if (!checkInvalidLocomotions(creature))
 			return INVALIDLOCOMOTION;
 
-		if (vehicle->getCreatureLinkID() != creature->getObjectID())
+		bool ownerMount = true;
+
+		if (vehicle->getCreatureLinkID() != creature->getObjectID()) {
+			ownerMount = false;
+			ManagedReference<GroupObject*> group = creature->getGroup();
+			if (group != nullptr) {
+				ManagedReference<CreatureObject* > vehicleOwner = vehicle->getLinkedCreature();
+				if (vehicleOwner != nullptr) {
+					if (object->isVehicleObject()) {
+						VehicleObject* speeder = cast<VehicleObject*>(vehicle);
+						if (group->hasMember(vehicleOwner) && speeder->hasRidingCreature() && speeder->hasOpenSeat()) {
+							speeder->slotPassenger(creature);
+							creature->setPosition(vehicle->getWorldPositionX(), vehicle->getWorldPositionZ(), vehicle->getWorldPositionY());
+						}
+					} else {
+						Creature* speeder = cast<Creature*>(vehicle);
+						if (group->hasMember(vehicleOwner) && speeder->hasRidingCreature() && speeder->hasOpenSeat()) {
+							speeder->slotPassenger(creature);
+							creature->setPosition(vehicle->getWorldPositionX(), vehicle->getWorldPositionZ(), vehicle->getWorldPositionY());
+						}
+					}
+				}
+			}			 
+		}
+
+		if (!ownerMount)
 			return GENERALERROR;
 
 		if (!vehicle->isInRange(creature, 5))
@@ -178,6 +204,8 @@ public:
 		creature->setTurnScale(newTurn, true);
 		creature->setAccelerationMultiplierMod(newAccel, true);
 		creature->addMountedCombatSlow();
+
+		creature->notifyObservers(ObserverEventType::MOUNTED, creature);
 
 		return SUCCESS;
 	}

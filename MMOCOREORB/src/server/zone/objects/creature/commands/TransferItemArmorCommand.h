@@ -18,6 +18,10 @@ public:
 
 	}
 
+	float getCommandDuration(CreatureObject* object, const UnicodeString& arguments) const {
+		return 0.5;
+	}
+
 	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
 
 		if (!checkStateMask(creature))
@@ -25,6 +29,11 @@ public:
 
 		if (!checkInvalidLocomotions(creature))
 			return INVALIDLOCOMOTION;
+
+		if (creature->isInCombat()) {
+			creature->sendSystemMessage("You cannot equip armor while in combat!");
+			return GENERALERROR;			
+		}			
 
 		/*
 		creature->info("transfer item armor");

@@ -632,7 +632,7 @@ void SlicingSessionImplementation::handleArmorSlice() {
 		max += 10;
 	case 3:
 		min += 5;
-		max += (sliceType == 0) ? 20 : 30;
+		max += (sliceType == 0) ? 25 : 30;
 		break;
 	default:
 		return;
@@ -682,6 +682,8 @@ void SlicingSessionImplementation::handleSliceEffectiveness(uint8 percent) {
 
 	Locker locker(armor);
 
+	percent = (percent / 4);
+
 	armor->setEffectivenessSlice(percent / 100.f);
 	armor->setSliced(true);
 
@@ -711,6 +713,11 @@ void SlicingSessionImplementation::handleContainerSlice() {
 	if (tangibleObject->getGameObjectType() == SceneObjectType::PLAYERLOOTCRATE) {
 		Reference<SceneObject*> containerSceno = player->getZoneServer()->createObject(STRING_HASHCODE("object/tangible/container/loot/loot_crate.iff"), 1);
 
+		if (tangibleObject->getClientObjectCRC() == 0x6C34F325) {
+			containerSceno->destroyObjectFromDatabase(true);
+			containerSceno = player->getZoneServer()->createObject(STRING_HASHCODE("object/tangible/container/loot/loot_briefcase.iff"), 1);
+		}
+
 		if (containerSceno == nullptr)
 			return;
 
@@ -723,16 +730,11 @@ void SlicingSessionImplementation::handleContainerSlice() {
 			return;
 		}
 
-		TransactionLog trx(TrxCode::SLICECONTAINER, player, container);
-
-		if (System::random(10) != 4) {
-			lootManager->createLoot(trx, container, "looted_container");
-		}
+		if (System::random(10) != 4)
+			lootManager->createLoot(container, "looted_container");
 
 		inventory->transferObject(container, -1);
 		container->sendTo(player, true);
-
-		trx.commit();
 
 		if (inventory->hasObjectInContainer(tangibleObject->getObjectID())) {
 			//inventory->removeObject(tangibleObject, true);

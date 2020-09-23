@@ -25,7 +25,7 @@ public:
 		: QueueCommand(name, server) {
 
 		range = 5;
-		mindCost = 50;
+		mindCost = 1800;
 	}
 
 	void deactivateInjuryTreatment(CreatureObject* creature, bool isRangedStim) const {
@@ -450,6 +450,15 @@ public:
 		}
 
 		int mindCostNew = creature->calculateCostAdjustment(CreatureAttribute::FOCUS, mindCost);
+
+		if (stimPack == nullptr)
+			return GENERALERROR;
+
+		if (stimPack->isRangedStimPack())
+			mindCostNew *= 1.25;
+
+		if (stimPack->isArea())
+			mindCostNew *= 1.4;
 
 		if (!canPerformSkill(creature, targetCreature, stimPack, mindCostNew))
 			return GENERALERROR;

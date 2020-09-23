@@ -42,6 +42,8 @@ namespace building {
 		int initializeStaticGCWBase(lua_State* L);
 		int isPrivateStructure(lua_State* L);
 		int getCellName(lua_State* L);
+		int isAllowedEntry(lua_State* L);
+		int setDeedObjectID(lua_State* L);
 
 	private:
 		// The pointer to the 'real object' defined in object.cc

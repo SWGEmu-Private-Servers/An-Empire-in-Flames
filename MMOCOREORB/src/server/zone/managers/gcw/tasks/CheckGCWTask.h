@@ -17,7 +17,7 @@ public:
 	CheckGCWTask(GCWManager* manager){
 		gcwManager = manager;
 
-		setCustomTaskQueue("slowQueue");
+//		setCustomTaskQueue("slowQueue");
 	}
 
 	void run() {

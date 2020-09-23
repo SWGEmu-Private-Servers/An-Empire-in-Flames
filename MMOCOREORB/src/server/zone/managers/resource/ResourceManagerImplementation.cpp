@@ -9,7 +9,6 @@
 #include "server/zone/objects/resource/ResourceContainer.h"
 #include "server/zone/packets/resource/ResourceContainerObjectDeltaMessage3.h"
 #include "server/zone/objects/player/sui/listbox/SuiListBox.h"
-#include "server/zone/objects/transaction/TransactionLog.h"
 
 void ResourceManagerImplementation::initialize() {
 	if (!loadConfigData()) {
@@ -209,11 +208,8 @@ void ResourceManagerImplementation::sendResourceListForSurvey(CreatureObject* pl
 ResourceContainer* ResourceManagerImplementation::harvestResource(CreatureObject* player, const String& type, const int quantity) {
 	return resourceSpawner->harvestResource(player, type, quantity);
 }
-bool ResourceManagerImplementation::harvestResourceToPlayer(TransactionLog& trx, CreatureObject* player, ResourceSpawn* resourceSpawn, const int quantity) {
-	trx.addState("resourceType", resourceSpawn->getType());
-	trx.addState("resourceName", resourceSpawn->getName());
-	trx.addState("resourceQuantity", quantity);
-	return resourceSpawner->harvestResource(trx, player, resourceSpawn, quantity);
+bool ResourceManagerImplementation::harvestResourceToPlayer(CreatureObject* player, ResourceSpawn* resourceSpawn, const int quantity) {
+	return resourceSpawner->harvestResource(player, resourceSpawn, quantity);
 }
 
 void ResourceManagerImplementation::sendSurvey(CreatureObject* playerCreature, const String& resname) {
@@ -437,14 +433,18 @@ String ResourceManagerImplementation::dumpResources() {
 	return resourceSpawner->dumpResources();
 }
 
+String ResourceManagerImplementation::ghDump() {
+ 	Locker locker(_this.getReferenceUnsafeStaticCast());
+ 
+ 	return resourceSpawner->ghDump();
+ }
+
 String ResourceManagerImplementation::despawnResource(String& resourceName) {
 
 	ManagedReference<ResourceSpawn*> spawn = getResourceSpawn(resourceName);
 	if(spawn == nullptr) {
 		return "Spawn not Found";
 	}
-
-	Locker locker(spawn);
 
 	spawn->setDespawned(time(0) - 1);
 	resourceSpawner->shiftResources();

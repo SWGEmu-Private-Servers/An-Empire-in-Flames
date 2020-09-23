@@ -32,12 +32,6 @@ public:
 		if( player->getPlayerObject() == nullptr )
 			return GENERALERROR;
 
-		// Player must have chosen flash speeder as a veteran reward
-		if( !player->getPlayerObject()->hasChosenVeteranReward( "object/tangible/deed/vehicle_deed/speederbike_flash_deed.iff" ) ){
-			player->sendSystemMessage( "@veteran:flash_speeder_not_eligible" ); //	"You are not eligible to receive a Flash Speeder"
-			return GENERALERROR;
-		}
-
 		// Player must have enough credits
 		if(!player->verifyCredits(ReplaceFlashSpeederSuiCallback::FLASH_SPEEDER_COST)){
 			player->sendSystemMessage( "@veteran:flash_speeder_no_credits" ); // "You do not have enough credits to receive a replacement."

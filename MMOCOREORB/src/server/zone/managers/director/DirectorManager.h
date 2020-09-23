@@ -121,6 +121,7 @@ namespace server {
 		static int dropObserver(lua_State* L);
 		static int hasObserver(lua_State* L);
 		static int spawnMobile(lua_State* L);
+		static int spawnMobileAsBaby(lua_State* L);
 		static int spawnEventMobile(lua_State* L);
 		static int spawnSceneObject(lua_State* L);
 		static int spawnActiveArea(lua_State* L);
@@ -131,6 +132,7 @@ namespace server {
 		static int createLootFromCollection(lua_State* L);
 		static int getRandomNumber(lua_State* L);
 		static int spatialChat(lua_State* L);
+		static int broadcastGalaxy(lua_State* L);
 		static int spatialMoodChat(lua_State* L);
 		static int readSharedMemory(lua_State* L);
 		static int writeSharedMemory(lua_State* L);
@@ -144,7 +146,9 @@ namespace server {
 		static int addStartingWeaponsInto(lua_State* L);
 		static int setAuthorizationState(lua_State* L);
 		static int giveItem(lua_State* L);
+		static int giveTemporaryItem(lua_State* L);
 		static int giveControlDevice(lua_State* L);
+		static int givePet(lua_State* L);
 		static int checkTooManyHirelings(lua_State* L);
 		static int checkInt64Lua(lua_State* L);
 		static int getChatMessage(lua_State* L);
@@ -174,6 +178,7 @@ namespace server {
 		static int getTerrainHeight(lua_State* L);
 		static int checkArgumentCount(lua_State*L, int args);
 		static int awardSkill(lua_State* L);
+		static int surrenderSkill(lua_State* L);
 		static int getCityRegionAt(lua_State* L);
 		static int setDungeonTicketAttributes(lua_State* L);
 		static int setQuestStatus(lua_State* L);
@@ -198,6 +203,7 @@ namespace server {
 		static int spawnTheaterObject(lua_State* L);
 		static int getSchematicItemName(lua_State* L);
 		static int getBadgeListByType(lua_State* L);
+		static int getAllPlayersOnline(lua_State* L);
 
 	private:
 		static void setupLuaPackagePath(Lua* luaEngine);

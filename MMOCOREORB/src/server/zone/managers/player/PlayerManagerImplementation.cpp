@@ -107,8 +107,7 @@
 #include "server/zone/managers/frs/FrsManager.h"
 #include "server/zone/objects/player/events/OnlinePlayerLogTask.h"
 #include <sys/stat.h>
-#include "server/zone/objects/transaction/TransactionLog.h"
-#include "server/zone/objects/creature/commands/TransferItemMiscCommand.h"
+#include "templates/faction/Factions.h"
 
 PlayerManagerImplementation::PlayerManagerImplementation(ZoneServer* zoneServer, ZoneProcessServer* impl,
 					bool trackOnlineUsers) : Logger("PlayerManager") {
@@ -800,7 +799,7 @@ String PlayerManagerImplementation::setFirstName(CreatureObject* creature, const
 
 	auto nameManager = processor->getNameManager();
 
-	int result = nameManager->validateName(newFirstName, creature->getSpecies());
+/*	int result = nameManager->validateName(newFirstName, creature->getSpecies());
 
 	switch (result) {
 	case NameManagerResult::ACCEPTED:
@@ -826,7 +825,7 @@ String PlayerManagerImplementation::setFirstName(CreatureObject* creature, const
 	case NameManagerResult::DECLINED_SYNTAX:
 		return "That name contains invalid syntax.";
 		break;
-	}
+	} */
 
 	String oldFirstName = creature->getFirstName();
 	String oldLastName = creature->getLastName();
@@ -897,7 +896,7 @@ String PlayerManagerImplementation::setLastName(CreatureObject* creature, const 
 	if (!newLastName.isEmpty())
 		newFullName = oldFirstName + " " + newLastName;
 
-	if (!skipVerify) {
+/*	if (!skipVerify) {
 		auto nameManager = processor->getNameManager();
 
 		int result = nameManager->validateName(newFullName, creature->getSpecies());
@@ -924,7 +923,7 @@ String PlayerManagerImplementation::setLastName(CreatureObject* creature, const 
 			return "That name contains invalid syntax.";
 			break;
 		}
-	}
+	} */
 
 	creature->setCustomObjectName(newFullName, true);
 
@@ -1098,7 +1097,10 @@ int PlayerManagerImplementation::notifyDestruction(TangibleObject* destructor, T
 	}
 
 	if ((destructor->isKiller() && isDefender) || ghost->getIncapacitationCounter() >= 3) {
-		killPlayer(destructor, playerCreature, 0, isCombatAction);
+		if (!destructor->isNeutral() && (destructedObject->getFactionStatus() == FactionStatus::OVERT))
+			killPlayer(destructor, playerCreature, 1, isCombatAction);
+		else
+			killPlayer(destructor, playerCreature, 0, isCombatAction);
 	} else {
 
 		playerCreature->setPosture(CreaturePosture::INCAPACITATED, !isCombatAction, !isCombatAction);
@@ -1180,6 +1182,8 @@ void PlayerManagerImplementation::killPlayer(TangibleObject* attacker, CreatureO
 		player->executeObjectControllerAction(STRING_HASHCODE("dismount"));
 	}
 
+	attacker->notifyObservers(ObserverEventType::KILLEDCREATURE, player);
+
 	player->clearDots();
 
 	player->setPosture(CreaturePosture::DEAD, !isCombatAction, !isCombatAction);
@@ -1197,8 +1201,8 @@ void PlayerManagerImplementation::killPlayer(TangibleObject* attacker, CreatureO
 
 	if (ghost != nullptr) {
 		ghost->resetIncapacitationTimes();
-		if (ghost->hasTef()) {
-			ghost->schedulePvpTefRemovalTask(true, true, true);
+		if (ghost->hasPvpTef()) {
+			ghost->schedulePvpTefRemovalTask(true, true);
 		}
 	}
 
@@ -1296,12 +1300,16 @@ void PlayerManagerImplementation::sendActivateCloneRequest(CreatureObject* playe
 	ManagedReference<SceneObject*> preDesignatedFacility = server->getObject(preDesignatedFacilityOid);
 	String predesignatedName = "None";
 
+	BuildingObject* cloningBuilding = preDesignatedFacility.castTo<BuildingObject*>();
+
 	//Get the name of the pre-designated facility
 	if (preDesignatedFacility != nullptr) {
 		ManagedReference<CityRegion*> cr = preDesignatedFacility->getCityRegion().get();
 
 		if (preDesignatedFacility->getZone() != zone) {
 			predesignatedName = "off-planet (unavailable)";
+		} else if ((cloningBuilding->isRebel() && player->isImperial()) || (cloningBuilding->isImperial() && player->isRebel())) {
+			predesignatedName = "under enemy control (unavailable)";
 		} else if (cr != nullptr) {
 			predesignatedName = cr->getRegionDisplayedName();
 		} else {
@@ -1364,7 +1372,7 @@ void PlayerManagerImplementation::sendActivateCloneRequest(CreatureObject* playe
 	if (closestCloning != nullptr)
 		cloneMenu->addMenuItem("@base_player:revive_closest", closestCloning->getObjectID());
 
-	if (preDesignatedFacility != nullptr && preDesignatedFacility->getZone() == zone)
+	if (preDesignatedFacility != nullptr && preDesignatedFacility->getZone() == zone && !((cloningBuilding->isRebel() && player->isImperial()) || (cloningBuilding->isImperial() && player->isRebel())))
 		cloneMenu->addMenuItem("@base_player:revive_bind", preDesignatedFacility->getObjectID());
 
 	for (int i = 0; i < locations.size(); i++) {
@@ -1407,13 +1415,15 @@ bool PlayerManagerImplementation::isValidClosestCloner(CreatureObject* player, S
 
 	CloningBuildingObjectTemplate* cbot = cast<CloningBuildingObjectTemplate*>(cloner->getObjectTemplate());
 
+	BuildingObject* cloningBuilding = static_cast<BuildingObject*>(cloner);
+
 	if (cbot == nullptr)
 		return false;
 
-	if (cbot->getFacilityType() == CloningBuildingObjectTemplate::FACTION_IMPERIAL && player->getFaction() != Factions::FACTIONIMPERIAL)
+	if ((cbot->getFacilityType() == CloningBuildingObjectTemplate::FACTION_IMPERIAL && player->getFaction() != Factions::FACTIONIMPERIAL) || ((cloningBuilding->getFaction() == Factions::FACTIONIMPERIAL) && player->isRebel()))
 		return false;
 
-	if (cbot->getFacilityType() == CloningBuildingObjectTemplate::FACTION_REBEL && player->getFaction() != Factions::FACTIONREBEL)
+	if ((cbot->getFacilityType() == CloningBuildingObjectTemplate::FACTION_REBEL && player->getFaction() != Factions::FACTIONREBEL) || ((cloningBuilding->getFaction() == Factions::FACTIONREBEL) && player->isImperial()))
 		return false;
 
 	if (cbot->isJediCloner())
@@ -1429,6 +1439,8 @@ void PlayerManagerImplementation::sendPlayerToCloner(CreatureObject* player, uin
 		error("Cloning structure is null");
 		return;
 	}
+
+	BuildingObject* cloningBuilding = cloner.castTo<BuildingObject*>();
 
 	PlayerObject* ghost = player->getPlayerObject();
 
@@ -1459,7 +1471,6 @@ void PlayerManagerImplementation::sendPlayerToCloner(CreatureObject* player, uin
 	SceneObject* cell = nullptr;
 
 	if (cellID != 0) {
-		BuildingObject* cloningBuilding = cloner.castTo<BuildingObject*>();
 
 		if (cloningBuilding == nullptr)  {
 			error("Cloning building is null");
@@ -1478,30 +1489,30 @@ void PlayerManagerImplementation::sendPlayerToCloner(CreatureObject* player, uin
 
 	Zone* zone = player->getZone();
 
+
 	ghost->setCloning(true);
 
-	if (cellID == 0)
-		player->switchZone(zone->getZoneName(), cloner->getWorldPositionX() + coordinate->getPositionX(), cloner->getWorldPositionZ() + coordinate->getPositionZ(), cloner->getWorldPositionY() + coordinate->getPositionY(), 0);
-	else
-		player->switchZone(zone->getZoneName(), coordinate->getPositionX(), coordinate->getPositionZ(), coordinate->getPositionY(), cell->getObjectID());
+	player->teleport(cloner->getWorldPositionX() + coordinate->getPositionX(), cloner->getWorldPositionZ() + coordinate->getPositionZ(), cloner->getWorldPositionY() + coordinate->getPositionY(), 0);
+	if (cellID != 0)
+		player->teleport(coordinate->getPositionX(), coordinate->getPositionZ(), coordinate->getPositionY(), cell->getObjectID());
 
 	uint64 preDesignatedFacilityOid = ghost->getCloningFacility();
 	ManagedReference<SceneObject*> preDesignatedFacility = server->getObject(preDesignatedFacilityOid);
 
-	if (preDesignatedFacility == nullptr || preDesignatedFacility != cloner) {
+	if (zone->getZoneName() != "dungeon1" && (preDesignatedFacility == nullptr || preDesignatedFacility != cloner || cloningBuilding->isRebel() || cloningBuilding->isImperial())) {
 		player->addWounds(CreatureAttribute::HEALTH, 100, true, false);
 		player->addWounds(CreatureAttribute::ACTION, 100, true, false);
 		player->addWounds(CreatureAttribute::MIND, 100, true, false);
 		player->addShockWounds(100, true);
 	}
 
-	if (player->getFactionStatus() != FactionStatus::ONLEAVE && cbot->getFacilityType() != CloningBuildingObjectTemplate::FACTION_IMPERIAL && cbot->getFacilityType() != CloningBuildingObjectTemplate::FACTION_REBEL && !player->hasSkill("force_title_jedi_rank_03"))
+	if (player->getFactionStatus() != FactionStatus::ONLEAVE && cbot->getFacilityType() != CloningBuildingObjectTemplate::FACTION_IMPERIAL && cbot->getFacilityType() != CloningBuildingObjectTemplate::FACTION_REBEL && !player->hasSkill("force_title_jedi_rank_03") && !cloningBuilding->isRebel() && !cloningBuilding->isImperial())
 		player->setFactionStatus(FactionStatus::ONLEAVE);
 
 	SortedVector<ManagedReference<SceneObject*> > insurableItems = getInsurableItems(player, false);
 
 	// Decay
-	if (typeofdeath == 0 && insurableItems.size() > 0) {
+	if (typeofdeath == 0 && insurableItems.size() > 0 && zone->getZoneName() != "dungeon1" && !cloningBuilding->isRebel() && !cloningBuilding->isImperial()) {
 
 		ManagedReference<SuiListBox*> suiCloneDecayReport = new SuiListBox(player, SuiWindowType::CLONE_REQUEST_DECAY, SuiListBox::HANDLESINGLEBUTTON);
 		suiCloneDecayReport->setPromptTitle("DECAY REPORT");
@@ -1567,6 +1578,10 @@ void PlayerManagerImplementation::sendPlayerToCloner(CreatureObject* player, uin
 		message.setTO("exp_n", "jedi_general");
 		player->sendSystemMessage(message);
 	}
+
+	// Remove Stomach and Drink Filling
+	ghost->setDrinkFilling(0);
+	ghost->setFoodFilling(0);
 }
 
 void PlayerManagerImplementation::ejectPlayerFromBuilding(CreatureObject* player) {
@@ -1751,6 +1766,8 @@ void PlayerManagerImplementation::disseminateExperience(TangibleObject* destruct
 				awardExperience(attacker, xpType, xpAmount);
 			}
 
+			uint32 squadXp = (combatXp * 0.1f);
+
 			combatXp = awardExperience(attacker, "combat_general", combatXp, true, 0.1f);
 
 			//Check if the group leader is a squad leader
@@ -1770,7 +1787,7 @@ void PlayerManagerImplementation::disseminateExperience(TangibleObject* destruct
 
 			//If he is a squad leader, and is in range of this player, then add the combat exp for him to use.
 			if (groupLeader->hasSkill("outdoors_squadleader_novice") && pos.distanceTo(attacker->getWorldPosition()) <= ZoneServer::CLOSEOBJECTRANGE) {
-				int v = slExperience.get(groupLeader) + combatXp;
+				int v = slExperience.get(groupLeader) + squadXp;
 				slExperience.put(groupLeader, v);
 			}
 		}
@@ -1866,60 +1883,283 @@ bool PlayerManagerImplementation::checkEncumbrancies(CreatureObject* player, Arm
 		return true;
 }
 
-void PlayerManagerImplementation::applyEncumbrancies(CreatureObject* player, ArmorObject* armor) {
-	int healthEncumb = Math::max(0, armor->getHealthEncumbrance());
-	int actionEncumb = Math::max(0, armor->getActionEncumbrance());
-	int mindEncumb = Math::max(0, armor->getMindEncumbrance());
+void PlayerManagerImplementation::applyEncumbrancies(CreatureObject* player, ArmorObject* armorPiece) {
 
-	player->addEncumbrance(CreatureEncumbrance::HEALTH, healthEncumb, true);
-	player->addEncumbrance(CreatureEncumbrance::ACTION, actionEncumb, true);
-	player->addEncumbrance(CreatureEncumbrance::MIND, mindEncumb, true);
+	int healthTotal = 0;
+	int actionTotal = 0;
+	int mindTotal = 0;
+	int armorPieces = 0;
 
-	player->inflictDamage(player, CreatureAttribute::STRENGTH, healthEncumb, true);
-	player->addMaxHAM(CreatureAttribute::STRENGTH, -healthEncumb, true);
+	// Existing Armor
+	Vector<ManagedReference<ArmorObject*> > playerArmorVector = player->getWearablesDeltaVector()->getArmorAtHitLocation(1);
+	playerArmorVector.addAll(player->getWearablesDeltaVector()->getArmorAtHitLocation(2));
+	playerArmorVector.addAll(player->getWearablesDeltaVector()->getArmorAtHitLocation(3));
+	playerArmorVector.addAll(player->getWearablesDeltaVector()->getArmorAtHitLocation(4));
+	playerArmorVector.addAll(player->getWearablesDeltaVector()->getArmorAtHitLocation(5));
+	playerArmorVector.addAll(player->getWearablesDeltaVector()->getArmorAtHitLocation(6));
 
-	player->inflictDamage(player, CreatureAttribute::CONSTITUTION, healthEncumb, true);
-	player->addMaxHAM(CreatureAttribute::CONSTITUTION, -healthEncumb, true);
+	Vector<String> equippedArmorSerials;
 
-	player->inflictDamage(player, CreatureAttribute::QUICKNESS, actionEncumb, true);
-	player->addMaxHAM(CreatureAttribute::QUICKNESS, -actionEncumb, true);
+	for(int i = 0; i < playerArmorVector.size();i++){
+		if (playerArmorVector.get(i)->getSerialNumber() == "" ){
+			// Give the piece a Serial
+			StringBuffer ss;
+			char a;
+			ss <<"(sysGen";
+			for (int j=0; j < 8; j++){
+				a = (System::random(34));
+				if ( a < 9){
+					a = a + 48;
+				} else {
+					a -= 9;
+					a = a + 97;
+				}
+				ss << a;
+			}
+			ss << ")";
+			playerArmorVector.get(i)->setSerialNumber(ss.toString());
+		}
+		if ( !equippedArmorSerials.contains(playerArmorVector.get(i)->getSerialNumber()) && playerArmorVector.get(i)->getHealthEncumbrance() > 0){
+			int equippedPieceHealthEncumbrance = playerArmorVector.get(i)->getHealthEncumbrance() * 4.5;
+			int equippedPieceActionEncumbrance = playerArmorVector.get(i)->getActionEncumbrance() * 4.5;
+			int equippedPieceMindEncumbrance =   playerArmorVector.get(i)->getMindEncumbrance() * 4.5;
+			equippedPieceHealthEncumbrance = Math::max(0,equippedPieceHealthEncumbrance);
+			equippedPieceActionEncumbrance = Math::max(0,equippedPieceActionEncumbrance);
+			equippedPieceMindEncumbrance = Math::max(0,equippedPieceMindEncumbrance);
+			healthTotal += equippedPieceHealthEncumbrance;
+			actionTotal += equippedPieceActionEncumbrance;
+			mindTotal += equippedPieceMindEncumbrance;
+			armorPieces++;
+			equippedArmorSerials.add(playerArmorVector.get(i)->getSerialNumber());
+		}
+	}
+	if (armorPiece->getSerialNumber() == "" ){
+		// Give the piece a Serial
+		StringBuffer ss;
+		char a;
+		ss <<"(sysGen";
+		for (int j=0; j < 8; j++){
+			a = (System::random(34));
+			if ( a < 9){
+				a = a + 48;
+			} else {
+				a -= 9;
+				a = a + 97;
+			}
+			ss << a;
+		}
+		ss << ")";
+		armorPiece->setSerialNumber(ss.toString());
+	}
 
-	player->inflictDamage(player, CreatureAttribute::STAMINA, actionEncumb, true);
-	player->addMaxHAM(CreatureAttribute::STAMINA, -actionEncumb, true);
+	if ( !equippedArmorSerials.contains(armorPiece->getSerialNumber()) && armorPiece->getHealthEncumbrance() > 0){
+		int equippedPieceHealthEncumbrance = armorPiece->getHealthEncumbrance() * 4.5;
+		int equippedPieceActionEncumbrance =  armorPiece->getActionEncumbrance() * 4.5;
+		int equippedPieceMindEncumbrance = armorPiece->getHealthEncumbrance() * 4.5;
+		equippedPieceHealthEncumbrance = Math::max(0,equippedPieceHealthEncumbrance);
+		equippedPieceActionEncumbrance = Math::max(0,equippedPieceActionEncumbrance);
+		equippedPieceMindEncumbrance = Math::max(0,equippedPieceMindEncumbrance);
+		healthTotal += equippedPieceHealthEncumbrance;
+		actionTotal += equippedPieceActionEncumbrance;
+		mindTotal += equippedPieceMindEncumbrance;
+		armorPieces++;
+		equippedArmorSerials.add(armorPiece->getSerialNumber());
+	}
 
-	player->inflictDamage(player, CreatureAttribute::FOCUS, mindEncumb, true);
-	player->addMaxHAM(CreatureAttribute::FOCUS, -mindEncumb, true);
 
-	player->inflictDamage(player, CreatureAttribute::WILLPOWER, mindEncumb, true);
-	player->addMaxHAM(CreatureAttribute::WILLPOWER, -mindEncumb, true);
+	int newHealthAvg = 0;
+	int newActionAvg = 0;
+	int newMindAvg = 0;
+
+	if ( armorPieces > 0 ){
+		 newHealthAvg = healthTotal / armorPieces;
+		 newActionAvg = actionTotal / armorPieces;
+		 newMindAvg = mindTotal / armorPieces;
+	} else {
+		newHealthAvg = armorPiece->getHealthEncumbrance();
+		newActionAvg = armorPiece->getActionEncumbrance();
+		newMindAvg = armorPiece->getMindEncumbrance();
+	}
+
+
+	int currentHealthEncumb = player->getEncumbrance(CreatureEncumbrance::HEALTH);
+	int currentActionEncumb = player->getEncumbrance(CreatureEncumbrance::ACTION);
+	int currentMindEncumb = player->getEncumbrance(CreatureEncumbrance::MIND);
+
+		int deltaH = newHealthAvg - currentHealthEncumb;
+		int deltaA = newActionAvg - currentActionEncumb;
+		int deltaM = newMindAvg - currentMindEncumb;
+
+
+		if ( deltaH > 0 ){ // Adding Encumbrance
+				player->addEncumbrance(CreatureEncumbrance::HEALTH, deltaH, true);
+				player->inflictDamage(player, CreatureAttribute::STRENGTH, deltaH, true);
+				player->addMaxHAM(CreatureAttribute::STRENGTH, -deltaH, true);
+
+				player->inflictDamage(player, CreatureAttribute::CONSTITUTION, deltaH, true);
+				player->addMaxHAM(CreatureAttribute::CONSTITUTION, -deltaH, true);
+		}	else {
+				player->addEncumbrance(CreatureEncumbrance::HEALTH, deltaH, true);
+				player->healDamage(player, CreatureAttribute::STRENGTH, -deltaH, true);
+				player->addMaxHAM(CreatureAttribute::STRENGTH, -deltaH, true);
+
+				player->healDamage(player, CreatureAttribute::CONSTITUTION, -deltaH, true);
+				player->addMaxHAM(CreatureAttribute::CONSTITUTION, -deltaH, true);
+		}
+
+		if ( deltaA > 0 ){
+			player->addEncumbrance(CreatureEncumbrance::ACTION, deltaA, true);
+			player->inflictDamage(player, CreatureAttribute::QUICKNESS, deltaA, true);
+			player->addMaxHAM(CreatureAttribute::QUICKNESS, -deltaA, true);
+
+			player->inflictDamage(player, CreatureAttribute::STAMINA, deltaA, true);
+			player->addMaxHAM(CreatureAttribute::STAMINA, -deltaA, true);
+	}	else {
+			player->addEncumbrance(CreatureEncumbrance::ACTION, deltaA, true);
+			player->healDamage(player, CreatureAttribute::QUICKNESS, -deltaA, true);
+			player->addMaxHAM(CreatureAttribute::QUICKNESS, -deltaA, true);
+
+			player->healDamage(player, CreatureAttribute::STAMINA, -deltaA, true);
+			player->addMaxHAM(CreatureAttribute::STAMINA, -deltaA, true);
+	}
+
+	if ( deltaM > 0 ){
+			player->addEncumbrance(CreatureEncumbrance::MIND, deltaM, true);
+			player->inflictDamage(player, CreatureAttribute::FOCUS, deltaM, true);
+			player->addMaxHAM(CreatureAttribute::FOCUS, -deltaM, true);
+
+			player->inflictDamage(player, CreatureAttribute::WILLPOWER, deltaM, true);
+			player->addMaxHAM(CreatureAttribute::WILLPOWER, -deltaM, true);
+	}	else {
+			player->addEncumbrance(CreatureEncumbrance::MIND, deltaM, true);
+			player->healDamage(player, CreatureAttribute::FOCUS, -deltaM, true);
+			player->addMaxHAM(CreatureAttribute::FOCUS, -deltaM, true);
+
+			player->healDamage(player, CreatureAttribute::WILLPOWER, -deltaM, true);
+			player->addMaxHAM(CreatureAttribute::WILLPOWER, -deltaM, true);
+	}
+
 }
 
 void PlayerManagerImplementation::removeEncumbrancies(CreatureObject* player, ArmorObject* armor) {
-	int healthEncumb = Math::max(0, armor->getHealthEncumbrance());
-	int actionEncumb = Math::max(0, armor->getActionEncumbrance());
-	int mindEncumb = Math::max(0, armor->getMindEncumbrance());
 
-	player->addEncumbrance(CreatureEncumbrance::HEALTH, -healthEncumb, true);
-	player->addEncumbrance(CreatureEncumbrance::ACTION, -actionEncumb, true);
-	player->addEncumbrance(CreatureEncumbrance::MIND, -mindEncumb, true);
+	int healthTotal = 0;
+	int actionTotal = 0;
+	int mindTotal = 0;
+	int armorPieces = 0;
 
-	player->addMaxHAM(CreatureAttribute::STRENGTH, healthEncumb, true);
-	player->healDamage(player, CreatureAttribute::STRENGTH, healthEncumb, true);
 
-	player->addMaxHAM(CreatureAttribute::CONSTITUTION, healthEncumb, true);
-	player->healDamage(player, CreatureAttribute::CONSTITUTION, healthEncumb, true);
+	// Existing Armor
+	Vector<ManagedReference<ArmorObject*> > playerArmorVector = player->getWearablesDeltaVector()->getArmorAtHitLocation(1);
+	playerArmorVector.addAll(player->getWearablesDeltaVector()->getArmorAtHitLocation(2));
+	playerArmorVector.addAll(player->getWearablesDeltaVector()->getArmorAtHitLocation(3));
+	playerArmorVector.addAll(player->getWearablesDeltaVector()->getArmorAtHitLocation(4));
+	playerArmorVector.addAll(player->getWearablesDeltaVector()->getArmorAtHitLocation(5));
+	playerArmorVector.addAll(player->getWearablesDeltaVector()->getArmorAtHitLocation(6));
 
-	player->addMaxHAM(CreatureAttribute::QUICKNESS, actionEncumb, true);
-	player->healDamage(player, CreatureAttribute::QUICKNESS, actionEncumb, true);
 
-	player->addMaxHAM(CreatureAttribute::STAMINA, actionEncumb, true);
-	player->healDamage(player, CreatureAttribute::STAMINA, actionEncumb, true);
+	Vector<String> equippedArmorSerials;
 
-	player->addMaxHAM(CreatureAttribute::FOCUS, mindEncumb, true);
-	player->healDamage(player, CreatureAttribute::FOCUS, mindEncumb, true);
+	for(int i = 0; i < playerArmorVector.size();i++){
+		if (playerArmorVector.get(i)->getSerialNumber() == "" ){
+			// Give the piece a Serial
+			StringBuffer ss;
+			char a;
+			ss <<"(sysGen";
+			for (int j=0; j < 8; j++){
+				a = (System::random(34));
+				if ( a < 9){
+					a = a + 48;
+				} else {
+					a -= 9;
+					a = a + 97;
+				}
+				ss << a;
+			}
+			ss << ")";
+			playerArmorVector.get(i)->setSerialNumber(ss.toString());
+		}
+		if ( !equippedArmorSerials.contains(playerArmorVector.get(i)->getSerialNumber()) && playerArmorVector.get(i)->getDisplayedName() != armor->getDisplayedName()  ){
+			int equippedPieceHealthEncumbrance = playerArmorVector.get(i)->getHealthEncumbrance() * 4.5;
+			int equippedPieceActionEncumbrance = playerArmorVector.get(i)->getActionEncumbrance() * 4.5;
+			int equippedPieceMindEncumbrance =   playerArmorVector.get(i)->getMindEncumbrance() * 4.5;
+			equippedPieceHealthEncumbrance = Math::max(0,equippedPieceHealthEncumbrance);
+			equippedPieceActionEncumbrance = Math::max(0,equippedPieceActionEncumbrance);
+			equippedPieceMindEncumbrance = Math::max(0,equippedPieceMindEncumbrance);
+			healthTotal += equippedPieceHealthEncumbrance;
+			actionTotal += equippedPieceActionEncumbrance;
+			mindTotal += equippedPieceMindEncumbrance;
+			if ( equippedPieceHealthEncumbrance > 0 )
+				armorPieces++;
+			equippedArmorSerials.add(playerArmorVector.get(i)->getSerialNumber());
+		}
+	}
 
-	player->addMaxHAM(CreatureAttribute::WILLPOWER, mindEncumb, true);
-	player->healDamage(player, CreatureAttribute::WILLPOWER, mindEncumb, true);
+	int newHealthAvg = 0;
+	int newActionAvg = 0;
+	int newMindAvg = 0;
+
+	if ( armorPieces >= 1 ){
+		newHealthAvg = healthTotal / armorPieces;
+		newActionAvg = actionTotal / armorPieces;
+		newMindAvg = mindTotal / armorPieces;
+	}
+
+	int currentHealthEncumb = player->getEncumbrance(CreatureEncumbrance::HEALTH);
+	int currentActionEncumb = player->getEncumbrance(CreatureEncumbrance::ACTION);
+	int currentMindEncumb = player->getEncumbrance(CreatureEncumbrance::MIND);
+
+	int deltaH = newHealthAvg - currentHealthEncumb;
+	int deltaA = newActionAvg - currentActionEncumb;
+	int deltaM = newMindAvg - currentMindEncumb;
+
+	if ( deltaH > 0 ){ // Adding Encumbrance
+			player->addEncumbrance(CreatureEncumbrance::HEALTH, deltaH, true);
+			player->inflictDamage(player, CreatureAttribute::STRENGTH, deltaH, true);
+			player->addMaxHAM(CreatureAttribute::STRENGTH, -deltaH, true);
+
+			player->inflictDamage(player, CreatureAttribute::CONSTITUTION, deltaH, true);
+			player->addMaxHAM(CreatureAttribute::CONSTITUTION, -deltaH, true);
+	}	else {
+			player->addEncumbrance(CreatureEncumbrance::HEALTH, deltaH, true);
+			player->healDamage(player, CreatureAttribute::STRENGTH, -deltaH, true);
+			player->addMaxHAM(CreatureAttribute::STRENGTH, -deltaH, true);
+
+			player->healDamage(player, CreatureAttribute::CONSTITUTION, -deltaH, true);
+			player->addMaxHAM(CreatureAttribute::CONSTITUTION, -deltaH, true);
+	}
+
+	if ( deltaA > 0 ){
+			player->addEncumbrance(CreatureEncumbrance::ACTION, deltaA, true);
+			player->inflictDamage(player, CreatureAttribute::QUICKNESS, deltaA, true);
+			player->addMaxHAM(CreatureAttribute::QUICKNESS, -deltaA, true);
+
+			player->inflictDamage(player, CreatureAttribute::STAMINA, deltaA, true);
+			player->addMaxHAM(CreatureAttribute::STAMINA, -deltaA, true);
+	}	else {
+			player->addEncumbrance(CreatureEncumbrance::ACTION, deltaA, true);
+			player->healDamage(player, CreatureAttribute::QUICKNESS, -deltaA, true);
+			player->addMaxHAM(CreatureAttribute::QUICKNESS, -deltaA, true);
+
+			player->healDamage(player, CreatureAttribute::STAMINA, -deltaA, true);
+			player->addMaxHAM(CreatureAttribute::STAMINA, -deltaA, true);
+	}
+
+	if ( deltaM > 0 ){
+		player->addEncumbrance(CreatureEncumbrance::MIND, deltaM, true);
+		player->inflictDamage(player, CreatureAttribute::FOCUS, deltaM, true);
+		player->addMaxHAM(CreatureAttribute::FOCUS, -deltaM, true);
+
+		player->inflictDamage(player, CreatureAttribute::WILLPOWER, deltaM, true);
+		player->addMaxHAM(CreatureAttribute::WILLPOWER, -deltaM, true);
+	}	else {
+		player->addEncumbrance(CreatureEncumbrance::MIND, deltaM, true);
+		player->healDamage(player, CreatureAttribute::FOCUS, -deltaM, true);
+		player->addMaxHAM(CreatureAttribute::FOCUS, -deltaM, true);
+
+		player->healDamage(player, CreatureAttribute::WILLPOWER, -deltaM, true);
+		player->addMaxHAM(CreatureAttribute::WILLPOWER, -deltaM, true);
+	}
 }
 
 void PlayerManagerImplementation::awardBadge(PlayerObject* ghost, uint32 badgeId) {
@@ -2343,6 +2583,8 @@ bool PlayerManagerImplementation::checkTradeItems(CreatureObject* player, Creatu
 					return false;
 
 				receiverShipsTraded++;
+			} else if (scene->isHouseControlDevice()){
+				return false;
 			}
 
 			recieverItnos++;
@@ -2481,9 +2723,6 @@ void PlayerManagerImplementation::handleVerifyTradeMessage(CreatureObject* playe
 		return;
 	}
 
-	// Get a trx group to trace all trx's in this session
-	auto trxGroup = TransactionLog::getNewTrxGroup();
-
 	tradeContainer->setVerifiedTrade(true);
 
 	uint64 targID = tradeContainer->getTradeTargetPlayer();
@@ -2516,9 +2755,6 @@ void PlayerManagerImplementation::handleVerifyTradeMessage(CreatureObject* playe
 			for (int i = 0; i < tradeContainer->getTradeSize(); ++i) {
 				ManagedReference<SceneObject*> item = tradeContainer->getTradeItem(i);
 
-				TransactionLog trx(player, receiver, item, TrxCode::PLAYERTRADE);
-				trx.setTrxGroup(trxGroup);
-
 				if (item->isTangibleObject()) {
 					if (objectController->transferObject(item, receiverInventory, -1, true))
 						item->sendDestroyTo(player);
@@ -2534,29 +2770,18 @@ void PlayerManagerImplementation::handleVerifyTradeMessage(CreatureObject* playe
 			for (int i = 0; i < receiverTradeContainer->getTradeSize(); ++i) {
 				ManagedReference<SceneObject*> item = receiverTradeContainer->getTradeItem(i);
 
-				TransactionLog trx(receiver, player, item, TrxCode::PLAYERTRADE);
-				trx.setTrxGroup(trxGroup);
-
 				if (item->isTangibleObject()) {
-					if (objectController->transferObject(item, playerInventory, -1, true)) {
+					if (objectController->transferObject(item, playerInventory, -1, true))
 						item->sendDestroyTo(receiver);
-					} else {
-						trx.errorMessage() << "transferObject failed";
-					}
 				} else {
-					if (objectController->transferObject(item, playerDatapad, -1, true)) {
+					if (objectController->transferObject(item, playerDatapad, -1, true))
 						item->sendDestroyTo(receiver);
-					} else {
-						trx.errorMessage() << "transferObject failed";
-					}
 				}
 			}
 
 			uint32 giveMoney = tradeContainer->getMoneyToTrade();
 
 			if (giveMoney > 0) {
-				TransactionLog trx(player, receiver, TrxCode::PLAYERTRADE, giveMoney, true);
-				trx.setTrxGroup(trxGroup);
 				player->subtractCashCredits(giveMoney);
 				receiver->addCashCredits(giveMoney);
 			}
@@ -2564,8 +2789,6 @@ void PlayerManagerImplementation::handleVerifyTradeMessage(CreatureObject* playe
 			giveMoney = receiverTradeContainer->getMoneyToTrade();
 
 			if (giveMoney > 0) {
-				TransactionLog trx(receiver, player, TrxCode::PLAYERTRADE, giveMoney, true);
-				trx.setTrxGroup(trxGroup);
 				receiver->subtractCashCredits(giveMoney);
 				player->addCashCredits(giveMoney);
 			}
@@ -2652,6 +2875,7 @@ void PlayerManagerImplementation::sendBattleFatigueMessage(CreatureObject* playe
 int PlayerManagerImplementation::healEnhance(CreatureObject* enhancer, CreatureObject* patient, byte attribute, int buffvalue, float duration, int absorption) {
 	String buffname = "medical_enhance_" + BuffAttribute::getName(attribute);
 	uint32 buffcrc = buffname.hashCode();
+	buffvalue /= 5; //reduce buffs to 1/5 of value
 	uint32 buffdiff = buffvalue;
 
 	//If a stronger buff already exists, then we don't buff the patient.
@@ -3531,8 +3755,6 @@ void PlayerManagerImplementation::lootAll(CreatureObject* player, CreatureObject
 	if (creatureInventory == nullptr)
 		return;
 
-	auto trxGroup = TransactionLog::getNewTrxGroup();
-
 	int cashCredits = ai->getCashCredits();
 
 	if (cashCredits > 0) {
@@ -3541,13 +3763,8 @@ void PlayerManagerImplementation::lootAll(CreatureObject* player, CreatureObject
 		if (luck > 0)
 			cashCredits += (cashCredits * luck) / 20;
 
-		{
-			TransactionLog trx(ai, player, TrxCode::NPCLOOTCLAIM, cashCredits, true);
-			trx.setTrxGroup(trxGroup);
-			trx.addState("srcDisplayedName", ai->getDisplayedName());
-			player->addCashCredits(cashCredits, true);
-			ai->clearCashCredits();
-		}
+		player->addCashCredits(cashCredits, true);
+		ai->clearCashCredits();
 
 		StringIdChatParameter param("base_player", "prose_coin_loot"); //You loot %DI credits from %TT.
 		param.setDI(cashCredits);
@@ -3570,13 +3787,15 @@ void PlayerManagerImplementation::lootAll(CreatureObject* player, CreatureObject
 		return;
 	}
 
+	StringBuffer args;
+	args << playerInventory->getObjectID() << " -1 0 0 0";
+
+	String stringArgs = args.toString();
+
 	for (int i = totalItems - 1; i >= 0; --i) {
 		SceneObject* object = creatureInventory->getContainerObject(i);
 
-		TransactionLog trx(ai, player, object, TrxCode::NPCLOOTCLAIM);
-		trx.setTrxGroup(trxGroup);
-
-		TransferItemMiscCommand::doTransferItemMisc(player, object, playerInventory, -1, trx);
+		player->executeObjectControllerAction(STRING_HASHCODE("transferitemmisc"), object->getObjectID(), stringArgs);
 	}
 
 	if (creatureInventory->getContainerObjectsSize() <= 0) {
@@ -4426,7 +4645,7 @@ SortedVector<String> PlayerManagerImplementation::getTeachableSkills(CreatureObj
 
 		const auto& skillName = skill->getSkillName();
 
-		if (!(skillName.contains("novice") || skillName.contains("force_sensitive") || skillName.contains("force_rank") || skillName.contains("force_title") || skillName.contains("admin_")) && skillManager->canLearnSkill(skillName, student, false))
+		if (!(skillName.contains("novice") || skillName.contains("gcw") || skillName.contains("special") || skillName.contains("force_sensitive") || skillName.contains("force_rank") || skillName.contains("force_title") || skillName.contains("admin_")) && skillManager->canLearnSkill(skillName, student, false))
 			skills.put(skillName);
 	}
 
@@ -5011,6 +5230,7 @@ void PlayerManagerImplementation::generateVeteranReward(CreatureObject* player) 
 	// Final check to see if milestone has already been claimed on any of the player's characters
 	// (prevent claiming while multi-logged)
 
+
 	bool milestoneClaimed = false;
 	if (!playerGhost->getChosenVeteranReward(rewardSession->getMilestone() ).isEmpty() )
 		milestoneClaimed = true;
@@ -5037,17 +5257,12 @@ void PlayerManagerImplementation::generateVeteranReward(CreatureObject* player) 
 		return;
 	}
 
-	{
-		TransactionLog trx(TrxCode::VETERANREWARD, player, rewardSceno);
-
-		// Transfer to player
-		if (!inventory->transferObject(rewardSceno, -1, false, true)) { // Allow overflow
-			trx.abort() << "Failed to transfer to player inventory";
-			player->sendSystemMessage("@veteran:reward_error"); //	The reward could not be granted.
-			rewardSceno->destroyObjectFromDatabase(true);
-			cancelVeteranRewardSession(player);
-			return;
-		}
+	// Transfer to player
+	if (!inventory->transferObject(rewardSceno, -1, false, true)) { // Allow overflow
+		player->sendSystemMessage("@veteran:reward_error"); //	The reward could not be granted.
+		rewardSceno->destroyObjectFromDatabase(true);
+		cancelVeteranRewardSession(player);
+		return;
 	}
 
 	inventory->broadcastObject(rewardSceno, true);
@@ -5057,6 +5272,7 @@ void PlayerManagerImplementation::generateVeteranReward(CreatureObject* player) 
 	GalaxyAccountInfo* accountInfo = account->getGalaxyAccountInfo(player->getZoneServer()->getGalaxyName());
 
 	accountInfo->addChosenVeteranReward(rewardSession->getMilestone(), reward.getTemplateFile());
+
 
 	cancelVeteranRewardSession(player);
 

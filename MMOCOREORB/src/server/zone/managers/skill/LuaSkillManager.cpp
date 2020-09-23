@@ -101,3 +101,17 @@ int LuaSkillManager::awardSkill(lua_State* L) {
 
 	return 1;
 }
+
+int LuaSkillManager::surrenderSkill(lua_State* L) {
+	if (lua_gettop(L) - 1 != 2) {
+		Logger::console.error("incorrect number of arguments for LuaSkillManager::surrenderSkill");
+		return 0;
+	}
+
+	String skillName = lua_tostring(L, -1);
+	CreatureObject* creo = (CreatureObject*) lua_touserdata(L, -2);
+
+	lua_pushboolean(L, realObject->surrenderSkill(skillName, creo, true, false));
+
+	return 1;
+}

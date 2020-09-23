@@ -573,6 +573,11 @@ class TangibleObject extends SceneObject {
 		customizationVariables.getData(variables);
 	}
 
+	@dirty
+	public void getCustomizationStringConverted(string variables) {
+		customizationVariables.toString(variables);
+	}
+
 	@local
 	@read
 	public final DeltaVector<SceneObject> getDefenderList() {
@@ -823,26 +828,8 @@ class TangibleObject extends SceneObject {
 	}
 
 	@read
-	public abstract boolean isNoTrade() {
-		if (antiDecayKitObject) {
-			return antiDecayKitObject.isNoTrade() || super.isNoTrade();
-		}
-
-		return super.isNoTrade();
-	}
-
-	@read
 	public boolean hasAntiDecayKit() {
 		return antiDecayKitObject;
-	}
-
-	@read
-	public unsigned long getAntiDecayKitObjectID() {
-		if (!hasAntiDecayKit()) {
-		    return 0;
-		}
-
-		return antiDecayKitObject.getObjectID();
 	}
 
 	@preLocked
@@ -868,8 +855,6 @@ class TangibleObject extends SceneObject {
 		}
 		return null;
 	}
-
-	public abstract native void destroyObjectFromDatabase(boolean destroyContainedObjects = false);
 
 	@read
 	public native boolean isCityStreetLamp();

@@ -8,6 +8,7 @@
 #include "server/zone/objects/scene/SceneObject.h"
 #include "server/zone/objects/intangible/ControlDevice.h"
 #include "templates/creature/SharedCreatureObjectTemplate.h"
+#include "server/zone/managers/objectcontroller/ObjectController.h"
 
 class DismountCommand : public QueueCommand {
 	Vector<uint32> restrictedBuffCRCs;
@@ -75,6 +76,28 @@ public:
 		if (terrainManager == nullptr)
 			return GENERALERROR;
 
+		ZoneServer* zoneServer = server->getZoneServer();
+		ManagedReference<ObjectController*> objectController = zoneServer->getObjectController();	
+
+		for (int i = 1; i < 8; ++i) {
+			String text = "rider";
+			text += String::valueOf(i);
+//			info("checking for slot " + text, true);
+			CreatureObject* seat = vehicle->getSlottedObject(text).castTo<CreatureObject*>();
+			if (seat != nullptr) {
+				Locker slocker(seat);
+				CreatureObject* rider = seat->getSlottedObject("rider").castTo<CreatureObject*>();
+				if (rider != nullptr) {
+					Locker rlocker(rider, seat);
+					seat->setPosition(vehicle->getPositionX(), vehicle->getPositionZ(), vehicle->getPositionY());
+					rider->setPosition(vehicle->getPositionX(), vehicle->getPositionZ(), vehicle->getPositionY());
+					objectController->activateCommand(rider, STRING_HASHCODE("dismount"), 0, 0, "");
+				} else {
+					seat->destroyObjectFromWorld(true);
+				}
+			}
+		}
+
 		zone->transferObject(creature, -1, false);
 
 		IntersectionResults intersections;
@@ -119,8 +142,14 @@ public:
 		ManagedReference<ControlDevice*> device = vehicle->getControlDevice().get();
 
 		if (device != nullptr && vehicle->getServerObjectCRC() == 0x32F87A54) { // Auto-store jetpack on dismount.
-			device->storeObject(creature);
+			device->storeObject(creature, true);
 			creature->sendSystemMessage("@pet/pet_menu:jetpack_dismount"); // "You have been dismounted from the jetpack, and it has been stored."
+		}
+
+
+		if (device != nullptr && (vehicle->getServerObjectCRC() == 0xC3B01BAA || vehicle->getServerObjectCRC() == 0xFD3544BF || vehicle->getServerObjectCRC() == 0x89066146)) { // Auto-store airspeeder on dismount.
+			device->storeObject(creature, true);
+			creature->sendSystemMessage("Your airspeeder has been stored. To call it again, you must visit a vehicle garage.");
 		}
 
 		creature->updateToDatabase();
@@ -148,6 +177,18 @@ public:
 				}, "RemoveGallopModsLambda");
 			}
 		}
+
+
+		ManagedReference<SceneObject*> parentObject = vehicle->getParent().get();
+		CreatureObject* parent = cast<CreatureObject*>(parentObject.get());
+		if (parent != nullptr && parent->isCreatureObject()) {
+			Locker lock(vehicle);
+			Locker plocker(creature);
+			creature->removeBuff(String("passenger").hashCode());
+			vehicle->destroyObjectFromWorld(true);
+		}
+
+		creature->notifyObservers(ObserverEventType::DISMOUNTED, creature);
 
 		return SUCCESS;
 	}

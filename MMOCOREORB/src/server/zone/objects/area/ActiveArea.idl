@@ -201,5 +201,8 @@ class ActiveArea extends SceneObject {
 		attachedScenery.add(scene);
 	}
 
+
+	public native void clearScenery();
+
 	public native void initializeChildObject(SceneObject controllerObject);
 }

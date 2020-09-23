@@ -150,6 +150,7 @@ void AiAgentImplementation::loadTemplateData(CreatureTemplate* templateData) {
 
 	float minDmg = npcTemplate->getDamageMin();
 	float maxDmg = npcTemplate->getDamageMax();
+//	info("damage is " + String::valueOf(minDmg) + " - " + String::valueOf(maxDmg), true);
 	float speed = calculateAttackSpeed(level);
 	bool allowedWeapon = true;
 
@@ -633,7 +634,7 @@ bool AiAgentImplementation::runAwarenessLogicCheck(SceneObject* pObject) {
 	if (getPvpStatusBitmask() == 0 && !(isDroidObject() && isPet()))
 		return false;
 
-	if (getNumberOfPlayersInRange() <= 0 || isRetreating() || isFleeing() || isInCombat())
+	if ((getNumberOfPlayersInRange() <= 0 || isRetreating() || isFleeing() || isInCombat()) && !(getPvpStatusBitmask() & CreatureFlag::ALWAYSON))
 		return false;
 
 	CreatureObject* creoObject = pObject->asCreatureObject();
@@ -694,12 +695,12 @@ bool AiAgentImplementation::runAwarenessLogicCheck(SceneObject* pObject) {
 		if (!agentObject->isAttackableBy(thisAiAgent))
 			return false;
 
-		uint32 creatureFaction = getFaction();
-		uint32 creatureTargetFaction = creoObject->getFaction();
+//		uint32 creatureFaction = getFaction();
+//		uint32 creatureTargetFaction = creoObject->getFaction();
 
-		if (((creatureFaction != 0) && (creatureTargetFaction == 0))
-				|| ((creatureFaction == 0) && (creatureTargetFaction != 0)))
-			return false;
+//		if (((creatureFaction != 0) && (creatureTargetFaction == 0))
+//				|| ((creatureFaction == 0) && (creatureTargetFaction != 0)))
+//			return false;
 
 	} else if (!creoObject->isAttackableBy(thisAiAgent)) {
 		return false;
@@ -821,7 +822,7 @@ void AiAgentImplementation::doAwarenessCheck() {
 		}
 	}
 
-	if (numberOfPlayersInRange.get() > 0)
+	if (numberOfPlayersInRange.get() > 0 || getPvpStatusBitmask() & CreatureFlag::ALWAYSON)
 		activateAwarenessEvent();
 }
 
@@ -1065,10 +1066,17 @@ void AiAgentImplementation::selectWeapon() {
 	WeaponObject* finalWeap = nullptr;
 	ManagedReference<WeaponObject*> defaultWeapon = getSlottedObject("default_weapon").castTo<WeaponObject*>();
 
-	if (getUseRanged()) {
+	if (isPet() && getUseRanged()) {
 		if (readyWeapon != nullptr && readyWeapon->isRangedWeapon()) {
 			finalWeap = readyWeapon;
 		} else if (defaultWeapon != nullptr && defaultWeapon->isRangedWeapon()) {
+			finalWeap = defaultWeapon;
+		}
+
+	} else if (isPet() && !getUseRanged()) {
+		if (readyWeapon != nullptr && !readyWeapon->isRangedWeapon()) {
+			finalWeap = readyWeapon;
+		} else if (defaultWeapon != nullptr && !defaultWeapon->isRangedWeapon()) {
 			finalWeap = defaultWeapon;
 		}
 
@@ -1212,6 +1220,11 @@ void AiAgentImplementation::runAway(CreatureObject* target, float range) {
 		return;
 	}
 
+	if (getPvpStatusBitmask() & CreatureFlag::COMBATVEHICLE) {
+		initializePosition(homeLocation.getPositionX(), homeLocation.getPositionZ(), homeLocation.getPositionY());	
+		return;
+	}
+
 	setTargetObject(target);
 
 	// TODO (dannuic): do we need to check threatmap for other players in range at this point, or just have the mob completely drop aggro?
@@ -1241,6 +1254,10 @@ void AiAgentImplementation::runAway(CreatureObject* target, float range) {
 }
 
 void AiAgentImplementation::leash() {
+	if (getPvpStatusBitmask() & CreatureFlag::COMBATVEHICLE) {
+		initializePosition(homeLocation.getPositionX(), homeLocation.getPositionZ(), homeLocation.getPositionY());	
+		return;
+	}
 	setFollowState(AiAgent::LEASHING);
 	setTargetObject(nullptr);
 	storeFollowObject();
@@ -1965,7 +1982,10 @@ bool AiAgentImplementation::findNextPosition(float maxDistance, bool walk) {
 
 			nextStepPosition.setReached(false);
 
-			float directionangle = atan2(nextWorldPos.getX() - thisWorldPos.getX(), nextWorldPos.getY() - thisWorldPos.getY());
+			float directionangle = atan2(nextPosition.getX() - getPositionX(), nextPosition.getY() - getPositionY());
+
+			if (getParent() == NULL && nextPosition.getCell() != NULL)
+				directionangle = atan2(nextWorldPos.getX() - thisWorldPos.getX(), nextWorldPos.getY() - thisWorldPos.getY());
 
 			if (directionangle < 0) {
 				float a = M_PI + directionangle;
@@ -2190,6 +2210,11 @@ int AiAgentImplementation::setDestination() {
 			setOblivious();
 		clearPatrolPoints();
 
+		if (getPvpStatusBitmask() & CreatureFlag::COMBATVEHICLE) {
+			initializePosition(homeLocation.getPositionX(), homeLocation.getPositionZ(), homeLocation.getPositionY());	
+			break;
+		}
+
 		if (!homeLocation.isInRange(asAiAgent(), 1.5)) {
 			homeLocation.setReached(false);
 			addPatrolPoint(homeLocation);
@@ -2398,10 +2423,19 @@ void AiAgentImplementation::activateMovementEvent() {
 
 	Locker locker(&movementEventMutex);
 
+	if (getPvpStatusBitmask() & CreatureFlag::COMBATVEHICLE){
+		if (moveEvent != nullptr) {
+			moveEvent->clearCreatureObject();
+			moveEvent = nullptr;
+		}
+
+		return;
+	}
+
 	if (isWaiting() && moveEvent != nullptr)
 		moveEvent->cancel();
 
-	if ((waitTime < 0 || numberOfPlayersInRange.get() <= 0) && getFollowObject().get() == nullptr && !isRetreating()) {
+	if ((waitTime < 0 || numberOfPlayersInRange.get() <= 0) && getFollowObject().get() == nullptr && !isRetreating() && !(getPvpStatusBitmask() & CreatureFlag::ALWAYSON)) {
 		if (moveEvent != nullptr) {
 			moveEvent->clearCreatureObject();
 			moveEvent = nullptr;
@@ -2509,9 +2543,7 @@ int AiAgentImplementation::inflictDamage(TangibleObject* attacker, int damageTyp
 		CreatureObject* creature = attacker->asCreatureObject();
 
 		if (damage > 0) {
-			// This damage is DOT or other types of non direct combat damage, it should not count towards loot and thus not be added to the threat map damage.
-			// Adding aggro should still be done.
-			getThreatMap()->addAggro(creature, 1);
+			getThreatMap()->addDamage(creature, damage);
 		}
 	}
 	activateInterrupt(attacker, ObserverEventType::DAMAGERECEIVED);
@@ -2541,14 +2573,14 @@ void AiAgentImplementation::fillAttributeList(AttributeListMessage* alm, Creatur
 		return;
 	}
 
-	if (getArmor() == 0)
-		alm->insertAttribute("armorrating", "None");
-	else if (getArmor() == 1)
-		alm->insertAttribute("armorrating", "Light");
-	else if (getArmor() == 2)
-		alm->insertAttribute("armorrating", "Medium");
-	else if (getArmor() == 3)
-		alm->insertAttribute("armorrating", "Heavy");
+//	if (getArmor() == 0)
+//		alm->insertAttribute("armorrating", "None");
+//	else if (getArmor() == 1)
+//		alm->insertAttribute("armorrating", "Light");
+//	else if (getArmor() == 2)
+//		alm->insertAttribute("armorrating", "Medium");
+//	else if (getArmor() == 3)
+//		alm->insertAttribute("armorrating", "Heavy");
 
 	if (isSpecialProtection(SharedWeaponObjectTemplate::KINETIC)) {
 		StringBuffer txt;
@@ -2735,14 +2767,15 @@ bool AiAgentImplementation::sendConversationStartTo(SceneObject* player) {
 	if (!player->isPlayerCreature() || isDead() || convoTemplateCRC == 0)
 		return false;
 
-	//Face player.
-	faceObject(player);
-
-	PatrolPoint current(coordinates.getPosition(), getParent().get().castTo<CellObject*>());
-
-	broadcastNextPositionUpdate(&current);
-
 	CreatureObject* playerCreature = cast<CreatureObject*>( player);
+
+	//Face player.
+
+	if (getParent().get() != player){
+		faceObject(player);
+		PatrolPoint current(coordinates.getPosition(), getParent().get().castTo<CellObject*>());
+		broadcastNextPositionUpdate(&current);
+	}
 
 	ConversationTemplate* conversationTemplate = CreatureTemplateManager::instance()->getConversationTemplate(convoTemplateCRC);
 	if (conversationTemplate != nullptr && conversationTemplate->getConversationTemplateType() == ConversationTemplate::ConversationTemplateTypeLua && conversationTemplate->getLuaClassHandler() == "trainerConvHandler") {
@@ -2802,10 +2835,6 @@ bool AiAgentImplementation::isAggressiveTo(CreatureObject* target) {
 	// grab the GCW faction
 	uint32 targetFaction = target->getFaction();
 	PlayerObject* ghost = target->getPlayerObject();
-
-	if (ghost != nullptr && ghost->hasCrackdownTefTowards(getFaction())) {
-		return true;
-	}
 
 	// check the GCW factions if both entities have one
 	if (getFaction() != 0 && targetFaction != 0) {
@@ -3296,13 +3325,6 @@ bool AiAgentImplementation::isAttackableBy(CreatureObject* object) {
 		return false;
 	}
 
-	if (object->isPlayerCreature()) {
-		Reference<PlayerObject*> ghost = object->getPlayerObject();
-		if (ghost != nullptr && ghost->hasCrackdownTefTowards(getFaction())) {
-			return true;
-		}
-	}
-
 	unsigned int targetFaction = object->getFaction();
 
 	if (getFaction() != 0) {
@@ -3414,6 +3436,7 @@ AiAgent* AiAgent::asAiAgent() {
 
 void AiAgentImplementation::reloadTemplate() {
 	clearBuffs(false, false);
+	loadTemplateData(templateObject);
 	loadTemplateData(npcTemplate);
 
 	if (isMount()) {

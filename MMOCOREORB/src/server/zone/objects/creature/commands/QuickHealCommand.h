@@ -123,6 +123,9 @@ public:
 			return GENERALERROR;
 		}
 
+		if (!checkForCellPermission(creature, creatureTarget))
+			return GENERALERROR;
+
 		int mindCostNew = creature->calculateCostAdjustment(CreatureAttribute::FOCUS, mindCost);
 
 		if (creature->getHAM(CreatureAttribute::MIND) < abs(mindCostNew)) {

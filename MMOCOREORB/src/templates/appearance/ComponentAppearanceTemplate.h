@@ -83,10 +83,13 @@ public:
 			String meshFile;
 			iffStream->getString(meshFile);
 
+			if (meshFile.contains(".prt"))
+				continue;
+
 			AppearanceTemplate* templ = TemplateManager::instance()->getAppearanceTemplate("appearance/" + meshFile);
 
 			if (templ == nullptr) {
-				System::out << "Template not found appearance/" << meshFile;
+				System::out << "Template not found appearance/" << meshFile << " in " << iffStream->getFileName();
 				continue;
 			}
 			Matrix4 mat;

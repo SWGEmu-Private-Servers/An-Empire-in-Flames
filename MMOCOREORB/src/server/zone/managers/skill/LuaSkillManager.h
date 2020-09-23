@@ -22,6 +22,7 @@ namespace sui {
 		int getSkill(lua_State* L);
 		int awardSkill(lua_State* L);
 		int canLearnSkill(lua_State* L);
+		int surrenderSkill(lua_State* L);
 
 	private:
 		Reference<SkillManager*> realObject;

@@ -35,7 +35,7 @@ public:
 			return GENERALERROR;
 
 		if (creature->isAiAgent()) {
-			if (creature->isNonPlayerCreatureObject() && creature->isDizzied() && System::random(100) < 85) {
+			if (creature->isNonPlayerCreatureObject() && creature->isDizzied() && System::random(100) < 5) {
 				creature->queueDizzyFallEvent();
 			} else if (creature->isInCombat()) {
 				creature->setPosture(CreaturePosture::UPRIGHT, false, true);
@@ -44,7 +44,7 @@ public:
 				creature->setPosture(CreaturePosture::UPRIGHT);
 			}
 		} else {
-			if (creature->isDizzied() && System::random(100) < 85) {
+			if (creature->isDizzied() && System::random(100) < 15) {
 				creature->queueDizzyFallEvent();
 			} else {
 				creature->setPosture(CreaturePosture::UPRIGHT);

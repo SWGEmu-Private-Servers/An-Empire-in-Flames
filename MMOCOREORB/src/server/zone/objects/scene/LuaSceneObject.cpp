@@ -8,6 +8,7 @@
 #include "server/zone/objects/scene/LuaSceneObject.h"
 #include "server/zone/objects/scene/SceneObject.h"
 #include "server/zone/objects/creature/CreatureObject.h"
+#include "server/zone/objects/region/CityRegion.h"
 #include "server/zone/managers/stringid/StringIdManager.h"
 #include "server/zone/managers/director/DirectorManager.h"
 #include "server/zone/Zone.h"
@@ -65,6 +66,7 @@ Luna<LuaSceneObject>::RegType LuaSceneObject::Register[] = {
 		{ "setDirectionalHeading", &LuaSceneObject::setDirectionalHeading },
 		{ "getZoneName", &LuaSceneObject::getZoneName },
 		{ "getTemplateObjectPath", &LuaSceneObject::getTemplateObjectPath },
+		{ "getTemplateFileName", &LuaSceneObject::getTemplateFileName },
 		{ "teleport", &LuaSceneObject::teleport },
 		{ "setObjectMenuComponent", &LuaSceneObject::setObjectMenuComponent },
 		{ "setContainerComponent", &LuaSceneObject::setContainerComponent },
@@ -88,6 +90,9 @@ Luna<LuaSceneObject>::RegType LuaSceneObject::Register[] = {
 		{ "info", &LuaSceneObject::info },
 		{ "getPlayersInRange", &LuaSceneObject::getPlayersInRange },
 		{ "isInNavMesh", &LuaSceneObject::isInNavMesh },
+		{ "getCityRegion", &LuaSceneObject::getCityRegion },
+		{ "setProtected", &LuaSceneObject::setProtected },
+		{ "updatePosition", &LuaSceneObject::updatePosition },
 		{ 0, 0 }
 
 };
@@ -169,6 +174,18 @@ int LuaSceneObject::switchZone(lua_State* L) {
 int LuaSceneObject::getTemplateObjectPath(lua_State* L) {
 	if (realObject != nullptr) {
 		String tempPath = realObject->getObjectTemplate()->getFullTemplateString();
+
+		lua_pushstring(L, tempPath.toCharArray());
+	} else {
+		lua_pushstring(L, "");
+	}
+
+	return 1;
+}
+
+int LuaSceneObject::getTemplateFileName(lua_State* L) {
+	if (realObject != nullptr) {
+		String tempPath = realObject->getObjectTemplate()->getTemplateFileName();
 
 		lua_pushstring(L, tempPath.toCharArray());
 	} else {
@@ -461,6 +478,8 @@ int LuaSceneObject::transferObject(lua_State* L) {
 	bool notifyClient = lua_tonumber(L, -1);
 	int containmentType = lua_tonumber(L, -2);
 	SceneObject* obj = (SceneObject*) lua_touserdata(L, -3);
+
+	Locker lock(obj);
 
 	realObject->transferObject(obj, containmentType, notifyClient);
 
@@ -819,12 +838,20 @@ int LuaSceneObject::getPlayersInRange(lua_State *L) {
 
 	lua_newtable(L);
 
-	Reference<SortedVector<ManagedReference<QuadTreeEntry*> >*> playerObjects = new SortedVector<ManagedReference<QuadTreeEntry*> >();
-	thisZone->getInRangePlayers(realObject->getWorldPositionX(), realObject->getWorldPositionY(), range, playerObjects);
+	Reference<SortedVector<ManagedReference<QuadTreeEntry*> >*> closeObjects = new SortedVector<ManagedReference<QuadTreeEntry*> >();
+	thisZone->getInRangeObjects(realObject->getWorldPositionX(), realObject->getWorldPositionY(), range, closeObjects, true);
 	int numPlayers = 0;
 
-	for (int i = 0; i < playerObjects->size(); ++i) {
-		SceneObject* object = cast<SceneObject*>(playerObjects->get(i).get());
+	for (int i = 0; i < closeObjects->size(); ++i) {
+		SceneObject* object = cast<SceneObject*>(closeObjects->get(i).get());
+
+		if (object == nullptr || !object->isPlayerCreature())
+			continue;
+
+		CreatureObject* player = object->asCreatureObject();
+
+		if (player == nullptr || player->isInvisible())
+			continue;
 
 		numPlayers++;
 		lua_pushlightuserdata(L, object);
@@ -840,4 +867,35 @@ int LuaSceneObject::isInNavMesh(lua_State* L) {
 	lua_pushboolean(L, val);
 
 	return 1;
+}
+
+int LuaSceneObject::getCityRegion(lua_State* L) {
+	CityRegion* obj = realObject->getCityRegion().get().get();
+
+	if (obj == NULL) {
+		lua_pushnil(L);
+	} else {
+		obj->_setUpdated(true);
+		lua_pushlightuserdata(L, obj);
+	}
+
+	return 1;
+}
+
+int LuaSceneObject::setProtected(lua_State* L) {
+	bool protectedBoolean = lua_toboolean(L, -1);
+
+	realObject->setProtectedObject(protectedBoolean);
+
+	return 0;
+}
+
+int LuaSceneObject::updatePosition(lua_State* L) {
+	float y = lua_tonumber(L, -1);
+	float z = lua_tonumber(L, -2);
+	float x = lua_tonumber(L, -3);
+
+	realObject->setPosition(x, z, y);
+
+	return 0;
 }

@@ -35,10 +35,10 @@ public:
 
 		StructureObject* structure = cast<StructureObject*>(obj.get());
 
-		if (structure->isCivicStructure()) {
+/*		if (structure->isCivicStructure()) {
 			creature->sendSystemMessage("You cannot modify permissions on civic structures.");
 			return INVALIDTARGET;
-		}
+		}*/
 
 		if (structure->isGCWBase()) {
 			return INVALIDTARGET;

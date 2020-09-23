@@ -61,11 +61,13 @@ public:
 	static const int DROID_WED = 8; // WED-XX
 	static const int DROID_LE = 9; // LE-XXX
 	static const int DROID_RA7 = 10; // RA7-XX
+	static const int C1 = 15; // C1-1A
+	static const int BB = 16; // BB-1A
 
-	static const int STORMTROOPER = 11; // XX-123
-	static const int SCOUTTROOPER = 12; // XX-123
-	static const int DARKTROOPER = 13; // XX-123
-	static const int SWAMPTROOPER = 14; // XX-123
+	static const int STORMTROOPER = 21; // XX-123
+	static const int SCOUTTROOPER = 22; // XX-123
+	static const int DARKTROOPER = 23; // XX-123
+	static const int SWAMPTROOPER = 24; // XX-123
 
 	static const int GUILD_NAME = 31;
 	static const int GUILD_ABBREV = 32;
@@ -75,6 +77,7 @@ public:
 	static const int FRAG_VOWEL = 42;
 	static const int FRAG_SPECIAL = 43;
 	static const int FRAG_MIXED = 44;
+
 };
 
 namespace server {

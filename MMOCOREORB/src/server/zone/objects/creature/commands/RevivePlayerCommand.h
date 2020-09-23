@@ -206,7 +206,7 @@ public:
 		if (!canPerformSkill(creature, creatureTarget, revivePack, mindCostNew))
 			return 0;
 
-		int healthToHeal = Math::max(1, (int) round(revivePack->getHealthHealed()));
+		int healthToHeal = Math::max(1, (int) round(creatureTarget->getMaxHAM(0) * .30));
 		int actionToHeal = Math::max(1, (int) round(revivePack->getActionHealed()));
 		int mindToHeal = Math::max(1, (int) round(revivePack->getMindHealed()));
 
@@ -215,7 +215,7 @@ public:
 		int healedMind = creatureTarget->healDamage(creature, CreatureAttribute::MIND, mindToHeal);
 
 		creatureTarget->setPosture(CreaturePosture::UPRIGHT);
-		
+
 		creatureTarget->removeFeignedDeath();
 
 		int healedHealthWounds = creatureTarget->healWound(creature, CreatureAttribute::HEALTH, (int) (round(revivePack->getHealthWoundHealed())));

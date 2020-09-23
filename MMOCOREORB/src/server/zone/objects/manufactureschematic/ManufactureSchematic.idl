@@ -113,8 +113,6 @@ class ManufactureSchematic extends IntangibleObject {
 		super.initializeTransientMembers();
 	}
 
-	public abstract native void destroyObjectFromDatabase(boolean destroyContainedObjects = false);
-
 	/**
 	 * Fills the attribute list message options that are sent to player creature
 	 * @pre { }

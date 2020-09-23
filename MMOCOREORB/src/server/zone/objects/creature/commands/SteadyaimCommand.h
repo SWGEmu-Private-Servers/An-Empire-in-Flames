@@ -35,24 +35,26 @@ public:
 		if (ghost == nullptr)
 			return GENERALERROR;
 
+		if (!player->checkCooldownRecovery("steadyaim")) {
+			player->sendSystemMessage("Your group is still recovering their focus and must wait to steady their aim."); //You cannot burst run right now.
+			return false;
+		}
+
 		ManagedReference<GroupObject*> group = player->getGroup();
 
 		if (!checkGroupLeader(player, group))
 			return GENERALERROR;
 
 		float skillMod = (float) creature->getSkillMod("steadyaim");
-		int hamCost = (int) (100.0f * (1.0f - (skillMod / 100.0f))) * calculateGroupModifier(group);
+		int mindCost = (int) (200.0f * (1.0f - (skillMod / 100.0f))) * calculateGroupModifier(group);
+		int adjustedMindCost = creature->calculateCostAdjustment(CreatureAttribute::FOCUS, mindCost);
 
-		int healthCost = creature->calculateCostAdjustment(CreatureAttribute::STRENGTH, hamCost);
-		int actionCost = creature->calculateCostAdjustment(CreatureAttribute::QUICKNESS, hamCost);
-		int mindCost = creature->calculateCostAdjustment(CreatureAttribute::FOCUS, hamCost);
-
-		if (!inflictHAM(player, healthCost, actionCost, mindCost))
+		if (!inflictHAM(player, 0, 0, adjustedMindCost))
 			return GENERALERROR;
 
 //		shoutCommand(player, group);
 
-		int amount = 5 + skillMod;
+		int amount = 25 + skillMod;
 
 		if (!doSteadyAim(player, group, amount))
 			return GENERALERROR;
@@ -73,7 +75,7 @@ public:
 		for (int i = 0; i < group->getGroupSize(); i++) {
 			ManagedReference<CreatureObject*> member = group->getGroupMember(i);
 
-			if (member == nullptr || !member->isPlayerCreature())
+			if (member == nullptr || !member->isPlayerCreature() || member->getZone() != leader->getZone() || !member->isInRange(leader, 128.0) )
 				continue;
 
 			if (!isValidGroupAbilityTarget(leader, member, false))
@@ -85,8 +87,9 @@ public:
 
 			ManagedReference<WeaponObject*> weapon = member->getWeapon();
 
-			if (!weapon->isRangedWeapon())
-				continue;
+			// Should work on Melee Weapons too.
+			// if (!weapon->isRangedWeapon())
+			// 	continue;
 
 			int duration = 300;
 
@@ -102,7 +105,7 @@ public:
 
 			checkForTef(leader, member);
 		}
-
+		leader->updateCooldownTimer("steadyaim", 10000);
 		return true;
 	}
 

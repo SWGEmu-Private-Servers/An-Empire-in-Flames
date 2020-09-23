@@ -101,3 +101,19 @@ void ActiveAreaImplementation::initializeChildObject(SceneObject* controllerObje
 		setCellObjectID(objectParent->getObjectID());
 	}
 }
+
+void ActiveAreaImplementation::clearScenery() {
+/*	for (int i = 0; i > attachedScenery.size(); ++i) {
+		Vector<ManagedReference<SceneObject* > > scene = attachedScenery;
+		SceneObject* sceno = scene.get(i);
+
+		Locker locker(sceno);
+		sceno->destroyObjectFromDatabase();
+		sceno->destroyObjectFromWorld(true);
+	}*/
+	
+	attachedScenery.removeAll();
+}
+
+
+		

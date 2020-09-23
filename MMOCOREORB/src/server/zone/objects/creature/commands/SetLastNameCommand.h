@@ -40,6 +40,7 @@ public:
 
 		String oldLastName = targetCreature->getLastName();
 
+
 		String errmsg = targetCreature->setLastName(newLastName);
 
 		if (!errmsg.isEmpty()) {
@@ -55,3 +56,4 @@ public:
 };
 
 #endif //SETLASTNAMECOMMAND_H_
+

@@ -188,11 +188,31 @@ LoginClusterStatus* LoginServerImplementation::getLoginClusterStatusMessage(Acco
 	auto msg = new LoginClusterStatus(galaxyCount);
 
 	while (galaxies.next()) {
+		uint32 Status = galaxies.getStatus();
+		auto SSC = new StreamServiceClient(galaxies.getAddress(), galaxies.getPort());
+		if (Status != 0 && Status != 1 && configManager->getPingPort() != galaxies.getPingPort()) {
+			try {
+				SSC->connect();
+			} catch(SocketException& e) {
+				Logger::console.info(true) << galaxies.getName() + " has crashed or is offline. Setting status to offline";
+				StringBuffer query;
+				String ID = String::valueOf(galaxies.getID());
+				query << "Update `swgemu`.`galaxy` SET `status`='0' WHERE `galaxy_id`='" + ID + "'";
+				try {
+					ServerDatabase::instance()->executeStatement(query);
+					Status = 0;
+				} catch (const DatabaseException& e) {
+					error(e.getMessage());
+				}
+			}
+		}
+
 		msg->addGalaxy(
 			galaxies.getID(),
 			galaxies.getAddress(),
 			galaxies.getRandomPort(),
-			galaxies.getPingPort()
+			galaxies.getPingPort(),
+			Status
 		);
 	}
 

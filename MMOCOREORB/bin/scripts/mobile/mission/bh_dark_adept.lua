@@ -12,7 +12,7 @@ bh_dark_adept = Creature:new {
 	baseHAM = 50000,
 	baseHAMmax = 61000,
 	armor = 2,
-	resists = {80,80,80,80,80,80,80,80,-1},
+	resists = {80,80,80,80,80,80,80,80,80},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -31,11 +31,10 @@ bh_dark_adept = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "junk", chance = 2500000},
+				{group = "junk", chance = 2000000},
 				{group = "tailor_components", chance = 500000},
 				{group = "loot_kit_parts", chance = 500000},
-				{group = "color_crystals", chance = 500000},
-				{group = "power_crystals", chance = 1000000},
+				{group = "bounty_hunter_armor_schematics", chance = 2000000},
 				{group = "wearables_all", chance = 1000000},
 				{group = "weapons_all", chance = 1000000},
 				{group = "armor_all", chance = 1000000},
@@ -46,11 +45,10 @@ bh_dark_adept = Creature:new {
 		},
 		{
 			groups = {
-				{group = "junk", chance = 2500000},
+				{group = "junk", chance = 2000000},
 				{group = "tailor_components", chance = 500000},
 				{group = "loot_kit_parts", chance = 500000},
-				{group = "color_crystals", chance = 500000},
-				{group = "power_crystals", chance = 1000000},
+				{group = "bounty_hunter_armor_schematics", chance = 2000000},
 				{group = "wearables_all", chance = 1000000},
 				{group = "weapons_all", chance = 1000000},
 				{group = "armor_all", chance = 1000000},
@@ -61,12 +59,10 @@ bh_dark_adept = Creature:new {
 		},
 		{
 			groups = {
-				{group = "junk", chance = 2500000},
+				{group = "junk", chance = 2000000},
 				{group = "tailor_components", chance = 500000},
 				{group = "loot_kit_parts", chance = 500000},
-				{group = "color_crystals", chance = 500000},
-				{group = "power_crystals", chance = 500000},
-				{group = "power_crystals", chance = 500000},
+				{group = "bounty_hunter_armor_schematics", chance = 2000000},
 				{group = "wearables_all", chance = 1000000},
 				{group = "weapons_all", chance = 1000000},
 				{group = "armor_all", chance = 1000000},

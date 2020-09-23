@@ -40,7 +40,6 @@
 --this exception also makes it possible to release a modified version
 --which carries forward this exception.
 
-
 object_building_dathomir_shared_mtn_clan_stronghold = SharedBuildingObjectTemplate:new {
 	clientTemplateFileName = "object/building/dathomir/shared_mtn_clan_stronghold.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
@@ -164,3 +163,11 @@ object_building_dathomir_shared_night_sister_stronghold = SharedBuildingObjectTe
 }
 
 ObjectTemplates:addClientTemplate(object_building_dathomir_shared_night_sister_stronghold, "object/building/dathomir/shared_night_sister_stronghold.iff")
+
+object_building_dathomir_shared_dathomir_quarantine_zone_cantina = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/dathomir/shared_dathomir_quarantine_zone_cantina.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_building_dathomir_shared_dathomir_quarantine_zone_cantina, "object/building/dathomir/shared_dathomir_quarantine_zone_cantina.iff")
+
+

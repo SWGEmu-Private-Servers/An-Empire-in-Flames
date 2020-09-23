@@ -45,11 +45,11 @@ object_building_player_city_garden_dathomir_lrg_01 = object_building_player_city
 
 	lotSize = 0,
 	baseMaintenanceRate = 0,
-	allowedZones = {"corellia", "dantooine", "lok", "naboo", "rori", "talus", "tatooine"},
+	allowedZones = {"chandrila", "corellia", "dantooine", "kuat", "lok", "naboo", "rori", "taanab", "talus", "tatooine"},
 	length = 7,
 	width = 7,
 	cityRankRequired = 3,
-	cityMaintenanceBase = 30000,
+	cityMaintenanceBase = 1000,
 	abilityRequired = "place_exotic_garden",
 	zoneComponent = "StructureZoneComponent",
 	dataObjectComponent = "DecorationDataComponent",

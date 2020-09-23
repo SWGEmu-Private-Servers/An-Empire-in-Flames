@@ -42,7 +42,7 @@
 
 
 object_tangible_item_quest_force_sensitive_fs_crafting4_downed_satellite = object_tangible_item_quest_force_sensitive_shared_fs_crafting4_downed_satellite:new {
-	objectMenuComponent = "FsCrafting4SatelliteMenuComponent",
+--	objectMenuComponent = "FsCrafting4SatelliteMenuComponent",
 }
 
 ObjectTemplates:addTemplate(object_tangible_item_quest_force_sensitive_fs_crafting4_downed_satellite, "object/tangible/item/quest/force_sensitive/fs_crafting4_downed_satellite.iff")

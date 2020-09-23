@@ -11,31 +11,61 @@ factionRewardType = {
 
 rebelRewardData = {
 	weaponsArmorList = {
-		"armor_marine_backpack", "armor_marine_helmet", "armor_marine_chest_plate", "armor_marine_leggings", "armor_marine_boots", "armor_marine_bicep_l",
-		"armor_marine_bicep_r", "carbine_laser", "pistol_scout_blaster", "lance_staff_metal", "rocket_launcher", "mine_drx", "mine_xg",
+		"armor_endor_helmet",
+		"armor_marine_backpack", "armor_marine_helmet", "armor_marine_chest_plate", "armor_marine_leggings", "armor_marine_boots", "armor_marine_bicep_l", "armor_marine_bicep_r", "armor_marine_bracer_l", "armor_marine_bracer_r", "armor_marine_gloves",
+		"armor_assault_helmet", "armor_assault_chest_plate", "armor_assault_leggings", "armor_assault_boots", "armor_assault_bicep_l", "armor_assault_bicep_r", "armor_assault_bracer_l", "armor_assault_bracer_r", "armor_assault_gloves",
+		"armor_battle_helmet", "armor_battle_chest_plate", "armor_battle_leggings", "armor_battle_boots", "armor_battle_bicep_l", "armor_battle_bicep_r", "armor_battle_bracer_l", "armor_battle_bracer_r", "armor_battle_gloves",
+		"a280_rifle", "a280_carbine", "a280_pistol"
 	},
 
 	weaponsArmor = {
 		armor_marine_backpack = { index=0, type=factionRewardType.armor, display="@wearables_name:armor_marine_backpack", item="object/tangible/wearables/armor/marine/armor_marine_backpack.iff",cost=1500},
-		armor_marine_bicep_l = { index=1, type=factionRewardType.armor, display="@wearables_name:armor_marine_bicep_l", item="object/tangible/wearables/armor/marine/armor_marine_bicep_l.iff",cost=2000},
-		armor_marine_bicep_r = { index=2, type=factionRewardType.armor, display="@wearables_name:armor_marine_bicep_r", item="object/tangible/wearables/armor/marine/armor_marine_bicep_r.iff",cost=2000},
-		armor_marine_boots = { index=3, type=factionRewardType.armor, display="@wearables_name:armor_marine_boots", item="object/tangible/wearables/armor/marine/armor_marine_boots.iff",cost=3000},
-		armor_marine_chest_plate = { index=4, type=factionRewardType.armor, display="@wearables_name:armor_marine_chest_plate", item="object/tangible/wearables/armor/marine/armor_marine_chest_plate.iff",cost=4000},
-		armor_marine_helmet = { index=5, type=factionRewardType.armor, display="@wearables_name:armor_marine_helmet", item="object/tangible/wearables/armor/marine/armor_marine_helmet.iff",cost=3000},
-		armor_marine_leggings = { index=6, type=factionRewardType.armor, display="@wearables_name:armor_marine_leggings", item="object/tangible/wearables/armor/marine/armor_marine_leggings.iff",cost=3000},
-		carbine_laser = { index=7, type=factionRewardType.weapon, display="@weapon_name:carbine_laser", item="object/weapon/ranged/carbine/carbine_laser.iff", cost=1500},
-		pistol_scout_blaster = { index=8, type=factionRewardType.weapon, display="@weapon_name:pistol_scout_blaster", item="object/weapon/ranged/pistol/pistol_scout_blaster.iff", cost=1000},
-		metal_staff = { index=9, type=factionRewardType.weapon, display="@weapon_name:sword_02", item="object/weapon/ranged/melee/sword/sword_02.iff", cost=1000},
-		rocket_launcher = { index=10, type=factionRewardType.weapon, display="@weapon_name:rocket_launcher", item="object/weapon/ranged/heavy/heavy_rocket_launcher.iff", cost=5000},
-		lance_staff_metal = { index=11, type=factionRewardType.weapon, display="@weapon_name:lance_staff_metal", item="object/weapon/melee/polearm/lance_staff_metal.iff", cost=1000},
-		mine_drx = { type=factionRewardType.weapon, display="@weapon_name:mine_drx", item="object/weapon/mine/wp_mine_drx55.iff", cost=350},
-		mine_xg = { type=factionRewardType.weapon, display="@weapon_name:mine_xg", item="object/weapon/mine/wp_mine_xg.iff", cost=350},
+		armor_marine_bicep_l = { index=1, type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_rebel_marine_bicep_l", item="object/tangible/loot/loot_schematic/armorsmith/armor/marine/bicep_l_schematic.iff",cost=2000},
+		armor_marine_bicep_r = { index=2, type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_rebel_marine_bicep_r", item="object/tangible/loot/loot_schematic/armorsmith/armor/marine/bicep_r_schematic.iff",cost=2000},
+		armor_marine_bracer_l = { index=3, type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_rebel_marine_bracer_l", item="object/tangible/loot/loot_schematic/armorsmith/armor/marine/bracer_l_schematic.iff",cost=2000},
+		armor_marine_bracer_r = { index=4, type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_rebel_marine_bracer_r", item="object/tangible/loot/loot_schematic/armorsmith/armor/marine/bracer_r_schematic.iff",cost=2000},
+		armor_marine_boots = { index=5, type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_rebel_marine_boots", item="object/tangible/loot/loot_schematic/armorsmith/armor/marine/boots_schematic.iff",cost=3000},
+		armor_marine_chest_plate = { index=6, type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_rebel_marine_chest", item="object/tangible/loot/loot_schematic/armorsmith/armor/marine/chest_schematic.iff",cost=4000},
+		armor_marine_gloves = { index=7, type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_rebel_marine_gloves", item="object/tangible/loot/loot_schematic/armorsmith/armor/marine/gloves_schematic.iff",cost=2000},
+		armor_marine_helmet = { index=8, type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_rebel_marine_helmet", item="object/tangible/loot/loot_schematic/armorsmith/armor/marine/helmet_schematic.iff",cost=4000},
+		armor_marine_leggings = { index=9, type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_rebel_marine_leggings", item="object/tangible/loot/loot_schematic/armorsmith/armor/marine/leggings_schematic.iff",cost=3000},
+		armor_assault_bicep_l = { index=10, type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_rebel_assault_bicep_l", item="object/tangible/loot/loot_schematic/armorsmith/armor/rebel_assault/bicep_l_schematic.iff",cost=2000},
+		armor_assault_bicep_r = { index=11, type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_rebel_assault_bicep_r", item="object/tangible/loot/loot_schematic/armorsmith/armor/rebel_assault/bicep_r_schematic.iff",cost=2000},
+		armor_assault_bracer_l = { index=12, type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_rebel_assault_bracer_l", item="object/tangible/loot/loot_schematic/armorsmith/armor/rebel_assault/bracer_l_schematic.iff",cost=2000},
+		armor_assault_bracer_r = { index=13, type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_rebel_assault_bracer_r", item="object/tangible/loot/loot_schematic/armorsmith/armor/rebel_assault/bracer_r_schematic.iff",cost=2000},
+		armor_assault_boots = { index=14, type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_rebel_assault_boots", item="object/tangible/loot/loot_schematic/armorsmith/armor/rebel_assault/boots_schematic.iff",cost=3000},
+		armor_assault_chest_plate = { index=15, type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_rebel_assault_chest", item="object/tangible/loot/loot_schematic/armorsmith/armor/rebel_assault/chest_schematic.iff",cost=4000},
+		armor_assault_gloves = { index=16, type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_rebel_assault_gloves", item="object/tangible/loot/loot_schematic/armorsmith/armor/rebel_assault/gloves_schematic.iff",cost=2000},
+		armor_assault_helmet = { index=17, type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_rebel_assault_helmet", item="object/tangible/loot/loot_schematic/armorsmith/armor/rebel_assault/helmet_schematic.iff",cost=4000},
+		armor_assault_leggings = { index=18, type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_rebel_assault_leggings", item="object/tangible/loot/loot_schematic/armorsmith/armor/rebel_assault/leggings_schematic.iff",cost=3000},
+		armor_battle_bicep_l = { index=19, type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_rebel_battle_bicep_l", item="object/tangible/loot/loot_schematic/armorsmith/armor/rebel_battle/bicep_l_schematic.iff",cost=2000},
+		armor_battle_bicep_r = { index=20, type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_rebel_battle_bicep_r", item="object/tangible/loot/loot_schematic/armorsmith/armor/rebel_battle/bicep_r_schematic.iff",cost=2000},
+		armor_battle_bracer_l = { index=21, type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_rebel_battle_bracer_l", item="object/tangible/loot/loot_schematic/armorsmith/armor/rebel_battle/bracer_l_schematic.iff",cost=2000},
+		armor_battle_bracer_r = { index=22, type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_rebel_battle_bracer_r", item="object/tangible/loot/loot_schematic/armorsmith/armor/rebel_battle/bracer_r_schematic.iff",cost=2000},
+		armor_battle_boots = { index=23, type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_rebel_battle_boots", item="object/tangible/loot/loot_schematic/armorsmith/armor/rebel_battle/boots_schematic.iff",cost=3000},
+		armor_battle_chest_plate = { index=24, type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_rebel_battle_chest", item="object/tangible/loot/loot_schematic/armorsmith/armor/rebel_battle/chest_schematic.iff",cost=4000},
+		armor_battle_gloves = { index=25, type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_rebel_battle_gloves", item="object/tangible/loot/loot_schematic/armorsmith/armor/rebel_battle/gloves_schematic.iff",cost=2000},
+		armor_battle_helmet = { index=26, type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_rebel_battle_helmet", item="object/tangible/loot/loot_schematic/armorsmith/armor/rebel_battle/helmet_schematic.iff",cost=4000},
+		armor_battle_leggings = { index=27, type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_rebel_battle_leggings", item="object/tangible/loot/loot_schematic/armorsmith/armor/rebel_battle/leggings_schematic.iff",cost=3000},
+--		carbine_laser = { index=7, type=factionRewardType.weapon, display="@weapon_name:carbine_laser", item="object/weapon/ranged/carbine/carbine_laser.iff", cost=1500},
+--		pistol_scout_blaster = { index=8, type=factionRewardType.weapon, display="@weapon_name:pistol_scout_blaster", item="object/weapon/ranged/pistol/pistol_scout_blaster.iff", cost=1000},
+--		metal_staff = { index=9, type=factionRewardType.weapon, display="@weapon_name:sword_02", item="object/weapon/ranged/melee/sword/sword_02.iff", cost=1000},
+--		rocket_launcher = { index=10, type=factionRewardType.weapon, display="@weapon_name:rocket_launcher", item="object/weapon/ranged/heavy/heavy_rocket_launcher.iff", cost=5000},
+--		lance_staff_metal = { index=11, type=factionRewardType.weapon, display="@weapon_name:lance_staff_metal", item="object/weapon/melee/polearm/lance_staff_metal.iff", cost=1000},
+--		mine_drx = { type=factionRewardType.weapon, display="@weapon_name:mine_drx", item="object/weapon/mine/wp_mine_drx55.iff", cost=350},
+--		mine_xg = { type=factionRewardType.weapon, display="@weapon_name:mine_xg", item="object/weapon/mine/wp_mine_xg.iff", cost=350},
+		a280_carbine = { index=28, type=factionRewardType.weapon, display="@craft_weapon_ingredients_n:a280_carbine_schematic", item="object/tangible/loot/loot_schematic/weaponsmith/carbine_a280_schematic.iff", cost=5500},
+		a280_rifle = { index=29, type=factionRewardType.weapon, display="@craft_weapon_ingredients_n:a280_rifle_schematic", item="object/tangible/loot/loot_schematic/weaponsmith/rifle_a280_schematic.iff", cost=5500},
+		a280_pistol = { index=30, type=factionRewardType.weapon, display="@craft_weapon_ingredients_n:a280_pistol_schematic", item="object/tangible/loot/loot_schematic/weaponsmith/pistol_a280_schematic.iff", cost=5500},
+		armor_endor_helmet = { index=31, type=factionRewardType.armor, display="@craft_armor_ingredients_n:endor_helmet", item="object/tangible/loot/loot_schematic/armorsmith/armor/rebel_special/endor_helmet_schematic.iff",cost=2000},
+
 	},
 
 	installationsList = {
 		"hq_s01_pvp_rebel", "hq_s01_rebel", "hq_s02_pvp_rebel", "hq_s02_rebel", "hq_s03_pvp_rebel", "hq_s03_rebel", "hq_s04_pvp_rebel", "hq_s04_rebel", --"hq_s05_pvp_rebel",
 		"turret_block_lg", "turret_block_med", "turret_block_sm", "turret_dish_sm", "turret_dish_lg", "turret_tower_sm", "turret_tower_med", "turret_tower_lg",
-		"minefield_1x1",
+		"minefield_1x1", 
+		"cityhall_rebel",
 	},
 
 	installations = {
@@ -58,6 +88,9 @@ rebelRewardData = {
 		turret_tower_lg = { type=factionRewardType.installation, display="@deed:turret_tower_lg", item="object/tangible/deed/faction_perk/turret/tower_lg_deed.iff", generatedObjectTemplate="object/installation/faction_perk/turret/tower_lg.iff", cost=6300 },
 		covert_detector_32m = { type=factionRewardType.installation, display="@deed:covert_detector_32m", item="object/tangible/deed/faction_perk/covert_detector/detector_32m_deed.iff", generatedObjectTemplate="object/installation/faction_perk/covert_detector/detector_base.iff", cost=3000 },
 		minefield_1x1 = { type=factionRewardType.installation, display="@deed:minefield_1x1", item="object/tangible/deed/faction_perk/minefield/field_1x1_deed.iff", generatedObjectTemplate="object/installation/faction_perk/minefield/field_1x1.iff", cost=5000 },
+		cityhall_rebel = { type=factionRewardType.installation, display="@craft_structure_ingredients_n:cityhall_rebel_schematic", item="object/tangible/loot/loot_schematic/architect/cityhall_rebel_schematic.iff", cost=100000 },
+
+
 	},
 
 	furnitureList = {
@@ -76,12 +109,13 @@ rebelRewardData = {
 	},
 
 	hirelingList = {
-		"rebel_trooper", "senior_specforce_heavy_weapons_specialist", "senior_specforce_infiltrator", "senior_specforce_marine", "senior_specforce_pathfinder", "senior_specforce_technician",
+		"at_xt", "rebel_trooper", "senior_specforce_heavy_weapons_specialist", "senior_specforce_infiltrator", "senior_specforce_marine", "senior_specforce_pathfinder", "senior_specforce_technician",
 		"senior_specforce_urban_guerrilla", "senior_specforce_wilderness_fighter", "specforce_heavy_weapons_specialist", "specforce_infiltrator", "specforce_interrogator", "specforce_marine",
 		"specforce_procurement_specialist", "specforce_technician",	"specforce_wilderness_operative", "rebel_specforce_guerrilla",
 	},
 
 	hirelings = {
+		at_xt = { type=factionRewardType.hireling, display="@mob/creature_names:at_xt", item="object/intangible/pet/pet_control.iff", controlledObjectTemplate="at_xt", cost=9450},
 		rebel_trooper = { type=factionRewardType.hireling, display="@mob/creature_names:rebel_trooper", item="object/intangible/pet/pet_control.iff", controlledObjectTemplate="rebel_trooper", cost=150},
 		senior_specforce_heavy_weapons_specialist = { type=factionRewardType.hireling, display="@mob/creature_names:senior_specforce_heavy_weapons_specialist", item="object/intangible/pet/pet_control.iff", controlledObjectTemplate="senior_specforce_heavy_weapons_specialist", cost=450},
 		senior_specforce_infiltrator = { type=factionRewardType.hireling, display="@mob/creature_names:senior_specforce_infiltrator", item="object/intangible/pet/pet_control.iff", controlledObjectTemplate="senior_specforce_infiltrator", cost=450},
@@ -103,9 +137,11 @@ rebelRewardData = {
 
 imperialRewardData = {
 	weaponsArmorList = {
-		"armor_stormtrooper_helmet", "armor_stormtrooper_chest_plate", "armor_stormtrooper_leggings", "armor_stormtrooper_boots", "armor_stormtrooper_bicep_l", "armor_stormtrooper_bicep_r",
-		"armor_stormtrooper_bracer_l", "armor_stormtrooper_bracer_r", "armor_stormtrooper_gloves", "armor_stormtrooper_utility_belt", "carbine_e11", "pistol_power5", "sword_02",
-		"rocket_launcher", "mine_drx", "mine_xg",
+--		"armor_stormtrooper_helmet", "armor_stormtrooper_chest_plate", "armor_stormtrooper_leggings", "armor_stormtrooper_boots", "armor_stormtrooper_bicep_l", "armor_stormtrooper_bicep_r",
+		--"armor_stormtrooper_bracer_l", "armor_stormtrooper_bracer_r", "armor_stormtrooper_gloves", "armor_stormtrooper_utility_belt", "carbine_e11", "pistol_power5", "sword_02",
+--		"rocket_launcher", "mine_drx", "mine_xg", 
+		"armor_atat_flightsuit", "armor_atat_helmet",
+		"schematic_armor_stormtrooper_bicep_l", "schematic_armor_stormtrooper_bicep_r", "schematic_armor_stormtrooper_boots", "schematic_armor_stormtrooper_bracer_l", "schematic_armor_stormtrooper_bracer_r", "schematic_armor_stormtrooper_chest_plate", "schematic_armor_stormtrooper_gloves", "schematic_armor_stormtrooper_helmet", "schematic_armor_stormtrooper_leggings", "schematic_armor_stormtrooper_utility_belt", "schematic_armor_assault_trooper_bicep_l", "schematic_armor_assault_trooper_bicep_r", "schematic_armor_assault_trooper_boots", "schematic_armor_assault_trooper_bracer_l", "schematic_armor_assault_trooper_bracer_r", "schematic_armor_assault_trooper_chest_plate", "schematic_armor_assault_trooper_gloves", "schematic_armor_assault_trooper_helmet", "schematic_armor_assault_trooper_leggings", "schematic_armor_assault_trooper_utility_belt", "schematic_armor_scout_trooper_bicep_l", "schematic_armor_scout_trooper_bicep_r", "schematic_armor_scout_trooper_boots", "schematic_armor_scout_trooper_bracer_l", "schematic_armor_scout_trooper_bracer_r", "schematic_armor_scout_trooper_chest_plate", "schematic_armor_scout_trooper_gloves", "schematic_armor_scout_trooper_helmet", "schematic_armor_scout_trooper_leggings", "schematic_armor_scout_trooper_utility_belt",
 	},
 
 	weaponsArmor = {
@@ -126,6 +162,38 @@ imperialRewardData = {
 		rocket_launcher = { type=factionRewardType.weapon, display="@weapon_name:rocket_launcher", item="object/weapon/ranged/heavy/heavy_rocket_launcher.iff", cost=3500},
 		mine_drx = { type=factionRewardType.weapon, display="@weapon_name:mine_drx", item="object/weapon/mine/wp_mine_drx55.iff", cost=350},
 		mine_xg = { type=factionRewardType.weapon, display="@weapon_name:mine_xg", item="object/weapon/mine/wp_mine_xg.iff", cost=350},
+		schematic_armor_stormtrooper_bicep_l = { type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_stormtrooper_bicep_l", item="object/tangible/loot/loot_schematic/armorsmith/armor/stormtrooper/bicep_l_schematic.iff",cost=2000},
+		schematic_armor_stormtrooper_bicep_r = { type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_stormtrooper_bicep_r", item="object/tangible/loot/loot_schematic/armorsmith/armor/stormtrooper/bicep_r_schematic.iff",cost=2000},
+		schematic_armor_stormtrooper_boots = { type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_stormtrooper_boots", item="object/tangible/loot/loot_schematic/armorsmith/armor/stormtrooper/boots_schematic.iff",cost=3000},
+		schematic_armor_stormtrooper_bracer_l = { type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_stormtrooper_bracer_l", item="object/tangible/loot/loot_schematic/armorsmith/armor/stormtrooper/bracer_l_schematic.iff",cost=2000},
+		schematic_armor_stormtrooper_bracer_r = { type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_stormtrooper_bracer_r", item="object/tangible/loot/loot_schematic/armorsmith/armor/stormtrooper/bracer_r_schematic.iff",cost=2000},
+		schematic_armor_stormtrooper_chest_plate = { type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_stormtrooper_chest", item="object/tangible/loot/loot_schematic/armorsmith/armor/stormtrooper/chest_schematic.iff", cost=4000},
+		schematic_armor_stormtrooper_gloves = { type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_stormtrooper_gloves", item="object/tangible/loot/loot_schematic/armorsmith/armor/stormtrooper/gloves_schematic.iff",cost=2000},
+		schematic_armor_stormtrooper_helmet = { type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_stormtrooper_helmet", item="object/tangible/loot/loot_schematic/armorsmith/armor/stormtrooper/helmet_schematic.iff", cost=4000},
+		schematic_armor_stormtrooper_leggings = { type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_stormtrooper_leggings", item="object/tangible/loot/loot_schematic/armorsmith/armor/stormtrooper/leggings_schematic.iff",cost=3000},
+		schematic_armor_stormtrooper_utility_belt = { type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_stormtrooper_utility_belt", item="object/tangible/loot/loot_schematic/armorsmith/armor/stormtrooper/belt_schematic.iff",cost=2000},
+		schematic_armor_assault_trooper_bicep_l = { type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_assault_trooper_bicep_l", item="object/tangible/loot/loot_schematic/armorsmith/armor/assault_trooper/bicep_l_schematic.iff",cost=2000},
+		schematic_armor_assault_trooper_bicep_r = { type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_assault_trooper_bicep_r", item="object/tangible/loot/loot_schematic/armorsmith/armor/assault_trooper/bicep_r_schematic.iff",cost=2000},
+		schematic_armor_assault_trooper_boots = { type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_assault_trooper_boots", item="object/tangible/loot/loot_schematic/armorsmith/armor/assault_trooper/boots_schematic.iff",cost=3000},
+		schematic_armor_assault_trooper_bracer_l = { type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_assault_trooper_bracer_l", item="object/tangible/loot/loot_schematic/armorsmith/armor/assault_trooper/bracer_l_schematic.iff",cost=2000},
+		schematic_armor_assault_trooper_bracer_r = { type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_assault_trooper_bracer_r", item="object/tangible/loot/loot_schematic/armorsmith/armor/assault_trooper/bracer_r_schematic.iff",cost=2000},
+		schematic_armor_assault_trooper_chest_plate = { type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_assault_trooper_chest", item="object/tangible/loot/loot_schematic/armorsmith/armor/assault_trooper/chest_schematic.iff", cost=4000},
+		schematic_armor_assault_trooper_gloves = { type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_assault_trooper_gloves", item="object/tangible/loot/loot_schematic/armorsmith/armor/assault_trooper/gloves_schematic.iff",cost=2000},
+		schematic_armor_assault_trooper_helmet = { type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_assault_trooper_helmet", item="object/tangible/loot/loot_schematic/armorsmith/armor/assault_trooper/helmet_schematic.iff", cost=4000},
+		schematic_armor_assault_trooper_leggings = { type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_assault_trooper_leggings", item="object/tangible/loot/loot_schematic/armorsmith/armor/assault_trooper/leggings_schematic.iff",cost=3000},
+		schematic_armor_assault_trooper_utility_belt = { type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_assault_trooper_utility_belt", item="object/tangible/loot/loot_schematic/armorsmith/armor/assault_trooper/belt_schematic.iff",cost=2000},
+		schematic_armor_scout_trooper_bicep_l = { type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_scout_trooper_bicep_l", item="object/tangible/loot/loot_schematic/armorsmith/armor/scout_trooper/bicep_l_schematic.iff",cost=2000},
+		schematic_armor_scout_trooper_bicep_r = { type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_scout_trooper_bicep_r", item="object/tangible/loot/loot_schematic/armorsmith/armor/scout_trooper/bicep_r_schematic.iff",cost=2000},
+		schematic_armor_scout_trooper_boots = { type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_scout_trooper_boots", item="object/tangible/loot/loot_schematic/armorsmith/armor/scout_trooper/boots_schematic.iff",cost=3000},
+		schematic_armor_scout_trooper_bracer_l = { type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_scout_trooper_bracer_l", item="object/tangible/loot/loot_schematic/armorsmith/armor/scout_trooper/bracer_l_schematic.iff",cost=2000},
+		schematic_armor_scout_trooper_bracer_r = { type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_scout_trooper_bracer_r", item="object/tangible/loot/loot_schematic/armorsmith/armor/scout_trooper/bracer_r_schematic.iff",cost=2000},
+		schematic_armor_scout_trooper_chest_plate = { type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_scout_trooper_chest", item="object/tangible/loot/loot_schematic/armorsmith/armor/scout_trooper/chest_schematic.iff", cost=4000},
+		schematic_armor_scout_trooper_gloves = { type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_scout_trooper_gloves", item="object/tangible/loot/loot_schematic/armorsmith/armor/scout_trooper/gloves_schematic.iff",cost=2000},
+		schematic_armor_scout_trooper_helmet = { type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_scout_trooper_helmet", item="object/tangible/loot/loot_schematic/armorsmith/armor/scout_trooper/helmet_schematic.iff", cost=4000},
+		schematic_armor_scout_trooper_leggings = { type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_scout_trooper_leggings", item="object/tangible/loot/loot_schematic/armorsmith/armor/scout_trooper/leggings_schematic.iff",cost=3000},
+		schematic_armor_scout_trooper_utility_belt = { type=factionRewardType.armor, display="@craft_armor_ingredients_n:armor_appearance_scout_trooper_utility_belt", item="object/tangible/loot/loot_schematic/armorsmith/armor/scout_trooper/belt_schematic.iff",cost=2000},
+		armor_atat_flightsuit = { type=factionRewardType.armor, display="@craft_armor_ingredients_n:atat_flightsuit", item="object/tangible/loot/loot_schematic/armorsmith/armor/imperial_special/armored_atat_flightsuit_schematic.iff",cost=2000},
+		armor_atat_helmet = { type=factionRewardType.armor, display="@craft_armor_ingredients_n:atat_helmet", item="object/tangible/loot/loot_schematic/armorsmith/armor/imperial_special/armored_atat_flightsuit_helmet_schematic.iff",cost=2000},
 	},
 
 	uniformList = {
@@ -144,7 +212,8 @@ imperialRewardData = {
 		--"hq_s05_pvp_imperial",
 		"turret_block_lg", "turret_block_med", "turret_block_sm", "turret_dish_sm", "turret_dish_lg", "turret_tower_sm", "turret_tower_med", "turret_tower_lg",
 		--"covert_detector_32m",
-		"minefield_1x1",
+		"minefield_1x1", 
+		"cityhall_imperial",
 	},
 
 	installations = {
@@ -167,6 +236,7 @@ imperialRewardData = {
 		turret_tower_lg = { type=factionRewardType.installation, display="@deed:turret_tower_lg", item="object/tangible/deed/faction_perk/turret/tower_lg_deed.iff", generatedObjectTemplate="object/installation/faction_perk/turret/tower_lg.iff", cost=6300 },
 		covert_detector_32m = { type=factionRewardType.installation, display="@deed:covert_detector_32m", item="object/tangible/deed/faction_perk/covert_detector/detector_32m_deed.iff", generatedObjectTemplate="object/installation/faction_perk/covert_detector/detector_base.iff", cost=3000 },
 		minefield_1x1 = { type=factionRewardType.installation, display="@deed:minefield_1x1", item="object/tangible/deed/faction_perk/minefield/field_1x1_deed.iff", generatedObjectTemplate="object/installation/faction_perk/minefield/field_1x1.iff", cost=350 },
+		cityhall_imperial = {type=factionRewardType.installation, display="@craft_structure_ingredients_n:cityhall_imperial_schematic", item="object/tangible/loot/loot_schematic/architect/cityhall_imperial_schematic.iff", cost=100000},
 	},
 
 	furnitureList = {

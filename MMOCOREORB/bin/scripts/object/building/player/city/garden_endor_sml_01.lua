@@ -45,11 +45,11 @@ object_building_player_city_garden_endor_sml_01 = object_building_player_city_sh
 
 	lotSize = 0,
 	baseMaintenanceRate = 0,
-	allowedZones = {"corellia", "dantooine", "lok", "naboo", "rori", "talus", "tatooine"},
+	allowedZones = {"chandrila", "corellia", "dantooine", "kuat", "lok", "naboo", "rori", "taanab", "talus", "tatooine"},
 	length = 3,
 	width = 3,
 	cityRankRequired = 1,
-	cityMaintenanceBase = 10000,
+	cityMaintenanceBase = 500,
 	abilityRequired = "place_exotic_garden",
 	zoneComponent = "StructureZoneComponent",
 	dataObjectComponent = "DecorationDataComponent",

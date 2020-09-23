@@ -4107,3 +4107,52 @@ object_draft_schematic_weapon_shared_turbo_laser = SharedDraftSchematicObjectTem
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_turbo_laser, "object/draft_schematic/weapon/shared_turbo_laser.iff")
+
+--Alliance Needler Carbine
+object_draft_schematic_weapon_shared_carbine_alliance_needler = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_carbine_alliance_needler.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_carbine_alliance_needler, "object/draft_schematic/weapon/shared_carbine_alliance_needler.iff")
+
+--Bowcaster Carbine
+object_draft_schematic_weapon_shared_carbine_bowcaster = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_carbine_bowcaster.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_carbine_bowcaster, "object/draft_schematic/weapon/shared_carbine_bowcaster.iff")
+
+--Alliance Disruptor Pistol
+object_draft_schematic_weapon_shared_pistol_alliance_disruptor = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_pistol_alliance_disruptor.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_pistol_alliance_disruptor, "object/draft_schematic/weapon/shared_pistol_alliance_disruptor.iff")
+
+--Berserker Carbine
+object_draft_schematic_weapon_shared_carbine_berserker = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_carbine_berserker.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_carbine_berserker, "object/draft_schematic/weapon/shared_carbine_berserker.iff")
+
+--A280 Rifle
+object_draft_schematic_weapon_shared_rifle_a280 = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_rifle_a280.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_rifle_a280, "object/draft_schematic/weapon/shared_rifle_a280.iff")
+
+--A280 Pistol
+object_draft_schematic_weapon_shared_pistol_a280 = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_pistol_a280.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_pistol_a280, "object/draft_schematic/weapon/shared_pistol_a280.iff")
+
+--A280 Carbine
+object_draft_schematic_weapon_shared_carbine_a280 = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/weapon/shared_carbine_a280.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_shared_carbine_a280, "object/draft_schematic/weapon/shared_carbine_a280.iff")

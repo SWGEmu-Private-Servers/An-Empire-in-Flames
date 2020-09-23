@@ -43,10 +43,10 @@
 
 
 --Children folder includes
-includeFile("weapon/ranged/turret/base/serverobjects.lua")
+includeFile("../custom_scripts/object/weapon/ranged/turret/base/serverobjects.lua")
 
 -- Server Objects
-includeFile("weapon/ranged/turret/turret_block_large.lua")
-includeFile("weapon/ranged/turret/turret_block_small.lua")
-includeFile("weapon/ranged/turret/turret_dish_large.lua")
-includeFile("weapon/ranged/turret/turret_tower_large.lua")
+includeFile("../custom_scripts/object/weapon/ranged/turret/turret_block_large.lua")
+includeFile("../custom_scripts/object/weapon/ranged/turret/turret_block_small.lua")
+includeFile("../custom_scripts/object/weapon/ranged/turret/turret_dish_large.lua")
+includeFile("../custom_scripts/object/weapon/ranged/turret/turret_tower_large.lua")

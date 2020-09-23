@@ -62,12 +62,13 @@ object_draft_schematic_weapon_rifle_sonic_sg82 = object_draft_schematic_weapon_s
    customizationStringNames = {},
    customizationDefaults = {},
 
-   ingredientTemplateNames = {"craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n"},
-   ingredientTitleNames = {"frame_assembly", "receiver_assembly", "grip_assembly", "powerhandler", "firing_mechanism"},
-   ingredientSlotType = {0, 0, 0, 1, 1},
-   resourceTypes = {"copper_codoan", "metal_nonferrous", "metal", "object/tangible/component/weapon/shared_blaster_power_handler.iff", "object/tangible/component/item/shared_electronic_control_unit.iff"},
-   resourceQuantities = {40, 20, 10, 2, 1},
-   contribution = {100, 100, 100, 100, 100},
+   ingredientTemplateNames = {"craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n"},
+   ingredientTitleNames = {"frame_assembly", "receiver_assembly", "grip_assembly", "base_rifle_core", "barrel", "scope", "stock"},
+   ingredientSlotType = {0, 0, 0, 1, 1, 3, 3},
+   resourceTypes = {"metal", "chemical", "metal", "object/tangible/component/weapon/shared_base_rifle_core.iff", "object/tangible/component/weapon/shared_base_rifle_barrel.iff", "object/tangible/component/weapon/shared_scope_weapon.iff", "object/tangible/component/weapon/shared_stock.iff"},
+   resourceQuantities = {12, 6, 3, 1, 1, 1, 1},
+   contribution = {100, 100, 100, 100, 100, 100, 100},
+   ingredientAppearance = {"", "", "", "", "muzzle", "scope", "stock"},
 
 
    targetTemplate = "object/weapon/ranged/rifle/rifle_sg82.iff",

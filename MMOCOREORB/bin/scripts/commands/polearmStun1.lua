@@ -44,35 +44,34 @@
 PolearmStun1Command = {
         name = "polearmstun1",
 
-	damageMultiplier = 1.5,
-	speedMultiplier = 1.5,
-	healthCostMultiplier = 1.0,
-	actionCostMultiplier = 0.5,
-	mindCostMultiplier = 0.5,
+	damageMultiplier = 1.0,
+	speedMultiplier = 1.0,
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 10,
+	mindCostMultiplier = 0,
 	accuracyBonus = 10,
 
-	animation = "combo_4a", 
+	animation = "combo_4a",
 	animType = GENERATE_INTENSITY,
 
 	combatSpam = "breathtaker",
 
 	stateEffects = {
-	  StateEffect( 
-		STUN_EFFECT, 
-		{}, 
-		{ "stun_defense" }, 
+	  StateEffect(
+		STUN_EFFECT,
+		{},
+		{ "stun_defense" },
 		{ "jedi_state_defense", "resistance_states" },
-		100, 
-		0, 
-		30 
+		60,
+		0,
+		30
 	  )
 	},
-	
+
 	weaponType = POLEARMWEAPON,
 
-	range = -1
+	range = 12
 
 }
 
 AddCommand(PolearmStun1Command)
-

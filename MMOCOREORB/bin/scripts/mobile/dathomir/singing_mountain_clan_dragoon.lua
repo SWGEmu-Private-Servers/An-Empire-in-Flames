@@ -12,7 +12,7 @@ singing_mountain_clan_dragoon = Creature:new {
 	baseHAM = 20000,
 	baseHAMmax = 25000,
 	armor = 2,
-	resists = {45,45,75,35,75,35,35,35,-1},
+	resists = {40,40,30,40,40,60,30,40,40},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -43,6 +43,12 @@ singing_mountain_clan_dragoon = Creature:new {
 				{group = "wearables_uncommon", chance = 500000},
 				{group = "tailor_components", chance = 500000}
 			}
+		},
+		{
+			groups = {
+				{group = "smc_common", chance = 10000000},
+			},
+			lootChance = 166666
 		}
 	},
 	weapons = {"mixed_force_weapons"},

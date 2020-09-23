@@ -12,7 +12,7 @@ spiderclan_auspex = Creature:new {
 	baseHAM = 24000,
 	baseHAMmax = 30000,
 	armor = 2,
-	resists = {55,100,100,75,100,100,90,55,-1},
+	resists = {60,60,50,60,60,70,50,70,60},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -43,6 +43,12 @@ spiderclan_auspex = Creature:new {
 				{group = "wearables_common", chance = 500000},
 				{group = "wearables_uncommon", chance = 500000}
 			}
+		},
+		{
+			groups = {
+				{group = "spiderclan_common", chance = 10000000},
+			},
+			lootChance = 166666
 		}
 	},
 	weapons = {"mixed_force_weapons"},

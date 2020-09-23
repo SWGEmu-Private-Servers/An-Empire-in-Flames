@@ -12,7 +12,7 @@ nightsister_initiate = Creature:new {
 	baseHAM = 11000,
 	baseHAMmax = 14000,
 	armor = 1,
-	resists = {10,10,10,100,100,100,100,100,-1},
+	resists = {25,25,45,25,25,45,15,15,25},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -33,7 +33,7 @@ nightsister_initiate = Creature:new {
 			groups = {
 				{group = "power_crystals", chance = 500000},
 				{group = "color_crystals", chance = 500000},
-				{group = "nightsister_common", chance = 2000000},
+				{group = "junk", chance = 2000000},
 				{group = "armor_attachments", chance = 250000},
 				{group = "clothing_attachments", chance = 250000},
 				{group = "melee_weapons", chance = 2500000},
@@ -43,6 +43,12 @@ nightsister_initiate = Creature:new {
 				{group = "wearables_common", chance = 500000},
 				{group = "tailor_components", chance = 500000}
 			}
+		},
+		{
+			groups = {
+				{group = "nightsister_common", chance = 10000000},
+			},
+			lootChance = 166666
 		}
 	},
 	weapons = {"mixed_force_weapons"},

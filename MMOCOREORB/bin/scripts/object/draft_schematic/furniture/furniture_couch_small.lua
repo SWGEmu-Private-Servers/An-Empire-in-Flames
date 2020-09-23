@@ -70,7 +70,7 @@ object_draft_schematic_furniture_furniture_couch_small = object_draft_schematic_
 	resourceQuantities = {100, 100},
 	contribution = {100, 100},
 
-	targetTemplate = "object/tangible/furniture/all/frn_all_couch_sm_s1.iff",
+	targetTemplate = "object/tangible/furniture/all/frn_all_couch_sm_hue_s1.iff",
 
 	additionalTemplates = {}
 }

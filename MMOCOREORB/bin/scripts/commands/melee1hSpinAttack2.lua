@@ -45,10 +45,10 @@ Melee1hSpinAttack2Command = {
         name = "melee1hspinattack2",
 
 	damageMultiplier = 3.0,
-	speedMultiplier = 2.5,
-	healthCostMultiplier = 1.25,
-	actionCostMultiplier = 1.25,
-	mindCostMultiplier = 2.0,
+	speedMultiplier = 1.5,
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 30,
+	mindCostMultiplier = 0,
         accuracyBonus = 25,
 
 	animation = "lower_posture_2hmelee_6",
@@ -56,24 +56,25 @@ Melee1hSpinAttack2Command = {
 	combatSpam = "blindspin",
 
 	areaAction = true,
-	areaRange = 16,
+	areaRange = 8,
 
-	stateEffects = {
-	  StateEffect( 
-		BLIND_EFFECT, 
-		{}, 
-		{ "blind_defense" }, 
-		{ "jedi_state_defense", "resistance_states" },
-		40, 
-		0, 
-		30 
+  dotEffects = {
+	  DotEffect(
+		BLEEDING,
+		{ "resistance_bleeding", "bleed_resist" },
+		ATTACK_POOL,
+		true,
+		0,
+		100,
+		60,
+		18,
+		30
 	  )
 	},
-	
+
 	weaponType = ONEHANDMELEEWEAPON,
 
 	range = -1
 }
 
 AddCommand(Melee1hSpinAttack2Command)
-

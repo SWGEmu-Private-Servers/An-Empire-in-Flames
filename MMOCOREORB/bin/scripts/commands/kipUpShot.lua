@@ -44,33 +44,32 @@
 KipUpShotCommand = {
 	name = "kipupshot",
 
-	damageMultiplier = 2.5,
-	speedMultiplier = 1.5,
-	healthCostMultiplier = 0.5,
-	actionCostMultiplier = 0.75,
-	mindCostMultiplier = 0.5,
-	accuracyBonus = 50,
+	damageMultiplier = 2.0,
+	speedMultiplier = 1.0,
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 35,
+	mindCostMultiplier = 0,
+	accuracyBonus = 30,
 
 	animation = "fire_acrobatic",
 
 	combatSpam = "kipup",
-	
+
 	weaponType = PISTOLWEAPON,
 
 	range = -1,
-	
+
 	stateEffects = {
-	  StateEffect( 
-	    ATTACKER_FORCE_STANDING, 
-	    {}, 
-	    {}, 
-	    {}, 
-	    100, 
-	    0, 
-	    0 
+	  StateEffect(
+	    ATTACKER_FORCE_STANDING,
+	    {},
+	    {},
+	    {},
+	    100,
+	    0,
+	    0
 	  )
 	},
 }
 
 AddCommand(KipUpShotCommand)
-

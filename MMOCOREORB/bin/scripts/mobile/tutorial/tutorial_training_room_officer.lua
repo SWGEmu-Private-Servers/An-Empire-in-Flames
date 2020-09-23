@@ -1,7 +1,7 @@
 tutorial_training_room_officer = Creature:new {
 	objectName = "@newbie_tutorial/system_messages:imp_name",
-	socialGroup = "imperial",
-	faction = "imperial",
+	socialGroup = "rebel",
+	faction = "rebel",
 	level = 15,
 	chanceHit = 0.31,
 	damageMin = 160,
@@ -25,7 +25,7 @@ tutorial_training_room_officer = Creature:new {
 	optionsBitmask = INVULNERABLE + CONVERSABLE,
 	diet = HERBIVORE,
 
-	templates = {"object/mobile/dressed_imperial_major_m.iff"},
+	templates = {"object/mobile/dressed_rebel_major_moncal_male_01.iff",},
 	lootGroups = {},
 	weapons = {"imperial_weapons_medium"},
 	attacks = merge(marksmannovice,brawlernovice),

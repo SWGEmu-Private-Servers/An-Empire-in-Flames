@@ -12,7 +12,7 @@ spiderclan_web_dancer = Creature:new {
 	baseHAM = 12000,
 	baseHAMmax = 15000,
 	armor = 1,
-	resists = {100,95,100,65,100,65,90,100,-1},
+	resists = {75,75,55,75,75,95,55,95,75},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -43,6 +43,12 @@ spiderclan_web_dancer = Creature:new {
 				{group = "wearables_common", chance = 500000},
 				{group = "wearables_uncommon", chance = 500000}
 			}
+		},
+		{
+			groups = {
+				{group = "spiderclan_common", chance = 10000000},
+			},
+			lootChance = 166666
 		}
 	},
 	weapons = {"mixed_force_weapons"},

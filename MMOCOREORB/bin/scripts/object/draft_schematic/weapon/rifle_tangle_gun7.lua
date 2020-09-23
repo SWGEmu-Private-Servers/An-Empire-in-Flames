@@ -62,12 +62,13 @@ object_draft_schematic_weapon_rifle_tangle_gun7 = object_draft_schematic_weapon_
    customizationStringNames = {},
    customizationDefaults = {},
 
-   ingredientTemplateNames = {"craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n"},
-   ingredientTitleNames = {"frame_assembly", "receiver_assembly", "grip_assembly", "targeting_assist", "cartridge_feed_unit"},
-   ingredientSlotType = {0, 0, 0, 1, 1},
-   resourceTypes = {"copper_codoan", "metal_nonferrous", "metal", "object/tangible/component/item/shared_electronic_control_unit.iff", "object/tangible/component/weapon/shared_projectile_feed_mechanism.iff"},
-   resourceQuantities = {55, 20, 7, 5, 1},
-   contribution = {100, 100, 100, 100, 100},
+   ingredientTemplateNames = {"craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n"},
+   ingredientTitleNames = {"frame_assembly", "receiver_assembly", "grip_assembly", "base_pistol_core", "barrel", "scope"},
+   ingredientSlotType = {0, 0, 0, 1, 1, 3},
+   resourceTypes = {"metal", "chemical", "metal", "object/tangible/component/weapon/shared_base_pistol_core.iff", "object/tangible/component/weapon/shared_base_pistol_barrel.iff", "object/tangible/component/weapon/shared_scope_weapon.iff"},
+   resourceQuantities = {12, 6, 3, 1, 1, 1},
+   contribution = {100, 100, 100, 100, 100, 100},
+   ingredientAppearance = {"", "", "", "", "muzzle", "scope"},
 
 
    targetTemplate = "object/weapon/ranged/pistol/pistol_tangle.iff",

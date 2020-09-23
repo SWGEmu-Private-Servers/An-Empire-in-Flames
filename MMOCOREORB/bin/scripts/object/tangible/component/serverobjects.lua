@@ -43,7 +43,7 @@
 
 
 --Children folder includes
-includeFile("tangible/component/armor/serverobjects.lua")
+--includeFile("tangible/component/armor/serverobjects.lua")
 includeFile("tangible/component/base/serverobjects.lua")
 includeFile("tangible/component/bio/serverobjects.lua")
 includeFile("tangible/component/chemistry/serverobjects.lua")
@@ -53,10 +53,10 @@ includeFile("tangible/component/droid/serverobjects.lua")
 includeFile("tangible/component/food/serverobjects.lua")
 includeFile("tangible/component/instrument/serverobjects.lua")
 includeFile("tangible/component/item/serverobjects.lua")
-includeFile("tangible/component/munition/serverobjects.lua")
+--includeFile("tangible/component/munition/serverobjects.lua")
 includeFile("tangible/component/structure/serverobjects.lua")
 includeFile("tangible/component/vehicle/serverobjects.lua")
-includeFile("tangible/component/weapon/serverobjects.lua")
+--includeFile("tangible/component/weapon/serverobjects.lua")
 
 -- Server Objects
 includeFile("tangible/component/barrel_blaster.lua")

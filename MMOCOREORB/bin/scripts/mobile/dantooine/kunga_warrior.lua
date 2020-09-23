@@ -12,7 +12,7 @@ kunga_warrior = Creature:new {
 	baseHAM = 12000,
 	baseHAMmax = 15000,
 	armor = 1,
-	resists = {25,45,-1,25,25,100,25,-1,-1},
+	resists = {60,60,60,50,50,60,70,70,60},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -41,6 +41,12 @@ kunga_warrior = Creature:new {
 				{group = "wearables_uncommon", chance = 1000000},
 				{group = "power_crystals", chance = 500000}
 			}
+		},
+		{
+			groups = {
+				{group = "janta_common", chance = 10000000},
+			},
+			lootChance = 1500000
 		}
 	},
 	weapons = {"primitive_weapons"},

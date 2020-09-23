@@ -51,23 +51,23 @@ object_draft_schematic_weapon_staff_reinforced = object_draft_schematic_weapon_s
    complexity = 5, 
    size = 3, 
 
-   xpType = "crafting_general", 
+   xpType = "crafting_weapons_general", 
    xp = 80, 
 
-   assemblySkill = "general_assembly", 
-   experimentingSkill = "general_experimentation", 
+   assemblySkill = "weapon_assembly", 
+   experimentingSkill = "weapon_experimentation", 
    customizationSkill = "clothing_customization", 
 
    customizationOptions = {},
    customizationStringNames = {},
    customizationDefaults = {},
 
-   ingredientTemplateNames = {"craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n"},
-   ingredientTitleNames = {"staff_shaft", "flex_core", "balance_tabs", "impact_face"},
-   ingredientSlotType = {0, 0, 0, 0},
-   resourceTypes = {"wood", "metal", "mineral", "metal_ferrous"},
-   resourceQuantities = {15, 10, 10, 5},
-   contribution = {100, 100, 100, 100},
+    ingredientTemplateNames = {"craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n"},
+   ingredientTitleNames = {"melee_core", "grip", "edge","shaft", "fastener"},
+   ingredientSlotType = {1, 1, 3, 0, 0},
+   resourceTypes = {"object/tangible/component/weapon/shared_base_melee_core.iff", "object/tangible/component/weapon/shared_base_melee_grip.iff", "object/tangible/component/weapon/shared_base_melee_edge.iff", "metal", "wood", "metal"},
+   resourceQuantities = {1, 1, 1, 20, 6},
+   contribution = {100, 100, 100, 100, 100},
 
 
    targetTemplate = "object/weapon/melee/polearm/lance_staff_wood_s2.iff",

@@ -1,9 +1,10 @@
 rebel_weapons_medium = {
-	"object/weapon/ranged/rifle/rifle_spraystick.iff",
 	"object/weapon/ranged/carbine/carbine_laser.iff",
-	"object/weapon/ranged/rifle/rifle_sg82.iff",
 	"object/weapon/ranged/rifle/rifle_dlt20a.iff",
-	"object/weapon/ranged/pistol/pistol_fwg5.iff"
+	"object/weapon/ranged/pistol/pistol_fwg5.iff",
+	"object/weapon/ranged/pistol/pistol_a280.iff",
+	"object/weapon/ranged/rifle/rifle_a280.iff",
+	"object/weapon/ranged/carbine/carbine_a280.iff",
 
 }
 

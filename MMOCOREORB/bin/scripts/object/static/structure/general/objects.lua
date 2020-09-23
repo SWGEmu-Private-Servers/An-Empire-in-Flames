@@ -13957,6 +13957,12 @@ object_static_structure_general_shared_space_station = SharedStaticObjectTemplat
 
 ObjectTemplates:addClientTemplate(object_static_structure_general_shared_space_station, "object/static/structure/general/shared_space_station.iff")
 
+object_static_structure_general_shared_slab_concrete_imperial = SharedStaticObjectTemplate:new {
+	clientTemplateFileName = "object/static/structure/general/shared_slab_concrete_imperial.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_static_structure_general_shared_slab_concrete_imperial, "object/static/structure/general/shared_slab_concrete_imperial.iff")
+
 object_static_structure_general_shared_streetlamp_large_blue_style_01 = SharedStaticObjectTemplate:new {
 	clientTemplateFileName = "object/static/structure/general/shared_streetlamp_large_blue_style_01.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups

@@ -488,4 +488,376 @@ show_gcw_score = ConvoScreen:new {
 
 imperialRecruiterConvoTemplate:addScreen(show_gcw_score);
 
+Corellia = ConvoScreen:new {
+	id = "Corellia",
+	leftDialog = "",
+  	customDialogText = "There's an invasion going on right now on Corellia! Are you available to fight?",
+	stopConversation = "false",
+	options = {
+		{"Take me to Coronet!", "imperialCorelliaCoronet"}, 
+		{"Take me to Doaba Guerfel!", "imperialCorelliaDoabaGuerfel"}, 
+		{"Take me to Kor Vella!", "imperialCorelliaKorVella"}, 
+		{"Take me to Tyrena!", "imperialCorelliaTyrena"}, 
+	}
+}
+imperialRecruiterConvoTemplate:addScreen(Corellia);
+
+imperialCorelliaCoronet = ConvoScreen:new {
+	id = "imperialCorelliaCoronet",
+	leftDialog = "",
+  	customDialogText = "Good luck!",
+	options = {
+	}
+}
+imperialRecruiterConvoTemplate:addScreen(imperialCorelliaCoronet);
+
+imperialCorelliaDoabaGuerfel = ConvoScreen:new {
+	id = "imperialCorelliaDoabaGuerfel",
+	leftDialog = "",
+  	customDialogText = "Good luck!",
+	options = {
+	}
+}
+imperialRecruiterConvoTemplate:addScreen(imperialCorelliaDoabaGuerfel);
+
+imperialCorelliaKorVella = ConvoScreen:new {
+	id = "imperialCorelliaKorVella",
+	leftDialog = "",
+  	customDialogText = "Good luck!",
+	options = {
+	}
+}
+imperialRecruiterConvoTemplate:addScreen(imperialCorelliaKorVella);
+
+imperialCorelliaTyrena = ConvoScreen:new {
+	id = "imperialCorelliaTyrena",
+	leftDialog = "",
+  	customDialogText = "Good luck!",
+	options = {
+	}
+}
+imperialRecruiterConvoTemplate:addScreen(imperialCorelliaTyrena);
+
+
+Dantooine = ConvoScreen:new {
+	id = "Dantooine",
+	leftDialog = "",
+  	customDialogText = "There's an invasion going on right now on Dantooine! Are you available to fight?",
+	stopConversation = "false",
+	options = {
+		{"Take me to the mining outpost!", "imperialDantooineMining"}, 
+		{"Take me to the Agro outpost!", "imperialDantooineAgro"}, 
+		{"Take me to the military outpost!", "imperialDantooineMilitary"} 
+	}
+}
+
+imperialRecruiterConvoTemplate:addScreen(Dantooine);
+
+imperialDantooineMining = ConvoScreen:new {
+	id = "imperialDantooineMining",
+	leftDialog = "",
+  	customDialogText = "Good luck!",
+	options = {
+	}
+}
+
+imperialRecruiterConvoTemplate:addScreen(imperialDantooineMining);
+
+imperialDantooineMilitary = ConvoScreen:new {
+	id = "imperialDantooineMilitary",
+	leftDialog = "",
+  	customDialogText = "Good luck!",
+	options = {
+	}
+}
+
+imperialRecruiterConvoTemplate:addScreen(imperialDantooineMilitary);
+
+imperialDantooineAgro = ConvoScreen:new {
+	id = "imperialDantooineAgro",
+	leftDialog = "",
+  	customDialogText = "Good luck!",
+	options = {
+	}
+}
+
+imperialRecruiterConvoTemplate:addScreen(imperialDantooineAgro);
+
+Dathomir = ConvoScreen:new {
+	id = "Dathomir",
+	leftDialog = "",
+  	customDialogText = "There's an invasion going on right now on Dathomir! Are you available to fight?",
+	stopConversation = "false",
+	options = {
+		{"Take me to the trade outpost!", "imperialDathomirTrade"}, 
+		{"Take me to the science outpost!", "imperialDathomirScience"}, 
+	}
+}
+
+imperialRecruiterConvoTemplate:addScreen(Dathomir);
+
+imperialDathomirTrade = ConvoScreen:new {
+	id = "imperialDathomirTrade",
+	leftDialog = "",
+  	customDialogText = "Good luck!",
+	options = {
+	}
+}
+
+imperialRecruiterConvoTemplate:addScreen(imperialDathomirTrade);
+
+imperialDathomirScience = ConvoScreen:new {
+	id = "imperialDathomirScience",
+	leftDialog = "",
+  	customDialogText = "Good luck!",
+	options = {
+	}
+}
+
+imperialRecruiterConvoTemplate:addScreen(imperialDathomirScience);
+
+Endor = ConvoScreen:new {
+	id = "Endor",
+	leftDialog = "",
+  	customDialogText = "There's an invasion going on right now on the forest moon of Endor! Are you available to fight?",
+	stopConversation = "false",
+	options = {
+		{"Take me to the smuggler outpost!", "imperialEndorSmuggler"}, 
+		{"Take me to the research outpost!", "imperialEndorResearch"}, 
+	}
+}
+
+imperialRecruiterConvoTemplate:addScreen(Endor);
+
+imperialEndorSmuggler = ConvoScreen:new {
+	id = "imperialEndorSmuggler",
+	leftDialog = "",
+  	customDialogText = "Good luck!",
+	options = {
+	}
+}
+
+imperialRecruiterConvoTemplate:addScreen(imperialEndorSmuggler);
+
+imperialEndorResearch = ConvoScreen:new {
+	id = "imperialEndorResearch",
+	leftDialog = "",
+  	customDialogText = "Good luck!",
+	options = {
+	}
+}
+
+imperialRecruiterConvoTemplate:addScreen(imperialEndorResearch);
+
+
+Naboo = ConvoScreen:new {
+	id = "Naboo",
+	leftDialog = "",
+  	customDialogText = "There's an invasion going on right now on Naboo! Are you available to fight?",
+	stopConversation = "false",
+	options = {
+		{"Take me to Theed!", "imperialNabooTheed"}, 
+		{"Take me to Moenia!", "imperialNabooMoenia"}, 
+		{"Take me to Keren!", "imperialNabooKeren"}, 
+		{"Take me to Kaadara!", "imperialNabooKaadara"}, 
+	}
+}
+imperialRecruiterConvoTemplate:addScreen(Naboo);
+
+imperialNabooTheed = ConvoScreen:new {
+	id = "imperialNabooTheed",
+	leftDialog = "",
+  	customDialogText = "Good luck!",
+	options = {
+	}
+}
+imperialRecruiterConvoTemplate:addScreen(imperialNabooTheed);
+
+imperialNabooMoenia = ConvoScreen:new {
+	id = "imperialNabooMoenia",
+	leftDialog = "",
+  	customDialogText = "Good luck!",
+	options = {
+	}
+}
+imperialRecruiterConvoTemplate:addScreen(imperialNabooMoenia);
+
+imperialNabooKeren = ConvoScreen:new {
+	id = "imperialNabooKeren",
+	leftDialog = "",
+  	customDialogText = "Good luck!",
+	options = {
+	}
+}
+imperialRecruiterConvoTemplate:addScreen(imperialNabooKeren);
+
+imperialNabooKaadara = ConvoScreen:new {
+	id = "imperialNabooKaadara",
+	leftDialog = "",
+  	customDialogText = "Good luck!",
+	options = {
+	}
+}
+imperialRecruiterConvoTemplate:addScreen(imperialNabooKaadara);
+
+
+Rori = ConvoScreen:new {
+	id = "Rori",
+	leftDialog = "",
+  	customDialogText = "There's an invasion going on right now on Rori! Are you available to fight?",
+	stopConversation = "false",
+	options = {
+		{"Take me to Narmle!", "imperialRoriNarmle"}, 
+		{"Take me to Restuss!", "imperialRoriRestuss"},
+--		{"Take me to the military outpost!", "imperialRoriMilitary"},
+	}
+}
+imperialRecruiterConvoTemplate:addScreen(Rori);
+
+imperialRoriNarmle = ConvoScreen:new {
+	id = "imperialRoriNarmle",
+	leftDialog = "",
+  	customDialogText = "Good luck!",
+	options = {
+	}
+}
+imperialRecruiterConvoTemplate:addScreen(imperialRoriNarmle);
+
+imperialRoriRestuss = ConvoScreen:new {
+	id = "imperialRoriRestuss",
+	leftDialog = "",
+  	customDialogText = "Good luck!",
+	options = {
+	}
+}
+imperialRecruiterConvoTemplate:addScreen(imperialRoriRestuss);
+
+imperialRoriMilitary = ConvoScreen:new {
+	id = "imperialRoriMilitary",
+	leftDialog = "",
+  	customDialogText = "Good luck!",
+	options = {
+	}
+}
+imperialRecruiterConvoTemplate:addScreen(imperialRoriMilitary);
+
+
+Taanab = ConvoScreen:new {
+	id = "Taanab",
+	leftDialog = "",
+  	customDialogText = "There's an invasion going on right now on Taanab! Are you available to fight?",
+	stopConversation = "false",
+	options = {
+		{"Take me to Pandath!", "imperialTaanabPandath"}, 
+		{"Take me to Starhunter Station!", "imperialTaanabStarhunter"},
+	}
+}
+imperialRecruiterConvoTemplate:addScreen(Taanab);
+
+imperialTaanabPandath = ConvoScreen:new {
+	id = "imperialTaanabPandath",
+	leftDialog = "",
+  	customDialogText = "Good luck!",
+	options = {
+	}
+}
+
+imperialRecruiterConvoTemplate:addScreen(imperialTaanabPandath);
+
+imperialTaanabStarhunter = ConvoScreen:new {
+	id = "imperialTaanabStarhunter",
+	leftDialog = "",
+  	customDialogText = "Good luck!",
+	options = {
+	}
+}
+
+imperialRecruiterConvoTemplate:addScreen(imperialTaanabStarhunter);
+
+
+Talus = ConvoScreen:new {
+	id = "Talus",
+	leftDialog = "",
+  	customDialogText = "There's an invasion going on right now on Talus! Are you available to fight?",
+	stopConversation = "false",
+	options = {
+		{"Take me to Dearic!", "imperialTalusDearic"}, 
+		{"Take me to Nashal!", "imperialTalusNashal"},
+--		{"Take me to the military outpost!", "imperialTalusMilitary"},
+	}
+}
+imperialRecruiterConvoTemplate:addScreen(Talus);
+
+imperialTalusDearic = ConvoScreen:new {
+	id = "imperialTalusDearic",
+	leftDialog = "",
+  	customDialogText = "Good luck!",
+	options = {
+	}
+}
+imperialRecruiterConvoTemplate:addScreen(imperialTalusDearic);
+
+imperialTalusNashal = ConvoScreen:new {
+	id = "imperialTalusNashal",
+	leftDialog = "",
+  	customDialogText = "Good luck!",
+	options = {
+	}
+}
+imperialRecruiterConvoTemplate:addScreen(imperialTalusNashal);
+
+imperialTalusMilitary = ConvoScreen:new {
+	id = "imperialTalusMilitary",
+	leftDialog = "",
+  	customDialogText = "Good luck!",
+	options = {
+	}
+}
+imperialRecruiterConvoTemplate:addScreen(imperialTalusMilitary);
+
+
+Yavin4 = ConvoScreen:new {
+	id = "Yavin4",
+	leftDialog = "",
+  	customDialogText = "There's an invasion going on right now on Yavin 4! Are you available to fight?",
+	stopConversation = "false",
+	options = {
+		{"Take me to the mining outpost!", "imperialYavin4Mining"}, 
+		{"Take me to the labor outpost!", "imperialYavin4Labor"}, 
+		{"Take me to the military outpost!", "imperialYavin4Military"} 
+	}
+}
+
+imperialRecruiterConvoTemplate:addScreen(Yavin4);
+
+imperialYavin4Mining = ConvoScreen:new {
+	id = "imperialYavin4Mining",
+	leftDialog = "",
+  	customDialogText = "Good luck!",
+	options = {
+	}
+}
+
+imperialRecruiterConvoTemplate:addScreen(imperialYavin4Mining);
+
+imperialYavin4Military = ConvoScreen:new {
+	id = "imperialYavin4Military",
+	leftDialog = "",
+  	customDialogText = "Good luck!",
+	options = {
+	}
+}
+
+imperialRecruiterConvoTemplate:addScreen(imperialYavin4Military);
+
+imperialYavin4Labor = ConvoScreen:new {
+	id = "imperialYavin4Labor",
+	leftDialog = "",
+  	customDialogText = "Good luck!",
+	options = {
+	}
+}
+
+imperialRecruiterConvoTemplate:addScreen(imperialYavin4Labor);
+
 addConversationTemplate("imperialRecruiterConvoTemplate", imperialRecruiterConvoTemplate);

@@ -44,12 +44,12 @@
 object_building_player_city_garden_corellia_lrg_05 = object_building_player_city_shared_garden_corellia_lrg_05:new {
 	lotSize = 0,
 	baseMaintenanceRate = 0,
-	allowedZones = {"corellia", "talus"},
+	allowedZones = {"corellia", "kuat", "taanab", "talus"},
 	length = 7,
 	width = 7,
 	cityRankRequired = 3,
 	abilityRequired = "place_large_garden",
-	cityMaintenanceBase = 30000,
+	cityMaintenanceBase = 1000,
 	zoneComponent = "StructureZoneComponent",
 	dataObjectComponent = "DecorationDataComponent",
 	childObjects = {

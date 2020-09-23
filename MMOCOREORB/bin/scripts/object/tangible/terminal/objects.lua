@@ -3344,3 +3344,8 @@ object_tangible_terminal_shared_test = SharedTangibleObjectTemplate:new {
 }
 
 ObjectTemplates:addClientTemplate(object_tangible_terminal_shared_test, "object/tangible/terminal/shared_test.iff")
+
+object_tangible_terminal_shared_terminal_galactic_ballot = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/terminal/shared_terminal_galactic_ballot.iff"}
+
+ObjectTemplates:addClientTemplate(object_tangible_terminal_shared_terminal_galactic_ballot, "object/tangible/terminal/shared_terminal_galactic_ballot.iff")

@@ -49,6 +49,9 @@ object_tangible_wearables_boots_nightsister_boots = object_tangible_wearables_bo
 				"object/creature/player/sullustan_female.iff",
 				"object/creature/player/twilek_female.iff",
 				"object/creature/player/zabrak_female.iff",
+				"object/creature/player/devaronian_female.iff",
+				"object/creature/player/mirialan_female.iff",
+				"object/creature/player/zeltron_female.iff",
 				"object/mobile/vendor/aqualish_female.iff",
 				"object/mobile/vendor/bith_female.iff",
 				"object/mobile/vendor/bothan_female.iff",
@@ -58,7 +61,14 @@ object_tangible_wearables_boots_nightsister_boots = object_tangible_wearables_bo
 				"object/mobile/vendor/sullustan_female.iff",
 				"object/mobile/vendor/trandoshan_female.iff",
 				"object/mobile/vendor/twilek_female.iff",
-				"object/mobile/vendor/zabrak_female.iff" },
+				"object/mobile/vendor/zabrak_female.iff",
+				"object/creature/player/aqualish_female.iff",
+				"object/creature/player/bith_female.iff",
+				"object/creature/player/chiss_female.iff",
+				"object/creature/player/nightsister_female.iff",
+				"object/creature/player/smc_female.iff",
+				"object/creature/player/togruta_female.iff",
+				"object/creature/player/sanyassan_female.iff" },
 }
 
 ObjectTemplates:addTemplate(object_tangible_wearables_boots_nightsister_boots, "object/tangible/wearables/boots/nightsister_boots.iff")

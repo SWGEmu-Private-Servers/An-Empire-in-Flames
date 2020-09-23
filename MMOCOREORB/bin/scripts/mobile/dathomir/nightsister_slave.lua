@@ -12,7 +12,7 @@ nightsister_slave = Creature:new {
 	baseHAM = 1500,
 	baseHAMmax = 1900,
 	armor = 0,
-	resists = {5,5,5,0,0,0,0,5,-1},
+	resists = {25,25,45,25,25,45,15,15,25},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -36,6 +36,12 @@ nightsister_slave = Creature:new {
 				{group = "loot_kit_parts", chance = 2000000},
 				{group = "tailor_components", chance = 1000000},
 			}
+		},
+		{
+			groups = {
+				{group = "nightsister_common", chance = 10000000},
+			},
+			lootChance = 42000
 		}
 	},
 	weapons = {},

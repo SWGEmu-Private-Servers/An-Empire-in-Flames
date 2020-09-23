@@ -100,6 +100,19 @@
 -----------------------------------------------------------
 
 -----------------
+--   Chandrila
+-----------------
+chandrila = {
+
+	defaultWeather = 0, -- Sunny
+
+	averageWeatherDuration = 1800, -- In seconds
+
+	weatherStability = 90, -- Range 0 - 100, Higher = Less weather changes, Overall better weather
+}
+
+
+-----------------
 --   Corellia
 -----------------
 corellia = {
@@ -112,6 +125,19 @@ corellia = {
 }
 
 -----------------
+--   Coruscant
+-----------------
+coruscant = {
+
+	defaultWeather = 0, -- Sunny
+
+	averageWeatherDuration = 600, -- In seconds
+
+	weatherStability = 90, -- Range 0 - 100, Higher = Less weather changes, Overall better weather
+}
+
+
+-----------------
 --   Tatooine 
 -----------------
 tatooine = {
@@ -120,11 +146,11 @@ tatooine = {
 
 	averageWeatherDuration = 3600, -- In seconds
 
-	weatherStability = 70, -- Range 0 - 100, Higher = Less weather changes, Overall better weather
+	weatherStability = 65, -- Range 0 - 100, Higher = Less weather changes, Overall better weather
 
-	hasDamagingSandstorms = 0,
+	hasDamagingSandstorms = 1,
 
-	sandstormDamage = 70, -- 40 = Annoying, 100 = deadly
+	sandstormDamage = 300, -- 40 = Annoying, 100 = deadly
 }
 
 
@@ -165,6 +191,35 @@ endor = {
 }
 
 -----------------
+--    Hoth
+-----------------
+hoth = {
+
+	defaultWeather = 5, -- Random
+
+	averageWeatherDuration = 2400, -- In seconds
+
+	weatherStability = 60, -- Range 0 - 100, Higher = Less weather changes, Overall better weather
+
+	hasDamagingSandstorms = 1,
+
+	sandstormDamage = 300, -- 30 = Annoying, 50 = deadly
+
+}
+
+-----------------
+--    Kuat
+-----------------
+kuat = {
+
+	defaultWeather = 0, -- Gloomy
+
+	averageWeatherDuration = 3600, -- In seconds
+
+	weatherStability = 100, -- Range 0 - 100, Higher = Less weather changes, Overall better weather
+}
+
+-----------------
 --     Lok
 -----------------
 lok = {
@@ -173,11 +228,23 @@ lok = {
 
 	averageWeatherDuration = 3600, -- In seconds
 
-	weatherStability = 60, -- Range 0 - 100, Higher = Less weather changes, Overall better weather
+	weatherStability = 75, -- Range 0 - 100, Higher = Less weather changes, Overall better weather
 
-	hasDamagingSandstorms = 0,
+	hasDamagingSandstorms = 1,
 
-	sandstormDamage = 50, -- 30 = Annoying, 50 = deadly
+	sandstormDamage = 250, -- 30 = Annoying, 50 = deadly
+}
+
+-----------------
+--    Mon Calamari
+-----------------
+moncal = {
+
+	defaultWeather = 0, -- Gloomy
+
+	averageWeatherDuration = 3600, -- In seconds
+
+	weatherStability = 100, -- Range 0 - 100, Higher = Less weather changes, Overall better weather
 }
 
 -----------------
@@ -229,7 +296,32 @@ yavin4 = {
 }
 
 
+-----------------
+--    Taanab
+-----------------
+taanab = {
+
+	defaultWeather = 0, -- Sunny
+
+	averageWeatherDuration = 3600, -- In seconds
+
+	weatherStability = 80, -- Range 0 - 100, Higher = Less weather changes, Overall better weather
+}
 
 
+-----------------
+--     Utapau
+-----------------
+utapau = {
 
+	defaultWeather = 0, -- Sunny
+
+	averageWeatherDuration = 3600, -- In seconds
+
+	weatherStability = 75, -- Range 0 - 100, Higher = Less weather changes, Overall better weather
+
+	hasDamagingSandstorms = 1,
+
+	sandstormDamage = 250, -- 30 = Annoying, 50 = deadly
+}
 

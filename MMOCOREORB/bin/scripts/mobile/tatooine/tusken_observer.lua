@@ -10,7 +10,7 @@ tusken_observer = Creature:new {
 	baseHAM = 208000,
 	baseHAMmax = 254000,
 	armor = 3,
-	resists = {185,185,135,200,10,130,145,180,-1},
+	resists = {60,60,60,75,50,70,70,70,60},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -29,16 +29,21 @@ tusken_observer = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "junk", chance = 1500000},
-				{group = "tusken_common", chance = 3000000},
-				{group = "wearables_scarce", chance = 2000000},
+				{group = "junk", chance = 3000000},
+				{group = "wearables_common", chance = 2000000},
 				{group = "bone_armor", chance = 750000},
 				{group = "chitin_armor", chance = 750000},
 				{group = "armor_attachments", chance = 500000},
 				{group = "clothing_attachments", chance = 500000},
-				{group = "color_crystals", chance = 500000},
-				{group = "power_crystals", chance = 500000}
+				{group = "color_crystals", chance = 1250000},
+				{group = "power_crystals", chance = 1250000}
 			}
+		},
+		{
+			groups = {
+				{group = "tusken_common", chance = 10000000},
+			},
+			lootChance = 3000000
 		}
 	},
 	weapons = {"tusken_weapons"},

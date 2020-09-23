@@ -42,6 +42,11 @@
 
 
 object_building_general_mun_all_starport_s01 = object_building_general_shared_mun_all_starport_s01:new {
+	gameObjectType = 515,
+	pvpStatusBitmask = 0,
+	dataObjectComponent = "DestructibleBuildingDataComponent",
+	alwaysPublic = 1,
+	factionBaseType = 2,
 
 }
 

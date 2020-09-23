@@ -41,6 +41,12 @@ mokk_tribesman = Creature:new {
 				{group = "wearables_uncommon", chance = 1000000},
 				{group = "color_crystals", chance = 500000}
 			}
+		},
+		{
+			groups = {
+				{group = "janta_common", chance = 10000000},
+			},
+			lootChance = 1500000
 		}
 	},
 	weapons = {"primitive_weapons"},

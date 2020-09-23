@@ -52,12 +52,12 @@ object_draft_schematic_structure_installation_mining_organic_flora_light = objec
 	size = 8,
 	factoryCrateSize = 1,
 
-	xpType = "crafting_general",
+	xpType = "crafting_structure_general",
 	xp = 425,
 
-	assemblySkill = "general_assembly",
-	experimentingSkill = "general_experimentation",
-	customizationSkill = "clothing_customization",
+	assemblySkill = "structure_assembly",
+	experimentingSkill = "structure_experimentation",
+	customizationSkill = "structure_customization",
 
 	customizationOptions = {},
 	customizationStringNames = {},

@@ -62,12 +62,12 @@ object_draft_schematic_clothing_clothing_backpack_field_05 = object_draft_schema
    customizationStringNames = {},
    customizationDefaults = {},
 
-   ingredientTemplateNames = {"craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n"},
-   ingredientTitleNames = {"primary_pocket", "secondary_pocket", "tertiary_pocket", "strap_pad", "strap_adjustment", "frame_reinforcement"},
-   ingredientSlotType = {1, 1, 1, 0, 0, 0},
-   resourceTypes = {"object/tangible/component/clothing/shared_cargo_pocket.iff", "object/tangible/component/clothing/shared_cargo_pocket.iff", "object/tangible/component/clothing/shared_cargo_pocket.iff", "hide", "metal", "steel_thoranium"},
-   resourceQuantities = {1, 1, 1, 10, 5, 10},
-   contribution = {100, 100, 100, 100, 100, 100},
+   ingredientTemplateNames = {"craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n"},
+   ingredientTitleNames = {"primary_pocket", "secondary_pocket", "tertiary_pocket", "strap_pad", "strap_adjustment", "frame_reinforcement", "reinforcement"},
+   ingredientSlotType = {1, 1, 1, 0, 0, 0, 3},
+   resourceTypes = {"object/tangible/component/clothing/shared_cargo_pocket.iff", "object/tangible/component/clothing/shared_cargo_pocket.iff", "object/tangible/component/clothing/shared_cargo_pocket.iff", "hide", "metal", "steel_thoranium", "object/tangible/component/clothing/shared_reinforced_fiber_panels.iff"},
+   resourceQuantities = {1, 1, 1, 10, 5, 10, 1},
+   contribution = {100, 100, 100, 100, 100, 100, 100},
 
 
    targetTemplate = "object/tangible/wearables/backpack/backpack_s05.iff",

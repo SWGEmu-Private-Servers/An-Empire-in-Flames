@@ -1,0 +1,33 @@
+--EiF 2019
+
+includeFile("special/special_grants.lua")
+includeFile("special/special_basic_dance.lua")
+includeFile("special/special_bocce.lua")
+--includeFile("special/special_rotary_cannon_01.lua")
+--includeFile("special/special_rotary_cannon_02.lua")
+--includeFile("special/special_rotary_cannon_03.lua")
+--includeFile("special/special_rotary_cannon_04.lua")
+
+--Abi's Language Adds
+
+includeFile("special/special_sybisti.lua")
+includeFile("special/special_abyssin.lua")
+includeFile("special/special_antarian.lua")
+includeFile("special/special_arconese.lua")
+includeFile("special/special_bith.lua")
+includeFile("special/special_cerean.lua")
+includeFile("special/special_devaronian.lua")
+includeFile("special/special_durese.lua")
+includeFile("special/special_gran.lua")
+includeFile("special/special_gsl.lua")
+includeFile("special/special_hapan.lua")
+includeFile("special/special_iktotchese.lua")
+includeFile("special/special_imp_sign.lua")
+includeFile("special/special_keldor.lua")
+includeFile("special/special_montral.lua")
+includeFile("special/special_nr_sign.lua")
+includeFile("special/special_olyscorellisi.lua")
+includeFile("special/special_quarren.lua")
+includeFile("special/special_sith.lua")
+includeFile("special/special_thykarann.lua")
+includeFile("special/special_tusken_sign.lua")

@@ -12,7 +12,7 @@ janta_tribesman = Creature:new {
 	baseHAM = 5000,
 	baseHAMmax = 6100,
 	armor = 0,
-	resists = {0,15,0,-1,0,0,0,-1,-1},
+	rresists = {25,25,15,25,25,15,45,45,25},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -34,9 +34,15 @@ janta_tribesman = Creature:new {
 		{
 			groups = {
 				{group = "junk", chance = 5500000},
-				{group = "janta_common", chance = 1500000},
+				{group = "color_crystals", chance = 1500000},
 				{group = "loot_kit_parts", chance = 3000000}
 			}
+		},
+		{
+			groups = {
+				{group = "janta_common", chance = 10000000},
+			},
+			lootChance = 1500000
 		}
 	},
 	weapons = {"primitive_weapons"},

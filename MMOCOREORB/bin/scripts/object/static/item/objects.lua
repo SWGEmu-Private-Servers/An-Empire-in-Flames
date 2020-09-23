@@ -16455,3 +16455,14 @@ object_static_item_shared_wp_rifle_tusken_combined = SharedStaticObjectTemplate:
 }
 
 ObjectTemplates:addClientTemplate(object_static_item_shared_wp_rifle_tusken_combined, "object/static/item/shared_wp_rifle_tusken_combined.iff")
+
+object_static_item_shared_wp_rifle_a280 = SharedStaticObjectTemplate:new {
+	clientTemplateFileName = "object/static/item/shared_wp_rifle_a280.iff"}
+
+ObjectTemplates:addClientTemplate(object_static_item_shared_wp_rifle_a280, "object/static/item/shared_wp_rifle_a280.iff")
+
+object_static_item_shared_wp_carbine_bothan_bola = SharedStaticObjectTemplate:new {
+	clientTemplateFileName = "object/static/item/shared_wp_carbine_bothan_bola.iff"}
+
+ObjectTemplates:addClientTemplate(object_static_item_shared_wp_carbine_bothan_bola, "object/static/item/shared_wp_carbine_bothan_bola.iff")
+

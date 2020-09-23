@@ -51,12 +51,12 @@ object_draft_schematic_food_dish_kanali_wafers = object_draft_schematic_food_sha
    complexity = 4, 
    size = 1, 
 
-   xpType = "crafting_general", 
+   xpType = "crafting_food_general", 
    xp = 80, 
 
-   assemblySkill = "general_assembly", 
-   experimentingSkill = "general_experimentation", 
-   customizationSkill = "clothing_customization", 
+   assemblySkill = "food_assembly", 
+   experimentingSkill = "food_experimentation", 
+   customizationSkill = "food_customization", 
 
    customizationOptions = {},
    customizationStringNames = {},

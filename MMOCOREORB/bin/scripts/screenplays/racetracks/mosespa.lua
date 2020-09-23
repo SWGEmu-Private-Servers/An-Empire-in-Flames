@@ -14,7 +14,7 @@ mosespa_racetrack_screenplay = RaceTrack:new {
 		timeResolution=2, -- number of decimal places to use for the laptimes 0 = none, 1 = well 1 etc
 		expiryTime = (1*3600), --Amount of time in seconds that a player will be expired from the track (stops silly times over this limit)
 		resetTime = (22*3600)+(10*60), --Time of day in seconds that track resets High Scores
-		waypointRadius=10, -- size of the waypoint observer
+		waypointRadius=24, -- size of the waypoint observer
 		raceCoordinator = {x=2400,y=5000,z=2}, -- Location of the race coordinator. Note the Z coord is VERY important
 		waypoints = { {x = 1943, y = 4792}, -- The coords of the waypoints
 			{x = 1546, y = 4959},

@@ -1,7 +1,7 @@
 stormtrooper_dewback = Creature:new {
 	objectName = "@mob/creature_names:stormtrooper_dewback",
 	socialGroup = "imperial",
-	faction = "imperial",
+	faction = "",
 	level = 29,
 	chanceHit = 0.38,
 	damageMin = 280,
@@ -18,7 +18,7 @@ stormtrooper_dewback = Creature:new {
 	boneType = "bone_mammal",
 	boneAmount = 250,
 	milk = 0,
-	tamingChance = 0,
+	tamingChance = 0.2,
 	ferocity = 0,
 	pvpBitmask = ATTACKABLE,
 	creatureBitmask = PACK,
@@ -26,6 +26,7 @@ stormtrooper_dewback = Creature:new {
 	diet = CARNIVORE,
 
 	templates = {"object/mobile/dewback_hue.iff"},
+	controlDeviceTemplate = "object/intangible/pet/dewback_hue.iff",
 	hues = { 24, 25, 26, 27, 28, 29, 30, 31 },
 	scale = 1.2,
 	lootGroups = {},

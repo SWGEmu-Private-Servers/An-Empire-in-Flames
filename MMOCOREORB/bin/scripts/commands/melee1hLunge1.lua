@@ -44,11 +44,11 @@
 Melee1hLunge1Command = {
 	name = "melee1hlunge1",
 
-	damageMultiplier = 2.0,
-	speedMultiplier = 1.5,
-	healthCostMultiplier = 0.5,
-	actionCostMultiplier = 0.5,
-	mindCostMultiplier = 1.0,
+	damageMultiplier = 0.5,
+	speedMultiplier = 1.0,
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 15,
+	mindCostMultiplier = 0,
         accuracyBonus = 25,
 
 	animation = "lower_posture_1hmelee_1",
@@ -65,7 +65,7 @@ Melee1hLunge1Command = {
 		{ "postureDownRecovery" },
 		{ "posture_change_down_defense" },
 		{},
-		100,
+		115,
 		0,
 		0
 	  )

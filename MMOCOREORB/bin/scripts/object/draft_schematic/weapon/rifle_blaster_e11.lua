@@ -62,12 +62,13 @@ object_draft_schematic_weapon_rifle_blaster_e11 = object_draft_schematic_weapon_
    customizationStringNames = {},
    customizationDefaults = {},
 
-   ingredientTemplateNames = {"craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n"},
-   ingredientTitleNames = {"frame_assembly", "receiver_assembly", "grip_assembly", "powerhandler", "barrel", "scope", "stock"},
+    ingredientTemplateNames = {"craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n"},
+   ingredientTitleNames = {"frame_assembly", "receiver_assembly", "grip_assembly", "base_rifle_core", "barrel", "scope", "stock"},
    ingredientSlotType = {0, 0, 0, 1, 1, 3, 3},
-   resourceTypes = {"iron_plumbum", "metal_ferrous", "metal", "object/tangible/component/weapon/shared_blaster_power_handler.iff", "object/tangible/component/weapon/shared_blaster_rifle_barrel.iff", "object/tangible/component/weapon/shared_scope_weapon.iff", "object/tangible/component/weapon/shared_stock.iff"},
-   resourceQuantities = {45, 15, 12, 1, 1, 1, 1},
+   resourceTypes = {"metal", "chemical", "metal", "object/tangible/component/weapon/shared_base_rifle_core.iff", "object/tangible/component/weapon/shared_base_rifle_barrel.iff", "object/tangible/component/weapon/shared_scope_weapon.iff", "object/tangible/component/weapon/shared_stock.iff"},
+   resourceQuantities = {12, 6, 3, 1, 1, 1, 1},
    contribution = {100, 100, 100, 100, 100, 100, 100},
+   ingredientAppearance = {"", "", "", "", "muzzle", "scope", "stock"},
 
 
    targetTemplate = "object/weapon/ranged/rifle/rifle_e11.iff",

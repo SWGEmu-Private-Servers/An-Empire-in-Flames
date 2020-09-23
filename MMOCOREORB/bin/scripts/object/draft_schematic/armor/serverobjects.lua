@@ -77,3 +77,9 @@ includeFile("draft_schematic/armor/shield_generator_personal_b.lua")
 includeFile("draft_schematic/armor/shield_generator_personal_c.lua")
 includeFile("draft_schematic/armor/shield_generator_personal_imperial_test.lua")
 includeFile("draft_schematic/armor/shield_generator_vehicular.lua")
+
+--EiF additions
+includeFile("draft_schematic/armor/armor_core.lua")
+includeFile("draft_schematic/armor/armor_segment_basic.lua")
+includeFile("draft_schematic/armor/armor_segment_exotic.lua")
+includeFile("draft_schematic/armor/armor_segment_laminated.lua")

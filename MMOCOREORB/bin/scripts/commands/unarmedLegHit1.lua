@@ -46,22 +46,21 @@ UnarmedLegHit1Command = {
 
 	damageMultiplier = 2.5,
 	speedMultiplier = 2.0,
-	healthCostMultiplier = 1.75,
-	actionCostMultiplier = 1.75,
-	mindCostMultiplier = 1.75,
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 15,
+	mindCostMultiplier = 0,
         accuracyBonus = 15,
 
 	poolsToDamage = ACTION_ATTRIBUTE,
 
-	animation = "attack_special_foot_stomp", 
+	animation = "attack_special_foot_stomp",
 	animType = GENERATE_INTENSITY,
 
 	combatSpam = "grondastomp",
-	
+
 	weaponType = UNARMEDWEAPON,
 
 	range = -1
 }
 
 AddCommand(UnarmedLegHit1Command)
-

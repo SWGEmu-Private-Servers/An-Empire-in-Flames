@@ -41,6 +41,21 @@
 --which carries forward this exception.
 
 
+object_static_flora_shared_city_flower_01 = SharedStaticObjectTemplate:new {
+	clientTemplateFileName = "object/static/flora/shared_city_flower_01.iff"}
+
+ObjectTemplates:addClientTemplate(object_static_flora_shared_city_flower_01, "object/static/flora/shared_city_flower_01.iff")
+
+object_static_flora_shared_city_flower_02 = SharedStaticObjectTemplate:new {
+	clientTemplateFileName = "object/static/flora/shared_city_flower_02.iff"}
+
+ObjectTemplates:addClientTemplate(object_static_flora_shared_city_flower_02, "object/static/flora/shared_city_flower_02.iff")
+
+object_static_flora_shared_city_flower_03 = SharedStaticObjectTemplate:new {
+	clientTemplateFileName = "object/static/flora/shared_city_flower_03.iff"}
+
+ObjectTemplates:addClientTemplate(object_static_flora_shared_city_flower_03, "object/static/flora/shared_city_flower_03.iff")
+
 object_static_flora_shared_flora_base = SharedStaticObjectTemplate:new {
 	clientTemplateFileName = "object/static/flora/shared_flora_base.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups

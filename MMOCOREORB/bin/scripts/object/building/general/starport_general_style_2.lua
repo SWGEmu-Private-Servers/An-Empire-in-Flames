@@ -42,7 +42,13 @@
 
 
 object_building_general_starport_general_style_2 = object_building_general_shared_starport_general_style_2:new {
-	planetMapCategory = "starport"
+	gameObjectType = 515,
+	pvpStatusBitmask = 0,
+	alwaysPublic = 1,
+	planetMapCategory = "starport",
+	dataObjectComponent = "DestructibleBuildingDataComponent",
+	containerComponent = "GCWBaseContainerComponent",
+	factionBaseType = 2,
 }
 
 ObjectTemplates:addTemplate(object_building_general_starport_general_style_2, "object/building/general/starport_general_style_2.iff")

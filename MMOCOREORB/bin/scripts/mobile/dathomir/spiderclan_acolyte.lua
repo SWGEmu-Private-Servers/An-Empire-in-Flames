@@ -12,7 +12,7 @@ spiderclan_acolyte = Creature:new {
 	baseHAM = 11000,
 	baseHAMmax = 14000,
 	armor = 1,
-	resists = {35,85,100,50,100,100,50,100,-1},
+	resists = {25,25,45,25,25,45,15,15,25},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -43,6 +43,12 @@ spiderclan_acolyte = Creature:new {
 				{group = "wearables_common", chance = 500000},
 				{group = "wearables_uncommon", chance = 500000}
 			}
+		},
+		{
+			groups = {
+				{group = "spiderclan_common", chance = 10000000},
+			},
+			lootChance = 166666
 		}
 	},
 	weapons = {"mixed_force_weapons"},

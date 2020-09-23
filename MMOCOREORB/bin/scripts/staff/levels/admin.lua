@@ -1,8 +1,8 @@
 admin = {
 	level = 15,
 	name = "admin",
+	tag = "Starsider-Admin",
 	flag = 0,
-	tag = "SWGEmu-Admin",
 	skills = {
 		"admin_base",
 		"admin_debug_01",

@@ -50,6 +50,7 @@ object_draft_schematic_weapon_rifle_berserker = object_draft_schematic_weapon_sh
    craftingToolTab = 1, -- (See DraftSchematicObjectTemplate.h)
    complexity = 16, 
    size = 1, 
+   factoryCrateSize = 0,
 
    xpType = "crafting_weapons_general", 
    xp = 110, 
@@ -62,12 +63,13 @@ object_draft_schematic_weapon_rifle_berserker = object_draft_schematic_weapon_sh
    customizationStringNames = {},
    customizationDefaults = {},
 
-   ingredientTemplateNames = {"craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n"},
-   ingredientTitleNames = {"frame_assembly", "receiver_assembly", "grip_assembly", "feed_unit", "barrel", "barrel_stabelizer"},
-   ingredientSlotType = {0, 0, 0, 1, 1, 1},
-   resourceTypes = {"metal_ferrous", "iron", "metal", "object/tangible/component/weapon/shared_projectile_feed_mechanism.iff", "object/tangible/component/weapon/shared_projectile_rifle_barrel.iff", "object/tangible/component/weapon/shared_corvette_rifle_barrel.iff"},
-   resourceQuantities = {14, 35, 7, 1, 1, 1},
-   contribution = {100, 100, 100, 100, 100, 100},
+   ingredientTemplateNames = {"craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n"},
+   ingredientTitleNames = {"frame_assembly", "receiver_assembly", "grip_assembly", "base_rifle_core", "barrel", "scope", "stock"},
+   ingredientSlotType = {0, 0, 0, 1, 1, 3, 3},
+   resourceTypes = {"metal", "chemical", "metal", "object/tangible/component/weapon/shared_base_rifle_core.iff", "object/tangible/component/weapon/shared_base_rifle_barrel.iff", "object/tangible/component/weapon/shared_scope_weapon.iff", "object/tangible/component/weapon/shared_stock.iff"},
+   resourceQuantities = {12, 6, 3, 1, 1, 1, 1},
+   contribution = {100, 100, 100, 100, 100, 100, 100},
+   ingredientAppearance = {"", "", "", "", "muzzle", "scope", "stock"},
 
 
    targetTemplate = "object/weapon/ranged/rifle/rifle_berserker.iff",

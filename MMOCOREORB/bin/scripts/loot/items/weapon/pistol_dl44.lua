@@ -6,19 +6,19 @@ pistol_dl44 = {
 	customObjectName = "",
 	directObjectTemplate = "object/weapon/ranged/pistol/pistol_dl44.iff",
 	craftingValues = {
-		{"mindamage",11,24,0},
-		{"maxdamage",63,127,0},
-		{"attackspeed",5.3,3.4,0},
-		{"woundchance",4.2,8.6,0},
-		{"hitpoints",750,750,0},
-		{"attackhealthcost",20,11,0},
-		{"attackactioncost",46,25,0},
-		{"attackmindcost",21,11,0},
-		{"roundsused",10,40,0},
-		{"zerorangemod",-10,-10,0},
-		{"maxrangemod",-80,-80,0},
-		{"midrange",8,8,0},
-		{"midrangemod",18,88,0},
+		{"mindamage",275,350,0},
+		{"maxdamage",501,605,0},
+		{"attackspeed",4.1,3.0,0},
+		{"woundchance",4,5,0},
+		{"roundsused",5,20,0},
+		{"hitpoints",450,1000,0},
+		{"zerorangemod",-5,5,0},
+		{"maxrangemod",-120,-120,0},
+		{"midrange",16,16,0},
+		{"midrangemod",10,22,0},
+		{"attackhealthcost",65,60,0},
+		{"attackactioncost",65,60,0},
+		{"attackmindcost",65,60,0},
 	},
 	customizationStringNames = {},
 	customizationValues = {},
@@ -26,8 +26,8 @@ pistol_dl44 = {
 	-- randomDotChance: The chance of this weapon object dropping with a random dot on it. Higher number means less chance. Set to 0 to always have a random dot.
 	randomDotChance = 625,
 	junkDealerTypeNeeded = JUNKARMS,
-	junkMinValue = 25,
-	junkMaxValue = 45
+	junkMinValue = 45,
+	junkMaxValue = 85
 
 }
 

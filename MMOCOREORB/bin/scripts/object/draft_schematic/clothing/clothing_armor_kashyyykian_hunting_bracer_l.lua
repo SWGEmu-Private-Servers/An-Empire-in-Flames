@@ -62,12 +62,12 @@ object_draft_schematic_clothing_clothing_armor_kashyyykian_hunting_bracer_l = ob
    customizationStringNames = {},
    customizationDefaults = {},
 
-   ingredientTemplateNames = {"craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n"},
-   ingredientTitleNames = {"auxilary_coverage", "body", "liner", "hardware_and_attachments", "binding_and_reinforcement", "padding", "armor", "load_bearing_harness", "reinforcement"},
-   ingredientSlotType = {0, 0, 0, 0, 0, 1, 1, 1, 0},
-   resourceTypes = {"softwood_evergreen_dathomir", "hide_leathery_lok", "hide_wooly_tatooine", "copper_mythra", "petrochem_inert_polymer", "object/tangible/component/clothing/shared_padding_segment.iff", "object/tangible/component/armor/shared_armor_segment_kashyyykian_hunting.iff", "object/tangible/component/clothing/shared_synthetic_cloth.iff", "fiberplast_naboo"},
-   resourceQuantities = {50, 50, 40, 20, 30, 4, 2, 1, 30},
-   contribution = {100, 100, 100, 100, 100, 100, 100, 100, 100},
+   ingredientTemplateNames = {"craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n"},
+   ingredientTitleNames = {"auxilary_coverage", "body", "liner", "hardware_and_attachments", "binding_and_reinforcement", "padding", "armor", "load_bearing_harness", "reinforcement", "auxiliary_coverage_2"},
+   ingredientSlotType = {0, 0, 0, 0, 0, 0, 1, 1, 0, 3},
+   resourceTypes = {"wood_deciduous_endor", "hide_leathery", "hide_wooly_naboo", "copper", "petrochem_inert_polymer", "hide_wooly", "object/tangible/component/armor/shared_armor_core.iff", "object/tangible/component/clothing/shared_synthetic_cloth.iff", "fiberplast", "object/tangible/gem/shared_armor.iff"},
+   resourceQuantities = {50, 50, 40, 20, 30, 45, 1, 1, 30, 1},
+   contribution = {100, 100, 100, 100, 100, 100, 100, 100, 100, 100},
 
 
    targetTemplate = "object/tangible/wearables/armor/kashyyykian_hunting/armor_kashyyykian_hunting_bracer_l.iff",

@@ -18,7 +18,7 @@ mountain_torton = Creature:new {
 	boneType = "bone_mammal",
 	boneAmount = 1000,
 	milk = 0,
-	tamingChance = 0,
+	tamingChance = 0.10,
 	ferocity = 0,
 	pvpBitmask = ATTACKABLE,
 	creatureBitmask = PACK + HERD + KILLER,
@@ -26,6 +26,7 @@ mountain_torton = Creature:new {
 	diet = HERBIVORE,
 
 	templates = {"object/mobile/torton_hue.iff"},
+	controlDeviceTemplate = "object/intangible/pet/torton_hue.iff",
 	hues = { 16, 17, 18, 19, 20, 21, 22, 23 },
 	scale = 1.05,
 	lootGroups = {},

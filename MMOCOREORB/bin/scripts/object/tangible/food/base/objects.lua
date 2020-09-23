@@ -630,3 +630,11 @@ object_tangible_food_base_shared_veggie_base = SharedTangibleObjectTemplate:new 
 }
 
 ObjectTemplates:addClientTemplate(object_tangible_food_base_shared_veggie_base, "object/tangible/food/base/shared_veggie_base.iff")
+
+
+object_tangible_food_base_shared_base_crafted_beast_food = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/food/base/shared_base_crafted_beast_food.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_food_base_shared_base_crafted_beast_food, "object/tangible/food/base/shared_base_crafted_beast_food.iff")
+

@@ -984,3 +984,53 @@ object_tangible_wearables_bodysuit_shared_bodysuit_tie_fighter_quest = SharedTan
 }
 
 ObjectTemplates:addClientTemplate(object_tangible_wearables_bodysuit_shared_bodysuit_tie_fighter_quest, "object/tangible/wearables/bodysuit/shared_bodysuit_tie_fighter_quest.iff")
+
+--new additions
+--Dug Bodysuit Style 01
+object_tangible_wearables_bodysuit_shared_bodysuit_dug_s01 = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/wearables/bodysuit/shared_bodysuit_dug_s01.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_wearables_bodysuit_shared_bodysuit_dug_s01, "object/tangible/wearables/bodysuit/shared_bodysuit_dug_s01.iff")
+
+--Dug Bodysuit Style 02
+object_tangible_wearables_bodysuit_shared_bodysuit_dug_s02 = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/wearables/bodysuit/shared_bodysuit_dug_s02.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_wearables_bodysuit_shared_bodysuit_dug_s02, "object/tangible/wearables/bodysuit/shared_bodysuit_dug_s02.iff")
+
+--Dug Bodysuit Style 03
+object_tangible_wearables_bodysuit_shared_bodysuit_dug_s03 = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/wearables/bodysuit/shared_bodysuit_dug_s03.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_wearables_bodysuit_shared_bodysuit_dug_s03, "object/tangible/wearables/bodysuit/shared_bodysuit_dug_s03.iff")
+
+--Togorian Bodysuit Style 01
+object_tangible_wearables_bodysuit_shared_bodysuit_togorian_s01 = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/wearables/bodysuit/shared_bodysuit_togorian_s01.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_wearables_bodysuit_shared_bodysuit_togorian_s01, "object/tangible/wearables/bodysuit/shared_bodysuit_togorian_s01.iff")
+
+--togorian Bodysuit Style 02
+object_tangible_wearables_bodysuit_shared_bodysuit_togorian_s02 = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/wearables/bodysuit/shared_bodysuit_togorian_s02.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_wearables_bodysuit_shared_bodysuit_togorian_s02, "object/tangible/wearables/bodysuit/shared_bodysuit_togorian_s02.iff")
+
+--togorian Bodysuit Style 03
+object_tangible_wearables_bodysuit_shared_bodysuit_togorian_s03 = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/wearables/bodysuit/shared_bodysuit_togorian_s03.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_wearables_bodysuit_shared_bodysuit_togorian_s03, "object/tangible/wearables/bodysuit/shared_bodysuit_togorian_s03.iff")
+
+--prisoner bodysuit
+object_tangible_wearables_bodysuit_shared_bodysuit_prisoner = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/wearables/bodysuit/shared_bodysuit_prisoner.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_wearables_bodysuit_shared_bodysuit_prisoner, "object/tangible/wearables/bodysuit/shared_bodysuit_prisoner.iff")

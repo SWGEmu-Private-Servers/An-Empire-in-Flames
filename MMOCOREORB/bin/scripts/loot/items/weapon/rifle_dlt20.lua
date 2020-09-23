@@ -6,19 +6,19 @@ rifle_dlt20 = {
 	customObjectName = "",
 	directObjectTemplate = "object/weapon/ranged/rifle/rifle_dlt20.iff",
 	craftingValues = {
-		{"mindamage",61,87,0},
-		{"maxdamage",94,149,0},
-		{"attackspeed",8.4,6.1,0},
-		{"woundchance",4.3,11.2,0},
-		{"hitpoints",750,750,0},
-		{"attackhealthcost",22,14,0},
-		{"attackactioncost",43,23,0},
-		{"attackmindcost",47,21,0},
-		{"roundsused",15,45,0},
-		{"zerorangemod",-70,-70,0},
-		{"maxrangemod",-50,-50,0},
-		{"midrange",45,45,0},
-		{"midrangemod",21,39,0},
+		{"mindamage",275,350,0},
+		{"maxdamage",501,605,0},
+		{"attackspeed",4.1,3.0,0},
+		{"woundchance",4,5,0},
+		{"roundsused",5,20,0},
+		{"hitpoints",450,1000,0},
+		{"zerorangemod",-95,-80,0},
+		{"maxrangemod",-5,5,0},
+		{"midrange",48,48,0},
+		{"midrangemod",-5,5,0},
+		{"attackhealthcost",65,60,0},
+		{"attackactioncost",65,60,0},
+		{"attackmindcost",65,60,0},
 	},
 	customizationStringNames = {},
 	customizationValues = {},
@@ -26,8 +26,8 @@ rifle_dlt20 = {
 	-- randomDotChance: The chance of this weapon object dropping with a random dot on it. Higher number means less chance. Set to 0 to always have a random dot.
 	randomDotChance = 750,
 	junkDealerTypeNeeded = JUNKARMS,
-	junkMinValue = 20,
-	junkMaxValue = 40
+	junkMinValue = 60,
+	junkMaxValue = 120
 
 }
 

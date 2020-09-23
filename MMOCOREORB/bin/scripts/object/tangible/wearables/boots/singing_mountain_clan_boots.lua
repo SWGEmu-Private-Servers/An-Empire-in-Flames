@@ -48,7 +48,17 @@ object_tangible_wearables_boots_singing_mountain_clan_boots = object_tangible_we
 				"object/creature/player/rodian_female.iff",
 				"object/creature/player/sullustan_female.iff",
 				"object/creature/player/twilek_female.iff",
-				"object/creature/player/zabrak_female.iff" },
+				"object/creature/player/zabrak_female.iff",
+				"object/creature/player/aqualish_female.iff",
+				"object/creature/player/bith_female.iff",
+				"object/creature/player/chiss_female.iff",
+				"object/creature/player/nightsister_female.iff",
+				"object/creature/player/devaronian_female.iff",
+				"object/creature/player/mirialan_female.iff",
+				"object/creature/player/zeltron_female.iff",
+				"object/creature/player/smc_female.iff",
+				"object/creature/player/togruta_female.iff",
+				"object/creature/player/sanyassan_female.iff" },
 }
 
 ObjectTemplates:addTemplate(object_tangible_wearables_boots_singing_mountain_clan_boots, "object/tangible/wearables/boots/singing_mountain_clan_boots.iff")

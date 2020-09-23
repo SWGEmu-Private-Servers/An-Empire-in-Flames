@@ -55,3 +55,11 @@ forcepowermaster = { {"forcelightningsingle2",""},{"forcelightningcone2",""},{"m
 -- npc force wielders use standard profession mastery with the addition of this command
 forcewielder ={ {"forcelightningsingle1",""},{"mindblast1",""},{"forcechoke",""},{"forceweaken1",""},{"forceknockdown1",""},{"forcelightningcone1",""} }
 --Server Administrator NPC skill trees place below
+
+-- BH Skills with a lot of fire
+rangedchallengerfire ={ {"pointblankarea2",""},{"underhandshot",""},{"knockdownfire",""},{"torsoshot",""},{"confusionshot",""},{"fastblast",""},{"sprayshot",""} }
+
+-- BH Skills sans fire.
+rangedchallenger ={ {"pointblankarea2",""},{"underhandshot",""},{"confusionshot",""},{"fastblast",""},{"sprayshot",""} }
+
+challengecreature ={ {"creatureareaattack",""},{"creatureareaknockdown",""},{"creatureareacombo",""},{"creaturerangedattack",""} }

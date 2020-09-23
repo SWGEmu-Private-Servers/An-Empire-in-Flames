@@ -57,12 +57,12 @@ end
 function TatooineJabbasPalaceMobsScreenPlay:spawnStatics()
 	spawnMobile("tatooine", "beissa", 60, 8.11982, 2, 34.2394, 295, 1177487)
 	spawnMobile("tatooine", "ev_9d9", 60, 24.47, 0.2, 87.86, 312, 1177479)
-	spawnMobile("tatooine", "boba_fett",60,-1,3,31,322.95,1177487)
-	spawnMobile("tatooine", "salacious_crumb",60,-16.29,2.81087,42.54,86.0692,1177487)
-	spawnMobile("tatooine", "jabba_the_hutt",60,-16.65,2.81087,45,106.884,1177487)
+--	spawnMobile("tatooine", "boba_fett",60,-1,3,31,322.95,1177487)
+--	spawnMobile("tatooine", "salacious_crumb",60,-16.29,2.81087,42.54,86.0692,1177487)
+--	spawnMobile("tatooine", "jabba_the_hutt",60,-16.65,2.81087,45,106.884,1177487)
 	spawnMobile("tatooine", "le_repair_droid", 60, 23.67, 0.2, 76.43, 130.65, 1177479)
-	spawnMobile("tatooine", "malakili", 60, 19, -11, 42, 23.355, 1177502)
-	spawnMobile("tatooine", "jabba_rancor", 60, 3.93472, -10.9823, 45.0053, 101.285, 1177503)
+--	spawnMobile("tatooine", "malakili", 60, 19, -11, 42, 23.355, 1177502)
+--	spawnMobile("tatooine", "jabba_rancor", 60, 3.93472, -10.9823, 45.0053, 101.285, 1177503)
 	spawnMobile("tatooine", "protocol_droid_3po_red", 60, 10.71, 0.2, 84.27, 216, 1177479)
 	spawnMobile("tatooine", "ra7_bug_droid", 60, 13.33, 0.2, 88.72, 111.64,1177479)
 
@@ -174,13 +174,13 @@ end
 
 function TatooineJabbasPalaceMobsScreenPlay:spawnMobiles()
 
-	for i,v in ipairs(self.jabba_band) do
-		local pMobile = spawnMobile("tatooine", v[1], v[2], v[3], v[4], v[5], v[6], v[7])
-		if (pMobile ~= nil) then
-			CreatureObject(pMobile):setCustomObjectName(v[8])
-			CreatureObject(pMobile):setMoodString(v[9])
-		end
-	end
+--	for i,v in ipairs(self.jabba_band) do
+--		local pMobile = spawnMobile("tatooine", v[1], v[2], v[3], v[4], v[5], v[6], v[7])
+--		if (pMobile ~= nil) then
+--			CreatureObject(pMobile):setCustomObjectName(v[8])
+--			CreatureObject(pMobile):setMoodString(v[9])
+--		end
+--	end
 
 
 	for i,v in ipairs(self.bomar_monks) do

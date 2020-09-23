@@ -9,13 +9,16 @@ crafting_mission_items = {
 }
 
 bh_target_zones = {
+	"chandrila",
 	"corellia",
 	"dantooine",
 	"dathomir",
 	"endor",
+	"kuat",
 	"lok",
 	"naboo",
 	"rori",
+	"taanab",
 	"talus",
 	"tatooine",
 	"yavin4"

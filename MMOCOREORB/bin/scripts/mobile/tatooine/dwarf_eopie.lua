@@ -19,7 +19,7 @@ dwarf_eopie = Creature:new {
 	boneAmount = 110,
 	milkType = "milk_wild",
 	milk = 100,
-	tamingChance = 0,
+	tamingChance = 0.25,
 	ferocity = 0,
 	pvpBitmask = ATTACKABLE,
 	creatureBitmask = PACK,
@@ -27,6 +27,7 @@ dwarf_eopie = Creature:new {
 	diet = HERBIVORE,
 
 	templates = {"object/mobile/dwarf_eopie.iff"},
+	controlDeviceTemplate = "object/intangible/pet/eopie_hue.iff",
 	hues = { 0, 1, 2, 3, 4, 5, 6, 7 },
 	scale = 0.7,
 	lootGroups = {},

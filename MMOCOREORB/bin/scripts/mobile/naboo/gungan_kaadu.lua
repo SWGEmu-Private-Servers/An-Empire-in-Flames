@@ -1,7 +1,7 @@
 gungan_kaadu = Creature:new {
 	objectName = "@mob/creature_names:gungan_kaadu",
 	socialGroup = "gungan",
-	faction = "gungan",
+	faction = "",
 	level = 13,
 	chanceHit = 0.3,
 	damageMin = 140,
@@ -18,7 +18,7 @@ gungan_kaadu = Creature:new {
 	boneType = "bone_avian",
 	boneAmount = 70,
 	milk = 0,
-	tamingChance = 0,
+	tamingChance = 0.05,
 	ferocity = 0,
 	pvpBitmask = ATTACKABLE,
 	creatureBitmask = PACK,
@@ -26,6 +26,7 @@ gungan_kaadu = Creature:new {
 	diet = CARNIVORE,
 
 	templates = {"object/mobile/kaadu_hue.iff"},
+	controlDeviceTemplate = "object/intangible/pet/kaadu_hue.iff",
 	hues = { 0, 1, 2, 3, 4, 5, 6, 7 },
 	lootGroups = {},
 	weapons = {},

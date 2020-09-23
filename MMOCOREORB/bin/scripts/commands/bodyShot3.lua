@@ -44,24 +44,37 @@
 BodyShot3Command = {
         name = "bodyshot3",
 
-	damageMultiplier = 4,
-	speedMultiplier = 1,
-	healthCostMultiplier = 0.75,
-	actionCostMultiplier = 1.25,
-	mindCostMultiplier = 0.75,
-        accuracyBonus = 50,
+	damageMultiplier = 3,
+	speedMultiplier = 1.2,
+	healthCostMultiplier = 0.0,
+	actionCostMultiplier = 45.0,
+	mindCostMultiplier = 0.0,
+  accuracyBonus = 25,
+
+  dotEffects = {
+    DotEffect(
+    BLEEDING,
+    { "resistance_bleeding", "bleed_resist" },
+    HEALTH,
+    true,
+    0,
+    100,
+    30,
+    24,
+    50
+    )
+  },
 
 	poolsToDamage = HEALTH_ATTRIBUTE,
 
-	animation = "fire_1_special_single", 
+	animation = "fire_1_special_single",
 	animType = GENERATE_RANGED,
 
 	combatSpam = "bodyshot",
-	
+
 	weaponType = PISTOLWEAPON,
 
 	range = -1
 }
 
 AddCommand(BodyShot3Command)
-

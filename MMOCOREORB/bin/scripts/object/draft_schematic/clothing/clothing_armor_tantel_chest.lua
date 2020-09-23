@@ -48,7 +48,7 @@ object_draft_schematic_clothing_clothing_armor_tantel_chest = object_draft_schem
    customObjectName = "Tantel Armor Chest Plate",
 
    craftingToolTab = 2, -- (See DraftSchematicObjectTemplate.h)
-   complexity = 30, 
+   complexity = 25, 
    size = 3, 
 
    xpType = "crafting_clothing_armor", 
@@ -62,12 +62,12 @@ object_draft_schematic_clothing_clothing_armor_tantel_chest = object_draft_schem
    customizationStringNames = {"/private/index_color_1", "/private/index_color_2", "/private/index_color_3"},
    customizationDefaults = {22, 29, 14},
 
-   ingredientTemplateNames = {"craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n"},
-   ingredientTitleNames = {"auxilary_coverage", "body", "liner", "hardware_and_attachments", "binding_and_reinforcement", "padding", "armor", "load_bearing_harness", "reinforcement"},
-   ingredientSlotType = {0, 0, 0, 0, 0, 0, 1, 1, 1},
-   resourceTypes = {"bone_avian", "hide", "hide_bristley", "aluminum", "petrochem_inert_polymer", "hide_bristley", "object/tangible/component/armor/shared_armor_segment.iff", "object/tangible/component/clothing/shared_synthetic_cloth.iff", "object/tangible/component/clothing/shared_reinforced_fiber_panels.iff"},
-   resourceQuantities = {40, 40, 40, 25, 25, 25, 4, 1, 1},
-   contribution = {100, 100, 100, 100, 100, 100, 100, 100, 100},
+   ingredientTemplateNames = {"craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n"},
+   ingredientTitleNames = {"auxilary_coverage", "body", "liner", "hardware_and_attachments", "binding_and_reinforcement", "padding", "armor", "load_bearing_harness", "reinforcement", "auxiliary_coverage_2"},
+   ingredientSlotType = {0, 0, 0, 0, 0, 0, 1, 1, 1, 3},
+   resourceTypes = {"bone_avian", "hide", "hide_bristley", "aluminum", "petrochem_inert_polymer", "hide_bristley", "object/tangible/component/armor/shared_armor_core.iff", "object/tangible/component/clothing/shared_synthetic_cloth.iff", "object/tangible/component/clothing/shared_reinforced_fiber_panels.iff", "object/tangible/gem/shared_armor.iff"},
+   resourceQuantities = {40, 40, 40, 25, 25, 25, 1, 1, 1, 1},
+   contribution = {100, 100, 100, 100, 100, 100, 100, 100, 100, 100},
 
 
    targetTemplate = "object/tangible/wearables/armor/tantel/armor_tantel_skreej_chest_plate.iff",

@@ -83,3 +83,59 @@ includeFile("draft_schematic/weapon/component/weapon_mount.lua")
 includeFile("draft_schematic/weapon/component/weapon_mount_light.lua")
 includeFile("draft_schematic/weapon/component/weapon_targeting_computer.lua")
 includeFile("draft_schematic/weapon/component/weapon_trajectory_computer.lua")
+
+--crafting revamp components
+--ranged cores
+includeFile("draft_schematic/weapon/component/carbine_core_basic.lua")
+includeFile("draft_schematic/weapon/component/pistol_core_basic.lua")
+includeFile("draft_schematic/weapon/component/rifle_core_basic.lua")
+includeFile("draft_schematic/weapon/component/carbine_core_efficient.lua")
+includeFile("draft_schematic/weapon/component/pistol_core_efficient.lua")
+includeFile("draft_schematic/weapon/component/rifle_core_efficient.lua")
+includeFile("draft_schematic/weapon/component/carbine_core_quickfire.lua")
+includeFile("draft_schematic/weapon/component/pistol_core_quickfire.lua")
+includeFile("draft_schematic/weapon/component/rifle_core_quickfire.lua")
+includeFile("draft_schematic/weapon/component/carbine_core_overcharged.lua")
+includeFile("draft_schematic/weapon/component/pistol_core_overcharged.lua")
+includeFile("draft_schematic/weapon/component/rifle_core_overcharged.lua")
+
+--ranged barrels
+includeFile("draft_schematic/weapon/component/carbine_barrel_basic.lua")
+includeFile("draft_schematic/weapon/component/carbine_barrel_jacketed.lua")
+includeFile("draft_schematic/weapon/component/carbine_barrel_target.lua")
+includeFile("draft_schematic/weapon/component/pistol_barrel_basic.lua")
+includeFile("draft_schematic/weapon/component/pistol_barrel_jacketed.lua")
+includeFile("draft_schematic/weapon/component/pistol_barrel_target.lua")
+includeFile("draft_schematic/weapon/component/rifle_barrel_basic.lua")
+includeFile("draft_schematic/weapon/component/rifle_barrel_jacketed.lua")
+includeFile("draft_schematic/weapon/component/rifle_barrel_target.lua")
+
+--scopes
+includeFile("draft_schematic/weapon/component/scope_reflex.lua")
+includeFile("draft_schematic/weapon/component/scope_sniper.lua")
+includeFile("draft_schematic/weapon/component/scope_variable.lua")
+
+--gas cartridges
+includeFile("draft_schematic/weapon/component/gas_cartridge_basic.lua")
+includeFile("draft_schematic/weapon/component/gas_cartridge_advanced.lua")
+
+--melee cores
+includeFile("draft_schematic/weapon/component/melee_core_basic.lua")
+includeFile("draft_schematic/weapon/component/melee_core_featherlight.lua")
+includeFile("draft_schematic/weapon/component/melee_core_stabilized.lua")
+includeFile("draft_schematic/weapon/component/melee_core_weighted.lua")
+
+--melee edges
+includeFile("draft_schematic/weapon/component/melee_edge_featherlight.lua")
+includeFile("draft_schematic/weapon/component/melee_edge_weighted.lua")
+includeFile("draft_schematic/weapon/component/melee_edge_balanced.lua")
+
+--melee grips
+includeFile("draft_schematic/weapon/component/melee_grip_featherlight.lua")
+includeFile("draft_schematic/weapon/component/melee_grip_weighted.lua")
+includeFile("draft_schematic/weapon/component/melee_grip_balanced.lua")
+
+--melee enhancements
+includeFile("draft_schematic/weapon/component/gyro_unit_basic.lua")
+includeFile("draft_schematic/weapon/component/gyro_unit_advanced.lua")
+includeFile("draft_schematic/weapon/component/melee_reinforcement_core.lua")

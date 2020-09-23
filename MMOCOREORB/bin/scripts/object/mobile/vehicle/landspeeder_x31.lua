@@ -44,7 +44,9 @@
 object_mobile_vehicle_landspeeder_x31 = object_mobile_vehicle_shared_landspeeder_x31:new {
 	templateType = VEHICLE,
 	decayRate = 15, -- Damage tick per decay cycle
-	decayCycle = 600 -- Time in seconds per cycle
+	decayCycle = 600, -- Time in seconds per cycle
+	passengerCapacity = 1,
+	passengerSeatString = "x34",
 }
 
 ObjectTemplates:addTemplate(object_mobile_vehicle_landspeeder_x31, "object/mobile/vehicle/landspeeder_x31.iff")

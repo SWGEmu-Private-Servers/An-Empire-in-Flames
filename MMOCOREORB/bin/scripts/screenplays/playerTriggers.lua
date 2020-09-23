@@ -6,6 +6,8 @@ function PlayerTriggers:playerLoggedIn(pPlayer)
 	end
 	ServerEventAutomation:playerLoggedIn(pPlayer)
 	BestineElection:playerLoggedIn(pPlayer)
+	--createEvent(60 * 1000, "overquestScreenplay", "newPlayerStart", pPlayer, "")
+	createEvent(90 * 1000, "HolocommScreenplay", "callPlayer", pPlayer, "")
 end
 
 function PlayerTriggers:playerLoggedOut(pPlayer)
@@ -13,4 +15,5 @@ function PlayerTriggers:playerLoggedOut(pPlayer)
 		return
 	end
 	ServerEventAutomation:playerLoggedOut(pPlayer)
+	EmpireDayEndorPvPScreenplay:removePlayerFromQueue(pPlayer)
 end

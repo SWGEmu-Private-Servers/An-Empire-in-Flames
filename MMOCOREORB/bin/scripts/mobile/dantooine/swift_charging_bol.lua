@@ -10,7 +10,7 @@ swift_charging_bol = Creature:new {
 	baseHAM = 8700,
 	baseHAMmax = 10700,
 	armor = 0,
-	resists = {120,120,0,0,0,0,0,0,-1},
+	resists = {25,25,15,25,25,15,45,45,25},
 	meatType = "meat_herbivore",
 	meatAmount = 180,
 	hideType = "hide_leathery",
@@ -28,7 +28,15 @@ swift_charging_bol = Creature:new {
 	templates = {"object/mobile/bol_hue.iff"},
 	controlDeviceTemplate = "object/intangible/pet/bol_hue.iff",
 	scale = 1.1,
-	lootGroups = {},
+	lootGroups = {
+		{
+	        groups = {
+				{group = "bol", chance = 10000000},
+
+			},
+			lootChance = 25000
+		}
+	},
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {

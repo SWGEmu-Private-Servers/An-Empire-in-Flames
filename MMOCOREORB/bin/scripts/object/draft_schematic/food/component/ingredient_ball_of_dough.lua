@@ -51,12 +51,12 @@ object_draft_schematic_food_component_ingredient_ball_of_dough = object_draft_sc
    complexity = 3, 
    size = 2, 
 
-   xpType = "crafting_general", 
+   xpType = "crafting_food_general", 
    xp = 20, 
 
-   assemblySkill = "general_assembly", 
-   experimentingSkill = "general_experimentation", 
-   customizationSkill = "clothing_customization", 
+   assemblySkill = "food_assembly", 
+   experimentingSkill = "food_experimentation", 
+   customizationSkill = "food_customization", 
 
    customizationOptions = {},
    customizationStringNames = {},

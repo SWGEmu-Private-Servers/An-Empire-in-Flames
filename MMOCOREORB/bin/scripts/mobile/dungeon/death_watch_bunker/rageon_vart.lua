@@ -11,7 +11,7 @@ rageon_vart = Creature:new {
 	baseHAM = 175000,
 	baseHAMmax = 175000,
 	armor = 2,
-	resists = {75,75,90,80,45,45,100,70,-1},
+	resists = {75,75,90,80,45,45,100,70,75},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -26,7 +26,7 @@ rageon_vart = Creature:new {
 	optionsBitmask = AIENABLED,
 	diet = HERBIVORE,
 	scale = 1.15,
-	
+
 	templates = {"object/mobile/dressed_death_watch_grey.iff"},
 	lootGroups = {
 		{
@@ -34,7 +34,7 @@ rageon_vart = Creature:new {
 				{group = "rageon_vart_drop", chance = 10000000}
 			},
 			lootChance = 10000000
-		} 
+		}
 	},
 	weapons = {"death_watch_commander_weapons"},
 	conversationTemplate = "",

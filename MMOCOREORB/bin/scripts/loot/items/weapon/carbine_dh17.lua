@@ -6,19 +6,19 @@ carbine_dh17 = {
 	customObjectName = "",
 	directObjectTemplate = "object/weapon/ranged/carbine/carbine_dh17.iff",
 	craftingValues = {
-		{"mindamage",28,52,0},
-		{"maxdamage",81,150,0},
-		{"attackspeed",4.5,3.1,1},
-		{"woundchance",6,12,0},
-		{"roundsused",30,65,0},
-		{"hitpoints",750,1500,0},
-		{"zerorangemod",-20,-20,0},
-		{"maxrangemod",-60,-60,0},
-		{"midrange",35,35,0},
-		{"midrangemod",11,21,0},
-		{"attackhealthcost",25,13,0},
-		{"attackactioncost",35,19,0},
-		{"attackmindcost",16,8,0},
+		{"mindamage",275,350,0},
+		{"maxdamage",501,605,0},
+		{"attackspeed",4.2,3.0,0},
+		{"woundchance",4,5,0},
+		{"roundsused",5,20,0},
+		{"hitpoints",450,1000,0},
+		{"zerorangemod",-45,-45,0},
+		{"maxrangemod",-45,-45,0},
+		{"midrange",32,32,0},
+		{"midrangemod",5,10,0},
+		{"attackhealthcost",65,60,0},
+		{"attackactioncost",65,60,0},
+		{"attackmindcost",65,60,0},
 	},
 	customizationStringNames = {},
 	customizationValues = {},
@@ -26,8 +26,8 @@ carbine_dh17 = {
 	-- randomDotChance: The chance of this weapon object dropping with a random dot on it. Higher number means less chance. Set to 0 to always have a random dot.
 	randomDotChance = 625,
 	junkDealerTypeNeeded = JUNKARMS,
-	junkMinValue = 20,
-	junkMaxValue = 40
+	junkMinValue = 50,
+	junkMaxValue = 90
 
 }
 

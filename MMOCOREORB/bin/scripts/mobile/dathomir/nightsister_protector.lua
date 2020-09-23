@@ -12,7 +12,7 @@ nightsister_protector = Creature:new {
 	baseHAM = 50000,
 	baseHAMmax = 61000,
 	armor = 2,
-	resists = {15,200,15,200,200,200,200,200,-1},
+	resists = {60,60,50,60,60,70,50,70,60},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -23,7 +23,7 @@ nightsister_protector = Creature:new {
 	tamingChance = 0,
 	ferocity = 0,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
-	creatureBitmask = PACK + KILLER,
+	creatureBitmask = PACK + KILLER + HERD,
 	optionsBitmask = AIENABLED,
 	diet = HERBIVORE,
 
@@ -33,7 +33,7 @@ nightsister_protector = Creature:new {
 			groups = {
 				{group = "power_crystals", chance = 500000},
 				{group = "color_crystals", chance = 500000},
-				{group = "nightsister_common", chance = 2300000},
+				{group = "junk", chance = 2300000},
 				{group = "armor_attachments", chance = 350000},
 				{group = "clothing_attachments", chance = 350000},
 				{group = "melee_weapons", chance = 2000000},
@@ -43,6 +43,12 @@ nightsister_protector = Creature:new {
 				{group = "wearables_common", chance = 500000},
 				{group = "tailor_components", chance = 500000}
 			}
+		},
+		{
+			groups = {
+				{group = "nightsister_common", chance = 10000000},
+			},
+			lootChance = 191666
 		}
 	},
 	weapons = {"mixed_force_weapons"},

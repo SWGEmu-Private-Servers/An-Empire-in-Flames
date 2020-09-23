@@ -10,7 +10,7 @@ rebel_battle_droid = Creature:new {
 	baseHAM = 56000,
 	baseHAMmax = 68000,
 	armor = 2,
-	resists = {75,75,100,60,100,25,40,85,-1},
+	resists = {45,45,65,50,50,35,65,35,45},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -30,6 +30,13 @@ rebel_battle_droid = Creature:new {
 		"object/mobile/battle_droid.iff"
 	},
 	lootGroups = {
+		{
+			groups = {
+				{group = "clothing_attachments", chance = 5000000},
+				{group = "armor_attachments", chance = 5000000},
+			},
+			lootChance = 1000000,
+		}
 	},
 	weapons = {"battle_droid_weapons"},
 	attacks = merge(pistoleermaster,carbineermaster,marksmanmaster)

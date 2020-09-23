@@ -160,61 +160,7 @@ object_building_player_city_shared_bank_naboo = SharedInstallationObjectTemplate
 ObjectTemplates:addClientTemplate(object_building_player_city_shared_bank_naboo, "object/building/player/city/shared_bank_naboo.iff")
 
 object_building_player_city_shared_bank_tatooine = SharedInstallationObjectTemplate:new {
-	clientTemplateFileName = "object/building/player/city/shared_bank_tatooine.iff"
-	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
---[[
-	appearanceFilename = "appearance/ply_tato_bank_s01.apt",
-	arrangementDescriptorFilename = "",
-
-	certificationsRequired = {},
-	clearFloraRadius = 30,
-	clientDataFile = "clientdata/building/shared_bank_player.cdf",
-	clientGameObjectType = 4096,
-	collisionActionBlockFlags = 0,
-	collisionActionFlags = 51,
-	collisionActionPassFlags = 1,
-	collisionMaterialBlockFlags = 0,
-	collisionMaterialFlags = 1,
-	collisionMaterialPassFlags = 0,
-	containerType = 0,
-	containerVolumeLimit = 1,
-	customizationVariableMapping = {},
-
-	detailedDescription = "@building_detail:bank",
-
-	gameObjectType = 4096,
-
-	locationReservationRadius = 0,
-	lookAtText = "@building_lookat:bank",
-
-	noBuildRadius = 0,
-
-	objectName = "@building_name:bank",
-	onlyVisibleInTools = 0,
-
-	paletteColorCustomizationVariables = {},
-	portalLayoutFilename = "",
-
-	rangedIntCustomizationVariables = {},
-
-	scale = 1,
-	scaleThresholdBeforeExtentTest = 0.5,
-	sendToClient = 1,
-	slotDescriptorFilename = "abstract/slot/descriptor/tangible.iff",
-	snapToTerrain = 1,
-	socketDestinations = {},
-	structureFootprintFileName = "footprint/building/player/shared_player_city_bank.sfp",
-	surfaceType = 1,
-
-	targetable = 0,
-	totalCellNumber = 0,
-
-	useStructureFootprintOutline = 0,
-
-	clientObjectCRC = 1371143744,
-	derivedFromTemplates = {"object/object/base/shared_base_object.iff", "object/tangible/base/shared_tangible_base.iff", "object/tangible/base/shared_tangible_craftable.iff", "object/installation/base/shared_installation_base.iff"}
-]]
-}
+	clientTemplateFileName = "object/building/player/city/shared_bank_tatooine.iff"}
 
 ObjectTemplates:addClientTemplate(object_building_player_city_shared_bank_tatooine, "object/building/player/city/shared_bank_tatooine.iff")
 
@@ -344,62 +290,6 @@ ObjectTemplates:addClientTemplate(object_building_player_city_shared_cantina_nab
 
 object_building_player_city_shared_cantina_tatooine = SharedBuildingObjectTemplate:new {
 	clientTemplateFileName = "object/building/player/city/shared_cantina_tatooine.iff"
-	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
---[[
-	appearanceFilename = "",
-	arrangementDescriptorFilename = "",
-
-	certificationsRequired = {},
-	clearFloraRadius = 30,
-	clientDataFile = "clientdata/building/shared_city_medium_building.cdf",
-	clientGameObjectType = 512,
-	collisionActionBlockFlags = 255,
-	collisionActionFlags = 255,
-	collisionActionPassFlags = 0,
-	collisionMaterialBlockFlags = 1,
-	collisionMaterialFlags = 1,
-	collisionMaterialPassFlags = 0,
-	containerType = 0,
-	containerVolumeLimit = 0,
-	customizationVariableMapping = {},
-
-	detailedDescription = "@building_detail:cantina",
-
-	gameObjectType = 512,
-
-	interiorLayoutFileName = "",
-
-	locationReservationRadius = 0,
-	lookAtText = "@building_lookat:base_housing",
-
-	noBuildRadius = 0,
-
-	objectName = "@building_name:cantina",
-	onlyVisibleInTools = 0,
-
-	paletteColorCustomizationVariables = {},
-	portalLayoutFilename = "appearance/ply_tato_cantina_s01.pob",
-
-	rangedIntCustomizationVariables = {},
-
-	scale = 0,
-	scaleThresholdBeforeExtentTest = 0.5,
-	sendToClient = 1,
-	slotDescriptorFilename = "",
-	snapToTerrain = 0,
-	socketDestinations = {},
-	structureFootprintFileName = "footprint/building/player/shared_player_city_cantina.sfp",
-	surfaceType = 2,
-
-	targetable = 0,
-	terrainModificationFileName = "",
-	totalCellNumber = 2,
-
-	useStructureFootprintOutline = 0,
-
-	clientObjectCRC = 3802646752,
-	derivedFromTemplates = {"object/object/base/shared_base_object.iff", "object/tangible/base/shared_tangible_base.iff", "object/building/base/shared_base_building.iff", "object/building/base/shared_base_player_building.iff"}
-]]
 }
 
 ObjectTemplates:addClientTemplate(object_building_player_city_shared_cantina_tatooine, "object/building/player/city/shared_cantina_tatooine.iff")
@@ -4508,64 +4398,15 @@ object_building_player_city_shared_theater_naboo = SharedBuildingObjectTemplate:
 
 ObjectTemplates:addClientTemplate(object_building_player_city_shared_theater_naboo, "object/building/player/city/shared_theater_naboo.iff")
 
+
 object_building_player_city_shared_theater_tatooine = SharedBuildingObjectTemplate:new {
 	clientTemplateFileName = "object/building/player/city/shared_theater_tatooine.iff"
-	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
---[[
-	appearanceFilename = "",
-	arrangementDescriptorFilename = "",
-
-	certificationsRequired = {},
-	clearFloraRadius = 30,
-	clientDataFile = "clientdata/building/shared_city_medium_building.cdf",
-	clientGameObjectType = 512,
-	collisionActionBlockFlags = 255,
-	collisionActionFlags = 255,
-	collisionActionPassFlags = 0,
-	collisionMaterialBlockFlags = 1,
-	collisionMaterialFlags = 1,
-	collisionMaterialPassFlags = 0,
-	containerType = 0,
-	containerVolumeLimit = 0,
-	customizationVariableMapping = {},
-
-	detailedDescription = "@building_detail:theater",
-
-	gameObjectType = 512,
-
-	interiorLayoutFileName = "",
-
-	locationReservationRadius = 0,
-	lookAtText = "@building_lookat:theater",
-
-	noBuildRadius = 0,
-
-	objectName = "@building_name:theater",
-	onlyVisibleInTools = 0,
-
-	paletteColorCustomizationVariables = {},
-	portalLayoutFilename = "appearance/ply_tato_theater_s01.pob",
-
-	rangedIntCustomizationVariables = {},
-
-	scale = 0,
-	scaleThresholdBeforeExtentTest = 0.5,
-	sendToClient = 1,
-	slotDescriptorFilename = "",
-	snapToTerrain = 0,
-	socketDestinations = {},
-	structureFootprintFileName = "footprint/building/player/shared_player_city_theater.sfp",
-	surfaceType = 2,
-
-	targetable = 0,
-	terrainModificationFileName = "",
-	totalCellNumber = 1,
-
-	useStructureFootprintOutline = 0,
-
-	clientObjectCRC = 4171036175,
-	derivedFromTemplates = {"object/object/base/shared_base_object.iff", "object/tangible/base/shared_tangible_base.iff", "object/building/base/shared_base_building.iff", "object/building/base/shared_base_player_building.iff"}
-]]
 }
 
 ObjectTemplates:addClientTemplate(object_building_player_city_shared_theater_tatooine, "object/building/player/city/shared_theater_tatooine.iff")
+
+object_building_player_city_shared_shuttleport_dathomir = SharedInstallationObjectTemplate:new {
+	clientTemplateFileName = "object/building/player/city/shared_shuttleport_dathomir.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_building_player_city_shared_shuttleport_dathomir, "object/building/player/city/shared_shuttleport_dathomir.iff")

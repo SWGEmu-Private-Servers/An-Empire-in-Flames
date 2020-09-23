@@ -10,7 +10,7 @@ tusken_king = Creature:new {
 	baseHAM = 24000,
 	baseHAMmax = 30000,
 	armor = 2,
-	resists = {45,35,5,80,-1,50,5,5,-1},
+	resists = {90,90,90,100,70,90,90,90,90},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -39,6 +39,12 @@ tusken_king = Creature:new {
 				{group = "color_crystals", chance = 500000},
 				{group = "power_crystals", chance = 500000}
 			}
+		},
+		{
+			groups = {
+				{group = "tusken_common", chance = 10000000},
+			},
+			lootChance = 3000000
 		}
 	},
 	weapons = {"tusken_weapons"},

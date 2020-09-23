@@ -383,3 +383,34 @@ object_static_vehicle_shared_static_tie_fighter = SharedStaticObjectTemplate:new
 }
 
 ObjectTemplates:addClientTemplate(object_static_vehicle_shared_static_tie_fighter, "object/static/vehicle/shared_static_tie_fighter.iff")
+
+object_static_vehicle_shared_static_yt_1300 = SharedStaticObjectTemplate:new {
+	clientTemplateFileName = "object/static/vehicle/shared_static_yt_1300.iff"}
+
+ObjectTemplates:addClientTemplate(object_static_vehicle_shared_static_yt_1300, "object/static/vehicle/shared_static_yt_1300.iff")
+
+object_static_vehicle_shared_static_yt_2400_ground = SharedStaticObjectTemplate:new {
+	clientTemplateFileName = "object/static/vehicle/shared_static_yt_2400_ground.iff"}
+
+ObjectTemplates:addClientTemplate(object_static_vehicle_shared_static_yt_2400_ground, "object/static/vehicle/shared_static_yt_2400_ground.iff")
+
+object_static_vehicle_shared_static_at_at = SharedStaticObjectTemplate:new {
+	clientTemplateFileName = "object/static/vehicle/shared_static_at_at.iff"}
+
+ObjectTemplates:addClientTemplate(object_static_vehicle_shared_static_at_at, "object/static/vehicle/shared_static_at_at.iff")
+
+object_static_vehicle_shared_static_hoverlifter = SharedStaticObjectTemplate:new {
+	clientTemplateFileName = "object/static/vehicle/shared_static_hoverlifter.iff"}
+
+ObjectTemplates:addClientTemplate(object_static_vehicle_shared_static_hoverlifter, "object/static/vehicle/shared_static_hoverlifter.iff")
+
+object_static_vehicle_shared_static_speeder_tantive4 = SharedStaticObjectTemplate:new {
+	clientTemplateFileName = "object/static/vehicle/shared_static_speeder_tantive4.iff"}
+
+ObjectTemplates:addClientTemplate(object_static_vehicle_shared_static_speeder_tantive4, "object/static/vehicle/shared_static_speeder_tantive4.iff")
+
+object_static_vehicle_shared_static_speeder_usv5 = SharedStaticObjectTemplate:new {
+	clientTemplateFileName = "object/static/vehicle/shared_static_speeder_usv5.iff"}
+
+ObjectTemplates:addClientTemplate(object_static_vehicle_shared_static_speeder_usv5, "object/static/vehicle/shared_static_speeder_usv5.iff")
+

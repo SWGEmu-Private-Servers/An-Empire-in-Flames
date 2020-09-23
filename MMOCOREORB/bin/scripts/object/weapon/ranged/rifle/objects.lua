@@ -1300,3 +1300,51 @@ object_weapon_ranged_rifle_shared_rifle_victor_tusken = SharedWeaponObjectTempla
 }
 
 ObjectTemplates:addClientTemplate(object_weapon_ranged_rifle_shared_rifle_victor_tusken, "object/weapon/ranged/rifle/shared_rifle_victor_tusken.iff")
+
+--A280
+object_weapon_ranged_rifle_shared_rifle_a280 = SharedWeaponObjectTemplate:new {
+	clientTemplateFileName = "object/weapon/ranged/rifle/shared_rifle_a280.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_weapon_ranged_rifle_shared_rifle_a280, "object/weapon/ranged/rifle/shared_rifle_a280.iff")
+
+--A280 CFE
+object_weapon_ranged_rifle_shared_rifle_a280_cfe = SharedWeaponObjectTemplate:new {
+	clientTemplateFileName = "object/weapon/ranged/rifle/shared_rifle_a280_cfe.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_weapon_ranged_rifle_shared_rifle_a280_cfe, "object/weapon/ranged/rifle/shared_rifle_a280_cfe.iff")
+
+--Jinkins J1 Rifle
+object_weapon_ranged_rifle_shared_jinkins_j1_rifle = SharedWeaponObjectTemplate:new {
+	clientTemplateFileName = "object/weapon/ranged/rifle/shared_jinkins_j1_rifle.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_weapon_ranged_rifle_shared_jinkins_j1_rifle, "object/weapon/ranged/rifle/shared_jinkins_j1_rifle.iff")
+
+--Improvised Rifle
+object_weapon_ranged_rifle_shared_rifle_prison = SharedWeaponObjectTemplate:new {
+	clientTemplateFileName = "object/weapon/ranged/rifle/shared_rifle_prison.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_weapon_ranged_rifle_shared_rifle_prison, "object/weapon/ranged/rifle/shared_rifle_prison.iff")
+
+--Adventurer
+object_weapon_ranged_rifle_shared_rifle_adventurer = SharedWeaponObjectTemplate:new {
+	clientTemplateFileName = "object/weapon/ranged/rifle/shared_rifle_adventurer.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_weapon_ranged_rifle_shared_rifle_adventurer, "object/weapon/ranged/rifle/shared_rifle_adventurer.iff")
+
+--DLT19
+object_weapon_ranged_rifle_shared_rifle_deathtroopers = SharedWeaponObjectTemplate:new {
+	clientTemplateFileName = "object/weapon/ranged/rifle/shared_rifle_deathtroopers.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_weapon_ranged_rifle_shared_rifle_deathtroopers, "object/weapon/ranged/rifle/shared_rifle_deathtroopers.iff")
+
+--Scoped Tusken
+object_weapon_ranged_rifle_shared_rifle_tusken_elite = SharedWeaponObjectTemplate:new {
+	clientTemplateFileName = "object/weapon/ranged/rifle/shared_rifle_tusken_elite.iff"}
+
+ObjectTemplates:addClientTemplate(object_weapon_ranged_rifle_shared_rifle_tusken_elite, "object/weapon/ranged/rifle/shared_rifle_tusken_elite.iff")

@@ -5232,3 +5232,38 @@ object_tangible_component_armor_shared_shield_generator_vehicular = SharedTangib
 }
 
 ObjectTemplates:addClientTemplate(object_tangible_component_armor_shared_shield_generator_vehicular, "object/tangible/component/armor/shared_shield_generator_vehicular.iff")
+
+--lightsaber layer
+object_tangible_component_armor_shared_armor_layer_lightsaber = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/armor/shared_armor_layer_lightsaber.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_armor_shared_armor_layer_lightsaber, "object/tangible/component/armor/shared_armor_layer_lightsaber.iff")
+
+--armomor core
+object_tangible_component_armor_shared_armor_core = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/armor/shared_armor_core.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_armor_shared_armor_core, "object/tangible/component/armor/shared_armor_core.iff")
+
+--basic segment
+object_tangible_component_armor_shared_armor_segment_basic = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/armor/shared_armor_segment_basic.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_armor_shared_armor_segment_basic, "object/tangible/component/armor/shared_armor_segment_basic.iff")
+
+--exotic segment
+object_tangible_component_armor_shared_armor_segment_exotic = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/armor/shared_armor_segment_exotic.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_armor_shared_armor_segment_exotic, "object/tangible/component/armor/shared_armor_segment_exotic.iff")
+
+--laminated segment
+object_tangible_component_armor_shared_armor_segment_laminated = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/armor/shared_armor_segment_laminated.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_armor_shared_armor_segment_laminated, "object/tangible/component/armor/shared_armor_segment_laminated.iff")

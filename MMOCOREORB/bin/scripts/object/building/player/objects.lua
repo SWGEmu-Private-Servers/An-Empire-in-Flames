@@ -2260,3 +2260,9 @@ object_building_player_shared_player_merchant_tent_style_03 = SharedBuildingObje
 }
 
 ObjectTemplates:addClientTemplate(object_building_player_shared_player_merchant_tent_style_03, "object/building/player/shared_player_merchant_tent_style_03.iff")
+
+object_building_player_shared_player_garage_dathomir_style_01 = SharedInstallationObjectTemplate:new {
+	clientTemplateFileName = "object/building/player/shared_player_garage_dathomir_style_01.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_building_player_shared_player_garage_dathomir_style_01, "object/building/player/shared_player_garage_dathomir_style_01.iff")

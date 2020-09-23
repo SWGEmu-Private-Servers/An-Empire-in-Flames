@@ -10,12 +10,13 @@ startingBank = 1000
 skillPoints = 250
 
 professions = {
-	"combat_brawler",
-	"combat_marksman",
-	"crafting_artisan",
-	"jedi",
-	"outdoors_scout",
-	"science_medic",
+	"combat_bountyhunter",
+	"combat_smuggler",
+	"combat_commando",
+	"crafting_merchant",
+	"outdoors_squadleader",
+	"outdoors_ranger",
+	"science_doctor",
 	"social_entertainer"
 }
 
@@ -24,6 +25,8 @@ marksmanPistol = "object/weapon/ranged/pistol/pistol_cdef.iff"
 marksmanRifle = "object/weapon/ranged/rifle/rifle_cdef.iff"
 
 marksmanCarbine = "object/weapon/ranged/carbine/carbine_cdef.iff"
+
+marksmanHeavy = "object/weapon/ranged/rifle/rifle_flame_thrower.iff"
 
 brawlerOneHander = "object/weapon/melee/knife/knife_stone.iff"
 
@@ -45,15 +48,16 @@ slitherhorn = "object/tangible/instrument/slitherhorn.iff"
 
 marojMelon = "object/tangible/food/foraged/foraged_fruit_s1.iff"
 
-x31Speeder = "object/tangible/deed/vehicle_deed/landspeeder_x31_deed.iff"
+x31Speeder = "object/tangible/deed/vehicle_deed/speederbike_flash_deed.iff"
 
 professionSpecificItems = {
-	combat_brawler = { brawlerOneHander, brawlerTwoHander, brawlerPolearm },
-	combat_marksman = { marksmanPistol, marksmanCarbine, marksmanRifle },
-	crafting_artisan = { genericTool, mineralTool, chemicalTool },
-	jedi = { },
-	outdoors_scout = { genericTool },
-	science_medic = { foodTool },
+	combat_bountyhunter = { marksmanCarbine, marksmanPistol, marksmanRifle, brawlerTwoHander, brawlerPolearm },
+	combat_commando = { marksmanHeavy, marksmanCarbine, marksmanPistol, marksmanRifle, brawlerTwoHander, brawlerPolearm },
+	combat_smuggler = { marksmanCarbine, marksmanPistol, marksmanRifle, brawlerTwoHander, brawlerPolearm },
+	crafting_merchant = { genericTool, mineralTool, chemicalTool, foodTool },
+	outdoors_ranger = { genericTool, marksmanCarbine, marksmanPistol, marksmanRifle, brawlerTwoHander, brawlerPolearm },
+	outdoors_squadleader = { marksmanCarbine, marksmanPistol, marksmanRifle, brawlerTwoHander, brawlerPolearm },
+	science_doctor = { genericTool, mineralTool, chemicalTool, foodTool },
 	social_entertainer = { slitherhorn }
 }
 

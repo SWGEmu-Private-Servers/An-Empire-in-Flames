@@ -45,4 +45,4 @@
 --Children folder includes
 
 -- Server Objects
-includeFile("weapon/melee/axe/base/axe_base.lua")
+includeFile("../custom_scripts/object/weapon/melee/axe/base/axe_base.lua")

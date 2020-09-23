@@ -12,7 +12,7 @@ kunga_rockshaper = Creature:new {
 	baseHAM = 12000,
 	baseHAMmax = 14000,
 	armor = 1,
-	resists = {100,20,100,20,20,100,20,-1,-1},
+	resists = {40,40,60,40,40,30,60,40,40},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -33,13 +33,20 @@ kunga_rockshaper = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "junk", chance = 3500000},
+				{group = "junk", chance = 2000000},
 				{group = "loot_kit_parts", chance = 3000000},
 				{group = "armor_attachments", chance = 500000},
 				{group = "clothing_attachments", chance = 500000},
 				{group = "wearables_all", chance = 2000000},
+				{group = "color_crystals", chance = 1500000},
 				{group = "power_crystals", chance = 500000}
 			}
+		},
+		{
+			groups = {
+				{group = "janta_common", chance = 10000000},
+			},
+			lootChance = 1500000
 		}
 	},
 	weapons = {"primitive_weapons"},

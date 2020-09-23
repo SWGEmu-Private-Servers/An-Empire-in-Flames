@@ -44,13 +44,13 @@
 ForceKnockdown3Command = {
 	name = "forceknockdown3",
 
-    damageMultiplier = 0,
+    damageMultiplier = 1,
 	speed = 4.0,
 	forceCost = 200,
 	visMod = 25,
 	accuracySkillMod = "forceknockdown_accuracy",
 	areaAction = true,
-	areaRange = 15,
+	areaRange = 16,
 
 	stateEffects = {
 	  StateEffect(
@@ -72,7 +72,7 @@ ForceKnockdown3Command = {
 
 	forceAttack = true,
 
-	range = 32
+	range = 64
 }
 
 AddCommand(ForceKnockdown3Command)

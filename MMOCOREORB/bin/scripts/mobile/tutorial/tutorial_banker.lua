@@ -1,7 +1,7 @@
 tutorial_banker = Creature:new {
 	objectName = "@newbie_tutorial/system_messages:imp_name",
-	socialGroup = "imperial",
-	faction = "imperial",
+	socialGroup = "rebel",
+	faction = "rebel",
 	level = 18,
 	chanceHit = 0.32,
 	damageMin = 170,
@@ -25,7 +25,7 @@ tutorial_banker = Creature:new {
 	optionsBitmask = INVULNERABLE + CONVERSABLE,
 	diet = HERBIVORE,
 
-	templates = {"object/mobile/dressed_imperial_officer_m.iff"},
+	templates = {"object/mobile/dressed_rebel_first_lieutenant_moncal_female_01.iff"},
 	lootGroups = {},
 	weapons = {},
 	attacks = merge(marksmannovice,brawlernovice),

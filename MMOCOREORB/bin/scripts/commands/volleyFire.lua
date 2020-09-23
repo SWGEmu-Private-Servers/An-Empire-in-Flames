@@ -44,11 +44,13 @@
 VolleyFireCommand = {
         name = "volleyfire",
 
-	damageMultiplier = 0,
+  damageMultiplier = 0.5,
+	speedMultiplier = 0.5,
 	healthCostMultiplier = 0,
 	actionCostMultiplier = 0,
+  -- Cost is calculated in volleyFire.h
 	mindCostMultiplier = 0,
-
+  accuracyBonus = 20,
 	combatSpam = "volley",
 	range = -1,
 
@@ -58,4 +60,3 @@ VolleyFireCommand = {
 }
 
 AddCommand(VolleyFireCommand)
-

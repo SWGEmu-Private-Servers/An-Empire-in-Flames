@@ -50,6 +50,7 @@ object_draft_schematic_weapon_pistol_republic_blaster_quest = object_draft_schem
    craftingToolTab = 1, -- (See DraftSchematicObjectTemplate.h)
    complexity = 30, 
    size = 1, 
+   factoryCrateSize = 0,
 
    xpType = "crafting_weapons_general", 
    xp = 105, 
@@ -62,12 +63,13 @@ object_draft_schematic_weapon_pistol_republic_blaster_quest = object_draft_schem
    customizationStringNames = {},
    customizationDefaults = {},
 
-   ingredientTemplateNames = {"craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n"},
-   ingredientTitleNames = {"frame_assembly", "receiver_assembly", "grip_assembly", "inducer", "powerhandler", "barrel", "scope"},
-   ingredientSlotType = {0, 0, 0, 0, 1, 1, 3},
-   resourceTypes = {"iron_plumbum", "metal_ferrous", "metal", "copper_diatium", "object/tangible/component/weapon/shared_blaster_power_handler.iff", "object/tangible/component/weapon/shared_blaster_pistol_barrel.iff", "object/tangible/component/weapon/shared_scope_weapon.iff"},
-   resourceQuantities = {35, 18, 7, 10, 2, 1, 1},
-   contribution = {100, 100, 100, 100, 100, 100, 100},
+   ingredientTemplateNames = {"craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n"},
+   ingredientTitleNames = {"frame_assembly", "receiver_assembly", "grip_assembly", "base_pistol_core", "barrel", "scope"},
+   ingredientSlotType = {0, 0, 0, 1, 1, 3},
+   resourceTypes = {"metal", "chemical", "metal", "object/tangible/component/weapon/shared_base_pistol_core.iff", "object/tangible/component/weapon/shared_base_pistol_barrel.iff", "object/tangible/component/weapon/shared_scope_weapon.iff"},
+   resourceQuantities = {12, 6, 3, 1, 1, 1},
+   contribution = {100, 100, 100, 100, 100, 100},
+   ingredientAppearance = {"", "", "", "", "muzzle", "scope"},
 
 
    targetTemplate = "object/weapon/ranged/pistol/pistol_republic_blaster_quest.iff",
@@ -80,7 +82,7 @@ object_draft_schematic_weapon_pistol_republic_blaster_quest = object_draft_schem
 			{"type", 4}, -- 1 = Poison, 2 = Disease, 3 = Fire, 4 = Bleed
 			{"attribute", 0}, -- See CreatureAttributes.h in src for numbers.
 			{"strength", 105},
-			{"duration", 80},
+			{"duration", 180},
 			{"potency", 75},
 			{"uses", 9000}
 		}

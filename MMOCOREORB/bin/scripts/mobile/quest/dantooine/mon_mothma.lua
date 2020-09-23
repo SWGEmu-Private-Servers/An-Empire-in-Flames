@@ -22,13 +22,14 @@ mon_mothma = Creature:new {
 	ferocity = 0,
 	pvpBitmask = NONE,
 	creatureBitmask = PACK,
-	optionsBitmask = INVULNERABLE + CONVERSABLE,
+	optionsBitmask = INVULNERABLE,
 	diet = HERBIVORE,
 
 	templates = {"object/mobile/mon_mothma.iff"},
 	lootGroups = {},
 	weapons = {},
-	conversationTemplate = "theme_park_rebel_mission_giver_convotemplate",
+	conversationTemplate = "",
+--	conversationTemplate = "theme_park_rebel_mission_giver_convotemplate",
 	attacks = {
 	}
 }

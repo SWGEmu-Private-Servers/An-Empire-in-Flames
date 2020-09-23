@@ -42,6 +42,7 @@
 
 
 object_building_faction_perk_hq_hq_s03_rebel = object_building_faction_perk_hq_shared_hq_s03_rebel:new {
+
 	lotSize = 0,
 	containerComponent = "GCWBaseContainerComponent",
 	zoneComponent = "StructureZoneComponent",
@@ -50,7 +51,7 @@ object_building_faction_perk_hq_hq_s03_rebel = object_building_faction_perk_hq_s
 	faction = "rebel",
 	pvpFaction = "rebel",
 	dataObjectComponent = "DestructibleBuildingDataComponent",
-	allowedZones = {"dantooine", "naboo", "rori","tatooine", "corellia", "lok", "talus"},
+	allowedZones = {"dantooine", "dathomir", "chandrila", "kuat", "naboo", "rori","tatooine", "corellia", "lok", "talus", "taanab"},
 	constructionMarker = "object/building/player/construction/construction_player_house_generic_medium_style_01.iff",
 	length = 7,
 	width = 6,

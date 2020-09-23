@@ -12,7 +12,7 @@ singing_mountain_clan_sentry = Creature:new {
 	baseHAM = 5900,
 	baseHAMmax = 7200,
 	armor = 0,
-	resists = {65,65,65,65,65,65,65,65,-1},
+	resists = {60,60,50,60,60,70,50,70,60},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -43,6 +43,12 @@ singing_mountain_clan_sentry = Creature:new {
 				{group = "wearables_uncommon", chance = 500000},
 				{group = "tailor_components", chance = 500000}
 			}
+		},
+		{
+			groups = {
+				{group = "smc_common", chance = 10000000},
+			},
+			lootChance = 166666
 		}
 	},
 	weapons = {"mixed_force_weapons"},

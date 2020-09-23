@@ -12,7 +12,7 @@ dantari_strategist = Creature:new {
 	baseHAM = 8400,
 	baseHAMmax = 10200,
 	armor = 0,
-	resists = {10,20,40,-1,50,50,-1,20,-1},
+	resists = {25,25,15,25,25,15,45,45,25},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -39,6 +39,12 @@ dantari_strategist = Creature:new {
 				{group = "clothing_attachments", chance = 500000},
 				{group = "wearables_common", chance = 2000000}
 			}
+		},
+		{
+			groups = {
+				{group = "janta_common", chance = 10000000},
+			},
+			lootChance = 1500000
 		}
 	},
 	weapons = {"primitive_weapons"},

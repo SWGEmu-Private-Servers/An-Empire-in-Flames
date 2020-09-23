@@ -45,11 +45,11 @@ object_building_player_city_garden_naboo_large = object_building_player_city_sha
 
 	lotSize = 0,
 	baseMaintenanceRate = 0,
-	allowedZones = {"dantooine", "naboo", "rori"},
+	allowedZones = {"dantooine", "naboo", "rori", "taanab"},
 	length = 7,
 	width = 7,
 	cityRankRequired = 3,
-	cityMaintenanceBase = 30000,
+	cityMaintenanceBase = 1000,
 	abilityRequired = "place_large_garden",
 	zoneComponent = "StructureZoneComponent",
 	dataObjectComponent = "DecorationDataComponent",

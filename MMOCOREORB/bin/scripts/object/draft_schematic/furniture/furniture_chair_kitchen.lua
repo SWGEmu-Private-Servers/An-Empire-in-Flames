@@ -70,7 +70,7 @@ object_draft_schematic_furniture_furniture_chair_kitchen = object_draft_schemati
 	resourceQuantities = {35, 80},
 	contribution = {100, 100},
 
-	targetTemplate = "object/tangible/furniture/all/frn_all_chair_kitchen_s1.iff",
+	targetTemplate = "object/tangible/furniture/all/frn_all_chair_kitchen_hue_s1.iff",
 
 	additionalTemplates = {}
 }

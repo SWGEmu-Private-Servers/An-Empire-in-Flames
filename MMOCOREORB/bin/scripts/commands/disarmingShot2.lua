@@ -44,17 +44,30 @@
 DisarmingShot2Command = {
         name = "disarmingshot2",
 
-	damageMultiplier = 2.75,
-	speedMultiplier = 2.0,
-	healthCostMultiplier = 0.5,
-	actionCostMultiplier = 1.0,
-	mindCostMultiplier = 0.5,
-        accuracyBonus = 50,
+	damageMultiplier = 0,
+	speedMultiplier = 1.0,
+	healthCostMultiplier = 0.0,
+	actionCostMultiplier = 45,
+	mindCostMultiplier = 0.0,
+  accuracyBonus = 30,
+  coneAngle = 30,
+	coneAction = true,
+  stateEffects = {
+    StateEffect(
+    NEXTATTACKDELAY_EFFECT,
+    { "nextAttackDelayRecovery" },
+    { "warcry_defense" },
+    {},
+    100,
+    0,
+    10
+    )
+  },
 
 	coneAngle = 15,
 	coneAction = true,
 
-	animation = "fire_3_single", 
+	animation = "fire_3_single",
 	animType = GENERATE_RANGED,
 
 	combatSpam = "disarmblast",
@@ -65,4 +78,3 @@ DisarmingShot2Command = {
 }
 
 AddCommand(DisarmingShot2Command)
-

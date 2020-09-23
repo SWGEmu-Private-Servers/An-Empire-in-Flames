@@ -44,37 +44,37 @@
 Melee1hHealthHit1Command = {
         name = "melee1hhealthhit1",
 
-	damageMultiplier = 1.5,
-	speedMultiplier = 1.5,
-	healthCostMultiplier = 0.5,
-	actionCostMultiplier = 0.5,
-	mindCostMultiplier = 0.625,
+	damageMultiplier = 1.0,
+	speedMultiplier = 1.0,
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 12.5,
+	mindCostMultiplier = 0,
         accuracyBonus = 25,
 
 	poolsToDamage = HEALTH_ATTRIBUTE,
 
-	animation = "counter_low_left", 
+	animation = "counter_low_left",
 	animType = GENERATE_INTENSITY,
 
 	combatSpam = "shiim",
 
 	dotEffects = {
-	  DotEffect( 
-		BLEEDING, 
+	  DotEffect(
+		BLEEDING,
 		{ "resistance_bleeding", "bleed_resist" },
 		HEALTH,
 		true,
 		0,
 		100,
-		30, 
-		30
+		30,
+		24,
+    50
 	  )
 	},
-	
+
 	weaponType = ONEHANDMELEEWEAPON,
 
 	range = -1
 }
 
 AddCommand(Melee1hHealthHit1Command)
-

@@ -62,12 +62,12 @@ object_draft_schematic_weapon_baton_stun = object_draft_schematic_weapon_shared_
    customizationStringNames = {},
    customizationDefaults = {},
 
-   ingredientTemplateNames = {"craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n"},
-   ingredientTitleNames = {"grip_unit", "conductive_strike_face", "power_cell_brackets", "charge_accumulator", "shock_pulsor", "reinforcement_core"},
-   ingredientSlotType = {0, 0, 0, 0, 1, 1},
-   resourceTypes = {"copper_polysteel", "steel", "metal", "crystalline_byrothsis", "object/tangible/component/item/shared_electronic_power_conditioner.iff", "object/tangible/component/weapon/shared_reinforcement_core.iff"},
-   resourceQuantities = {18, 18, 10, 6, 2, 1},
-   contribution = {100, 100, 100, 100, 100, 100},
+    ingredientTemplateNames = {"craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n"},
+   ingredientTitleNames = {"melee_core", "grip", "edge","shaft", "fastener"},
+   ingredientSlotType = {1, 1, 3, 0, 0},
+   resourceTypes = {"object/tangible/component/weapon/shared_base_melee_core.iff", "object/tangible/component/weapon/shared_base_melee_grip.iff", "object/tangible/component/weapon/shared_base_melee_edge.iff", "metal", "metal", "metal"},
+   resourceQuantities = {1, 1, 1, 20, 6},
+   contribution = {100, 100, 100, 100, 100},
 
 
    targetTemplate = "object/weapon/melee/baton/baton_stun.iff",

@@ -1,11 +1,10 @@
-intern = {
-	level = 1,
-	name = "intern",
-	tag = "SWGEmu-Intern",
+worldbuilder = {
+	level = 2,
+	name = "worldbuilder",
+	tag = "Starsider-Worldbuilder",
 	skills = {
 		"admin_base",
-		"admin_intern_01",
 	}
 }
 
-addLevel(intern)
+addLevel(worldbuilder)

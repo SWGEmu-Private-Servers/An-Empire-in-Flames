@@ -6,19 +6,19 @@ rifle_cdef = {
 	customObjectName = "",
 	directObjectTemplate = "object/weapon/ranged/rifle/rifle_cdef.iff",
 	craftingValues = {
-		{"mindamage",12,27,0},
-		{"maxdamage",29,61,0},
-		{"attackspeed",5.1,3.6,0},
-		{"woundchance",3,4.8,0},
-		{"hitpoints",750,750,0},
-		{"attackhealthcost",14,9,0},
-		{"attackactioncost",25,19,0},
-		{"attackmindcost",14,9,0},
+		{"mindamage",275,350,0},
+		{"maxdamage",501,605,0},
+		{"attackspeed",4.1,3.0,0},
+		{"woundchance",4,5,0},
 		{"roundsused",5,20,0},
-		{"zerorangemod",0,0,0},
-		{"maxrangemod",-80,-80,0},
-		{"midrange",35,35,0},
-		{"midrangemod",35,65,0},
+		{"hitpoints",450,1000,0},
+		{"zerorangemod",-95,-80,0},
+		{"maxrangemod",-5,5,0},
+		{"midrange",48,48,0},
+		{"midrangemod",-5,5,0},
+		{"attackhealthcost",65,60,0},
+		{"attackactioncost",65,60,0},
+		{"attackmindcost",65,60,0},
 	},
 	customizationStringNames = {},
 	customizationValues = {},
@@ -26,8 +26,8 @@ rifle_cdef = {
 	-- randomDotChance: The chance of this weapon object dropping with a random dot on it. Higher number means less chance. Set to 0 to always have a random dot.
 	randomDotChance = 750,
 	junkDealerTypeNeeded = JUNKARMS,
-	junkMinValue = 20,
-	junkMaxValue = 40
+	junkMinValue = 50,
+	junkMaxValue = 100
 
 }
 

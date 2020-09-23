@@ -3,7 +3,13 @@ rebel_weapons_heavy = {
 	"object/weapon/ranged/rifle/rifle_flame_thrower.iff",
 	"object/weapon/ranged/pistol/pistol_launcher.iff",
 	"object/weapon/ranged/pistol/pistol_srcombat.iff",
-	"object/weapon/ranged/carbine/carbine_cdef.iff"
+	"object/weapon/ranged/carbine/carbine_cdef.iff",
+	"object/weapon/ranged/rifle/rifle_a280.iff",
+	"object/weapon/ranged/carbine/carbine_a280.iff",
+	"object/weapon/ranged/pistol/pistol_a280.iff",
+	"object/weapon/ranged/rifle/rifle_a280_cfe.iff",
+	"object/weapon/ranged/carbine/carbine_a280_cfe.iff",
+	"object/weapon/ranged/pistol/pistol_a280_cfe.iff",
 }
 
 addWeapon("rebel_weapons_heavy", rebel_weapons_heavy)

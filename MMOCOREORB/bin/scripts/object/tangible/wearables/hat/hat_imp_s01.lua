@@ -44,10 +44,20 @@
 object_tangible_wearables_hat_hat_imp_s01 = object_tangible_wearables_hat_shared_hat_imp_s01:new {
 	faction = "Imperial",
 	
-	playerRaces = { "object/creature/player/human_male.iff",
+	playerRaces = { 	"object/creature/player/human_male.iff",
+				"object/creature/player/human_female.iff",
 				"object/creature/player/zabrak_male.iff",
+				"object/creature/player/zabrak_female.iff",
+				"object/creature/player/chiss_male.iff",
+				"object/creature/player/chiss_female.iff",
+				"object/creature/player/mirialan_male.iff",
+				"object/creature/player/mirialan_female.iff",
+				"object/creature/player/zeltron_male.iff",
+				"object/creature/player/zeltron_female.iff",
 				"object/mobile/vendor/human_male.iff",
-				"object/mobile/vendor/zabrak_male.iff" },
+				"object/mobile/vendor/human_female.iff",
+				"object/mobile/vendor/zabrak_male.iff",
+				"object/mobile/vendor/zabrak_female.iff" },
 }
 
 ObjectTemplates:addTemplate(object_tangible_wearables_hat_hat_imp_s01, "object/tangible/wearables/hat/hat_imp_s01.iff")

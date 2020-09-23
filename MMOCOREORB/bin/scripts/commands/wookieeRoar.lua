@@ -51,18 +51,18 @@ WookieeRoarCommand = {
 	mindCostMultiplier = 0,
 	coneAngle = 90,
 	coneAction = true,
-	
+
 	accuracySkillMod = "intimidate",
 
 	stateEffects = {
-	  StateEffect( 
-		INTIMIDATE_EFFECT, 
-		{}, 
-		{ "intimidate_defense" }, 
+	  StateEffect(
+		INTIMIDATE_EFFECT,
+		{},
+		{ "intimidate_defense" },
 		{ "jedi_state_defense", "resistance_states" },
-		100, 
-		0, 
-		60 
+		115, 
+		0,
+		60
 	  )
 	},
 
@@ -75,4 +75,3 @@ WookieeRoarCommand = {
 }
 
 AddCommand(WookieeRoarCommand)
-

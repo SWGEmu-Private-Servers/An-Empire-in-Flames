@@ -45,13 +45,13 @@ object_building_player_city_garden_corellia_med_03 = object_building_player_city
 
 	lotSize = 0,
 	baseMaintenanceRate = 0,
-	allowedZones = {"corellia", "talus"},
+	allowedZones = {"corellia", "kuat", "taanab", "talus"},
 	
 	length = 5,
 	
 	width = 5,
 	cityRankRequired = 2,
-	cityMaintenanceBase = 20000,
+	cityMaintenanceBase = 750,
 	abilityRequired = "place_medium_garden",
 	zoneComponent = "StructureZoneComponent",
 	dataObjectComponent = "DecorationDataComponent",

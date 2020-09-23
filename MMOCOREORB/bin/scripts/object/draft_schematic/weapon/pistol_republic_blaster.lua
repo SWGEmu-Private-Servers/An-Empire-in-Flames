@@ -63,11 +63,12 @@ object_draft_schematic_weapon_pistol_republic_blaster = object_draft_schematic_w
    customizationDefaults = {},
 
    ingredientTemplateNames = {"craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n"},
-   ingredientTitleNames = {"frame_assembly", "receiver_assembly", "grip_assembly", "powerhandler", "barrel", "scope"},
+   ingredientTitleNames = {"frame_assembly", "receiver_assembly", "grip_assembly", "base_pistol_core", "barrel", "scope"},
    ingredientSlotType = {0, 0, 0, 1, 1, 3},
-   resourceTypes = {"iron_plumbum", "metal_ferrous", "metal", "object/tangible/component/weapon/shared_blaster_power_handler.iff", "object/tangible/component/weapon/shared_blaster_pistol_barrel.iff", "object/tangible/component/weapon/shared_scope_weapon.iff"},
-   resourceQuantities = {35, 18, 7, 2, 1, 1},
+   resourceTypes = {"metal", "chemical", "metal", "object/tangible/component/weapon/shared_base_pistol_core.iff", "object/tangible/component/weapon/shared_base_pistol_barrel.iff", "object/tangible/component/weapon/shared_scope_weapon.iff"},
+   resourceQuantities = {12, 6, 3, 1, 1, 1},
    contribution = {100, 100, 100, 100, 100, 100},
+   ingredientAppearance = {"", "", "", "", "muzzle", "scope"},
 
 
    targetTemplate = "object/weapon/ranged/pistol/pistol_republic_blaster.iff",

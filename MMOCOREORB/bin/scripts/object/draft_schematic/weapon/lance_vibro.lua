@@ -62,12 +62,12 @@ object_draft_schematic_weapon_lance_vibro = object_draft_schematic_weapon_shared
    customizationStringNames = {},
    customizationDefaults = {},
 
-   ingredientTemplateNames = {"craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n"},
-   ingredientTitleNames = {"lance_shaft", "vibro_unit_and_power_cell_brackets", "grip", "vibration_generator"},
-   ingredientSlotType = {0, 0, 0, 1},
-   resourceTypes = {"steel_ditanium", "copper_polysteel", "metal", "object/tangible/component/weapon/shared_vibro_unit.iff"},
-   resourceQuantities = {38, 17, 6, 2},
-   contribution = {100, 100, 100, 100},
+    ingredientTemplateNames = {"craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n"},
+   ingredientTitleNames = {"melee_core", "grip", "edge","shaft", "fastener"},
+   ingredientSlotType = {1, 1, 3, 0, 0},
+   resourceTypes = {"object/tangible/component/weapon/shared_base_melee_core.iff", "object/tangible/component/weapon/shared_base_melee_grip.iff", "object/tangible/component/weapon/shared_base_melee_edge.iff", "metal", "metal", "metal"},
+   resourceQuantities = {1, 1, 1, 20, 6},
+   contribution = {100, 100, 100, 100, 100},
 
 
    targetTemplate = "object/weapon/melee/polearm/lance_vibrolance.iff",

@@ -12,7 +12,7 @@ nightsister_stalker = Creature:new {
 	baseHAM = 20000,
 	baseHAMmax = 25000,
 	armor = 1,
-	resists = {40,200,40,200,200,200,200,200,-1},
+	resists = {40,40,30,40,40,60,30,40,40},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -31,9 +31,9 @@ nightsister_stalker = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "power_crystals", chance = 500000},
-				{group = "color_crystals", chance = 500000},
-				{group = "nightsister_common", chance = 2000000},
+				{group = "power_crystals", chance = 1000000},
+				{group = "color_crystals", chance = 1000000},
+				{group = "junk", chance = 1000000},
 				{group = "armor_attachments", chance = 250000},
 				{group = "clothing_attachments", chance = 250000},
 				{group = "melee_weapons", chance = 2500000},
@@ -43,6 +43,12 @@ nightsister_stalker = Creature:new {
 				{group = "wearables_common", chance = 500000},
 				{group = "tailor_components", chance = 500000}
 			}
+		},
+		{
+			groups = {
+				{group = "nightsister_common", chance = 10000000},
+			},
+			lootChance = 166666
 		}
 	},
 	weapons = {"mixed_force_weapons"},

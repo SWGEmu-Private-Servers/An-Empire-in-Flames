@@ -44,24 +44,23 @@
 DoubleTapCommand = {
         name = "doubletap",
 
-	damageMultiplier = 2.8,
-	speedMultiplier = 2.1,
-	healthCostMultiplier = 0.5,
-	actionCostMultiplier = 0.75,
-	mindCostMultiplier = 0.5,
-        accuracyBonus = 50,
+	damageMultiplier = 4.25,
+	speedMultiplier = 2.0,
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 40,
+	mindCostMultiplier = 0,
+  	accuracyBonus = 0,
 
 	poolsToDamage = RANDOM_ATTRIBUTE,
 
-	animation = "fire_7_single", 
+	animation = "fire_7_single",
 	animType = GENERATE_RANGED,
 
 	combatSpam = "doubletap",
-	
+
 	weaponType = PISTOLWEAPON,
 
 	range = -1
 }
 
 AddCommand(DoubleTapCommand)
-

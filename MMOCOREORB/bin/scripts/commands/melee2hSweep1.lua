@@ -44,35 +44,37 @@
 Melee2hSweep1Command = {
 	name = "melee2hsweep1",
 
-	damageMultiplier = 1.5,
-	speedMultiplier = 1.5,
+	damageMultiplier = 1.0,
+	speedMultiplier = 1.0,
 	accuracyBonus = 10,
-	
-	healthCostMultiplier = 0.75,
-	actionCostMultiplier = 1.5,
-	mindCostMultiplier = 0.75,
+
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 30,
+	mindCostMultiplier = 0,
+
+	areaRange = 8,
+	areaAction = true,
 
 	animation = "lower_posture_2hmelee_3",
 
 	combatSpam = "sweep",
 
 	stateEffects = {
-	  StateEffect( 
-		POSTUREDOWN_EFFECT, 
-		{ "postureDownRecovery" }, 
-		{ "posture_change_down_defense" }, 
+	  StateEffect(
+		POSTUREDOWN_EFFECT,
+		{ "postureDownRecovery" },
+		{ "posture_change_down_defense" },
 		{},
-		100, 
-		0, 
-		0 
+		100,
+		0,
+		0
 	  )
 	},
-	
+
 	weaponType = TWOHANDMELEEWEAPON,
 
-	range = -1
+	range = 8
 
 }
 
 AddCommand(Melee2hSweep1Command)
-

@@ -43,28 +43,40 @@
 
 FireAcidCone1Command = {
         name = "fireacidcone1",
-	
-	damageMultiplier = 5,
-	speedMultiplier = 4,
-	healthCostMultiplier = 1.5,
-	actionCostMultiplier = 0.5,
-	mindCostMultiplier = 0.5,
-	accuracyBonus = 0,
+
+  damageMultiplier = 1.0,
+	speedMultiplier = 0.5,
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 0,
+	mindCostMultiplier = 25,
+	accuracyBonus = 50,
 
 	coneAngle = 45,
 	coneAction = true,
-	
-	poolsToDamage = RANDOM_ATTRIBUTE,
 
-	animation = "fire_acid_rifle_single_1", 
+	poolsToDamage = MIND_ATTRIBUTE,
+  dotEffects = {
+    DotEffect(
+    ONFIRE,
+    {"resistance_fire", "fire_resist"},
+    MIND,
+    true,
+    0,
+    35,
+    100,
+    60,
+    25,
+    2
+    )
+  },
+	animation = "fire_acid_rifle_single_1",
 	animType = GENERATE_INTENSITY,
 
 	combatSpam = "fireacidcone1",
-	
+
 	weaponType = SPECIALHEAVYWEAPON,
-	
+
 	range = 16
 }
 
 AddCommand(FireAcidCone1Command)
-

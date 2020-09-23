@@ -44,26 +44,25 @@
 Melee2hSpinAttack1Command = {
 	name = "melee2hspinattack1",
 
-	damageMultiplier = 2.0,
-	speedMultiplier = 1.5,
+	damageMultiplier = 3.0,
+	speedMultiplier = 1.0,
 	accuracyBonus = 10,
-	
-	healthCostMultiplier = 1.0,
-	actionCostMultiplier = 1.5,
-	mindCostMultiplier = 1.0,
+
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 20,
+	mindCostMultiplier = 0,
 
 	areaAction = true,
-	areaRange = 16,
-	
+	areaRange = 8,
+
 	weaponType = TWOHANDMELEEWEAPON,
 
 	animation = "attack_high_right_light_2",
 
 	combatSpam = "spinstrike",
 
-	range = -1
+	range = 8
 
 }
 
 AddCommand(Melee2hSpinAttack1Command)
-

@@ -12,7 +12,7 @@ mokk_shaman = Creature:new {
 	baseHAM = 11000,
 	baseHAMmax = 14000,
 	armor = 1,
-	resists = {15,60,15,-1,-1,60,60,-1,-1},
+	resists = {60,60,60,50,50,60,70,70,60},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -34,11 +34,17 @@ mokk_shaman = Creature:new {
 		{
 			groups = {
 				{group = "junk", chance = 5000000},
-				{group = "loot_kit_parts", chance = 3000000},
+				{group = "loot_kit_parts", chance = 2500000},
 				{group = "armor_attachments", chance = 500000},
 				{group = "clothing_attachments", chance = 500000},
-				{group = "color_crystals", chance = 1000000}
+				{group = "color_crystals", chance = 1500000},
 			}
+		},
+		{
+			groups = {
+				{group = "janta_common", chance = 10000000},
+			},
+			lootChance = 1500000
 		}
 	},
 	weapons = {"primitive_weapons"},

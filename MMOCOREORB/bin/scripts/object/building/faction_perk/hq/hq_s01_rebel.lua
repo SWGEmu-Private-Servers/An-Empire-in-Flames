@@ -45,13 +45,14 @@ object_building_faction_perk_hq_hq_s01_rebel = object_building_faction_perk_hq_s
 	lotSize = 0,
 	containerComponent = "GCWBaseContainerComponent",
 	zoneComponent = "StructureZoneComponent",
+	customName = "New Republic Forward Outpost",
 	maintenanceCost = 0,
 	baseMaintenanceRate = 0,
 	faction = "rebel",
 	pvpFaction = "rebel",
 	pvpStatusBitmask = 0,
 	dataObjectComponent = "DestructibleBuildingDataComponent",
-	allowedZones = {"dantooine", "naboo", "rori","tatooine", "corellia", "lok", "talus"},
+	allowedZones = {"dantooine", "dathomir", "chandrila", "kuat", "naboo", "rori","tatooine", "corellia", "lok", "talus", "taanab"},
 	constructionMarker = "object/building/player/construction/construction_player_house_generic_medium_style_01.iff",
 	length = 7,
 	width = 6,
@@ -112,7 +113,6 @@ object_building_faction_perk_hq_hq_s01_rebel = object_building_faction_perk_hq_s
 		{ mobile = "fbase_rebel_warrant_officer_ii", x = -3.8, z = 0, y = -2.3, cellid = 6, respawn = 300, containmentType = -1, heading = 0},
 		{ mobile = "rebel_recruiter", x = -1, z = 0, y = -5.5, cellid = 3, containmentType = -1, respawn = 60, heading = 0},
 	},
-
 }
 
 ObjectTemplates:addTemplate(object_building_faction_perk_hq_hq_s01_rebel, "object/building/faction_perk/hq/hq_s01_rebel.iff")

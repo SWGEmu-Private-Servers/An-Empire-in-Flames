@@ -62,12 +62,12 @@ object_draft_schematic_weapon_baton_gaderiffi = object_draft_schematic_weapon_sh
    customizationStringNames = {},
    customizationDefaults = {},
 
-   ingredientTemplateNames = {"craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n"},
-   ingredientTitleNames = {"grip_unit", "reactive_striking_surface", "power_cell_brackets", "reinforcement_core"},
-   ingredientSlotType = {0, 0, 0, 1},
-   resourceTypes = {"iron", "metal", "metal", "object/tangible/component/weapon/shared_reinforcement_core.iff"},
-   resourceQuantities = {20, 23, 5, 1},
-   contribution = {100, 100, 100, 100},
+    ingredientTemplateNames = {"craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n"},
+   ingredientTitleNames = {"melee_core", "grip", "edge","shaft", "fastener"},
+   ingredientSlotType = {1, 1, 3, 0, 0},
+   resourceTypes = {"object/tangible/component/weapon/shared_base_melee_core.iff", "object/tangible/component/weapon/shared_base_melee_grip.iff", "object/tangible/component/weapon/shared_base_melee_edge.iff", "metal", "metal", "metal"},
+   resourceQuantities = {1, 1, 1, 20, 6},
+   contribution = {100, 100, 100, 100, 100},
 
 
    targetTemplate = "object/weapon/melee/baton/baton_gaderiffi.iff",

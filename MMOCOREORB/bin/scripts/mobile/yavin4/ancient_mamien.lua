@@ -18,7 +18,7 @@ ancient_mamien = Creature:new {
 	boneType = "bone_mammal",
 	boneAmount = 20,
 	milk = 0,
-	tamingChance = 0,
+	tamingChance = 0.05,
 	ferocity = 0,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = PACK + HERD + KILLER,
@@ -26,6 +26,7 @@ ancient_mamien = Creature:new {
 	diet = CARNIVORE,
 
 	templates = {"object/mobile/mamien_ancient.iff"},
+	controlDeviceTemplate = "object/intangible/pet/mamien_hue.iff",
 	hues = { 24, 25, 26, 27, 28, 29, 30, 31 },
 	scale = 1.15,
 	lootGroups = {},

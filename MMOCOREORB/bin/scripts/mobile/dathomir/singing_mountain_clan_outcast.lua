@@ -12,7 +12,7 @@ singing_mountain_clan_outcast = Creature:new {
 	baseHAM = 12000,
 	baseHAMmax = 15000,
 	armor = 1,
-	resists = {25,25,75,-1,75,25,25,25,-1},
+	resists = {25,25,45,25,25,45,15,15,25},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -43,6 +43,12 @@ singing_mountain_clan_outcast = Creature:new {
 				{group = "wearables_uncommon", chance = 500000},
 				{group = "tailor_components", chance = 500000}
 			}
+		},
+		{
+			groups = {
+				{group = "smc_common", chance = 10000000},
+			},
+			lootChance = 166666
 		}
 	},
 	weapons = {"mixed_force_weapons"},

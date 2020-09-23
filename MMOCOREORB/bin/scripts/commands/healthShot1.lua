@@ -44,37 +44,37 @@
 HealthShot1Command = {
 	name = "healthshot1",
 
-	damageMultiplier = 1.5,
-	speedMultiplier = 2.0,
-	healthCostMultiplier = 0.5,
-	actionCostMultiplier = 0.75,
-	mindCostMultiplier = 0.5,
-        accuracyBonus = 50,
+	damageMultiplier = 1.0,
+	speedMultiplier = 1.0,
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 20,
+	mindCostMultiplier = 0,
+        accuracyBonus = 30,
 
 	poolsToDamage = HEALTH_ATTRIBUTE,
 
-	animation = "fire_1_special_single", 
+	animation = "fire_1_special_single",
 	animType = GENERATE_RANGED,
 
 	combatSpam = "sapshot",
-	
+
 	dotEffects = {
-	  DotEffect( 
-		BLEEDING, 
+	  DotEffect(
+		BLEEDING,
 		{ "resistance_bleeding", "bleed_resist" },
 		HEALTH,
 		true,
 		0,
 		100,
-		60, 
-		60
+		60,
+		12,
+		200
 	  )
-	},	
-	
+	},
+
 	weaponType = PISTOLWEAPON,
 
 	range = -1
 }
 
 AddCommand(HealthShot1Command)
-

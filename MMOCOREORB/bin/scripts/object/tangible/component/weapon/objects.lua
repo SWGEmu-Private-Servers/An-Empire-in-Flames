@@ -5530,59 +5530,6 @@ ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_reinfo
 
 object_tangible_component_weapon_shared_scope_weapon = SharedTangibleObjectTemplate:new {
 	clientTemplateFileName = "object/tangible/component/weapon/shared_scope_weapon.iff"
-	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
---[[
-	appearanceFilename = "appearance/wp_scope_sm_s03.apt",
-	arrangementDescriptorFilename = "",
-
-	certificationsRequired = {},
-	clearFloraRadius = 0,
-	clientDataFile = "",
-	clientGameObjectType = 262153,
-	collisionActionBlockFlags = 0,
-	collisionActionFlags = 51,
-	collisionActionPassFlags = 1,
-	collisionMaterialBlockFlags = 0,
-	collisionMaterialFlags = 1,
-	collisionMaterialPassFlags = 0,
-	containerType = 0,
-	containerVolumeLimit = 1,
-	customizationVariableMapping = {},
-
-	detailedDescription = "@craft_weapon_ingredients_d:scope_weapon",
-
-	gameObjectType = 262153,
-
-	locationReservationRadius = 0,
-	lookAtText = "@weapon_lookat:scope_weapon",
-
-	noBuildRadius = 0,
-
-	objectName = "@craft_weapon_ingredients_n:scope_weapon",
-	onlyVisibleInTools = 0,
-
-	paletteColorCustomizationVariables = {},
-	portalLayoutFilename = "",
-
-	rangedIntCustomizationVariables = {},
-
-	scale = 1,
-	scaleThresholdBeforeExtentTest = 0.5,
-	sendToClient = 1,
-	slotDescriptorFilename = "abstract/slot/descriptor/tangible.iff",
-	snapToTerrain = 1,
-	socketDestinations = {},
-	structureFootprintFileName = "",
-	surfaceType = 0,
-
-	targetable = 1,
-	totalCellNumber = 0,
-
-	useStructureFootprintOutline = 0,
-
-	clientObjectCRC = 46230492,
-	derivedFromTemplates = {"object/object/base/shared_base_object.iff", "object/tangible/base/shared_tangible_base.iff", "object/tangible/base/shared_tangible_craftable.iff", "object/tangible/component/base/shared_base_component.iff", "object/tangible/component/base/shared_base_barrel.iff"}
-]]
 }
 
 ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_scope_weapon, "object/tangible/component/weapon/shared_scope_weapon.iff")
@@ -7946,3 +7893,450 @@ object_tangible_component_weapon_shared_weapon_trajectory_computer = SharedTangi
 }
 
 ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_weapon_trajectory_computer, "object/tangible/component/weapon/shared_weapon_trajectory_computer.iff")
+
+--carbine core base object
+object_tangible_component_weapon_shared_base_carbine_core = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_base_carbine_core.iff"
+}
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_base_carbine_core, "object/tangible/component/weapon/shared_base_carbine_core.iff")
+
+--pistol core base object
+object_tangible_component_weapon_shared_base_pistol_core = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_base_pistol_core.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_base_pistol_core, "object/tangible/component/weapon/shared_base_pistol_core.iff")
+
+--rifle core base object
+object_tangible_component_weapon_shared_base_rifle_core = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_base_rifle_core.iff"
+}
+
+--carbine barrel base object
+object_tangible_component_weapon_shared_base_carbine_barrel = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_base_carbine_barrel.iff"
+}
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_base_carbine_barrel, "object/tangible/component/weapon/shared_base_carbine_barrel.iff")
+
+--pistol barrel base object
+object_tangible_component_weapon_shared_base_pistol_barrel = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_base_pistol_barrel.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_base_pistol_barrel, "object/tangible/component/weapon/shared_base_pistol_barrel.iff")
+
+--rifle barrel base object
+object_tangible_component_weapon_shared_base_rifle_barrel = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_base_rifle_barrel.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_base_rifle_core, "object/tangible/component/weapon/shared_base_rifle_core.iff")
+
+--carbine basic core
+object_tangible_component_weapon_shared_carbine_core_basic = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_carbine_core_basic.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_carbine_core_basic, "object/tangible/component/weapon/shared_carbine_core_basic.iff")
+
+--pistol basic core
+object_tangible_component_weapon_shared_pistol_core_basic = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_pistol_core_basic.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_pistol_core_basic, "object/tangible/component/weapon/shared_pistol_core_basic.iff")
+
+--rifle basic core
+object_tangible_component_weapon_shared_rifle_core_basic = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_rifle_core_basic.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_rifle_core_basic, "object/tangible/component/weapon/shared_rifle_core_basic.iff")
+
+--carbine efficient core
+object_tangible_component_weapon_shared_carbine_core_efficient = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_carbine_core_efficient.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_carbine_core_efficient, "object/tangible/component/weapon/shared_carbine_core_efficient.iff")
+
+--pistol efficient core
+object_tangible_component_weapon_shared_pistol_core_efficient = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_pistol_core_efficient.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_pistol_core_efficient, "object/tangible/component/weapon/shared_pistol_core_efficient.iff")
+
+--rifle efficient core
+object_tangible_component_weapon_shared_rifle_core_efficient = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_rifle_core_efficient.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_rifle_core_efficient, "object/tangible/component/weapon/shared_rifle_core_efficient.iff")
+
+--carbine overcharged core
+object_tangible_component_weapon_shared_carbine_core_overcharged = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_carbine_core_overcharged.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_carbine_core_overcharged, "object/tangible/component/weapon/shared_carbine_core_overcharged.iff")
+
+--pistol overcharged core
+object_tangible_component_weapon_shared_pistol_core_overcharged = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_pistol_core_overcharged.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_pistol_core_overcharged, "object/tangible/component/weapon/shared_pistol_core_overcharged.iff")
+
+--rifle overcharged core
+object_tangible_component_weapon_shared_rifle_core_overcharged = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_rifle_core_overcharged.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_rifle_core_overcharged, "object/tangible/component/weapon/shared_rifle_core_overcharged.iff")
+
+--carbine quickfire core
+object_tangible_component_weapon_shared_carbine_core_quickfire = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_carbine_core_quickfire.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_carbine_core_quickfire, "object/tangible/component/weapon/shared_carbine_core_quickfire.iff")
+
+--pistol quickfire core
+object_tangible_component_weapon_shared_pistol_core_quickfire = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_pistol_core_quickfire.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_pistol_core_quickfire, "object/tangible/component/weapon/shared_pistol_core_quickfire.iff")
+
+--rifle quickfire core
+object_tangible_component_weapon_shared_rifle_core_quickfire = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_rifle_core_quickfire.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_rifle_core_quickfire, "object/tangible/component/weapon/shared_rifle_core_quickfire.iff")
+
+--carbine basic barrel
+object_tangible_component_weapon_shared_carbine_barrel_basic = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_carbine_barrel_basic.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_carbine_barrel_basic, "object/tangible/component/weapon/shared_carbine_barrel_basic.iff")
+
+--pistol basic barrel
+object_tangible_component_weapon_shared_pistol_barrel_basic = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_pistol_barrel_basic.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_pistol_barrel_basic, "object/tangible/component/weapon/shared_pistol_barrel_basic.iff")
+
+--rifle basic barrel
+object_tangible_component_weapon_shared_rifle_barrel_basic = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_rifle_barrel_basic.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_rifle_barrel_basic, "object/tangible/component/weapon/shared_rifle_barrel_basic.iff")
+
+--carbine jacketed barrel
+object_tangible_component_weapon_shared_carbine_barrel_jacketed = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_carbine_barrel_jacketed.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_carbine_barrel_jacketed, "object/tangible/component/weapon/shared_carbine_barrel_jacketed.iff")
+
+--pistol jacketed barrel
+object_tangible_component_weapon_shared_pistol_barrel_jacketed = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_pistol_barrel_jacketed.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_pistol_barrel_jacketed, "object/tangible/component/weapon/shared_pistol_barrel_jacketed.iff")
+
+--rifle jacketed barrel
+object_tangible_component_weapon_shared_rifle_barrel_jacketed = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_rifle_barrel_jacketed.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_rifle_barrel_jacketed, "object/tangible/component/weapon/shared_rifle_barrel_jacketed.iff")
+
+--carbine target barrel
+object_tangible_component_weapon_shared_carbine_barrel_target = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_carbine_barrel_target.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_carbine_barrel_target, "object/tangible/component/weapon/shared_carbine_barrel_target.iff")
+
+--pistol target barrel
+object_tangible_component_weapon_shared_pistol_barrel_target = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_pistol_barrel_target.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_pistol_barrel_target, "object/tangible/component/weapon/shared_pistol_barrel_target.iff")
+
+--rifle target barrel
+object_tangible_component_weapon_shared_rifle_barrel_target = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_rifle_barrel_target.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_rifle_barrel_target, "object/tangible/component/weapon/shared_rifle_barrel_target.iff")
+
+--gas cartridge base object
+object_tangible_component_weapon_shared_base_gas_cartridge = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_base_gas_cartridge.iff"
+}
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_base_gas_cartridge, "object/tangible/component/weapon/shared_base_gas_cartridge.iff")
+
+--basic gas cartridge
+object_tangible_component_weapon_shared_gas_cartridge_basic = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_gas_cartridge_basic.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_gas_cartridge_basic, "object/tangible/component/weapon/shared_gas_cartridge_basic.iff")
+
+--advanced gas cartridge
+object_tangible_component_weapon_shared_gas_cartridge_advanced = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_gas_cartridge_advanced.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_gas_cartridge_advanced, "object/tangible/component/weapon/shared_gas_cartridge_advanced.iff")
+
+--scope appearance objects
+--DE-10 scope
+object_tangible_component_weapon_shared_scope_de10 = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_scope_de10.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_scope_de10, "object/tangible/component/weapon/shared_scope_de10.iff")
+
+--Deathhammer scope
+object_tangible_component_weapon_shared_scope_deathhammer = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_scope_deathhammer.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_scope_deathhammer, "object/tangible/component/weapon/shared_scope_deathhammer.iff")
+
+--DL44 scope
+object_tangible_component_weapon_shared_scope_dl44 = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_scope_dl44.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_scope_dl44, "object/tangible/component/weapon/shared_scope_dl44.iff")
+
+--DL44 metal scope
+object_tangible_component_weapon_shared_scope_dl44_metal = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_scope_dl44_metal.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_scope_dl44_metal, "object/tangible/component/weapon/shared_scope_dl44_metal.iff")
+
+--E11 scope
+object_tangible_component_weapon_shared_scope_e11 = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_scope_e11.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_scope_e11, "object/tangible/component/weapon/shared_scope_e11.iff")
+
+--LD1 scope
+object_tangible_component_weapon_shared_scope_ld1 = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_scope_ld1.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_scope_ld1, "object/tangible/component/weapon/shared_scope_ld1.iff")
+
+--Renegade scope
+object_tangible_component_weapon_shared_scope_renegade = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_scope_renegade.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_scope_renegade, "object/tangible/component/weapon/shared_scope_renegade.iff")
+
+--Scout scope
+object_tangible_component_weapon_shared_scope_scout = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_scope_scout.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_scope_scout, "object/tangible/component/weapon/shared_scope_scout.iff")
+
+--SR Combat scope
+object_tangible_component_weapon_shared_scope_srcombat = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_scope_srcombat.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_scope_srcombat, "object/tangible/component/weapon/shared_scope_srcombat.iff")
+
+--Style 07 small scope
+object_tangible_component_weapon_shared_scope_weapon_sm_s07 = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_scope_weapon_sm_s07.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_scope_weapon_sm_s07, "object/tangible/component/weapon/shared_scope_weapon_sm_s07.iff")
+
+--Style 04 large scope
+object_tangible_component_weapon_shared_scope_weapon_lg_s04 = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_scope_weapon_lg_s04.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_scope_weapon_lg_s04, "object/tangible/component/weapon/shared_scope_weapon_lg_s04.iff")
+
+--CDEF Muzzle
+object_tangible_component_weapon_shared_blaster_barrel_wp_muzzle_cdef = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_blaster_barrel_wp_muzzle_cdef.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_blaster_barrel_wp_muzzle_cdef, "object/tangible/component/weapon/shared_blaster_barrel_wp_muzzle_cdef.iff")
+
+--D18 Muzzle
+object_tangible_component_weapon_shared_blaster_barrel_wp_muzzle_d18 = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_blaster_barrel_wp_muzzle_d18.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_blaster_barrel_wp_muzzle_d18, "object/tangible/component/weapon/shared_blaster_barrel_wp_muzzle_d18.iff")
+
+--DX2 muzzle
+object_tangible_component_weapon_shared_blaster_barrel_wp_muzzle_dx2 = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_blaster_barrel_wp_muzzle_dx2.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_blaster_barrel_wp_muzzle_dx2, "object/tangible/component/weapon/shared_blaster_barrel_wp_muzzle_dx2.iff")
+
+--DXR6 Muzzle
+object_tangible_component_weapon_shared_blaster_barrel_wp_muzzle_dxr6 = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_blaster_barrel_wp_muzzle_dxr6.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_blaster_barrel_wp_muzzle_dxr6, "object/tangible/component/weapon/shared_blaster_barrel_wp_muzzle_dxr6.iff")
+
+--melee core base object
+object_tangible_component_weapon_shared_base_melee_core = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_base_melee_core.iff"
+}
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_base_melee_core, "object/tangible/component/weapon/shared_base_melee_core.iff")
+
+--melee edge base object
+object_tangible_component_weapon_shared_base_melee_edge = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_base_melee_edge.iff"
+}
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_base_melee_edge, "object/tangible/component/weapon/shared_base_melee_edge.iff")
+
+--melee grip base object
+object_tangible_component_weapon_shared_base_melee_grip = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_base_melee_grip.iff"
+}
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_base_melee_grip, "object/tangible/component/weapon/shared_base_melee_grip.iff")
+
+--melee enhancement base object
+object_tangible_component_weapon_shared_base_melee_enhancement = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_base_melee_enhancement.iff"
+}
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_base_melee_enhancement, "object/tangible/component/weapon/shared_base_melee_enhancement.iff")
+
+--melee basic core
+object_tangible_component_weapon_shared_melee_core_basic = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_melee_core_basic.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_melee_core_basic, "object/tangible/component/weapon/shared_melee_core_basic.iff")
+
+--melee featherlight core
+object_tangible_component_weapon_shared_melee_core_featherlight = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_melee_core_featherlight.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_melee_core_featherlight, "object/tangible/component/weapon/shared_melee_core_featherlight.iff")
+
+--melee stabilized core
+object_tangible_component_weapon_shared_melee_core_stabilized = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_melee_core_stabilized.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_melee_core_stabilized, "object/tangible/component/weapon/shared_melee_core_stabilized.iff")
+
+--melee weighted core
+object_tangible_component_weapon_shared_melee_core_weighted = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_melee_core_weighted.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_melee_core_weighted, "object/tangible/component/weapon/shared_melee_core_weighted.iff")
+
+--melee basic gyro unit
+object_tangible_component_weapon_shared_gyro_unit_basic = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_gyro_unit_basic.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_gyro_unit_basic, "object/tangible/component/weapon/shared_gyro_unit_basic.iff")
+
+--melee advanced gyro unit
+object_tangible_component_weapon_shared_gyro_unit_advanced = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_gyro_unit_advanced.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_gyro_unit_advanced, "object/tangible/component/weapon/shared_gyro_unit_advanced.iff")
+
+--melee balanced edge
+object_tangible_component_weapon_shared_melee_edge_balanced = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_melee_edge_balanced.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_melee_edge_balanced, "object/tangible/component/weapon/shared_melee_edge_balanced.iff")
+
+--melee featherlight edge
+object_tangible_component_weapon_shared_melee_edge_featherlight = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_melee_edge_featherlight.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_melee_edge_featherlight, "object/tangible/component/weapon/shared_melee_edge_featherlight.iff")
+
+--melee weighted edge
+object_tangible_component_weapon_shared_melee_edge_weighted = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_melee_edge_weighted.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_melee_edge_weighted, "object/tangible/component/weapon/shared_melee_edge_weighted.iff")
+
+--melee balanced grip
+object_tangible_component_weapon_shared_melee_grip_balanced = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_melee_grip_balanced.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_melee_grip_balanced, "object/tangible/component/weapon/shared_melee_grip_balanced.iff")
+
+--melee featherlight grip
+object_tangible_component_weapon_shared_melee_grip_featherlight = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_melee_grip_featherlight.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_melee_grip_featherlight, "object/tangible/component/weapon/shared_melee_grip_featherlight.iff")
+
+--melee weighted grip
+object_tangible_component_weapon_shared_melee_grip_weighted = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_melee_grip_weighted.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_melee_grip_weighted, "object/tangible/component/weapon/shared_melee_grip_weighted.iff")
+
+--melee reinforcement core
+object_tangible_component_weapon_shared_melee_reinforcement_core = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_melee_reinforcement_core.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_melee_reinforcement_core, "object/tangible/component/weapon/shared_melee_reinforcement_core.iff")
+
+--reflex scope
+object_tangible_component_weapon_shared_scope_reflex = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_scope_reflex.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_scope_reflex, "object/tangible/component/weapon/shared_scope_reflex.iff")
+
+--sniper scope
+object_tangible_component_weapon_shared_scope_sniper = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_scope_sniper.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_scope_sniper, "object/tangible/component/weapon/shared_scope_sniper.iff")
+
+--variable scope
+object_tangible_component_weapon_shared_scope_variable = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/component/weapon/shared_scope_variable.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_component_weapon_shared_scope_variable, "object/tangible/component/weapon/shared_scope_variable.iff")

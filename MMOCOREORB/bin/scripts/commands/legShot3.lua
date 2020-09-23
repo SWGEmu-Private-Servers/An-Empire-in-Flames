@@ -44,35 +44,33 @@
 LegShot3Command = {
         name = "legshot3",
 
-	damageMultiplier = 2.0,
-	speedMultiplier = 2.0,
-	healthCostMultiplier = 0.5,
-	actionCostMultiplier = 2.0,
-	mindCostMultiplier = 2.0,
+	damageMultiplier = 3.6,
+	speedMultiplier = 1.5,
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 45,
+	mindCostMultiplier = 0,
 	accuracyBonus = 25,
-
-	stateEffects = {
-	  StateEffect( 
-		STUN_EFFECT, 
-		{}, 
-		{ "stun_defense" }, 
+  
+  stateEffects = {
+	  StateEffect(
+		STUN_EFFECT,
+		{},
+		{ "stun_defense" },
 		{ "jedi_state_defense", "resistance_states" },
-		100, 
-		0, 
-		30 
+		85,
+		0,
+		45
 	  )
 	},
 
-	poolsToDamage = ACTION_ATTRIBUTE,
 
 	animation = "test_homing",
 
 	combatSpam = "kneecapshot",
-	
+
 	weaponType = CARBINEWEAPON,
 
 	range = -1
 }
 
 AddCommand(LegShot3Command)
-

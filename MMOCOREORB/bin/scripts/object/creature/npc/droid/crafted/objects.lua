@@ -4522,3 +4522,43 @@ object_creature_npc_droid_crafted_shared_wed_treadwell_droid_advanced = SharedCr
 }
 
 ObjectTemplates:addClientTemplate(object_creature_npc_droid_crafted_shared_wed_treadwell_droid_advanced, "object/creature/npc/droid/crafted/shared_wed_treadwell_droid_advanced.iff")
+
+object_creature_npc_droid_crafted_shared_b1_droid = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/creature/npc/droid/crafted/shared_b1_droid.iff"}
+
+ObjectTemplates:addClientTemplate(object_creature_npc_droid_crafted_shared_b1_droid, "object/creature/npc/droid/crafted/shared_b1_droid.iff")
+
+object_creature_npc_droid_crafted_shared_b2_droid = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/creature/npc/droid/crafted/shared_b2_droid.iff"}
+
+ObjectTemplates:addClientTemplate(object_creature_npc_droid_crafted_shared_b2_droid, "object/creature/npc/droid/crafted/shared_b2_droid.iff")
+
+object_creature_npc_droid_crafted_shared_bb8_droid = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/creature/npc/droid/crafted/shared_bb8_droid.iff"}
+
+ObjectTemplates:addClientTemplate(object_creature_npc_droid_crafted_shared_bb8_droid, "object/creature/npc/droid/crafted/shared_bb8_droid.iff")
+
+object_creature_npc_droid_crafted_shared_bb9e_droid = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/creature/npc/droid/crafted/shared_bb9e_droid.iff"}
+
+ObjectTemplates:addClientTemplate(object_creature_npc_droid_crafted_shared_bb9e_droid, "object/creature/npc/droid/crafted/shared_bb9e_droid.iff")
+
+object_creature_npc_droid_crafted_shared_blastromech_droid = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/creature/npc/droid/crafted/shared_blastromech_droid.iff"}
+
+ObjectTemplates:addClientTemplate(object_creature_npc_droid_crafted_shared_blastromech_droid, "object/creature/npc/droid/crafted/shared_blastromech_droid.iff")
+
+object_creature_npc_droid_crafted_shared_c1_droid = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/creature/npc/droid/crafted/shared_c1_droid.iff"}
+
+ObjectTemplates:addClientTemplate(object_creature_npc_droid_crafted_shared_c1_droid, "object/creature/npc/droid/crafted/shared_c1_droid.iff")
+
+object_creature_npc_droid_crafted_shared_droideka_droid = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/creature/npc/droid/crafted/shared_droideka_droid.iff"}
+
+ObjectTemplates:addClientTemplate(object_creature_npc_droid_crafted_shared_droideka_droid, "object/creature/npc/droid/crafted/shared_droideka_droid.iff")
+
+object_creature_npc_droid_crafted_shared_pit_droid = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/creature/npc/droid/crafted/shared_pit_droid.iff"}
+
+ObjectTemplates:addClientTemplate(object_creature_npc_droid_crafted_shared_pit_droid, "object/creature/npc/droid/crafted/shared_pit_droid.iff")

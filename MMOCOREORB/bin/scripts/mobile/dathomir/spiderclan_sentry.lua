@@ -12,7 +12,7 @@ spiderclan_sentry = Creature:new {
 	baseHAM = 5000,
 	baseHAMmax = 6100,
 	armor = 0,
-	resists = {60,50,10,10,10,10,10,-1,-1},
+	resists = {40,40,30,40,40,60,30,40,40},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -42,6 +42,12 @@ spiderclan_sentry = Creature:new {
 				{group = "carbines", chance = 1000000},
 				{group = "wearables_common", chance = 1000000}
 			}
+		},
+		{
+			groups = {
+				{group = "spiderclan_common", chance = 10000000},
+			},
+			lootChance = 166666
 		}
 	},
 	weapons = {"mixed_force_weapons"},

@@ -43,245 +43,30 @@
 
 object_draft_schematic_armor_component_shared_armor_layer_acid = SharedDraftSchematicObjectTemplate:new {
 	clientTemplateFileName = "object/draft_schematic/armor/component/shared_armor_layer_acid.iff"
-	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
---[[
-	appearanceFilename = "",
-	arrangementDescriptorFilename = "abstract/slot/arrangement/arrangement_datapad.iff",
-
-	clearFloraRadius = 0,
-	clientDataFile = "",
-	clientGameObjectType = 2049,
-	collisionActionBlockFlags = 0,
-	collisionActionFlags = 0,
-	collisionActionPassFlags = 0,
-	collisionMaterialBlockFlags = 0,
-	collisionMaterialFlags = 0,
-	collisionMaterialPassFlags = 0,
-	containerType = 0,
-	containerVolumeLimit = 0,
-
-	detailedDescription = "string_id_table",
-
-	gameObjectType = 2049,
-
-	locationReservationRadius = 0,
-	lookAtText = "string_id_table",
-
-	noBuildRadius = 0,
-
-	objectName = "string_id_table",
-	onlyVisibleInTools = 0,
-
-	portalLayoutFilename = "",
-
-	scale = 0,
-	scaleThresholdBeforeExtentTest = 0.5,
-	sendToClient = 1,
-	slotDescriptorFilename = "",
-	snapToTerrain = 0,
-	surfaceType = 0,
-
-	totalCellNumber = 0,
-
-	clientObjectCRC = 1792719503,
-	derivedFromTemplates = {"object/object/base/shared_base_object.iff", "object/intangible/base/shared_base_intangible.iff", "object/draft_schematic/base/shared_base_draft_schematic.iff"}
-]]
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_armor_component_shared_armor_layer_acid, "object/draft_schematic/armor/component/shared_armor_layer_acid.iff")
 
 object_draft_schematic_armor_component_shared_armor_layer_blast = SharedDraftSchematicObjectTemplate:new {
 	clientTemplateFileName = "object/draft_schematic/armor/component/shared_armor_layer_blast.iff"
-	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
---[[
-	appearanceFilename = "",
-	arrangementDescriptorFilename = "abstract/slot/arrangement/arrangement_datapad.iff",
-
-	clearFloraRadius = 0,
-	clientDataFile = "",
-	clientGameObjectType = 2049,
-	collisionActionBlockFlags = 0,
-	collisionActionFlags = 0,
-	collisionActionPassFlags = 0,
-	collisionMaterialBlockFlags = 0,
-	collisionMaterialFlags = 0,
-	collisionMaterialPassFlags = 0,
-	containerType = 0,
-	containerVolumeLimit = 0,
-
-	detailedDescription = "string_id_table",
-
-	gameObjectType = 2049,
-
-	locationReservationRadius = 0,
-	lookAtText = "string_id_table",
-
-	noBuildRadius = 0,
-
-	objectName = "string_id_table",
-	onlyVisibleInTools = 0,
-
-	portalLayoutFilename = "",
-
-	scale = 0,
-	scaleThresholdBeforeExtentTest = 0.5,
-	sendToClient = 1,
-	slotDescriptorFilename = "",
-	snapToTerrain = 0,
-	surfaceType = 0,
-
-	totalCellNumber = 0,
-
-	clientObjectCRC = 180189865,
-	derivedFromTemplates = {"object/object/base/shared_base_object.iff", "object/intangible/base/shared_base_intangible.iff", "object/draft_schematic/base/shared_base_draft_schematic.iff"}
-]]
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_armor_component_shared_armor_layer_blast, "object/draft_schematic/armor/component/shared_armor_layer_blast.iff")
 
 object_draft_schematic_armor_component_shared_armor_layer_cold = SharedDraftSchematicObjectTemplate:new {
 	clientTemplateFileName = "object/draft_schematic/armor/component/shared_armor_layer_cold.iff"
-	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
---[[
-	appearanceFilename = "",
-	arrangementDescriptorFilename = "abstract/slot/arrangement/arrangement_datapad.iff",
-
-	clearFloraRadius = 0,
-	clientDataFile = "",
-	clientGameObjectType = 2049,
-	collisionActionBlockFlags = 0,
-	collisionActionFlags = 0,
-	collisionActionPassFlags = 0,
-	collisionMaterialBlockFlags = 0,
-	collisionMaterialFlags = 0,
-	collisionMaterialPassFlags = 0,
-	containerType = 0,
-	containerVolumeLimit = 0,
-
-	detailedDescription = "string_id_table",
-
-	gameObjectType = 2049,
-
-	locationReservationRadius = 0,
-	lookAtText = "string_id_table",
-
-	noBuildRadius = 0,
-
-	objectName = "string_id_table",
-	onlyVisibleInTools = 0,
-
-	portalLayoutFilename = "",
-
-	scale = 0,
-	scaleThresholdBeforeExtentTest = 0.5,
-	sendToClient = 1,
-	slotDescriptorFilename = "",
-	snapToTerrain = 0,
-	surfaceType = 0,
-
-	totalCellNumber = 0,
-
-	clientObjectCRC = 3769957782,
-	derivedFromTemplates = {"object/object/base/shared_base_object.iff", "object/intangible/base/shared_base_intangible.iff", "object/draft_schematic/base/shared_base_draft_schematic.iff"}
-]]
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_armor_component_shared_armor_layer_cold, "object/draft_schematic/armor/component/shared_armor_layer_cold.iff")
 
 object_draft_schematic_armor_component_shared_armor_layer_electrical = SharedDraftSchematicObjectTemplate:new {
 	clientTemplateFileName = "object/draft_schematic/armor/component/shared_armor_layer_electrical.iff"
-	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
---[[
-	appearanceFilename = "",
-	arrangementDescriptorFilename = "abstract/slot/arrangement/arrangement_datapad.iff",
-
-	clearFloraRadius = 0,
-	clientDataFile = "",
-	clientGameObjectType = 2049,
-	collisionActionBlockFlags = 0,
-	collisionActionFlags = 0,
-	collisionActionPassFlags = 0,
-	collisionMaterialBlockFlags = 0,
-	collisionMaterialFlags = 0,
-	collisionMaterialPassFlags = 0,
-	containerType = 0,
-	containerVolumeLimit = 0,
-
-	detailedDescription = "string_id_table",
-
-	gameObjectType = 2049,
-
-	locationReservationRadius = 0,
-	lookAtText = "string_id_table",
-
-	noBuildRadius = 0,
-
-	objectName = "string_id_table",
-	onlyVisibleInTools = 0,
-
-	portalLayoutFilename = "",
-
-	scale = 0,
-	scaleThresholdBeforeExtentTest = 0.5,
-	sendToClient = 1,
-	slotDescriptorFilename = "",
-	snapToTerrain = 0,
-	surfaceType = 0,
-
-	totalCellNumber = 0,
-
-	clientObjectCRC = 2193465881,
-	derivedFromTemplates = {"object/object/base/shared_base_object.iff", "object/intangible/base/shared_base_intangible.iff", "object/draft_schematic/base/shared_base_draft_schematic.iff"}
-]]
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_armor_component_shared_armor_layer_electrical, "object/draft_schematic/armor/component/shared_armor_layer_electrical.iff")
 
 object_draft_schematic_armor_component_shared_armor_layer_energy = SharedDraftSchematicObjectTemplate:new {
 	clientTemplateFileName = "object/draft_schematic/armor/component/shared_armor_layer_energy.iff"
-	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
---[[
-	appearanceFilename = "",
-	arrangementDescriptorFilename = "abstract/slot/arrangement/arrangement_datapad.iff",
-
-	clearFloraRadius = 0,
-	clientDataFile = "",
-	clientGameObjectType = 2049,
-	collisionActionBlockFlags = 0,
-	collisionActionFlags = 0,
-	collisionActionPassFlags = 0,
-	collisionMaterialBlockFlags = 0,
-	collisionMaterialFlags = 0,
-	collisionMaterialPassFlags = 0,
-	containerType = 0,
-	containerVolumeLimit = 0,
-
-	detailedDescription = "string_id_table",
-
-	gameObjectType = 2049,
-
-	locationReservationRadius = 0,
-	lookAtText = "string_id_table",
-
-	noBuildRadius = 0,
-
-	objectName = "string_id_table",
-	onlyVisibleInTools = 0,
-
-	portalLayoutFilename = "",
-
-	scale = 0,
-	scaleThresholdBeforeExtentTest = 0.5,
-	sendToClient = 1,
-	slotDescriptorFilename = "",
-	snapToTerrain = 0,
-	surfaceType = 0,
-
-	totalCellNumber = 0,
-
-	clientObjectCRC = 4258794187,
-	derivedFromTemplates = {"object/object/base/shared_base_object.iff", "object/intangible/base/shared_base_intangible.iff", "object/draft_schematic/base/shared_base_draft_schematic.iff"}
-]]
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_armor_component_shared_armor_layer_energy, "object/draft_schematic/armor/component/shared_armor_layer_energy.iff")
@@ -1363,3 +1148,9 @@ object_draft_schematic_armor_component_shared_heavy_armor_layer_stun = SharedDra
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_armor_component_shared_heavy_armor_layer_stun, "object/draft_schematic/armor/component/shared_heavy_armor_layer_stun.iff")
+
+object_draft_schematic_armor_component_shared_armor_layer_lightsaber = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/armor/component/shared_armor_layer_lightsaber.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_armor_component_shared_armor_layer_lightsaber, "object/draft_schematic/armor/component/shared_armor_layer_lightsaber.iff")

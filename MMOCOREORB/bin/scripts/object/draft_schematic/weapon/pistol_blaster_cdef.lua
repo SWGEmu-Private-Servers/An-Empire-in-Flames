@@ -48,26 +48,27 @@ object_draft_schematic_weapon_pistol_blaster_cdef = object_draft_schematic_weapo
    customObjectName = "CDEF Pistol",
 
    craftingToolTab = 1, -- (See DraftSchematicObjectTemplate.h)
-   complexity = 8, 
+   complexity = 20, 
    size = 3, 
 
-   xpType = "crafting_general", 
-   xp = 42, 
+   xpType = "crafting_weapons_general", 
+   xp = 50, 
 
-   assemblySkill = "general_assembly", 
-   experimentingSkill = "general_experimentation", 
-   customizationSkill = "clothing_customization", 
+   assemblySkill = "weapon_assembly", 
+   experimentingSkill = "weapon_experimentation", 
+   customizationSkill = "weapon_customization", 
 
    customizationOptions = {},
    customizationStringNames = {},
    customizationDefaults = {},
 
-   ingredientTemplateNames = {"craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n"},
-   ingredientTitleNames = {"frame_assembly", "receiver_assembly", "grip_assembly"},
-   ingredientSlotType = {0, 0, 0},
-   resourceTypes = {"metal", "chemical", "metal"},
-   resourceQuantities = {12, 6, 3},
-   contribution = {100, 100, 100},
+   ingredientTemplateNames = {"craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n"},
+   ingredientTitleNames = {"frame_assembly", "receiver_assembly", "grip_assembly", "base_pistol_core", "barrel", "scope"},
+   ingredientSlotType = {0, 0, 0, 1, 1, 3},
+   resourceTypes = {"metal", "chemical", "metal", "object/tangible/component/weapon/shared_base_pistol_core.iff", "object/tangible/component/weapon/shared_base_pistol_barrel.iff", "object/tangible/component/weapon/shared_scope_weapon.iff"},
+   resourceQuantities = {12, 6, 3, 1, 1, 1},
+   contribution = {100, 100, 100, 100, 100, 100},
+   ingredientAppearance = {"", "", "", "", "muzzle", "scope"},
 
 
    targetTemplate = "object/weapon/ranged/pistol/pistol_cdef.iff",

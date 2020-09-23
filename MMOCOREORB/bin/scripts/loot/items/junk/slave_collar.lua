@@ -3,8 +3,8 @@
 slave_collar = {
 	minimumLevel = 0,
 	maximumLevel = -1,
-	customObjectName = "",
-	directObjectTemplate = "object/tangible/loot/misc/slave_collar.iff",
+	customObjectName = "Slave Collar",
+	directObjectTemplate = "object/tangible/wearables/necklace/collar_s01.iff",
 	craftingValues = {
 	},
 	customizationStringNames = {},

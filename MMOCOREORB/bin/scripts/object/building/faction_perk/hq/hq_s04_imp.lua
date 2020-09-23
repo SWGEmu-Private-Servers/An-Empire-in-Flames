@@ -42,6 +42,7 @@
 
 
 object_building_faction_perk_hq_hq_s04_imp = object_building_faction_perk_hq_shared_hq_s04_imp:new {
+
 	lotSize = 0,
 	containerComponent = "GCWBaseContainerComponent",
 	zoneComponent = "StructureZoneComponent",
@@ -51,7 +52,7 @@ object_building_faction_perk_hq_hq_s04_imp = object_building_faction_perk_hq_sha
 	pvpFaction = "imperial",
 	pvpStatusBitmask = 0,
 	dataObjectComponent = "DestructibleBuildingDataComponent",
-	allowedZones = {"dantooine", "naboo", "rori","tatooine", "corellia", "lok", "talus"},
+	allowedZones = {"dantooine", "dathomir", "chandrila", "kuat", "naboo", "rori","tatooine", "corellia", "lok", "talus", "taanab"},
 	constructionMarker = "object/building/player/construction/construction_player_house_generic_medium_style_01.iff",
 	length = 7,
 	width = 6,
@@ -178,7 +179,6 @@ object_building_faction_perk_hq_hq_s04_imp = object_building_faction_perk_hq_sha
 		{ mobile = "imperial_recruiter", x = 11.5, z = -11.5, y = -21, cellid = 10, respawn = 60, containmentType = -1, heading = 1.59},
 
 	},
-
 }
 
 ObjectTemplates:addTemplate(object_building_faction_perk_hq_hq_s04_imp, "object/building/faction_perk/hq/hq_s04_imp.iff")

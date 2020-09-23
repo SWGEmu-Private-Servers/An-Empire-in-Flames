@@ -44,11 +44,11 @@
 Melee1hLunge2Command = {
 	name = "melee1hlunge2",
 
-	damageMultiplier = 3.0,
-	speedMultiplier = 2.5,
-	healthCostMultiplier = 0.625,
-	actionCostMultiplier = 0.625,
-	mindCostMultiplier = 1.5,
+	damageMultiplier = 0.5,
+	speedMultiplier = 1.0,
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 30,
+	mindCostMultiplier = 0,
         accuracyBonus = 25,
 
 	animation = "knockdown_1hmelee_1",
@@ -65,7 +65,7 @@ Melee1hLunge2Command = {
 		{ "knockdownRecovery", "lastKnockdown" },
 		{ "knockdown_defense" },
 		{},
-		100,
+		115,
 		0,
 		10
 	  )

@@ -19,7 +19,7 @@ snorbal = Creature:new {
 	boneAmount = 400,
 	milkType = "milk_wild",
 	milk = 280,
-	tamingChance = 0,
+	tamingChance = 0.25,
 	ferocity = 0,
 	pvpBitmask = ATTACKABLE,
 	creatureBitmask = PACK + HERD,
@@ -27,6 +27,7 @@ snorbal = Creature:new {
 	diet = CARNIVORE,
 
 	templates = {"object/mobile/snorbal_hue.iff"},
+	controlDeviceTemplate = "object/intangible/pet/snorbal_hue.iff",
 	hues = { 8, 9, 10, 11, 12, 13, 14, 15 },
 	lootGroups = {},
 	weapons = {},

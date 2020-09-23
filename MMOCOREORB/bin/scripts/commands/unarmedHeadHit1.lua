@@ -46,9 +46,9 @@ UnarmedHeadHit1Command = {
 
 	damageMultiplier = 2.5,
 	speedMultiplier = 2.0,
-	healthCostMultiplier = 1.75,
-	actionCostMultiplier = 1.75,
-	mindCostMultiplier = 1.75,
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 25,
+	mindCostMultiplier = 0,
         accuracyBonus = 15,
 
 	poolsToDamage = MIND_ATTRIBUTE,
@@ -56,11 +56,10 @@ UnarmedHeadHit1Command = {
 	animation = "knockdown_unarmed_1",
 
 	combatSpam = "nexugrin",
-	
+
 	weaponType = UNARMEDWEAPON,
 
 	range = -1
 }
 
 AddCommand(UnarmedHeadHit1Command)
-

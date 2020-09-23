@@ -45,11 +45,11 @@ object_building_player_city_garden_tatooine_lrg_01 = object_building_player_city
 
 	lotSize = 0,
 	baseMaintenanceRate = 0,
-	allowedZones = {"dantooine", "lok", "tatooine"},
+	allowedZones = {"dantooine", "lok", "tatooine", "taanab"},
 	length = 7,
 	width = 7,
 	cityRankRequired = 3,
-	cityMaintenanceBase = 30000,
+	cityMaintenanceBase = 1000,
 	abilityRequired = "place_large_garden",
 	zoneComponent = "StructureZoneComponent",
 	dataObjectComponent = "DecorationDataComponent",

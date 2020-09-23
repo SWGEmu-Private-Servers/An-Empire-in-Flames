@@ -18,7 +18,9 @@ social_language_lekku_speak = {
 	apprenticeshipsRequired = 0,
 	statsRequired = {},
 	speciesRequired = {
-		"twilek"
+		"twilek",
+		"nautolan",
+		"togruta"
 	},
 	jediStateRequired = 0,
 	skillAbility = {},

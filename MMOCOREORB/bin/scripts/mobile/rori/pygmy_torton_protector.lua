@@ -18,7 +18,7 @@ pygmy_torton_protector = Creature:new {
 	boneType = "bone_mammal",
 	boneAmount = 600,
 	milk = 0,
-	tamingChance = 0,
+	tamingChance = 0.05,
 	ferocity = 9,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = PACK + HERD + KILLER,
@@ -26,6 +26,7 @@ pygmy_torton_protector = Creature:new {
 	diet = CARNIVORE,
 
 	templates = {"object/mobile/torton_hue.iff"},
+	controlDeviceTemplate = "object/intangible/pet/torton_hue.iff",
 	hues = { 0, 1, 2, 3, 4, 5, 6, 7 },
 	scale = .55,
 	lootGroups = {},

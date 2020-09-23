@@ -62,12 +62,12 @@ object_draft_schematic_weapon_battleaxe = object_draft_schematic_weapon_shared_b
    customizationStringNames = {},
    customizationDefaults = {},
 
-   ingredientTemplateNames = {"craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n"},
-   ingredientTitleNames = {"axe_head", "shaft", "axe_head_fastener", "reinforcement_core"},
-   ingredientSlotType = {0, 0, 0, 1},
-   resourceTypes = {"iron", "wood", "steel", "object/tangible/component/weapon/shared_reinforcement_core.iff"},
-   resourceQuantities = {35, 25, 8, 1},
-   contribution = {100, 100, 100, 100},
+    ingredientTemplateNames = {"craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n"},
+   ingredientTitleNames = {"melee_core", "grip", "edge","shaft", "fastener"},
+   ingredientSlotType = {1, 1, 3, 0, 0},
+   resourceTypes = {"object/tangible/component/weapon/shared_base_melee_core.iff", "object/tangible/component/weapon/shared_base_melee_grip.iff", "object/tangible/component/weapon/shared_base_melee_edge.iff", "metal", "metal", "metal"},
+   resourceQuantities = {1, 1, 1, 20, 6},
+   contribution = {100, 100, 100, 100, 100},
 
 
    targetTemplate = "object/weapon/melee/2h_sword/2h_sword_battleaxe.iff",

@@ -4,19 +4,19 @@ rifle_acid_beam = {
 	customObjectName = "",
 	directObjectTemplate = "object/weapon/ranged/rifle/rifle_acid_beam.iff",
 	craftingValues = {
-		{"mindamage",20,330,0},
-		{"maxdamage",235,770,0},
-		{"attackspeed",7.7,5.5,1},
-		{"woundchance",19.0,35.0,0},
-		{"hitpoints",750,1500,0},
-		{"zerorangemod",-21,5,0},
-		{"maxrangemod",-65,-35,0},
-		{"midrange",35,35,0},
-		{"midrangemod",15,25,0},
-		{"maxrange",64,64,0},
-		{"attackhealthcost",103,62,0},
-		{"attackactioncost",65,35,0},
-		{"attackmindcost",20,10,0},
+		{"mindamage",275,350,0},
+		{"maxdamage",501,605,0},
+		{"attackspeed",4.1,3.0,0},
+		{"woundchance",4,5,0},
+		{"roundsused",5,20,0},
+		{"hitpoints",450,1000,0},
+		{"zerorangemod",-95,-80,0},
+		{"maxrangemod",-5,5,0},
+		{"midrange",48,48,0},
+		{"midrangemod",-5,5,0},
+		{"attackhealthcost",65,60,0},
+		{"attackactioncost",65,60,0},
+		{"attackmindcost",65,60,0},
 	},
 	customizationStringNames = {},
 	customizationValues = {},
@@ -24,8 +24,8 @@ rifle_acid_beam = {
 	-- randomDotChance: The chance of this weapon object dropping with a random dot on it. Higher number means less chance. Set to 0 to always have a random dot.
 	randomDotChance = 750,
 	junkDealerTypeNeeded = JUNKARMS,
-	junkMinValue = 20,
-	junkMaxValue = 60
+	junkMinValue = 70,
+	junkMaxValue = 110
 
 }
 

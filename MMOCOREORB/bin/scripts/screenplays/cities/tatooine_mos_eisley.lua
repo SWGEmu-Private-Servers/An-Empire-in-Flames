@@ -165,8 +165,8 @@ function TatooineMosEisleyScreenPlay:spawnMobiles()
 	self:setMoodString(pNpc, "npc_sitting_chair")
 	pNpc = spawnMobile(self.planet, "patron_quarren",60,17,-0.9,6.8,226,1082877)
 	self:setMoodString(pNpc, "npc_sitting_chair")
-	pNpc = spawnMobile(self.planet, "r3",60,15.9215,-0.894992,-0.217826,56.8618,1082877)
-	self:setMoodString(pNpc, "happy")
+--	pNpc = spawnMobile(self.planet, "r3",60,15.9215,-0.894992,-0.217826,56.8618,1082877)
+--	self:setMoodString(pNpc, "happy")
 	pNpc = spawnMobile(self.planet, "stormtrooper",400,2.84,-0.894992,-6.3,16.0005,1082877)
 	self:setMoodString(pNpc, "npc_imperial")
 	pNpc = spawnMobile(self.planet, "stormtrooper_squad_leader",400,3.62,-0.894992,-6.78,360.011,1082877)
@@ -340,7 +340,7 @@ function TatooineMosEisleyScreenPlay:spawnMobiles()
 
 	--Med Center
 	spawnMobile(self.planet, "trainer_1hsword",0,4.4,0.2,-7.8,36,9655496)
-	spawnMobile(self.planet, "trainer_combatmedic",0,7.84086,0.184067,5.40226,80,9655496)
+	spawnMobile(self.planet, "trainer_surveyor",0,7.84086,0.184067,5.40226,80,9655496)
 	spawnMobile(self.planet, "trainer_doctor",0,-7.29914,0.184067,0.0809266,186,9655496)
 
 	--Tavern 3488 -4745

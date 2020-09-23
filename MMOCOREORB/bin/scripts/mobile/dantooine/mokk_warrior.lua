@@ -12,7 +12,7 @@ mokk_warrior = Creature:new {
 	baseHAM = 12000,
 	baseHAMmax = 15000,
 	armor = 0,
-	resists = {0,45,-1,0,0,100,0,-1,-1},
+	resists = {60,60,60,50,50,60,70,70,60},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -41,6 +41,12 @@ mokk_warrior = Creature:new {
 				{group = "wearables_uncommon", chance = 1000000},
 				{group = "color_crystals", chance = 500000}
 			}
+		},
+		{
+			groups = {
+				{group = "janta_common", chance = 10000000},
+			},
+			lootChance = 1500000
 		}
 	},
 	weapons = {"primitive_weapons"},

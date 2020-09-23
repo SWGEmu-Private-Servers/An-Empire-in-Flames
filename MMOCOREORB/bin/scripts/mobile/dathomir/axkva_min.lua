@@ -11,7 +11,7 @@ axkva_min = Creature:new {
 	baseHAM = 385000,
 	baseHAMmax = 471000,
 	armor = 3,
-	resists = {100,135,135,100,100,100,100,100,-1},
+	resists = {90,90,70,90,90,100,70,100,90},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -22,7 +22,7 @@ axkva_min = Creature:new {
 	tamingChance = 0,
 	ferocity = 0,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
-	creatureBitmask = PACK + KILLER + HEALER,
+	creatureBitmask = PACK + KILLER + HEALER + HERD,
 	optionsBitmask = AIENABLED,
 	diet = HERBIVORE,
 
@@ -30,15 +30,15 @@ axkva_min = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "power_crystals", chance = 900000},
-				{group = "nightsister_common", chance = 2600000},
+				{group = "power_crystals", chance = 1600000},
+				{group = "nightsister_common", chance = 300000},
 				{group = "pistols", chance = 1000000},
 				{group = "rifles", chance = 1000000},
 				{group = "carbines", chance = 1000000},
-				{group = "melee_weapons", chance = 2000000},
+				{group = "melee_weapons", chance = 2500000},
 				{group = "armor_attachments", chance = 500000},
 				{group = "clothing_attachments", chance = 500000},
-				{group = "wearables_rare", chance = 500000}
+				{group = "wearables_rare", chance = 1600000}
 			}
 		},
 		{

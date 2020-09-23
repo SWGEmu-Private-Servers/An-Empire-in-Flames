@@ -48,11 +48,11 @@ object_draft_schematic_clothing_clothing_armor_ubese_bandolier = object_draft_sc
    customObjectName = "Ubese Armor Bandolier",
 
    craftingToolTab = 2, -- (See DraftSchematicObjectTemplate.h)
-   complexity = 35, 
-   size = 4, 
+   complexity = 20, 
+   size = 2, 
 
    xpType = "crafting_clothing_armor", 
-   xp = 40, 
+   xp = 140, 
 
    assemblySkill = "armor_assembly", 
    experimentingSkill = "armor_experimentation", 
@@ -62,12 +62,12 @@ object_draft_schematic_clothing_clothing_armor_ubese_bandolier = object_draft_sc
    customizationStringNames = {},
    customizationDefaults = {},
 
-   ingredientTemplateNames = {"craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n"},
-   ingredientTitleNames = {"auxilary_coverage", "body", "liner"},
-   ingredientSlotType = {0, 0, 1},
-   resourceTypes = {"iron", "steel", "object/tangible/component/clothing/shared_fiberplast_panel.iff"},
-   resourceQuantities = {15, 5, 1},
-   contribution = {100, 100, 100},
+   ingredientTemplateNames = {"craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n"},
+   ingredientTitleNames = {"auxilary_coverage", "body", "liner", "reinforcement"},
+   ingredientSlotType = {0, 0, 1, 3},
+   resourceTypes = {"iron", "steel", "object/tangible/component/clothing/shared_fiberplast_panel.iff", "object/tangible/component/clothing/shared_reinforced_fiber_panels.iff"},
+   resourceQuantities = {15, 5, 1, 1},
+   contribution = {100, 100, 100, 100},
 
 
    targetTemplate = "object/tangible/wearables/armor/ubese/armor_ubese_bandolier.iff",

@@ -48,19 +48,19 @@ Intimidate2Command = {
 	speedMultiplier = 1,
 	healthCostMultiplier = 0,
 	actionCostMultiplier = 0,
-	mindCostMultiplier = 0,
-	
+	mindCostMultiplier = 50,
+
 	accuracySkillMod = "intimidate",
 
 	stateEffects = {
-	  StateEffect( 
-		INTIMIDATE_EFFECT, 
-		{}, 
-		{}, 
+	  StateEffect(
+		INTIMIDATE_EFFECT,
+		{ "intimidate_defense" },
+		{ "jedi_state_defense", "resistance_states" },
 		{},
-		100, 
-		0, 
-		120 
+		100,
+		0,
+		120
 	  )
 	},
 
@@ -73,4 +73,3 @@ Intimidate2Command = {
 }
 
 AddCommand(Intimidate2Command)
-

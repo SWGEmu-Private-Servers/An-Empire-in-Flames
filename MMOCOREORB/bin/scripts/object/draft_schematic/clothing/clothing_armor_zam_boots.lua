@@ -48,7 +48,7 @@ object_draft_schematic_clothing_clothing_armor_zam_boots = object_draft_schemati
    customObjectName = "Mabari Armorweave Boots",
 
    craftingToolTab = 2, -- (See DraftSchematicObjectTemplate.h)
-   complexity = 20, 
+   complexity = 25, 
    size = 4, 
 
    xpType = "crafting_clothing_armor", 
@@ -62,12 +62,12 @@ object_draft_schematic_clothing_clothing_armor_zam_boots = object_draft_schemati
    customizationStringNames = {"/private/index_color_1", "/private/index_color_2"},
    customizationDefaults = {20, 29},
 
-   ingredientTemplateNames = {"craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n"},
-   ingredientTitleNames = {"auxilary_coverage", "body", "liner", "hardware_and_attachments", "binding_and_reinforcement", "padding", "armor", "load_bearing_harness"},
-   ingredientSlotType = {0, 0, 0, 0, 0, 0, 1, 1},
-   resourceTypes = {"metal", "hide", "fiberplast", "metal", "petrochem_inert", "fiberplast", "object/tangible/component/armor/shared_armor_segment_zam.iff", "object/tangible/component/clothing/shared_synthetic_cloth.iff"},
-   resourceQuantities = {15, 15, 15, 15, 6, 10, 1, 1},
-   contribution = {100, 100, 100, 100, 100, 100, 100, 100},
+   ingredientTemplateNames = {"craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n"},
+   ingredientTitleNames = {"auxilary_coverage", "body", "liner", "hardware_and_attachments", "binding_and_reinforcement", "padding", "armor", "load_bearing_harness", "auxiliary_coverage_2"},
+   ingredientSlotType = {0, 0, 0, 0, 0, 0, 1, 1, 3},
+   resourceTypes = {"metal", "hide", "fiberplast", "metal", "petrochem_inert", "fiberplast", "object/tangible/component/armor/shared_armor_core.iff", "object/tangible/component/clothing/shared_synthetic_cloth.iff", "object/tangible/gem/shared_armor.iff"},
+   resourceQuantities = {15, 15, 15, 15, 6, 10, 1, 1, 1},
+   contribution = {100, 100, 100, 100, 100, 100, 100, 100, 100},
 
 
    targetTemplate = "object/tangible/wearables/armor/zam/armor_zam_wesell_boots.iff",

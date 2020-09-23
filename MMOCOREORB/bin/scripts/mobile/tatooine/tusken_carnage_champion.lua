@@ -10,7 +10,7 @@ tusken_carnage_champion = Creature:new {
 	baseHAM = 43000,
 	baseHAMmax = 53000,
 	armor = 2,
-	resists = {65,40,10,30,-1,30,-1,-1,-1},
+	resists = {60,60,60,75,50,70,70,70,60},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -29,16 +29,21 @@ tusken_carnage_champion = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "junk", chance = 1000000},
-				{group = "tusken_common", chance = 4000000},
+				{group = "junk", chance = 4000000},
 				{group = "wearables_all", chance = 1500000},
 				{group = "bone_armor", chance = 750000},
 				{group = "chitin_armor", chance = 750000},
 				{group = "armor_attachments", chance = 500000},
 				{group = "clothing_attachments", chance = 500000},
-				{group = "color_crystals", chance = 500000},
-				{group = "power_crystals", chance = 500000}
+				{group = "color_crystals", chance = 1000000},
+				{group = "power_crystals", chance = 1000000}
 			}
+		},
+		{
+			groups = {
+				{group = "tusken_common", chance = 10000000},
+			},
+			lootChance = 4000000
 		}
 	},
 	weapons = {"tusken_weapons"},

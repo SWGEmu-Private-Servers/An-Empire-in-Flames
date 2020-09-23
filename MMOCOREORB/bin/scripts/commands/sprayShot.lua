@@ -45,10 +45,13 @@ SprayShotCommand = {
         name = "sprayshot",
 
 	damageMultiplier = 4.0,
-	speedMultiplier = 3.5,
-	healthCostMultiplier = 1,
-	actionCostMultiplier = 1,
-	mindCostMultiplier = 1,
+	speedMultiplier = 2.0,
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 0,
+	mindCostMultiplier = 40,
+
+  coneAngle = 30,
+  coneAction = true,
 
 	stateEffects = {
 	  StateEffect(
@@ -56,38 +59,36 @@ SprayShotCommand = {
 		{},
 		{ "dizzy_defense" },
 		{ "jedi_state_defense", "resistance_states" },
-		60,
+		50,
 		0,
-		30
+		10
 	  ),
 	  StateEffect(
 		BLIND_EFFECT,
 		{},
 		{ "blind_defense" },
 		{ "jedi_state_defense", "resistance_states" },
-		100,
+		50,
 		0,
-		30
+		10
 	  ),
 	  StateEffect(
 		STUN_EFFECT,
 		{},
 		{ "stun_defense" },
 		{ "jedi_state_defense", "resistance_states" },
-		30,
+		50,
 		0,
 		10
 	  )
 	},
 
-	animation = "fire_7_single", 
+	animation = "fire_7_single",
 	animType = GENERATE_RANGED,
 
 	combatSpam = "sprayshot",
-	weaponType = CARBINEWEAPON,
 
 	range = -1
 }
 
 AddCommand(SprayShotCommand)
-

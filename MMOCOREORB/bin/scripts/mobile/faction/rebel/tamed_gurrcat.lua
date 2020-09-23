@@ -1,7 +1,7 @@
 tamed_gurrcat = Creature:new {
 	objectName = "@mob/creature_names:rebel_tamed_gurrcat",
 	socialGroup = "rebel",
-	faction = "rebel",
+	faction = "",
 	level = 7,
 	chanceHit = 0.26,
 	damageMin = 55,
@@ -18,7 +18,7 @@ tamed_gurrcat = Creature:new {
 	boneType = "bone_mammal",
 	boneAmount = 30,
 	milk = 0,
-	tamingChance = 0,
+	tamingChance = 0.15,
 	ferocity = 0,
 	pvpBitmask = ATTACKABLE,
 	creatureBitmask = PACK + STALKER,

@@ -100,6 +100,7 @@ includeFile("lair/npc_theater/global_imperial_spec_non_com_camp_imperial_small_t
 includeFile("lair/npc_theater/global_imperial_staff_cpl_camp_imperial_medium_theater.lua")
 includeFile("lair/npc_theater/global_imperial_staff_sergeant_camp_imperial_medium_theater.lua")
 includeFile("lair/npc_theater/global_imperial_stormtrooper_camp2_imperial_large_theater.lua")
+includeFile("lair/npc_theater/global_imperial_storm_commando_large_theater.lua")
 includeFile("lair/npc_theater/global_imperial_stormtrooper_camp2_imperial_small_theater.lua")
 includeFile("lair/npc_theater/global_imperial_stormtrooper_camp_imperial_large_theater.lua")
 includeFile("lair/npc_theater/global_imperial_stormtrooper_camp_imperial_medium_theater.lua")
@@ -115,6 +116,7 @@ includeFile("lair/npc_theater/global_rebel_army_captain_camp_rebel_medium_theate
 includeFile("lair/npc_theater/global_rebel_base2_rebel_large_theater.lua")
 includeFile("lair/npc_theater/global_rebel_base3_rebel_large_theater.lua")
 includeFile("lair/npc_theater/global_rebel_base_rebel_large_theater.lua")
+includeFile("lair/npc_theater/global_rebel_uprising_large_theater.lua")
 includeFile("lair/npc_theater/global_rebel_brigadier_general_camp_rebel_large_theater.lua")
 includeFile("lair/npc_theater/global_rebel_creature_handler_apprentice_huurton_camp_rebel_small_theater.lua")
 includeFile("lair/npc_theater/global_rebel_creature_handler_apprentice_razor_cat_camp_rebel_small_theater.lua")
@@ -201,6 +203,8 @@ includeFile("lair/npc_theater/rori_rorgungan_warcamp_neutral_large_theater.lua")
 includeFile("lair/npc_theater/rori_spice_collective_miner_base_neutral_large_theater.lua")
 includeFile("lair/npc_theater/rori_trade_federation_camp_neutral_large_theater.lua")
 
+includeFile("lair/npc_theater/taanab_norulac_raider_camp.lua")
+
 includeFile("lair/npc_theater/talus_aakuan_champion_camp_neutral_large_theater.lua")
 includeFile("lair/npc_theater/talus_aakuan_steward_camp_neutral_small_theater.lua")
 includeFile("lair/npc_theater/talus_beldonna_base_neutral_large_theater.lua")
@@ -259,4 +263,3 @@ includeFile("lair/npc_theater/yavin4_stranded_imperial_base_imperial_medium_thea
 includeFile("lair/npc_theater/yavin4_stranded_imperial_patrol_imperial_medium_theater.lua")
 includeFile("lair/npc_theater/yavin4_stranded_rebel_base_rebel_medium_theater.lua")
 includeFile("lair/npc_theater/yavin4_stranded_rebel_patrol_rebel_medium_theater.lua")
-

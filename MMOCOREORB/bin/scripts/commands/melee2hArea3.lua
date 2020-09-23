@@ -43,46 +43,35 @@
 
 Melee2hArea3Command = {
         name = "melee2harea3",
-	damageMultiplier = 3.0,
-	speedMultiplier = 2.5,
-	healthCostMultiplier = 1.5,
-	actionCostMultiplier = 2.5,
-	mindCostMultiplier = 1.5,
-        accuracyBonus = 10,
+	damageMultiplier = 5.0,
+	speedMultiplier = 2.25,
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 25,
+	mindCostMultiplier = 0,
+  accuracyBonus = 25,
 
-	stateEffects = {
-	  StateEffect( 
-               --documentation clearly defines dizzy instead of blind
-		DIZZY_EFFECT, 
-		{}, 
-		{ "dizzy_defense" }, 
+  stateEffects = {
+    StateEffect(
+    INTIMIDATE_EFFECT,
+    { "intimidate_defense" },
 		{ "jedi_state_defense", "resistance_states" },
-		30, 
-		0, 
-		30
-	  ),
-	  StateEffect( 
-		POSTUREDOWN_EFFECT, 
-		{ "postureDownRecovery" }, 
-		{ "posture_change_down_defense" }, 
-		{},
-		100, 
-		0, 
-		0 
-	  )
-	},
+    {},
+    85,
+    0,
+    30
+    )
+  },
 
-	areaRange = 16,
-	areaAction = true,
+  coneAngle = 270,
+	coneAction = true,
 
 	animation = "lower_posture_2hmelee_5",
 
 	combatSpam = "domination",
-	
+
 	weaponType = TWOHANDMELEEWEAPON,
 
-	range = -1
+	range = 8
 }
 
 AddCommand(Melee2hArea3Command)
-

@@ -12,7 +12,7 @@ janta_rockshaper = Creature:new {
 	baseHAM = 13000,
 	baseHAMmax = 15000,
 	armor = 1,
-	resists = {100,25,-1,25,25,100,25,-1,-1},
+	resists = {60,60,60,50,50,60,70,70,60},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -34,10 +34,16 @@ janta_rockshaper = Creature:new {
 		{
 			groups = {
 				{group = "junk", chance = 5000000},
-				{group = "janta_common", chance = 1500000},
+				{group = "color_crystals", chance = 1500000},
 				{group = "loot_kit_parts", chance = 3000000},
 				{group = "wearables_all", chance = 500000}
 			}
+		},
+		{
+			groups = {
+				{group = "janta_common", chance = 10000000},
+			},
+			lootChance = 1500000
 		}
 	},
 	weapons = {"primitive_weapons"},

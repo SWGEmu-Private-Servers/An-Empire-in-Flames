@@ -12,12 +12,12 @@ function WeaponFacilityScreenPlay:start()
 	if isZoneEnabled("naboo") then
 		local pBuilding = getSceneObject(self.buildingID)
 		createObserver(FACTIONBASEFLIPPED, "WeaponFacilityScreenPlay", "flipBase", pBuilding)
-
-		if getRandomNumber(100) >= 50 then
-			self:spawnRebels(pBuilding)
-		else
-			self:spawnImperials(pBuilding)
-		end
+		self:spawnRebels(pBuilding)
+--		if getRandomNumber(100) >= 50 then
+--			self:spawnRebels(pBuilding)
+--		else
+--			self:spawnImperials(pBuilding)
+--		end
 	end
 end
 

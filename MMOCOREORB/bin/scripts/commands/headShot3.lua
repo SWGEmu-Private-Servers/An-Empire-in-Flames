@@ -44,24 +44,23 @@
 HeadShot3Command = {
         name = "headshot3",
 
-	damageMultiplier = 3.0,
-	speedMultiplier = 2.0,
-	healthCostMultiplier = 0.5,
-	actionCostMultiplier = 0.5,
-	mindCostMultiplier = 2.5,
+	damageMultiplier = 4.5,
+	speedMultiplier = 2.0 ,
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 45,
+	mindCostMultiplier = 0,
 	accuracyBonus = 5,
 
-	poolsToDamage = MIND_ATTRIBUTE,
+	poolsToDamage = HEALTH_ATTRIBUTE,
 
-	animation = "fire_1_special_single", 
+	animation = "fire_1_special_single",
 	animType = GENERATE_RANGED,
 
 	combatSpam = "masterheadshot",
-	
+
 	weaponType = RIFLEWEAPON,
 
 	range = -1
 }
 
 AddCommand(HeadShot3Command)
-

@@ -45,6 +45,9 @@
 --Children folder includes
 
 -- Server Objects
+includeFile("static/flora/city_flower_01.lua")
+includeFile("static/flora/city_flower_02.lua")
+includeFile("static/flora/city_flower_03.lua")
 includeFile("static/flora/flora_base.lua")
 includeFile("static/flora/flora_bush_dathomir_hwotha.lua")
 includeFile("static/flora/flora_bush_endor_rainbowbush.lua")

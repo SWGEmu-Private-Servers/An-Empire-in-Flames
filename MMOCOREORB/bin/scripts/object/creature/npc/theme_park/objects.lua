@@ -621,3 +621,10 @@ object_creature_npc_theme_park_shared_player_transport_theed_hangar = SharedCrea
 }
 
 ObjectTemplates:addClientTemplate(object_creature_npc_theme_park_shared_player_transport_theed_hangar, "object/creature/npc/theme_park/shared_player_transport_theed_hangar.iff")
+
+
+object_creature_npc_theme_park_shared_rim_shuttle = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/creature/npc/theme_park/shared_rim_shuttle.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_creature_npc_theme_park_shared_rim_shuttle, "object/creature/npc/theme_park/shared_rim_shuttle.iff")

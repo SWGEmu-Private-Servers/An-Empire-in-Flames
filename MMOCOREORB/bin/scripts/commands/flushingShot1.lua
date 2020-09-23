@@ -44,45 +44,44 @@
 FlushingShot1Command = {
         name = "flushingshot1",
 
-	damageMultiplier = 2.0,
-	speedMultiplier = 2.0,
-	healthCostMultiplier = 0.5,
-	actionCostMultiplier = 0.5,
-	mindCostMultiplier = 1.5,
-	accuracyBonus = 5,
+  damageMultiplier = 0.50,
+	speedMultiplier = 1.0,
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 35,
+	mindCostMultiplier = 0,
+	accuracyBonus = 25,
 
 	stateEffects = {
-	  StateEffect( 
-		STUN_EFFECT, 
-		{}, 
-		{ "stun_defense" }, 
+	  StateEffect(
+		STUN_EFFECT,
+		{},
+		{ "stun_defense" },
 		{ "jedi_state_defense", "resistance_states" },
-		100, 
-		0, 
-		35 
+		100,
+		0,
+		35
 	  ),
-	  StateEffect( 
-		POSTUREUP_EFFECT, 
-		{ "postureUpRecovery" }, 
-		{ "posture_change_up_defense" }, 
-		{}, 
-		100, 
-		0, 
-		0 
+	  StateEffect(
+		POSTUREUP_EFFECT,
+		{ "postureUpRecovery" },
+		{ "posture_change_up_defense" },
+		{},
+		115,
+		0,
+		0
 	  )
 	},
 
 	poolsToDamage = RANDOM_ATTRIBUTE,
 
-	animation = "fire_3_special_single", 
+	animation = "fire_3_special_single",
 	animType = GENERATE_RANGED,
 
 	combatSpam = "flushingshot",
-	
+
 	weaponType = RIFLEWEAPON,
 
 	range = -1
 }
 
 AddCommand(FlushingShot1Command)
-

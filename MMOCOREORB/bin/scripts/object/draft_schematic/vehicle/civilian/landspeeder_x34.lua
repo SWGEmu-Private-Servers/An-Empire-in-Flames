@@ -57,7 +57,7 @@ object_draft_schematic_vehicle_civilian_landspeeder_x34 = object_draft_schematic
 
 	assemblySkill = "general_assembly",
 	experimentingSkill = "general_experimentation",
-	customizationSkill = "clothing_customization",
+	customizationSkill = "general_customization",
 
 	customizationOptions = {},
 	customizationStringNames = {},

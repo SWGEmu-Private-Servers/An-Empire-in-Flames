@@ -1902,3 +1902,262 @@ object_draft_schematic_weapon_component_shared_weapon_trajectory_computer = Shar
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_component_shared_weapon_trajectory_computer, "object/draft_schematic/weapon/component/shared_weapon_trajectory_computer.iff")
+
+
+object_draft_schematic_weapon_component_shared_carbine_core_basic = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/weapon/component/shared_carbine_core_basic.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_component_shared_carbine_core_basic, "object/draft_schematic/weapon/component/shared_carbine_core_basic.iff")
+
+
+object_draft_schematic_weapon_component_shared_pistol_core_basic = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/weapon/component/shared_pistol_core_basic.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_component_shared_pistol_core_basic, "object/draft_schematic/weapon/component/shared_pistol_core_basic.iff")
+
+
+object_draft_schematic_weapon_component_shared_rifle_core_basic = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/weapon/component/shared_rifle_core_basic.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_component_shared_rifle_core_basic, "object/draft_schematic/weapon/component/shared_rifle_core_basic.iff")
+
+object_draft_schematic_weapon_component_shared_carbine_core_efficient = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/weapon/component/shared_carbine_core_efficient.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_component_shared_carbine_core_efficient, "object/draft_schematic/weapon/component/shared_carbine_core_efficient.iff")
+
+
+object_draft_schematic_weapon_component_shared_pistol_core_efficient = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/weapon/component/shared_pistol_core_efficient.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_component_shared_pistol_core_efficient, "object/draft_schematic/weapon/component/shared_pistol_core_efficient.iff")
+
+
+object_draft_schematic_weapon_component_shared_rifle_core_efficient = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/weapon/component/shared_rifle_core_efficient.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_component_shared_rifle_core_efficient, "object/draft_schematic/weapon/component/shared_rifle_core_efficient.iff")
+
+object_draft_schematic_weapon_component_shared_carbine_core_overcharged = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/weapon/component/shared_carbine_core_overcharged.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_component_shared_carbine_core_overcharged, "object/draft_schematic/weapon/component/shared_carbine_core_overcharged.iff")
+
+
+object_draft_schematic_weapon_component_shared_pistol_core_overcharged = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/weapon/component/shared_pistol_core_overcharged.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_component_shared_pistol_core_overcharged, "object/draft_schematic/weapon/component/shared_pistol_core_overcharged.iff")
+
+
+object_draft_schematic_weapon_component_shared_rifle_core_overcharged = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/weapon/component/shared_rifle_core_overcharged.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_component_shared_rifle_core_overcharged, "object/draft_schematic/weapon/component/shared_rifle_core_overcharged.iff")
+
+object_draft_schematic_weapon_component_shared_carbine_core_quickfire = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/weapon/component/shared_carbine_core_quickfire.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_component_shared_carbine_core_quickfire, "object/draft_schematic/weapon/component/shared_carbine_core_quickfire.iff")
+
+
+object_draft_schematic_weapon_component_shared_pistol_core_quickfire = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/weapon/component/shared_pistol_core_quickfire.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_component_shared_pistol_core_quickfire, "object/draft_schematic/weapon/component/shared_pistol_core_quickfire.iff")
+
+
+object_draft_schematic_weapon_component_shared_rifle_core_quickfire = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/weapon/component/shared_rifle_core_quickfire.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_component_shared_rifle_core_quickfire, "object/draft_schematic/weapon/component/shared_rifle_core_quickfire.iff")
+
+object_draft_schematic_weapon_component_shared_carbine_barrel_basic = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/weapon/component/shared_carbine_barrel_basic.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_component_shared_carbine_barrel_basic, "object/draft_schematic/weapon/component/shared_carbine_barrel_basic.iff")
+
+object_draft_schematic_weapon_component_shared_carbine_barrel_jacketed = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/weapon/component/shared_carbine_barrel_jacketed.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_component_shared_carbine_barrel_jacketed, "object/draft_schematic/weapon/component/shared_carbine_barrel_jacketed.iff")
+
+object_draft_schematic_weapon_component_shared_carbine_barrel_target = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/weapon/component/shared_carbine_barrel_target.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_component_shared_carbine_barrel_target, "object/draft_schematic/weapon/component/shared_carbine_barrel_target.iff")
+
+object_draft_schematic_weapon_component_shared_pistol_barrel_basic = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/weapon/component/shared_pistol_barrel_basic.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_component_shared_pistol_barrel_basic, "object/draft_schematic/weapon/component/shared_pistol_barrel_basic.iff")
+
+object_draft_schematic_weapon_component_shared_pistol_barrel_jacketed = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/weapon/component/shared_pistol_barrel_jacketed.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_component_shared_pistol_barrel_jacketed, "object/draft_schematic/weapon/component/shared_pistol_barrel_jacketed.iff")
+
+object_draft_schematic_weapon_component_shared_pistol_barrel_target = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/weapon/component/shared_pistol_barrel_target.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_component_shared_pistol_barrel_target, "object/draft_schematic/weapon/component/shared_pistol_barrel_target.iff")
+
+object_draft_schematic_weapon_component_shared_rifle_barrel_basic = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/weapon/component/shared_rifle_barrel_basic.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_component_shared_rifle_barrel_basic, "object/draft_schematic/weapon/component/shared_rifle_barrel_basic.iff")
+
+object_draft_schematic_weapon_component_shared_rifle_barrel_jacketed = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/weapon/component/shared_rifle_barrel_jacketed.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_component_shared_rifle_barrel_jacketed, "object/draft_schematic/weapon/component/shared_rifle_barrel_jacketed.iff")
+
+object_draft_schematic_weapon_component_shared_rifle_barrel_target = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/weapon/component/shared_rifle_barrel_target.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_component_shared_rifle_barrel_target, "object/draft_schematic/weapon/component/shared_rifle_barrel_target.iff")
+
+object_draft_schematic_weapon_component_shared_gas_cartridge_basic = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/weapon/component/shared_gas_cartridge_basic.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_component_shared_gas_cartridge_basic, "object/draft_schematic/weapon/component/shared_gas_cartridge_basic.iff")
+
+object_draft_schematic_weapon_component_shared_gas_cartridge_advanced = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/weapon/component/shared_gas_cartridge_advanced.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_component_shared_gas_cartridge_advanced, "object/draft_schematic/weapon/component/shared_gas_cartridge_advanced.iff")
+
+--melee core basic draft schematic
+object_draft_schematic_weapon_component_shared_melee_core_basic = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/weapon/component/shared_melee_core_basic.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_component_shared_melee_core_basic, "object/draft_schematic/weapon/component/shared_melee_core_basic.iff")
+
+--melee core featherlight draft schematic
+object_draft_schematic_weapon_component_shared_melee_core_featherlight = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/weapon/component/shared_melee_core_featherlight.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_component_shared_melee_core_featherlight, "object/draft_schematic/weapon/component/shared_melee_core_featherlight.iff")
+
+--melee core stabilized draft schematic
+object_draft_schematic_weapon_component_shared_melee_core_stabilized = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/weapon/component/shared_melee_core_stabilized.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_component_shared_melee_core_stabilized, "object/draft_schematic/weapon/component/shared_melee_core_stabilized.iff")
+
+--melee core weighted draft schematic
+object_draft_schematic_weapon_component_shared_melee_core_weighted = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/weapon/component/shared_melee_core_weighted.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_component_shared_melee_core_weighted, "object/draft_schematic/weapon/component/shared_melee_core_weighted.iff")
+
+--melee edge featherlight draft schematic
+object_draft_schematic_weapon_component_shared_melee_edge_featherlight = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/weapon/component/shared_melee_edge_featherlight.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_component_shared_melee_edge_featherlight, "object/draft_schematic/weapon/component/shared_melee_edge_featherlight.iff")
+
+--melee edge weighted draft schematic
+object_draft_schematic_weapon_component_shared_melee_edge_weighted = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/weapon/component/shared_melee_edge_weighted.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_component_shared_melee_edge_weighted, "object/draft_schematic/weapon/component/shared_melee_edge_weighted.iff")
+
+--melee edge balanced draft schematic
+object_draft_schematic_weapon_component_shared_melee_edge_balanced = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/weapon/component/shared_melee_edge_balanced.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_component_shared_melee_edge_balanced, "object/draft_schematic/weapon/component/shared_melee_edge_balanced.iff")
+
+--melee grip featherlight draft schematic
+object_draft_schematic_weapon_component_shared_melee_grip_featherlight = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/weapon/component/shared_melee_grip_featherlight.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_component_shared_melee_grip_featherlight, "object/draft_schematic/weapon/component/shared_melee_grip_featherlight.iff")
+
+--melee grip weighted draft schematic
+object_draft_schematic_weapon_component_shared_melee_grip_weighted = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/weapon/component/shared_melee_grip_weighted.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_component_shared_melee_grip_weighted, "object/draft_schematic/weapon/component/shared_melee_grip_weighted.iff")
+
+--melee grip balanced draft schematic
+object_draft_schematic_weapon_component_shared_melee_grip_balanced = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/weapon/component/shared_melee_grip_balanced.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_component_shared_melee_grip_balanced, "object/draft_schematic/weapon/component/shared_melee_grip_balanced.iff")
+
+--melee basic gyro unit draft schematic
+object_draft_schematic_weapon_component_shared_gyro_unit_basic = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/weapon/component/shared_gyro_unit_basic.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_component_shared_gyro_unit_basic, "object/draft_schematic/weapon/component/shared_gyro_unit_basic.iff")
+
+--melee advanced gyro unit draft schematic
+object_draft_schematic_weapon_component_shared_gyro_unit_advanced = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/weapon/component/shared_gyro_unit_advanced.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_component_shared_gyro_unit_advanced, "object/draft_schematic/weapon/component/shared_gyro_unit_advanced.iff")
+
+--melee reinforcement core draft schematic
+object_draft_schematic_weapon_component_shared_melee_reinforcement_core = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/weapon/component/shared_melee_reinforcement_core.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_component_shared_melee_reinforcement_core, "object/draft_schematic/weapon/component/shared_melee_reinforcement_core.iff")
+
+--reflex scope draft schematic
+object_draft_schematic_weapon_component_shared_scope_reflex = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/weapon/component/shared_scope_reflex.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_component_shared_scope_reflex, "object/draft_schematic/weapon/component/shared_scope_reflex.iff")
+
+--sniper scope draft schematic
+object_draft_schematic_weapon_component_shared_scope_sniper = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/weapon/component/shared_scope_sniper.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_component_shared_scope_sniper, "object/draft_schematic/weapon/component/shared_scope_sniper.iff")
+
+--variable scope draft schematic
+object_draft_schematic_weapon_component_shared_scope_variable = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/weapon/component/shared_scope_variable.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_weapon_component_shared_scope_variable, "object/draft_schematic/weapon/component/shared_scope_variable.iff")

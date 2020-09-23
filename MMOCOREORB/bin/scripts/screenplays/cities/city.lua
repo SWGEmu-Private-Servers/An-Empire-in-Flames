@@ -13,6 +13,15 @@ function CityScreenPlay:spawnGcwMobiles()
 		local controllingFaction = getControllingFaction(self.planet)
 		local difficulty = getWinningFactionDifficultyScaling(self.planet)
 
+		local gcwStatus = "gcw_manager:" .. self.planet
+
+		local planetControl = tonumber(getQuestStatus(gcwStatus))
+		if planetControl == 1 then
+			controllingFaction = FACTIONIMPERIAL
+		elseif planetControl == 2 then
+			controllingFaction = FACTIONREBEL
+		end
+
 		if controllingFaction == FACTIONNEUTRAL then
 			controllingFaction = FACTIONIMPERIAL
 		end
@@ -54,10 +63,10 @@ function CityScreenPlay:spawnMob(num, controllingFaction, difficulty)
 		if npcMood ~= "" then
 			self:setMoodString(pNpc, npcMood)
 		end
-		if mobTable[10] then
-			local aiAgent = AiAgent(pNpc)
-			aiAgent:setCreatureBit(SCANNING_FOR_CONTRABAND)
-		end
+--		if mobTable[10] then
+--			local aiAgent = AiAgent(pNpc)
+--			aiAgent:setCreatureBit(SCANNING_FOR_CONTRABAND)
+--		end
 	end
 
 	if pNpc ~= nil then
@@ -85,6 +94,15 @@ function CityScreenPlay:respawn(pAiAgent, args)
 	local mobNumber = tonumber(args)
 	local controllingFaction = getControllingFaction(self.planet)
 	local difficulty = getWinningFactionDifficultyScaling(self.planet)
+
+	local gcwStatus = "gcw_manager:" .. self.planet
+
+	local planetControl = tonumber(getQuestStatus(gcwStatus))
+	if planetControl == 1 then
+		controllingFaction = FACTIONIMPERIAL
+	elseif planetControl == 2 then
+		controllingFaction = FACTIONREBEL
+	end
 
 	if controllingFaction == FACTIONNEUTRAL then
 		controllingFaction = FACTIONIMPERIAL

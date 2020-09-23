@@ -10,7 +10,7 @@ blurrg_raptor = Creature:new {
 	baseHAM = 62000,
 	baseHAMmax = 75000,
 	armor = 2,
-	resists = {20,20,20,20,20,20,20,20,-1},
+	resists = {20,20,20,20,20,20,20,20,20},
 	meatType = "meat_carnivore",
 	meatAmount = 50,
 	hideType = "hide_leathery",
@@ -26,6 +26,7 @@ blurrg_raptor = Creature:new {
 	diet = CARNIVORE,
 
 	templates = {"object/mobile/blurrg_hue.iff"},
+	controlDeviceTemplate = "object/intangible/pet/blurrg_hue.iff",
 	hues = { 16, 17, 18, 19, 20, 21, 22, 23 },
 	scale = 1.35,
 	lootGroups = {},

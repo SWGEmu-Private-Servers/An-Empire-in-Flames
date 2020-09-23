@@ -44,34 +44,33 @@
 PolearmLunge1Command = {
 	name = "polearmlunge1",
 
-	damageMultiplier = 1.0,
-	speedMultiplier = 1.5,
+	damageMultiplier = 0.5,
+	speedMultiplier = 1.0,
 	accuracyBonus = 10,
-	
-	healthCostMultiplier = 0.5,
-	actionCostMultiplier = 1.0,
-	mindCostMultiplier = 0.5,
+
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 15,
+	mindCostMultiplier = 0,
 
 	animation = "lower_posture_polearm_2",
 
 	combatSpam = "lungestrike",
 
 	range = 20,
-	
+
 	weaponType = POLEARMWEAPON,
 
 	stateEffects = {
-	  StateEffect( 
-		POSTUREDOWN_EFFECT, 
-		{ "postureDownRecovery" }, 
-		{ "posture_change_down_defense" }, 
+	  StateEffect(
+		POSTUREDOWN_EFFECT,
+		{ "postureDownRecovery" },
+		{ "posture_change_down_defense" },
 		{},
-		100, 
-		0, 
-		0 
+		100,
+		0,
+		0
 	  )
 	}
 }
 
 AddCommand(PolearmLunge1Command)
-

@@ -50,3 +50,14 @@ includeFile("tangible/deed/guild_deed/generic_guild_deed.lua")
 includeFile("tangible/deed/guild_deed/naboo_guild_deed.lua")
 includeFile("tangible/deed/guild_deed/tatooine_guild_deed.lua")
 includeFile("tangible/deed/guild_deed/tatooine_guild_style_02_deed.lua")
+
+--NPC Structures
+includeFile("tangible/deed/guild_deed/tatooine_guild_style_03_deed.lua") --Tatooine Combat Guildhall
+includeFile("tangible/deed/guild_deed/tatooine_guild_style_04_deed.lua") --Tatooine University Guildhall
+includeFile("tangible/deed/guild_deed/tatooine_guild_style_05_deed.lua") --Tatooine Commerce Guildhall
+includeFile("tangible/deed/guild_deed/corellia_guild_style_02_deed.lua") --Corellia Combat Guildhall
+includeFile("tangible/deed/guild_deed/corellia_guild_style_03_deed.lua") --Corellia University Guildhall
+includeFile("tangible/deed/guild_deed/corellia_guild_style_04_deed.lua") --Corellia Commerce Guildhall
+includeFile("tangible/deed/guild_deed/naboo_guild_style_02_deed.lua") --Naboo Combat Guildhall
+includeFile("tangible/deed/guild_deed/naboo_guild_style_03_deed.lua") --Naboo University Guildhall
+includeFile("tangible/deed/guild_deed/naboo_guild_style_04_deed.lua") --Naboo Commerce Guildhall

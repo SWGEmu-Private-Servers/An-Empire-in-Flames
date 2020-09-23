@@ -6,19 +6,19 @@ pistol_striker = {
 	customObjectName = "",
 	directObjectTemplate = "object/weapon/ranged/pistol/pistol_striker.iff",
 	craftingValues = {
-		{"mindamage",23,41,0},
-		{"maxdamage",44,73,0},
-		{"attackspeed",4.9,3.5,0},
-		{"woundchance",4,11,0},
-		{"hitpoints",750,750,0},
-		{"attackhealthcost",18,11,0},
-		{"attackactioncost",39,23,0},
-		{"attackmindcost",26,17,0},
-		{"roundsused",1,5,0},
-		{"zerorangemod",-10,-10,0},
-		{"maxrangemod",-70,-70,0},
-		{"midrange",20,20,0},
-		{"midrangemod",5,15,0},
+		{"mindamage",275,350,0},
+		{"maxdamage",501,605,0},
+		{"attackspeed",4.1,3.0,0},
+		{"woundchance",4,5,0},
+		{"roundsused",5,20,0},
+		{"hitpoints",450,1000,0},
+		{"zerorangemod",-5,5,0},
+		{"maxrangemod",-120,-120,0},
+		{"midrange",16,16,0},
+		{"midrangemod",10,22,0},
+		{"attackhealthcost",65,60,0},
+		{"attackactioncost",65,60,0},
+		{"attackmindcost",65,60,0},
 	},
 	customizationStringNames = {},
 	customizationValues = {},
@@ -27,7 +27,7 @@ pistol_striker = {
 	randomDotChance = 625,
 	junkDealerTypeNeeded = JUNKARMS,
 	junkMinValue = 25,
-	junkMaxValue = 45
+	junkMaxValue = 65
 
 }
 

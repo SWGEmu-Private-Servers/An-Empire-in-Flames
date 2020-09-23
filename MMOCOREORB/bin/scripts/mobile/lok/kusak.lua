@@ -18,7 +18,7 @@ kusak = Creature:new {
 	boneType = "bone_mammal",
 	boneAmount = 10,
 	milk = 0,
-	tamingChance = 0,
+	tamingChance = 0.1,
 	ferocity = 0,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = PACK + STALKER,
@@ -26,6 +26,7 @@ kusak = Creature:new {
 	diet = CARNIVORE,
 
 	templates = {"object/mobile/kusak_hue.iff"},
+	controlDeviceTemplate = "object/intangible/pet/kusak_hue.iff",
 	hues = { 24, 25, 26, 27, 28, 29, 30, 31 },
 	lootGroups = {},
 	weapons = {},

@@ -1,0 +1,31 @@
+special_rotary_cannon_03 = {
+	skillName = "special_rotary_cannon_03",
+	parentName = "special_grants",
+	graphType = 4,
+	godOnly = 1,
+	title = 1,
+	profession = 1,
+	hidden = 1,
+	moneyRequired = 1000,
+	pointsRequired = 0,
+	skillsRequiredCount = 0,
+	skillsRequired = {"special_rotary_cannon_02"},
+	preclusionSkills = {},
+	xpType = "combat_rangedspecialize_heavy",
+	xpCost = 500000,
+	xpCap = 600000,
+	missionsRequired = {},
+	apprenticeshipsRequired = 0,
+	statsRequired = {},
+	speciesRequired = {},
+	jediStateRequired = 0,
+	skillAbility = {},
+	commands = {
+	},
+	skillModifiers = {"rotary_accuracy=30","rotary_speed=20","private_rotaryweapon_combat_difficulty=1250"},
+	schematicsGranted = {},
+	schematicsRevoked = {},
+	searchable = 0,
+}
+
+addSkill(special_rotary_cannon_03)

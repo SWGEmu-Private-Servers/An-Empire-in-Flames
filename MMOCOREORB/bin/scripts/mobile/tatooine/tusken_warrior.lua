@@ -10,7 +10,7 @@ tusken_warrior = Creature:new {
 	baseHAM = 9100,
 	baseHAMmax = 11100,
 	armor = 0,
-	resists = {45,30,25,30,-1,30,-1,-1,-1},
+	resists = {25,25,25,45,15,25,25,25,25},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -29,16 +29,21 @@ tusken_warrior = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "junk", chance = 1500000},
-				{group = "tusken_common", chance = 3000000},
+				{group = "junk", chance = 3000000},
 				{group = "wearables_common", chance = 2000000},
 				{group = "bone_armor", chance = 750000},
 				{group = "chitin_armor", chance = 750000},
 				{group = "armor_attachments", chance = 500000},
 				{group = "clothing_attachments", chance = 500000},
-				{group = "color_crystals", chance = 500000},
-				{group = "power_crystals", chance = 500000}
+				{group = "color_crystals", chance = 1250000},
+				{group = "power_crystals", chance = 1250000}
 			}
+		},
+		{
+			groups = {
+				{group = "tusken_common", chance = 10000000},
+			},
+			lootChance = 3000000
 		}
 	},
 	weapons = {"tusken_weapons"},

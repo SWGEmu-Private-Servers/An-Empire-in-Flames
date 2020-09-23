@@ -1,7 +1,7 @@
 tamed_razor_cat = Creature:new {
 	objectName = "@mob/creature_names:rebel_tamed_razor_cat",
 	socialGroup = "rebel",
-	faction = "rebel",
+	faction = "",
 	level = 12,
 	chanceHit = 0.29,
 	damageMin = 140,
@@ -18,7 +18,7 @@ tamed_razor_cat = Creature:new {
 	boneType = "bone_mammal",
 	boneAmount = 30,
 	milk = 0,
-	tamingChance = 0,
+	tamingChance = 0.15,
 	ferocity = 2,
 	pvpBitmask = ATTACKABLE,
 	creatureBitmask = PACK + STALKER,

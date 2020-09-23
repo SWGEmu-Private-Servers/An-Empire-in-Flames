@@ -42,10 +42,10 @@
 
 
 object_building_yavin_dark_enclave = object_building_yavin_shared_dark_enclave:new {
-	containerComponent = "EnclaveContainerComponent",
-	planetMapCategory = "cloningfacility",
-	templateType = CLONINGBUILDING,
-	facilityType = CLONER_DARK_JEDI_ONLY,
+--	containerComponent = "EnclaveContainerComponent",
+--	planetMapCategory = "cloningfacility",
+--	templateType = CLONINGBUILDING,
+--	facilityType = CLONER_DARK_JEDI_ONLY,
 
 	spawningPoints = {
 		{ x = -39, z = -43, y = -31, ow = -0.706572, ox = 0, oz = 0, oy = 0.707641, cellid = 9 }

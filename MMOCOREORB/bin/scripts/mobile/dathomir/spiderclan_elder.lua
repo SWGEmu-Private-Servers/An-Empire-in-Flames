@@ -12,7 +12,7 @@ spiderclan_elder = Creature:new {
 	baseHAM = 321000,
 	baseHAMmax = 392000,
 	armor = 3,
-	resists = {80,100,85,80,100,100,90,100,-1},
+	resists = {75,75,55,75,75,95,55,95,75},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -42,6 +42,12 @@ spiderclan_elder = Creature:new {
 				{group = "carbines", chance = 1000000},
 				{group = "wearables_scarce", chance = 500000}
 			}
+		},
+		{
+			groups = {
+				{group = "spiderclan_common", chance = 10000000},
+			},
+			lootChance = 250000
 		}
 	},
 	weapons = {"mixed_force_weapons"},

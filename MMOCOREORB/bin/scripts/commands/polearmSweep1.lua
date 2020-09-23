@@ -44,34 +44,36 @@
 PolearmSweep1Command = {
 	name = "polearmsweep1",
 
-	damageMultiplier = 2.0,
-	speedMultiplier = 1.5,
+	damageMultiplier = 1.0,
+	speedMultiplier = 1.0,
 	accuracyBonus = 10,
-	
-	healthCostMultiplier = 1.5,
-	actionCostMultiplier = 1.0,
-	mindCostMultiplier = 1.0,
+
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 30,
+	mindCostMultiplier = 0,
 
 	stateEffects = {
-	  StateEffect( 
-		KNOCKDOWN_EFFECT, 
-		{ "knockdownRecovery", "lastKnockdown" }, 
-		{ "knockdown_defense" }, 
+	  StateEffect(
+		POSTUREDOWN_EFFECT,
+		{ "postureDownRecovery" },
+		{ "posture_change_down_defense" },
 		{},
-		100, 
-		0, 
-		0 
+		100,
+		0,
+		0
 	  )
 	},
+
+	areaRange = 12,
+	areaAction = true,
 
 	animation = "knockdown_polearm_1",
 
 	combatSpam = "backcracker",
-	
+
 	weaponType = POLEARMWEAPON,
 
-	range = -1
+	range = 12
 }
 
 AddCommand(PolearmSweep1Command)
-

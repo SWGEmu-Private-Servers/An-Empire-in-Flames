@@ -44,11 +44,11 @@
 LegShot2Command = {
 	name = "legshot2",
 
-	damageMultiplier = 2,
-	speedMultiplier = 2,
-	healthCostMultiplier = 0.5,
-	actionCostMultiplier = 1.5,
-	mindCostMultiplier = 1.5,
+	damageMultiplier = 2.5,
+	speedMultiplier = 1.75,
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 40,
+	mindCostMultiplier = 0,
 	accuracyBonus = 25,
 
 	stateEffects = {
@@ -63,12 +63,12 @@ LegShot2Command = {
 	  )
 	},
 
-	poolsToDamage = ACTION_ATTRIBUTE,
+	poolsToDamage = HEALTH_ATTRIBUTE,
 
 	animation = "test_homing",
 
 	combatSpam = "legshot",
-	
+
 	weaponType = CARBINEWEAPON,
 
 	range = -1
@@ -76,4 +76,3 @@ LegShot2Command = {
 }
 
 AddCommand(LegShot2Command)
-

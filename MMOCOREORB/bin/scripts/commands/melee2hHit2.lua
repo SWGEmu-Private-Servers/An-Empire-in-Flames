@@ -43,16 +43,29 @@
 
 Melee2hHit2Command = {
         name = "melee2hhit2",
-	damageMultiplier = 3.0,
+	damageMultiplier = 4.5,
 	speedMultiplier = 2.0,
-	healthCostMultiplier = 1.0,
-	actionCostMultiplier = 1.5,
-	mindCostMultiplier = 1.0,
-        accuracyBonus = 10,
+  accuracyBonus = 10,
 
-	animation = "combo_2a", 
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 15,
+	mindCostMultiplier = 0,
+
+  stateEffects = {
+    StateEffect(
+    INTIMIDATE_EFFECT,
+    { "intimidate_defense" },
+		{ "jedi_state_defense", "resistance_states" },
+    {},
+    80,
+    0,
+    30
+    )
+  },
+
+	animation = "combo_2a",
 	animType = GENERATE_INTENSITY,
-	
+
 	weaponType = TWOHANDMELEEWEAPON,
 
 	combatSpam = "violentstrike",
@@ -61,4 +74,3 @@ Melee2hHit2Command = {
 }
 
 AddCommand(Melee2hHit2Command)
-

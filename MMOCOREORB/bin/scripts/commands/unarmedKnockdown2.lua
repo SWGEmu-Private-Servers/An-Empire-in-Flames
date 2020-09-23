@@ -44,11 +44,11 @@
 UnarmedKnockdown2Command = {
         name = "unarmedknockdown2",
 
-	damageMultiplier = 1.5,
-	speedMultiplier = 2.0,
-	healthCostMultiplier = 1.5,
-	actionCostMultiplier = 1.5,
-	mindCostMultiplier = 1.5,
+	damageMultiplier = 1.0,
+	speedMultiplier = 1.0,
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 30,
+	mindCostMultiplier = 0,
         accuracyBonus = 15,
 
 	stateEffects = {
@@ -75,11 +75,10 @@ UnarmedKnockdown2Command = {
 	animation = "knockdown_unarmed_3",
 
 	combatSpam = "chargingwampa",
-	
+
 	weaponType = UNARMEDWEAPON,
 
 	range = -1
 }
 
 AddCommand(UnarmedKnockdown2Command)
-

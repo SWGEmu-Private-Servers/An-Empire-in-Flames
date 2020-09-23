@@ -54,7 +54,8 @@ object_building_poi_scout_camp_s4 = object_building_poi_shared_scout_camp_s4:new
 		{"private_med_wound_health", 80},
 		{"private_med_wound_action", 80},
 		{"private_aggro_mod", 75},
-		{"private_buff_mind", 100}
+		{"private_buff_mind", 100},
+		{"private_med_battle_fatigue", 5}
 	},
 
 	healthWoundRegenRate = 80,

@@ -73,3 +73,31 @@ includeFile("tangible/deed/player_house_deed/tatooine_house_large_deed.lua")
 includeFile("tangible/deed/player_house_deed/tatooine_house_medium_deed.lua")
 includeFile("tangible/deed/player_house_deed/tatooine_house_small_deed.lua")
 includeFile("tangible/deed/player_house_deed/tatooine_house_small_style_02_deed.lua")
+
+--NPC Structures
+includeFile("tangible/deed/player_house_deed/junkshop_deed.lua") --Junkshop
+includeFile("tangible/deed/player_house_deed/hutt_palace_deed.lua") --Hutt Palace
+includeFile("tangible/deed/player_house_deed/stronghold_deed.lua") --Nym's Stronghold
+includeFile("tangible/deed/player_house_deed/corvette_deed.lua") --Test Star Destroyer
+includeFile("tangible/deed/player_house_deed/deepchasm_deed.lua") --Deep Chasm
+includeFile("tangible/deed/player_house_deed/deepchasm2_deed.lua") --Deep Chasm2
+includeFile("tangible/deed/player_house_deed/retreat_deed.lua") --Emperor's Retreat
+includeFile("tangible/deed/player_house_deed/station_deed.lua") --Space Station
+includeFile("tangible/deed/player_house_deed/imperialprison_deed.lua") --Imperial Prison
+includeFile("tangible/deed/player_house_deed/rebelbunker_deed.lua") --Rebel Bunker
+includeFile("tangible/deed/player_house_deed/imperialbunker_deed.lua") --Imperial Bunker
+includeFile("tangible/deed/player_house_deed/naboo_house_medium_style_03_deed.lua") --Naboo Medium Style 03
+includeFile("tangible/deed/player_house_deed/fallen_star_deed.lua") --Fallen Star
+includeFile("tangible/deed/player_house_deed/lucky_despot_deed.lua") --Lucky Despot
+includeFile("tangible/deed/player_house_deed/dathomir_cave_small_s01_deed.lua") --Small Cave, S01
+includeFile("tangible/deed/player_house_deed/dathomir_cave_small_s02_deed.lua") --Small Cave, S02
+includeFile("tangible/deed/player_house_deed/ns_hut_deed.lua") --NS Hut
+includeFile("tangible/deed/player_house_deed/sm_hut_deed.lua") --Dantooine Hut
+includeFile("tangible/deed/player_house_deed/yoda_house_deed.lua") --Yoda House
+includeFile("tangible/deed/player_house_deed/ykl37r_house_deed.lua") --YKL37R House
+includeFile("tangible/deed/player_house_deed/vt49_house_deed.lua") --VT49 House
+includeFile("tangible/deed/player_house_deed/yt1300_house_deed.lua") --YT1300 House
+includeFile("tangible/deed/player_house_deed/yt2400_house_deed.lua") --YT2400 House
+includeFile("tangible/deed/player_house_deed/ply3000_house_deed.lua") --PLY3000 House
+includeFile("tangible/deed/player_house_deed/y8_house_deed.lua") --Y8 House
+includeFile("tangible/deed/player_house_deed/aeg77_house_deed.lua") --AEG77 House

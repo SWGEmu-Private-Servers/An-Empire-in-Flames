@@ -44,7 +44,6 @@
 
 --Children folder includes
 includeFile("tangible/wearables/apron/serverobjects.lua")
-includeFile("tangible/wearables/armor/serverobjects.lua")
 includeFile("tangible/wearables/backpack/serverobjects.lua")
 includeFile("tangible/wearables/bandolier/serverobjects.lua")
 includeFile("tangible/wearables/base/serverobjects.lua")
@@ -54,6 +53,7 @@ includeFile("tangible/wearables/bodysuit/serverobjects.lua")
 includeFile("tangible/wearables/boots/serverobjects.lua")
 includeFile("tangible/wearables/bracelet/serverobjects.lua")
 includeFile("tangible/wearables/bustier/serverobjects.lua")
+includeFile("tangible/wearables/cape/serverobjects.lua")
 includeFile("tangible/wearables/cyborg/serverobjects.lua")
 includeFile("tangible/wearables/dress/serverobjects.lua")
 includeFile("tangible/wearables/earring/serverobjects.lua")

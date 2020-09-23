@@ -560,11 +560,10 @@ function recruiterScreenplay:transferItem(pPlayer, pInventory, faction, itemStri
 		local deed = LuaDeed(pItem)
 		local genPath = self:getGeneratedObjectTemplate(faction, itemString)
 
-		if genPath == nil then
-			return self.errorCodes.TEMPLATEPATHERROR
+		if genPath ~= nil then
+			deed:setGeneratedObjectTemplate(genPath)
 		end
 
-		deed:setGeneratedObjectTemplate(genPath)
 
 		if TangibleObject(pItem) ~= nil then
 			TangibleObject(pItem):setFaction(faction)

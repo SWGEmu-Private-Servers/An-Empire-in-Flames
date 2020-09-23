@@ -1,7 +1,7 @@
 tutorial_quartermaster = Creature:new {
 	objectName = "@newbie_tutorial/system_messages:quarter_name",
-	socialGroup = "imperial",
-	faction = "imperial",
+	socialGroup = "rebel",
+	faction = "rebel",
 	level = 15,
 	chanceHit = 0.31,
 	damageMin = 160,
@@ -25,7 +25,7 @@ tutorial_quartermaster = Creature:new {
 	optionsBitmask = INVULNERABLE + CONVERSABLE,
 	diet = HERBIVORE,
 
-	templates = {"object/mobile/dressed_imperial_major_m.iff"},
+	templates = {"object/mobile/dressed_rebel_major_zabrak_female_01.iff"},
 	lootGroups = {},
 	weapons = {},
 	attacks = merge(marksmannovice,brawlernovice),

@@ -44,12 +44,12 @@
 FireLightningCone2Command = {
         name = "firelightningcone2",
 
-	damageMultiplier = 4.0,
-	speedMultiplier = 2.0,
-	healthCostMultiplier = 1,
-	actionCostMultiplier = 1,
-	mindCostMultiplier = 1,
-
+	damageMultiplier = 2.5,
+	speedMultiplier = 1,
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 0,
+	mindCostMultiplier = 20,
+  poolsToDamage = RANDOM_ATTRIBUTE,
 	animation = "fire_lightning_rifle_single_2",
 	animType = GENERATE_INTENSITY,
 
@@ -57,11 +57,10 @@ FireLightningCone2Command = {
 
 	coneAngle = 60,
 	coneAction = true,
-	
+
 	weaponType = SPECIALHEAVYWEAPON,
 
 	range = 16
 }
 
 AddCommand(FireLightningCone2Command)
-

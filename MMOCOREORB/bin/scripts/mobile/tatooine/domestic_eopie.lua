@@ -19,7 +19,7 @@ domestic_eopie = Creature:new {
 	boneAmount = 190,
 	milkType = "milk_domesticated",
 	milk = 175,
-	tamingChance = 0,
+	tamingChance = 0.25,
 	ferocity = 0,
 	pvpBitmask = ATTACKABLE,
 	creatureBitmask = HERD,
@@ -27,6 +27,7 @@ domestic_eopie = Creature:new {
 	diet = HERBIVORE,
 
 	templates = {"object/mobile/eopie_hue.iff"},
+	controlDeviceTemplate = "object/intangible/pet/eopie_hue.iff",
 	hues = { 24, 25, 26, 27, 28, 29, 30, 31 },
 	scale = 0.9,
 	lootGroups = {},

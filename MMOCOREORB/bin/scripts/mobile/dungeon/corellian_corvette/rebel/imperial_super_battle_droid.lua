@@ -4,13 +4,13 @@ imperial_super_battle_droid = Creature:new {
 	faction = "imperial",
 	level = 200,
 	chanceHit = 18,
-	damageMin = 1200,
-	damageMax = 2300,
+	damageMin = 1015,
+	damageMax = 1800,
 	baseXp = 19000,
 	baseHAM = 230000,
 	baseHAMmax = 230000,
 	armor = 2,
-	resists = {85,95,100,60,100,25,40,85,-1},--kinetic,energy,blast,heat,cold,electric,acid,stun,ls
+	resists = {50,50,70,55,55,45,70,45,50},--kinetic,energy,blast,heat,cold,electric,acid,stun,ls
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -30,11 +30,17 @@ imperial_super_battle_droid = Creature:new {
 		"object/mobile/super_battle_droid.iff",
 	},
 	lootGroups = {
-
+		{
+			groups = {
+				{group = "clothing_attachments", chance = 5000000},
+				{group = "armor_attachments", chance = 5000000},
+			},
+			lootChance = 1000000,
+		}
 	},
 	conversationTemplate = "",
 	defaultWeapon = "object/weapon/ranged/droid/droid_droideka_ranged.iff",
-	defaultAttack = "creaturerangedattack"
+  attacks = merge(rangedchallenger)
 }
 
 CreatureTemplates:addCreatureTemplate(imperial_super_battle_droid, "imperial_super_battle_droid")

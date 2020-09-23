@@ -133,3 +133,10 @@ includeFile("tangible/component/armor/shield_generator_personal_b.lua")
 includeFile("tangible/component/armor/shield_generator_personal_c.lua")
 includeFile("tangible/component/armor/shield_generator_personal_imperial_test.lua")
 includeFile("tangible/component/armor/shield_generator_vehicular.lua")
+
+--EiF additions
+includeFile("tangible/component/armor/armor_layer_lightsaber.lua")
+includeFile("tangible/component/armor/armor_core.lua")
+includeFile("tangible/component/armor/armor_segment_basic.lua")
+includeFile("tangible/component/armor/armor_segment_exotic.lua")
+includeFile("tangible/component/armor/armor_segment_laminated.lua")

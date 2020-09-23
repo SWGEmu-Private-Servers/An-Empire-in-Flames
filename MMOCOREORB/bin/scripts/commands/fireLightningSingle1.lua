@@ -44,21 +44,20 @@
 FireLightningSingle1Command = {
         name = "firelightningsingle1",
 
-	damageMultiplier = 3.0,
-	speedMultiplier = 2.0,
-	healthCostMultiplier = 1,
-	actionCostMultiplier = 1,
-	mindCostMultiplier = 1,
-
+	damageMultiplier = 1.0,
+	speedMultiplier = 0.25,
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 0,
+	mindCostMultiplier = 10,
+  poolsToDamage = RANDOM_ATTRIBUTE,
 	animation = "fire_lightning_rifle_single_1",
 	animType = GENERATE_INTENSITY,
 
 	combatSpam = "firelightningsingle1",
-	
+
 	weaponType = SPECIALHEAVYWEAPON,
 
 	range = 16
 }
 
 AddCommand(FireLightningSingle1Command)
-

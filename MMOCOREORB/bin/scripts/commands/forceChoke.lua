@@ -44,8 +44,8 @@
 ForceChokeCommand = {
 	name = "forcechoke",
 
-	minDamage = 175,
-	maxDamage = 375,
+	minDamage = 1000,
+	maxDamage = 1750,
 	speed = 4.0,
 	forceCost = 400,
 	visMod = 25,
@@ -60,7 +60,7 @@ ForceChokeCommand = {
 	poolsToDamage = HEALTH_ATTRIBUTE,
 	damageType = LIGHTSABER_DAMAGE,
 
-	range = 32,
+	range = 64,
 
 	dotEffects = {
 		DotEffect(

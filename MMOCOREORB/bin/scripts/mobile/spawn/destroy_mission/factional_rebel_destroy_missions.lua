@@ -1,5 +1,5 @@
 factional_rebel_destroy_missions = {
-	minLevelCeiling = 20,
+	minLevelCeiling = 45,
 
 	lairSpawns = {
 		{
@@ -178,20 +178,26 @@ factional_rebel_destroy_missions = {
 		},
 		{
 			lairTemplateName = "global_imperial_stormtrooper_camp2_imperial_small_theater",
-			minDifficulty = 25,
-			maxDifficulty = 29,
+			minDifficulty = 45,
+			maxDifficulty = 85,
 			size = 25,
 		},
 		{
 			lairTemplateName = "global_imperial_stormtrooper_camp_imperial_large_theater",
-			minDifficulty = 25,
-			maxDifficulty = 29,
+			minDifficulty = 35,
+			maxDifficulty = 75,
 			size = 25,
 		},
 		{
 			lairTemplateName = "global_imperial_stormtrooper_camp2_imperial_large_theater",
-			minDifficulty = 25,
-			maxDifficulty = 32,
+			minDifficulty = 45,
+			maxDifficulty = 85,
+			size = 25,
+		},
+		{
+			lairTemplateName = "global_imperial_storm_commando_large_theater",
+			minDifficulty = 50,
+			maxDifficulty = 90,
 			size = 25,
 		},
 	}

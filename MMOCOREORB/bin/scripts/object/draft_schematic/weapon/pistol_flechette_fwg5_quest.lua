@@ -50,6 +50,7 @@ object_draft_schematic_weapon_pistol_flechette_fwg5_quest = object_draft_schemat
    craftingToolTab = 1, -- (See DraftSchematicObjectTemplate.h)
    complexity = 30, 
    size = 1, 
+   factoryCrateSize = 0,
 
    xpType = "crafting_weapons_general", 
    xp = 100, 
@@ -63,11 +64,12 @@ object_draft_schematic_weapon_pistol_flechette_fwg5_quest = object_draft_schemat
    customizationDefaults = {},
 
    ingredientTemplateNames = {"craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n"},
-   ingredientTitleNames = {"frame_assembly", "receiver_assembly", "grip_assembly", "cartridge_feed_unit", "barrel", "scope"},
+   ingredientTitleNames = {"frame_assembly", "receiver_assembly", "grip_assembly", "base_pistol_core", "barrel", "scope"},
    ingredientSlotType = {0, 0, 0, 1, 1, 3},
-   resourceTypes = {"iron_axidite", "steel_ditanium", "aluminum_linksteel", "object/tangible/component/weapon/shared_projectile_feed_mechanism.iff", "object/tangible/component/weapon/shared_projectile_pistol_barrel.iff", "object/tangible/component/weapon/shared_scope_weapon.iff"},
-   resourceQuantities = {25, 10, 5, 1, 1, 1},
+   resourceTypes = {"metal", "chemical", "metal", "object/tangible/component/weapon/shared_base_pistol_core.iff", "object/tangible/component/weapon/shared_base_pistol_barrel.iff", "object/tangible/component/weapon/shared_scope_weapon.iff"},
+   resourceQuantities = {12, 6, 3, 1, 1, 1},
    contribution = {100, 100, 100, 100, 100, 100},
+   ingredientAppearance = {"", "", "", "", "muzzle", "scope"},
 
 
    targetTemplate = "object/weapon/ranged/pistol/pistol_fwg5_quest.iff",

@@ -45,7 +45,7 @@ object_draft_schematic_weapon_component_blaster_power_handler = object_draft_sch
 
    templateType = DRAFTSCHEMATIC,
 
-   customObjectName = "Blaster Power-handler",
+   customObjectName = "Blaster Power Handler",
 
    craftingToolTab = 1, -- (See DraftSchematicObjectTemplate.h)
    complexity = 20, 

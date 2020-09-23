@@ -4,15 +4,15 @@ imperial_recruiter = Creature:new {
 	randomNameTag = true,
 	socialGroup = "imperial",
 	faction = "imperial",
-	level = 30,
-	chanceHit = 0.39,
-	damageMin = 290,
-	damageMax = 300,
-	baseXp = 2914,
-	baseHAM = 8400,
-	baseHAMmax = 10200,
-	armor = 0,
-	resists = {0,45,0,-1,40,-1,40,-1,-1},
+	level = 107,
+	chanceHit = 1.75,
+	damageMin = 670,
+	damageMax = 1050,
+	baseXp = 10081,
+	baseHAM = 29000,
+	baseHAMmax = 36000,
+	armor = 2,
+	resists = {55,55,70,45,75,80,55,45,-1},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -20,10 +20,11 @@ imperial_recruiter = Creature:new {
 	boneType = "",
 	boneAmount = 0,
 	milk = 0,
-	tamingChance = 0.000000,
+	tamingChance = 0,
 	ferocity = 0,
 	pvpBitmask = NONE,
 	creatureBitmask = NONE,
+	optionsBitmask = INVULNERABLE + CONVERSABLE,
 	diet = HERBIVORE,
 
 	templates = {
@@ -35,11 +36,11 @@ imperial_recruiter = Creature:new {
 		"object/mobile/dressed_imperial_officer_m_5.iff",
 		"object/mobile/dressed_imperial_officer_m_6.iff"},
 	lootGroups = {},
-	weapons = {},
-	attacks = {},
+	weapons = {"imperial_weapons_medium"},
+	attacks = merge(riflemanmaster,pistoleermaster,carbineermaster,brawlermaster),
 	conversationTemplate = "imperialRecruiterConvoTemplate",
 	containerComponentTemplate = "FactionRecruiterContainerComponent",
-	optionsBitmask = INVULNERABLE + CONVERSABLE
+
 }
 
 CreatureTemplates:addCreatureTemplate(imperial_recruiter, "imperial_recruiter")

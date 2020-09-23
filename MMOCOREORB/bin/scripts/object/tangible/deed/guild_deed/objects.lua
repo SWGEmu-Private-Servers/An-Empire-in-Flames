@@ -335,3 +335,58 @@ object_tangible_deed_guild_deed_shared_tatooine_guild_style_02_deed = SharedTang
 }
 
 ObjectTemplates:addClientTemplate(object_tangible_deed_guild_deed_shared_tatooine_guild_style_02_deed, "object/tangible/deed/guild_deed/shared_tatooine_guild_style_02_deed.iff")
+
+--NPC Structures
+--Tatooine Combat Hall
+object_tangible_deed_guild_deed_shared_tatooine_guild_style_03_deed = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/deed/guild_deed/shared_tatooine_guild_style_03_deed.iff"
+}
+ObjectTemplates:addClientTemplate(object_tangible_deed_guild_deed_shared_tatooine_guild_style_03_deed, "object/tangible/deed/guild_deed/shared_tatooine_guild_style_03_deed.iff")
+
+--Tatooine University Hall
+object_tangible_deed_guild_deed_shared_tatooine_guild_style_04_deed = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/deed/guild_deed/shared_tatooine_guild_style_04_deed.iff"
+}
+ObjectTemplates:addClientTemplate(object_tangible_deed_guild_deed_shared_tatooine_guild_style_04_deed, "object/tangible/deed/guild_deed/shared_tatooine_guild_style_04_deed.iff")
+
+--Tatooine Commerce Hall
+object_tangible_deed_guild_deed_shared_tatooine_guild_style_05_deed = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/deed/guild_deed/shared_tatooine_guild_style_05_deed.iff"
+}
+ObjectTemplates:addClientTemplate(object_tangible_deed_guild_deed_shared_tatooine_guild_style_05_deed, "object/tangible/deed/guild_deed/shared_tatooine_guild_style_05_deed.iff")
+
+--Corellia Combat Hall
+object_tangible_deed_guild_deed_shared_corellia_guild_style_02_deed = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/deed/guild_deed/shared_corellia_guild_style_02_deed.iff"
+}
+ObjectTemplates:addClientTemplate(object_tangible_deed_guild_deed_shared_corellia_guild_style_02_deed, "object/tangible/deed/guild_deed/shared_corellia_guild_style_02_deed.iff")
+
+--Corellia University Hall
+object_tangible_deed_guild_deed_shared_corellia_guild_style_03_deed = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/deed/guild_deed/shared_corellia_guild_style_03_deed.iff"
+}
+ObjectTemplates:addClientTemplate(object_tangible_deed_guild_deed_shared_corellia_guild_style_03_deed, "object/tangible/deed/guild_deed/shared_corellia_guild_style_03_deed.iff")
+
+--Corellia Commerce Hall
+object_tangible_deed_guild_deed_shared_corellia_guild_style_04_deed = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/deed/guild_deed/shared_corellia_guild_style_04_deed.iff"
+}
+ObjectTemplates:addClientTemplate(object_tangible_deed_guild_deed_shared_corellia_guild_style_04_deed, "object/tangible/deed/guild_deed/shared_corellia_guild_style_04_deed.iff")
+
+--Naboo Combat Hall
+object_tangible_deed_guild_deed_shared_naboo_guild_style_02_deed = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/deed/guild_deed/shared_naboo_guild_style_02_deed.iff"
+}
+ObjectTemplates:addClientTemplate(object_tangible_deed_guild_deed_shared_naboo_guild_style_02_deed, "object/tangible/deed/guild_deed/shared_naboo_guild_style_02_deed.iff")
+
+--Naboo University Hall
+object_tangible_deed_guild_deed_shared_naboo_guild_style_03_deed = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/deed/guild_deed/shared_naboo_guild_style_03_deed.iff"
+}
+ObjectTemplates:addClientTemplate(object_tangible_deed_guild_deed_shared_naboo_guild_style_03_deed, "object/tangible/deed/guild_deed/shared_naboo_guild_style_03_deed.iff")
+
+--Naboo Combat Hall
+object_tangible_deed_guild_deed_shared_naboo_guild_style_04_deed = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/deed/guild_deed/shared_naboo_guild_style_04_deed.iff"
+}
+ObjectTemplates:addClientTemplate(object_tangible_deed_guild_deed_shared_naboo_guild_style_04_deed, "object/tangible/deed/guild_deed/shared_naboo_guild_style_04_deed.iff")

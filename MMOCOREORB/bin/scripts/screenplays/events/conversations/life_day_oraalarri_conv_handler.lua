@@ -13,7 +13,7 @@ function lifeDayOraalarriConvoHandler:getInitialScreen(pPlayer, pNpc, pConvTempl
 	elseif readData(playerID .. ":lifeDayState") == 3 then
 		local pGhost = CreatureObject(pPlayer):getPlayerObject()
 
-		if pGhost ~= nil and PlayerObject(pGhost):getCharacterAgeInDays() >= 30  then
+		if pGhost ~= nil then
 			return convoTemplate:getScreen("have_spoken")
 		else
 			return convoTemplate:getScreen("no_gift")

@@ -45,7 +45,7 @@ object_building_player_city_shuttleport_tatooine = object_building_player_city_s
 	planetMapCategory = "shuttleport",
 	lotSize = 0,
 	baseMaintenanceRate = 0,
-	allowedZones = {"dantooine", "lok", "tatooine"},
+	allowedZones = {"dantooine", "lok", "tatooine", "taanab"},
 	length = 5,
 	width = 5,
 	cityRankRequired = 4,
@@ -58,7 +58,7 @@ object_building_player_city_shuttleport_tatooine = object_building_player_city_s
 		{templateFile = "object/tangible/terminal/terminal_player_structure.iff", x = -8.5, z = 1.5, y = 14, ox = 0, oy = 0.707107, oz = 0, ow = 0.707107, cellid = -1, containmentType = -1},
 		{templateFile = "object/tangible/terminal/terminal_travel.iff", x = -7, z = 0.9, y = 13.5, ox = 0, oy = 0, oz = 0, ow = 1, cellid = -1, containmentType = -1},
 		{templateFile = "object/tangible/travel/ticket_collector/ticket_collector.iff", x = 8, z = 0.9, y = 13.5, ox = 0, oy = 0, oz = 0, ow = 1, cellid = -1, containmentType = -1},
-		{templateFile = "object/creature/npc/theme_park/player_shuttle.iff", x = 0, z = 0.6, y = 0, ox = 0, oy = 1, oz = 0, ow = 0, cellid = -1, containmentType = -1}
+		{templateFile = "object/creature/npc/theme_park/rim_shuttle.iff", x = 0, z = 0.6, y = 0, ox = 0, oy = 1, oz = 0, ow = 0, cellid = -1, containmentType = -1}
 	}
 }
 

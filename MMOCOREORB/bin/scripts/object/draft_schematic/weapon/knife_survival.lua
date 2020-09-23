@@ -51,23 +51,23 @@ object_draft_schematic_weapon_knife_survival = object_draft_schematic_weapon_sha
    complexity = 3, 
    size = 1, 
 
-   xpType = "crafting_general", 
-   xp = 28, 
+   xpType = "crafting_weapons_general", 
+   xp = 110, 
 
-   assemblySkill = "general_assembly", 
-   experimentingSkill = "general_experimentation", 
+   assemblySkill = "weapon_assembly", 
+   experimentingSkill = "weapon_experimentation", 
    customizationSkill = "clothing_customization", 
 
    customizationOptions = {},
    customizationStringNames = {},
    customizationDefaults = {},
 
-   ingredientTemplateNames = {"craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n"},
-   ingredientTitleNames = {"knife_shaft", "cutting_edge", "grip_cap", "grip"},
-   ingredientSlotType = {0, 0, 0, 0},
-   resourceTypes = {"metal", "metal", "metal", "mineral"},
-   resourceQuantities = {6, 4, 2, 2},
-   contribution = {100, 100, 100, 100},
+    ingredientTemplateNames = {"craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n"},
+   ingredientTitleNames = {"melee_core", "grip", "edge","shaft", "fastener"},
+   ingredientSlotType = {1, 1, 3, 0, 0},
+   resourceTypes = {"object/tangible/component/weapon/shared_base_melee_core.iff", "object/tangible/component/weapon/shared_base_melee_grip.iff", "object/tangible/component/weapon/shared_base_melee_edge.iff", "metal", "metal", "metal"},
+   resourceQuantities = {1, 1, 1, 20, 6},
+   contribution = {100, 100, 100, 100, 100},
 
 
    targetTemplate = "object/weapon/melee/knife/knife_survival.iff",

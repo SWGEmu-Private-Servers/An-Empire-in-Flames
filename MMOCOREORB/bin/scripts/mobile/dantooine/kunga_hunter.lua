@@ -12,7 +12,7 @@ kunga_hunter = Creature:new {
 	baseHAM = 9200,
 	baseHAMmax = 11200,
 	armor = 0,
-	resists = {25,40,25,-1,-1,80,50,-1,-1},
+	resists = {40,40,60,40,40,30,60,40,40},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -33,14 +33,21 @@ kunga_hunter = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "junk", chance = 3500000},
+				{group = "junk", chance = 2000000},
 				{group = "loot_kit_parts", chance = 3000000},
 				{group = "armor_attachments", chance = 500000},
 				{group = "clothing_attachments", chance = 500000},
 				{group = "wearables_common", chance = 1000000},
 				{group = "wearables_uncommon", chance = 1000000},
+				{group = "color_crystals", chance = 1500000},
 				{group = "power_crystals", chance = 500000}
 			}
+		},
+		{
+			groups = {
+				{group = "janta_common", chance = 10000000},
+			},
+			lootChance = 1500000
 		}
 	},
 	weapons = {"primitive_weapons"},

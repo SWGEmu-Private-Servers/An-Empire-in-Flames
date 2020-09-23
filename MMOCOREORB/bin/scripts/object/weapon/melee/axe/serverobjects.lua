@@ -43,8 +43,8 @@
 
 
 --Children folder includes
-includeFile("weapon/melee/axe/base/serverobjects.lua")
+includeFile("../custom_scripts/object/weapon/melee/axe/base/serverobjects.lua")
 
 -- Server Objects
-includeFile("weapon/melee/axe/axe_heavy_duty.lua")
-includeFile("weapon/melee/axe/axe_vibroaxe.lua")
+includeFile("../custom_scripts/object/weapon/melee/axe/axe_heavy_duty.lua")
+includeFile("../custom_scripts/object/weapon/melee/axe/axe_vibroaxe.lua")

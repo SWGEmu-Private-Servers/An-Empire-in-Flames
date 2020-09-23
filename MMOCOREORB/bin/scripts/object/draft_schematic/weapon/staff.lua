@@ -51,23 +51,23 @@ object_draft_schematic_weapon_staff = object_draft_schematic_weapon_shared_staff
    complexity = 2, 
    size = 3, 
 
-   xpType = "crafting_general", 
+   xpType = "crafting_weapons_general", 
    xp = 32, 
 
-   assemblySkill = "general_assembly", 
-   experimentingSkill = "general_experimentation", 
+   assemblySkill = "weapon_assembly", 
+   experimentingSkill = "weapon_experimentation", 
    customizationSkill = "clothing_customization", 
 
    customizationOptions = {},
    customizationStringNames = {},
    customizationDefaults = {},
 
-   ingredientTemplateNames = {"craft_weapon_ingredients_n"},
-   ingredientTitleNames = {"staff_shaft"},
-   ingredientSlotType = {0},
-   resourceTypes = {"wood"},
-   resourceQuantities = {16},
-   contribution = {100},
+    ingredientTemplateNames = {"craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n"},
+   ingredientTitleNames = {"melee_core", "grip", "edge","shaft", "fastener"},
+   ingredientSlotType = {1, 1, 3, 0, 0},
+   resourceTypes = {"object/tangible/component/weapon/shared_base_melee_core.iff", "object/tangible/component/weapon/shared_base_melee_grip.iff", "object/tangible/component/weapon/shared_base_melee_edge.iff", "wood", "wood"},
+   resourceQuantities = {1, 1, 1, 20, 6},
+   contribution = {100, 100, 100, 100, 100},
 
 
    targetTemplate = "object/weapon/melee/polearm/lance_staff_wood_s1.iff",

@@ -45,6 +45,7 @@
 --Children folder includes
 
 -- Server Objects
+includeFile("creature/npc/base/toydarian_base_male.lua")
 includeFile("creature/npc/base/aqualish_base_female.lua")
 includeFile("creature/npc/base/aqualish_base_male.lua")
 includeFile("creature/npc/base/aqualish_s02_base_female.lua")

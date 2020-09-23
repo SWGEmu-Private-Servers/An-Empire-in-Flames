@@ -16,7 +16,24 @@ function QuestManager.activateQuest(pCreatureObject, quest)
 	end
 
 	if (QuestManager.shouldSendSystemMessage(pCreatureObject, quest)) then
+		local summary = QuestManager.getJournalSummary(quest)
+
+		if (summary ~= "") then
+			CreatureObject(pCreatureObject):sendSystemMessage(" \\#FFFF33\\Quest Started:")
+			CreatureObject(pCreatureObject):sendSystemMessage(summary)
+		end
+
 		CreatureObject(pCreatureObject):sendSystemMessage("@quest/quests:quest_journal_updated")
+	end
+
+	PlayerObject(pGhost):setActiveQuestsBit(quest, QUEST_ACTIVE)
+end
+
+function QuestManager.activateQuestSilent(pCreatureObject, quest)
+	local pGhost = CreatureObject(pCreatureObject):getPlayerObject()
+
+	if (pGhost == nil) then
+		return
 	end
 
 	PlayerObject(pGhost):setActiveQuestsBit(quest, QUEST_ACTIVE)
@@ -49,10 +66,21 @@ function QuestManager.completeQuest(pCreatureObject, quest)
 		local summary = QuestManager.getJournalSummary(quest)
 
 		if (summary ~= "") then
+			CreatureObject(pCreatureObject):sendSystemMessage(" \\#FFFF33\\Quest Completed:")
 			CreatureObject(pCreatureObject):sendSystemMessage(summary)
 		end
+	end
 
-		CreatureObject(pCreatureObject):sendSystemMessage("@quest/quests:task_complete")
+	PlayerObject(pGhost):clearActiveQuestsBit(quest)
+	PlayerObject(pGhost):setCompletedQuestsBit(quest, QUEST_COMPLETED)
+end
+
+
+function QuestManager.completeQuestSilent(pCreatureObject, quest)
+	local pGhost = CreatureObject(pCreatureObject):getPlayerObject()
+
+	if (pGhost == nil) then
+		return
 	end
 
 	PlayerObject(pGhost):clearActiveQuestsBit(quest)
@@ -325,30 +353,314 @@ QuestManager.quests.FS_SURVEY_SPECIAL_RESOURCE_13 	= 159
 QuestManager.quests.FS_SURVEY_SPECIAL_RESOURCE_14 	= 160
 QuestManager.quests.FS_SURVEY_SPECIAL_RESOURCE_15 	= 161
 QuestManager.quests.FS_SURVEY_SPECIAL_RESOURCE_16 	= 162
-QuestManager.quests.FS_DATH_wOMAN_TALK 				= 163
-QuestManager.quests.FS_PATROL_QUEST_START 			= 164
+QuestManager.quests.FS_DATH_wOMAN_TALK 			= 163
+QuestManager.quests.FS_PATROL_QUEST_START 		= 164
 QuestManager.quests.FS_REFLEX_RESCUE_QUEST_07 		= 165
 QuestManager.quests.FS_SURVEY_PHASE2_REwARD 		= 166
 QuestManager.quests.FS_SURVEY_PHASE3_REwARD 		= 167
 QuestManager.quests.FS_DEFEND_SET_FACTION_02 		= 168
-QuestManager.quests.LOOT_DATAPAD_1 					= 169
-QuestManager.quests.GOT_DATAPAD 					= 170
+QuestManager.quests.LOOT_DATAPAD_1 			= 169
+QuestManager.quests.GOT_DATAPAD 			= 170
 QuestManager.quests.FS_PHASE_2_CRAFT_DEFENSES_01 	= 171
 QuestManager.quests.FS_PHASE_3_CRAFT_SHIELDS_01 	= 172
 QuestManager.quests.FS_PHASE_2_CRAFT_DEFENSES_MAIN 	= 173
 QuestManager.quests.FS_PHASE_3_CRAFT_SHIELDS_MAIN 	= 174
-QuestManager.quests.LOOT_DATAPAD_2 					= 175
-QuestManager.quests.GOT_DATAPAD_2 					= 176
+QuestManager.quests.LOOT_DATAPAD_2 			= 175
+QuestManager.quests.GOT_DATAPAD_2 			= 176
 QuestManager.quests.FS_CS_QUEST_FAILED_ESCORT 		= 177
-QuestManager.quests.FS_PATROL_QUEST_FINISH 			= 178
+QuestManager.quests.FS_PATROL_QUEST_FINISH 		= 178
 QuestManager.quests.FS_MEDIC_PUZZLE_QUEST_FINISH 	= 179
 QuestManager.quests.FS_COMBAT_HEALING_FINISH 		= 180
 QuestManager.quests.FS_COMBAT_REWARD_PHASE2 		= 181
 QuestManager.quests.FS_REFLEX_REWARD_PHASE3 		= 182
-QuestManager.quests.FS_DEFEND_WAIT_01 				= 183
-QuestManager.quests.FS_DEFEND_WAIT_02 				= 184
+QuestManager.quests.FS_DEFEND_WAIT_01 			= 183
+QuestManager.quests.FS_DEFEND_WAIT_02 			= 184
 QuestManager.quests.FS_CRAFTING4_QUEST_FINISH 		= 185
 QuestManager.quests.FS_CRAFT_PUZZLE_QUEST_04 		= 186
 QuestManager.quests.FS_CS_QUEST_DONE_NOTIFYONLY 	= 187
+QuestManager.quests.HEROIC_SHRINE		 	= 188
+QuestManager.quests.HEROIC_SHRINE_BOSS_01	 	= 189
+QuestManager.quests.HEROIC_SHRINE_BOSS_02	 	= 190
+QuestManager.quests.HEROIC_SHRINE_BOSS_03	 	= 191
+QuestManager.quests.HEROIC_SHRINE_BOSS_04	 	= 192
+QuestManager.quests.HEROIC_SHRINE_BOSS_05	 	= 193
+QuestManager.quests.HEROIC_SHRINE_BOSS_06	 	= 194
+QuestManager.quests.HEROIC_AXKVA_MIN		 	= 195
+QuestManager.quests.HEROIC_AXKVA_MIN_REBEL	 	= 196
+QuestManager.quests.HEROIC_AXKVA_MIN_IMPERIAL	 	= 197
+QuestManager.quests.HEROIC_AXKVA_MIN_NEUTRAL	 	= 198
+QuestManager.quests.HEROIC_AXKVA_MIN_01		 	= 199
+QuestManager.quests.HEROIC_AXKVA_MIN_02		 	= 200
+QuestManager.quests.HEROIC_AXKVA_MIN_03		 	= 201
+QuestManager.quests.HEROIC_AXKVA_MIN_04		 	= 202
+QuestManager.quests.HEROIC_AXKVA_MIN_05		 	= 203
+QuestManager.quests.HEROIC_PLASMA		 	= 204
+QuestManager.quests.HEROIC_PLASMA_SORUNA	 	= 205
+QuestManager.quests.HEROIC_PLASMA_KYLANTHA	 	= 206
+QuestManager.quests.HEROIC_PLASMA_01		 	= 207
+QuestManager.quests.HEROIC_PLASMA_02		 	= 208
+QuestManager.quests.HEROIC_PLASMA_03		 	= 209
+QuestManager.quests.HEROIC_PLASMA_04		 	= 210
+QuestManager.quests.HEROIC_PLASMA_05		 	= 211
+QuestManager.quests.GALAXY_TOUR			 	= 212
+QuestManager.quests.GALAXY_TOUR_KUAT		 	= 213
+QuestManager.quests.GALAXY_TOUR_MONCAL		 	= 214
+QuestManager.quests.GALAXY_TOUR_CORUSCANT	 	= 215
+QuestManager.quests.GALAXY_TOUR_CHANDRILA	 	= 216
+QuestManager.quests.GALAXY_TOUR_TALUS		 	= 217
+QuestManager.quests.GALAXY_TOUR_TAANAB		 	= 218
+QuestManager.quests.GALAXY_TOUR_NABOO		 	= 219
+QuestManager.quests.GALAXY_TOUR_RORI		 	= 220
+QuestManager.quests.GALAXY_TOUR_ENDOR		 	= 221
+QuestManager.quests.GALAXY_TOUR_HOTH		 	= 222
+QuestManager.quests.GALAXY_TOUR_LOK		 	= 223
+QuestManager.quests.GALAXY_TOUR_TATOOINE	 	= 224
+QuestManager.quests.GALAXY_TOUR_DANTOOINE	 	= 225
+QuestManager.quests.GALAXY_TOUR_DATHOMIR	 	= 226
+QuestManager.quests.GALAXY_TOUR_YAVIN4		 	= 227
+QuestManager.quests.COLLECTIONS_RESTUSS_DEBRIS		= 228
+QuestManager.quests.COLLECTIONS_RESTUSS_DEBRIS_01	= 229
+QuestManager.quests.COLLECTIONS_RESTUSS_DEBRIS_02	= 230
+QuestManager.quests.COLLECTIONS_RESTUSS_DEBRIS_03	= 231
+QuestManager.quests.COLLECTIONS_RESTUSS_DEBRIS_04	= 232
+QuestManager.quests.COLLECTIONS_RESTUSS_DEBRIS_05	= 233
+QuestManager.quests.COLLECTIONS_RESTUSS_DEBRIS_06	= 234
+QuestManager.quests.COLLECTIONS_RESTUSS_DEBRIS_07	= 235
+QuestManager.quests.COLLECTIONS_RESTUSS_DEBRIS_08	= 236
+QuestManager.quests.SPEEDER_FOR_ME			= 237
+QuestManager.quests.SPEEDER_FOR_ME_01			= 238
+QuestManager.quests.SPEEDER_FOR_ME_02			= 239
+QuestManager.quests.SPEEDER_FOR_ME_03			= 240
+QuestManager.quests.RESTUSS_OVERQUEST			= 241
+QuestManager.quests.RESTUSS_CALL_HONDO			= 242
+QuestManager.quests.RESTUSS_MAYOR			= 243
+QuestManager.quests.RESTUSS_MAYOR_GOAL			= 244
+QuestManager.quests.RESTUSS_UNIVERSITY_GOAL		= 245
+QuestManager.quests.RESTUSS_MERCHANT_GOAL		= 246
+QuestManager.quests.RESTUSS_TRAINER_GOAL		= 247
+QuestManager.quests.RESTUSS_CANTINA_GOAL		= 248
+QuestManager.quests.RESTUSS_HOSPITAL_GOAL		= 249
+QuestManager.quests.COLLECTIONS_HOTH_TAUNTAUN		= 250
+QuestManager.quests.COLLECTIONS_HOTH_TAUNTAUN_01	= 251
+QuestManager.quests.COLLECTIONS_HOTH_TAUNTAUN_02	= 252
+QuestManager.quests.COLLECTIONS_HOTH_TAUNTAUN_03	= 253
+QuestManager.quests.COLLECTIONS_HOTH_TAUNTAUN_04	= 254
+QuestManager.quests.COLLECTIONS_HOTH_TAUNTAUN_05	= 255
+QuestManager.quests.COLLECTIONS_HOTH_TAUNTAUN_06	= 256
+QuestManager.quests.COLLECTIONS_HOTH_TAUNTAUN_07	= 257
+QuestManager.quests.COLLECTIONS_BUBBLING_ROCK		= 258
+QuestManager.quests.COLLECTIONS_BUBBLING_ROCK_01	= 259
+QuestManager.quests.COLLECTIONS_BUBBLING_ROCK_02	= 260
+QuestManager.quests.COLLECTIONS_BUBBLING_ROCK_03	= 261
+QuestManager.quests.COLLECTIONS_BUBBLING_ROCK_04	= 262
+QuestManager.quests.COLLECTIONS_BUBBLING_ROCK_05	= 263
+QuestManager.quests.COLLECTIONS_BUBBLING_ROCK_06	= 264
+QuestManager.quests.COLLECTIONS_BUBBLING_ROCK_07	= 265
+QuestManager.quests.COLLECTIONS_BUBBLING_ROCK_08	= 266
+QuestManager.quests.COLLECTIONS_BUBBLING_ROCK_09	= 267
+QuestManager.quests.COLLECTIONS_BUBBLING_ROCK_10	= 268
+QuestManager.quests.COLLECTIONS_MIGHT_EMPIRE		= 269
+QuestManager.quests.COLLECTIONS_MIGHT_EMPIRE_01		= 270
+QuestManager.quests.COLLECTIONS_MIGHT_EMPIRE_02		= 271
+QuestManager.quests.COLLECTIONS_MIGHT_EMPIRE_03		= 272
+QuestManager.quests.COLLECTIONS_MIGHT_EMPIRE_04		= 273
+QuestManager.quests.COLLECTIONS_MIGHT_EMPIRE_05		= 274
+QuestManager.quests.COLLECTIONS_MIGHT_EMPIRE_06		= 275
+QuestManager.quests.COLLECTIONS_MIGHT_EMPIRE_07		= 276
+QuestManager.quests.COLLECTIONS_MIGHT_EMPIRE_08		= 277
+QuestManager.quests.COLLECTIONS_MIGHT_EMPIRE_09		= 278
+QuestManager.quests.COLLECTIONS_WILL_OF_REBELLION	= 279
+QuestManager.quests.COLLECTIONS_WILL_OF_REBELLION_01	= 280
+QuestManager.quests.COLLECTIONS_WILL_OF_REBELLION_02	= 281
+QuestManager.quests.COLLECTIONS_WILL_OF_REBELLION_03	= 282
+QuestManager.quests.COLLECTIONS_WILL_OF_REBELLION_04	= 283
+QuestManager.quests.COLLECTIONS_WILL_OF_REBELLION_05	= 284
+QuestManager.quests.COLLECTIONS_WILL_OF_REBELLION_06	= 285
+QuestManager.quests.COLLECTIONS_WILL_OF_REBELLION_07	= 286
+QuestManager.quests.COLLECTIONS_WILL_OF_REBELLION_08	= 287
+QuestManager.quests.COLLECTIONS_WILL_OF_REBELLION_09	= 288
+QuestManager.quests.COLLECTIONS_WILL_OF_REBELLION_10	= 289
+QuestManager.quests.COLLECTIONS_BURNING_ROCK		= 290
+QuestManager.quests.COLLECTIONS_BURNING_ROCK_01		= 291
+QuestManager.quests.COLLECTIONS_BURNING_ROCK_02		= 292
+QuestManager.quests.COLLECTIONS_BURNING_ROCK_03		= 293
+QuestManager.quests.COLLECTIONS_BURNING_ROCK_04		= 294
+QuestManager.quests.COLLECTIONS_BURNING_ROCK_05		= 295
+QuestManager.quests.COLLECTIONS_BURNING_ROCK_06		= 296
+QuestManager.quests.COLLECTIONS_BURNING_ROCK_07		= 297
+QuestManager.quests.COLLECTIONS_BURNING_ROCK_08		= 298
+QuestManager.quests.COLLECTIONS_BURNING_ROCK_09		= 299
+QuestManager.quests.COLLECTIONS_BURNING_ROCK_10		= 300
+QuestManager.quests.COLLECTIONS_STEAMING_ROCK		= 301
+QuestManager.quests.COLLECTIONS_STEAMING_ROCK_01	= 302
+QuestManager.quests.COLLECTIONS_STEAMING_ROCK_02	= 303
+QuestManager.quests.COLLECTIONS_STEAMING_ROCK_03	= 304
+QuestManager.quests.COLLECTIONS_STEAMING_ROCK_04	= 305
+QuestManager.quests.COLLECTIONS_STEAMING_ROCK_05	= 306
+QuestManager.quests.COLLECTIONS_STEAMING_ROCK_06	= 307
+QuestManager.quests.COLLECTIONS_STEAMING_ROCK_07	= 308
+QuestManager.quests.COLLECTIONS_STEAMING_ROCK_08	= 309
+QuestManager.quests.COLLECTIONS_STEAMING_ROCK_09	= 310
+QuestManager.quests.COLLECTIONS_STEAMING_ROCK_10	= 311
+QuestManager.quests.COLLECTIONS_GLOWING_ROCK		= 312
+QuestManager.quests.COLLECTIONS_GLOWING_ROCK_01		= 313
+QuestManager.quests.COLLECTIONS_GLOWING_ROCK_02		= 314
+QuestManager.quests.COLLECTIONS_GLOWING_ROCK_03		= 315
+QuestManager.quests.COLLECTIONS_GLOWING_ROCK_04		= 316
+QuestManager.quests.COLLECTIONS_GLOWING_ROCK_05		= 317
+QuestManager.quests.COLLECTIONS_GLOWING_ROCK_06		= 318
+QuestManager.quests.COLLECTIONS_GLOWING_ROCK_07		= 319
+QuestManager.quests.COLLECTIONS_GLOWING_ROCK_08		= 320
+QuestManager.quests.COLLECTIONS_GLOWING_ROCK_09		= 321
+QuestManager.quests.COLLECTIONS_GLOWING_ROCK_10		= 322
+QuestManager.quests.COLLECTIONS_NR_ASSAULT_ARMOR	= 323
+QuestManager.quests.COLLECTIONS_NR_ASSAULT_ARMOR_01	= 324
+QuestManager.quests.COLLECTIONS_NR_ASSAULT_ARMOR_02	= 325
+QuestManager.quests.COLLECTIONS_NR_ASSAULT_ARMOR_03	= 326
+QuestManager.quests.COLLECTIONS_NR_ASSAULT_ARMOR_04	= 327
+QuestManager.quests.COLLECTIONS_NR_ASSAULT_ARMOR_05	= 328
+QuestManager.quests.COLLECTIONS_NR_ASSAULT_ARMOR_06	= 329
+QuestManager.quests.COLLECTIONS_NR_ASSAULT_ARMOR_07	= 330
+QuestManager.quests.COLLECTIONS_NR_ASSAULT_ARMOR_08	= 331
+QuestManager.quests.COLLECTIONS_NR_ASSAULT_ARMOR_09	= 332
+QuestManager.quests.COLLECTIONS_NR_ASSAULT_ARMOR_10	= 333
+QuestManager.quests.COLLECTIONS_NR_MARINE_ARMOR		= 334
+QuestManager.quests.COLLECTIONS_NR_MARINE_ARMOR_01	= 335
+QuestManager.quests.COLLECTIONS_NR_MARINE_ARMOR_02	= 336
+QuestManager.quests.COLLECTIONS_NR_MARINE_ARMOR_03	= 337
+QuestManager.quests.COLLECTIONS_NR_MARINE_ARMOR_04	= 338
+QuestManager.quests.COLLECTIONS_NR_MARINE_ARMOR_05	= 339
+QuestManager.quests.COLLECTIONS_NR_MARINE_ARMOR_06	= 340
+QuestManager.quests.COLLECTIONS_NR_MARINE_ARMOR_07	= 341
+QuestManager.quests.COLLECTIONS_NR_MARINE_ARMOR_08	= 342
+QuestManager.quests.COLLECTIONS_NR_MARINE_ARMOR_09	= 343
+QuestManager.quests.COLLECTIONS_NR_MARINE_ARMOR_10	= 344
+QuestManager.quests.COLLECTIONS_NR_BATTLE_ARMOR		= 345
+QuestManager.quests.COLLECTIONS_NR_BATTLE_ARMOR_01	= 346
+QuestManager.quests.COLLECTIONS_NR_BATTLE_ARMOR_02	= 347
+QuestManager.quests.COLLECTIONS_NR_BATTLE_ARMOR_03	= 348
+QuestManager.quests.COLLECTIONS_NR_BATTLE_ARMOR_04	= 349
+QuestManager.quests.COLLECTIONS_NR_BATTLE_ARMOR_05	= 350
+QuestManager.quests.COLLECTIONS_NR_BATTLE_ARMOR_06	= 351
+QuestManager.quests.COLLECTIONS_NR_BATTLE_ARMOR_07	= 352
+QuestManager.quests.COLLECTIONS_NR_BATTLE_ARMOR_08	= 353
+QuestManager.quests.COLLECTIONS_NR_BATTLE_ARMOR_09	= 354
+QuestManager.quests.COLLECTIONS_NR_BATTLE_ARMOR_10	= 355
+QuestManager.quests.COLLECTIONS_SCOUT_TROOPER_ARMOR	= 356
+QuestManager.quests.COLLECTIONS_SCOUT_TROOPER_ARMOR_01	= 357
+QuestManager.quests.COLLECTIONS_SCOUT_TROOPER_ARMOR_02	= 358
+QuestManager.quests.COLLECTIONS_SCOUT_TROOPER_ARMOR_03	= 359
+QuestManager.quests.COLLECTIONS_SCOUT_TROOPER_ARMOR_04	= 360
+QuestManager.quests.COLLECTIONS_SCOUT_TROOPER_ARMOR_05	= 361
+QuestManager.quests.COLLECTIONS_SCOUT_TROOPER_ARMOR_06	= 362
+QuestManager.quests.COLLECTIONS_SCOUT_TROOPER_ARMOR_07	= 363
+QuestManager.quests.COLLECTIONS_SCOUT_TROOPER_ARMOR_08	= 364
+QuestManager.quests.COLLECTIONS_SCOUT_TROOPER_ARMOR_09	= 365
+QuestManager.quests.COLLECTIONS_SCOUT_TROOPER_ARMOR_10	= 366
+QuestManager.quests.COLLECTIONS_SHOCK_TROOPER_ARMOR	= 367
+QuestManager.quests.COLLECTIONS_SHOCK_TROOPER_ARMOR_01	= 368
+QuestManager.quests.COLLECTIONS_SHOCK_TROOPER_ARMOR_02	= 369
+QuestManager.quests.COLLECTIONS_SHOCK_TROOPER_ARMOR_03	= 370
+QuestManager.quests.COLLECTIONS_SHOCK_TROOPER_ARMOR_04	= 371
+QuestManager.quests.COLLECTIONS_SHOCK_TROOPER_ARMOR_05	= 372
+QuestManager.quests.COLLECTIONS_SHOCK_TROOPER_ARMOR_06	= 373
+QuestManager.quests.COLLECTIONS_SHOCK_TROOPER_ARMOR_07	= 374
+QuestManager.quests.COLLECTIONS_SHOCK_TROOPER_ARMOR_08	= 375
+QuestManager.quests.COLLECTIONS_SHOCK_TROOPER_ARMOR_09	= 376
+QuestManager.quests.COLLECTIONS_SHOCK_TROOPER_ARMOR_10	= 377
+QuestManager.quests.COLLECTIONS_STORMTROOPER_ARMOR	= 378
+QuestManager.quests.COLLECTIONS_STORMTROOPER_ARMOR_01	= 379
+QuestManager.quests.COLLECTIONS_STORMTROOPER_ARMOR_02	= 380
+QuestManager.quests.COLLECTIONS_STORMTROOPER_ARMOR_03	= 381
+QuestManager.quests.COLLECTIONS_STORMTROOPER_ARMOR_04	= 382
+QuestManager.quests.COLLECTIONS_STORMTROOPER_ARMOR_05	= 383
+QuestManager.quests.COLLECTIONS_STORMTROOPER_ARMOR_06	= 384
+QuestManager.quests.COLLECTIONS_STORMTROOPER_ARMOR_07	= 385
+QuestManager.quests.COLLECTIONS_STORMTROOPER_ARMOR_08	= 386
+QuestManager.quests.COLLECTIONS_STORMTROOPER_ARMOR_09	= 387
+QuestManager.quests.COLLECTIONS_STORMTROOPER_ARMOR_10	= 388
+QuestManager.quests.COLLECTIONS_STUFFED_RANCOR		= 389
+QuestManager.quests.COLLECTIONS_STUFFED_RANCOR_01	= 390
+QuestManager.quests.COLLECTIONS_STUFFED_RANCOR_02	= 391
+QuestManager.quests.COLLECTIONS_STUFFED_RANCOR_03	= 392
+QuestManager.quests.COLLECTIONS_STUFFED_RANCOR_04	= 393
+QuestManager.quests.COLLECTIONS_STUFFED_RANCOR_05	= 394
+QuestManager.quests.COLLECTIONS_STUFFED_RANCOR_06	= 395
+QuestManager.quests.COLLECTIONS_STUFFED_RANCOR_07	= 396
+QuestManager.quests.COLLECTIONS_STUFFED_RANCOR_08	= 397
+QuestManager.quests.EMPIRE_DAY_REBEL_PROPAGANDA		= 398
+QuestManager.quests.EMPIRE_DAY_IMPERIAL_PROPAGANDA	= 399
+QuestManager.quests.EMPIRE_DAY_REBEL_ANTIPROPAGANDA	= 400
+QuestManager.quests.EMPIRE_DAY_IMPERIAL_ANTIPROPAGANDA	= 401
+QuestManager.quests.EMPIRE_DAY_EWOK_DEFENSE		= 402
+QuestManager.quests.EMPIRE_DAY_EWOK_ASSAULT		= 403
+QuestManager.quests.EMPIRE_DAY_EWOK_REBEL_PVP		= 404
+QuestManager.quests.EMPIRE_DAY_EWOK_IMPERIAL_PVP	= 405
+QuestManager.quests.EMPIRE_DAY_REBEL_SPEEDERBIKE	= 406
+QuestManager.quests.EMPIRE_DAY_IMPERIAL_SPEEDERBIKE	= 407
+QuestManager.quests.COLLECTIONS_STUFFED_DEWBACK		= 408
+QuestManager.quests.COLLECTIONS_STUFFED_DEWBACK_01	= 409
+QuestManager.quests.COLLECTIONS_STUFFED_DEWBACK_02	= 410
+QuestManager.quests.COLLECTIONS_STUFFED_DEWBACK_03	= 411
+QuestManager.quests.COLLECTIONS_STUFFED_DEWBACK_04	= 412
+QuestManager.quests.COLLECTIONS_STUFFED_DEWBACK_05	= 413
+QuestManager.quests.COLLECTIONS_STUFFED_DEWBACK_06	= 414
+QuestManager.quests.COLLECTIONS_STUFFED_DEWBACK_07	= 415
+QuestManager.quests.COLLECTIONS_STUFFED_DEWBACK_08	= 416
+QuestManager.quests.COLLECTIONS_STUFFED_TAUNTAUN	= 417
+QuestManager.quests.COLLECTIONS_STUFFED_TAUNTAUN_01	= 418
+QuestManager.quests.COLLECTIONS_STUFFED_TAUNTAUN_02	= 419
+QuestManager.quests.COLLECTIONS_STUFFED_TAUNTAUN_03	= 420
+QuestManager.quests.COLLECTIONS_STUFFED_TAUNTAUN_04	= 421
+QuestManager.quests.COLLECTIONS_STUFFED_TAUNTAUN_05	= 422
+QuestManager.quests.COLLECTIONS_STUFFED_TAUNTAUN_06	= 423
+QuestManager.quests.COLLECTIONS_STUFFED_TAUNTAUN_07	= 424
+QuestManager.quests.COLLECTIONS_STUFFED_TAUNTAUN_08	= 425
+QuestManager.quests.COLLECTIONS_STUFFED_WAMPA		= 426
+QuestManager.quests.COLLECTIONS_STUFFED_WAMPA_01	= 427
+QuestManager.quests.COLLECTIONS_STUFFED_WAMPA_02	= 428
+QuestManager.quests.COLLECTIONS_STUFFED_WAMPA_03	= 429
+QuestManager.quests.COLLECTIONS_STUFFED_WAMPA_04	= 430
+QuestManager.quests.COLLECTIONS_STUFFED_WAMPA_05	= 431
+QuestManager.quests.COLLECTIONS_STUFFED_WAMPA_06	= 432
+QuestManager.quests.COLLECTIONS_STUFFED_WAMPA_07	= 433
+QuestManager.quests.COLLECTIONS_STUFFED_WAMPA_08	= 434
+QuestManager.quests.COLLECTIONS_STUFFED_WAMPA_09	= 435
+QuestManager.quests.COLLECTIONS_DURNI_INFESTATION	= 436
+QuestManager.quests.COLLECTIONS_DURNI_INFESTATION_01	= 437
+QuestManager.quests.COLLECTIONS_DURNI_INFESTATION_02	= 438
+QuestManager.quests.COLLECTIONS_DURNI_INFESTATION_03	= 439
+QuestManager.quests.COLLECTIONS_DURNI_INFESTATION_04	= 440
+QuestManager.quests.COLLECTIONS_DURNI_INFESTATION_05	= 441
+QuestManager.quests.COLLECTIONS_DURNI_INFESTATION_06	= 442
+QuestManager.quests.COLLECTIONS_DURNI_INFESTATION_07	= 443
+QuestManager.quests.COLLECTIONS_DURNI_INFESTATION_08	= 444
+QuestManager.quests.COLLECTIONS_DURNI_INFESTATION_09	= 445
+QuestManager.quests.COLLECTIONS_DURNI_INFESTATION_10	= 446
+QuestManager.quests.COLLECTIONS_DURNI_INFESTATION_11	= 447
+QuestManager.quests.COLLECTIONS_DURNI_INFESTATION_12	= 448
+QuestManager.quests.COLLECTIONS_GLASS_SHELVING		= 449
+QuestManager.quests.COLLECTIONS_GLASS_SHELVING_01	= 450
+QuestManager.quests.COLLECTIONS_GLASS_SHELVING_02	= 451
+QuestManager.quests.COLLECTIONS_GLASS_SHELVING_03	= 452
+QuestManager.quests.COLLECTIONS_GLASS_SHELVING_04	= 453
+QuestManager.quests.COLLECTIONS_GLASS_SHELVING_05	= 454
+QuestManager.quests.COLLECTIONS_GLASS_SHELVING_06	= 455
+QuestManager.quests.COLLECTIONS_GLASS_SHELVING_07	= 456
+QuestManager.quests.COLLECTIONS_GLASS_SHELVING_08	= 457
+QuestManager.quests.COLLECTIONS_GLASS_SHELVING_09	= 458
+QuestManager.quests.COLLECTIONS_GLASS_SHELVING_10	= 459
+QuestManager.quests.COLLECTIONS_HOTH_METEORITE		= 460
+QuestManager.quests.COLLECTIONS_HOTH_METEORITE_01	= 461
+QuestManager.quests.COLLECTIONS_HOTH_METEORITE_02	= 462
+QuestManager.quests.COLLECTIONS_HOTH_METEORITE_03	= 463
+QuestManager.quests.COLLECTIONS_HOTH_METEORITE_04	= 464
+QuestManager.quests.COLLECTIONS_HOTH_METEORITE_05	= 465
+QuestManager.quests.COLLECTIONS_HOTH_METEORITE_06	= 466
+QuestManager.quests.COLLECTIONS_HOTH_METEORITE_07	= 467
+QuestManager.quests.COLLECTIONS_HOTH_METEORITE_08	= 468
+QuestManager.quests.COLLECTIONS_HOTH_METEORITE_09	= 469
+QuestManager.quests.COLLECTIONS_HOTH_METEORITE_10	= 470
+
 
 return QuestManager

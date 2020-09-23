@@ -47,21 +47,20 @@ UnarmedSpinAttack2Command = {
 	damageMultiplier = 3.0,
 	speedMultiplier = 3.0,
 	areaAction = true,
-	areaRange = 16,
-	healthCostMultiplier = 2,
-	actionCostMultiplier = 2,
-	mindCostMultiplier = 2,
-        accuracyBonus = 15,
+	areaRange = 8,
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 25,
+	mindCostMultiplier = 0,
+  accuracyBonus = 15,
 
-	animation = "combo_3d", 
+	animation = "combo_3d",
 	animType = GENERATE_INTENSITY,
 
 	combatSpam = "unarmed_knockdown",
-	
+
 	weaponType = UNARMEDWEAPON,
 
 	range = -1
 }
 
 AddCommand(UnarmedSpinAttack2Command)
-

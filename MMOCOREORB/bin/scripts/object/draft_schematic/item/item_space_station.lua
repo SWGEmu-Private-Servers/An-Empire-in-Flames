@@ -51,12 +51,12 @@ object_draft_schematic_item_item_space_station = object_draft_schematic_item_sha
    complexity = 15, 
    size = 1, 
 
-   xpType = "crafting_structure_general", 
+   xpType = "crafting_general", 
    xp = 900, 
 
    assemblySkill = "general_assembly", 
    experimentingSkill = "general_experimentation", 
-   customizationSkill = "clothing_customization",
+   customizationSkill = "clothing_customization", 
 
    customizationOptions = {},
    customizationStringNames = {},

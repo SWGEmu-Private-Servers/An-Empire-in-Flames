@@ -2,7 +2,7 @@ cantina_chair_schematic = {
 	minimumLevel = 0,
 	maximumLevel = -1,
 	customObjectName = "",
-	directObjectTemplate = "object/tangible/loot/loot_schematic/cantina_chair_schematic.iff",
+	directObjectTemplate = "object/tangible/loot/loot_schematic/architect/cantina_chair_schematic.iff",
 	craftingValues = {
 	},
 	customizationStringNames = {},

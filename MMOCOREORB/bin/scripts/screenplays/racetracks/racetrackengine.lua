@@ -24,8 +24,8 @@ function RaceTrack:startRacing(pPlayer)
 	self:createResetPlayerUnfinishedEvent(pPlayer)
 	local waypointID = PlayerObject(pGhost):addWaypoint(self.trackConfig.planetName,self.trackConfig.trackCheckpoint .. "0",self.trackConfig.trackCheckpoint .. "0",self.trackConfig.waypoints[1].x,self.trackConfig.waypoints[1].y,WAYPOINTWHITE,true,true,WAYPOINTRACETRACK)
 	local time = getTimestampMilli()
-	writeScreenPlayData(pPlayer, self.trackConfig.trackName, "starttime", time)
-	writeScreenPlayData(pPlayer, self.trackConfig.trackName, "waypoint", 1)
+	writeData(SceneObject(pPlayer):getObjectID() .. ":starttime", time)
+	writeData(SceneObject(pPlayer):getObjectID() .. ":waypoint", 1)
 	CreatureObject(pPlayer):sendSystemMessage("@theme_park/racing/racing:go_fly")
 	CreatureObject(pPlayer):playMusicMessage("sound/music_combat_bfield_lp.snd")
 end
@@ -35,7 +35,7 @@ function RaceTrack:processWaypoint(pActiveArea, pObject)
 		return 0
 	end
 
-	local lastIndex =  readScreenPlayData(pObject, self.trackConfig.trackName, "waypoint")
+	local lastIndex =  tonumber(readData(SceneObject(pObject):getObjectID() .. ":waypoint"))
 	if lastIndex ~= "" then
 		local index = self:getWaypointIndex(pActiveArea)
 		if tonumber(lastIndex)==index then
@@ -67,7 +67,7 @@ function RaceTrack:actuallyProcessWaypoint(pPlayer, index)
 	local seconds = self:getLaptime(pPlayer)
 	CreatureObject(pPlayer):sendSystemMessage(self.trackConfig.trackLaptime .. index)
 	CreatureObject(pPlayer):sendSystemMessage("Time " .. self:roundNumber(seconds/1000) .. "s")
-	writeScreenPlayData(pPlayer,self.trackConfig.trackName, "waypoint", index+1)
+	writeData(SceneObject(pPlayer):getObjectID() .. ":waypoint", index+1)
 	CreatureObject(pPlayer):playMusicMessage("sound/music_combat_bfield_lp.snd")
 end
 
@@ -81,14 +81,17 @@ function RaceTrack:finalWaypoint(pActiveArea, pPlayer)
 	CreatureObject(pPlayer):playMusicMessage("sound/music_combat_bfield_vict.snd")
 	self:checkPersonalTime(pPlayer)
 	self:checkServerRecordTime(pPlayer)
-	clearScreenPlayData(pPlayer,self.trackConfig.trackName )
 	PlayerObject(pGhost):removeWaypointBySpecialType(WAYPOINTRACETRACK)
+	writeData(SceneObject(pPlayer):getObjectID() .. ":starttime", 0)
+	writeData(SceneObject(pPlayer):getObjectID() .. ":waypoint", 0)
+	deleteData(SceneObject(pPlayer):getObjectID() .. ":starttime")
+	deleteData(SceneObject(pPlayer):getObjectID() .. ":waypoint")
 end
 
 function RaceTrack:getLaptime(pObject)
-	local startTime = readScreenPlayData(pObject, self.trackConfig.trackName, "starttime")
+	local startTime = tonumber(readData(SceneObject(pObject):getObjectID() .. ":starttime"))
 	local seconds = getTimestampMilli() - tonumber(startTime)
-	writeScreenPlayData(pObject, self.trackConfig.trackName, "laptime",seconds)
+	writeData(SceneObject(pObject):getObjectID() .. ":laptime",seconds)
 	return seconds
 end
 
@@ -232,7 +235,7 @@ function RaceTrack:resetPlayerUnfinishedEventHandler(pObject)
 		return
 	end
 
-	local startTime = tonumber(readScreenPlayData(pObject, self.trackConfig.trackName , "starttime"))
+	local startTime = tonumber(readData(SceneObject(pObject):getObjectID() .. ":starttime"))
 	if not(startTime == nil) then
 		local time = getTimestampMilli()
 		if  math.abs((time/1000) - (startTime/1000)) > (self.trackConfig.expiryTime-5) then

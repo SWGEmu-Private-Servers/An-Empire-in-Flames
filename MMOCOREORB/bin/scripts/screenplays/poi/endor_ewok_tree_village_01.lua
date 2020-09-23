@@ -10,7 +10,7 @@ registerScreenPlay("EndorEwokTreeVillage01ScreenPlay", true)
 
 function EndorEwokTreeVillage01ScreenPlay:start()
 	if (isZoneEnabled("endor")) then
-		self:spawnMobiles()
+--		self:spawnMobiles()
 	end
 end
 

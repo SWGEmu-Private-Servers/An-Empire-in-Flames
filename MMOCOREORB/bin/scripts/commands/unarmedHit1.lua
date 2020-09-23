@@ -44,23 +44,22 @@
 UnarmedHit1Command = {
 	name = "unarmedhit1",
 
-	damageMultiplier = 2.0,
-	speedMultiplier = 1.5,
-	accuracyBonus = 15,
-	
-	healthCostMultiplier = 1.0,
-	actionCostMultiplier = 1.0,
-	mindCostMultiplier = 1.0,
+	damageMultiplier = 2.25,
+	speedMultiplier = 1.0,
+	accuracyBonus = 30,
 
-	animation = "combo_2d", 
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 8,
+	mindCostMultiplier = 0,
+
+	animation = "combo_2d",
 	animType = GENERATE_INTENSITY,
 
 	combatSpam = "steelhands",
-	
+
 	weaponType = UNARMEDWEAPON,
 
 	range = -1
 }
 
 AddCommand(UnarmedHit1Command)
-

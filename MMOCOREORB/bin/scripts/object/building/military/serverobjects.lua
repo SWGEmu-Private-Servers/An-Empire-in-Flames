@@ -45,6 +45,8 @@
 --Children folder includes
 
 -- Server Objects
+includeFile("building/military/battlefield_imperial_cloning_facility.lua")
+includeFile("building/military/battlefield_rebel_cloning_facility.lua")
 includeFile("building/military/event_imperial_cloning_facility.lua")
 includeFile("building/military/event_outpost_cloning_facility.lua")
 includeFile("building/military/event_rebel_cloning_facility.lua")
@@ -80,6 +82,7 @@ includeFile("building/military/mun_all_military_tower_impl_guard_s01.lua")
 includeFile("building/military/outpost_cloning_facility.lua")
 includeFile("building/military/outpost_cloning_facility_s02.lua")
 includeFile("building/military/outpost_cloning_facility_s03.lua")
+includeFile("building/military/outpost_hangar.lua")
 includeFile("building/military/outpost_shed.lua")
 includeFile("building/military/outpost_shed_s02.lua")
 includeFile("building/military/outpost_shed_s03.lua")

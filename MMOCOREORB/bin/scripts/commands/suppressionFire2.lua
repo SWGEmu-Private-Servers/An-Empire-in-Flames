@@ -44,22 +44,23 @@
 SuppressionFire2Command = {
         name = "suppressionfire2",
 
-	damageMultiplier = 2.5,
-	speedMultiplier = 1.5,
-	healthCostMultiplier = 2.0,
-	actionCostMultiplier = 1.25,
-	mindCostMultiplier = 0.5,
+	damageMultiplier = 1.0,
+	speedMultiplier = 1.0,
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 35,
+	mindCostMultiplier = 0,
 	accuracyBonus = 25,
-
+  coneAngle = 30,
+	coneAction = true,
 	stateEffects = {
-	  StateEffect( 
-		POSTUREDOWN_EFFECT, 
-		{ "postureDownRecovery" }, 
-		{ "posture_change_down_defense" }, 
+	  StateEffect(
+		POSTUREDOWN_EFFECT,
+		{ "postureDownRecovery" },
+		{ "posture_change_down_defense" },
 		{},
-		100, 
-		0, 
-		0 
+		100,
+		0,
+		0
 	  )
 	},
 
@@ -68,11 +69,10 @@ SuppressionFire2Command = {
 	animation = "fire_defender_posture_change_down",
 
 	combatSpam = "sup_fire",
-	
+
 	weaponType = CARBINEWEAPON,
 
 	range = -1
 }
 
 AddCommand(SuppressionFire2Command)
-

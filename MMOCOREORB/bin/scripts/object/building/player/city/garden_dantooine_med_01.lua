@@ -45,11 +45,11 @@ object_building_player_city_garden_dantooine_med_01 = object_building_player_cit
 
 	lotSize = 0,
 	baseMaintenanceRate = 0,
-	allowedZones = {"corellia", "dantooine", "lok", "naboo", "rori", "talus", "tatooine"},
+	allowedZones = {"chandrila", "corellia", "dantooine", "kuat", "lok", "naboo", "rori", "taanab", "talus", "tatooine"},
 	length = 5,
 	width = 5,
 	cityRankRequired = 2,
-	cityMaintenanceBase = 20000,
+	cityMaintenanceBase = 750,
 	abilityRequired = "place_exotic_garden",
 	zoneComponent = "StructureZoneComponent",
 	dataObjectComponent = "DecorationDataComponent",

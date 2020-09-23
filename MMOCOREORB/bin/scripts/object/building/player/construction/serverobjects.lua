@@ -68,3 +68,6 @@ includeFile("building/player/construction/construction_player_house_naboo_small_
 includeFile("building/player/construction/construction_player_house_tatooine_large_style_01.lua")
 includeFile("building/player/construction/construction_player_house_tatooine_medium_style_01.lua")
 includeFile("building/player/construction/construction_player_house_tatooine_small_style_01.lua")
+
+--Additions
+includeFile("building/player/construction/construction_stronghold.lua")

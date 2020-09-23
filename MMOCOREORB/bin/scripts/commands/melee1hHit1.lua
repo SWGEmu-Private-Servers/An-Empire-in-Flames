@@ -44,22 +44,36 @@
 Melee1hHit1Command = {
 	name = "melee1hhit1",
 
-	damageMultiplier = 2.5,
-	speedMultiplier = 1.5,
-	healthCostMultiplier = 0.5,
-	actionCostMultiplier = 0.5,
-	mindCostMultiplier = 0.625,
-        accuracyBonus = 25,
+	damageMultiplier = 2.0,
+	speedMultiplier = 1.0,
+	accuracyBonus = 50,
 
-	animation = "counter_high_center", 
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 10,
+	mindCostMultiplier = 0,
+
+	animation = "counter_high_center",
 	animType = GENERATE_INTENSITY,
 
 	combatSpam = "chomai",
-	
+
+	dotEffects = {
+	  DotEffect(
+		BLEEDING,
+		{ "resistance_bleeding", "bleed_resist" },
+		ATTACK_POOL,
+		true,
+		0,
+		100,
+		60,
+		16,
+    50
+	  )
+	},
+
 	weaponType = ONEHANDMELEEWEAPON,
 
 	range = -1
 }
 
 AddCommand(Melee1hHit1Command)
-

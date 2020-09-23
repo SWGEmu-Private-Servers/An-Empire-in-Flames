@@ -48,11 +48,11 @@ object_draft_schematic_clothing_clothing_backpack_field_03 = object_draft_schema
    customObjectName = "Military Travel Pack",
 
    craftingToolTab = 8, -- (See DraftSchematicObjectTemplate.h)
-   complexity = 23, 
+   complexity = 20, 
    size = 2, 
 
    xpType = "crafting_clothing_general", 
-   xp = 100, 
+   xp = 140, 
 
    assemblySkill = "clothing_assembly", 
    experimentingSkill = "clothing_experimentation", 
@@ -62,12 +62,12 @@ object_draft_schematic_clothing_clothing_backpack_field_03 = object_draft_schema
    customizationStringNames = {},
    customizationDefaults = {},
 
-   ingredientTemplateNames = {"craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n"},
-   ingredientTitleNames = {"primary_pocket", "secondary_pocket", "strap_pad", "strap_adjustment"},
-   ingredientSlotType = {0, 0, 0, 0},
-   resourceTypes = {"fiberplast", "hide", "hide", "metal"},
-   resourceQuantities = {20, 10, 10, 5},
-   contribution = {100, 100, 100, 100},
+   ingredientTemplateNames = {"craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n", "craft_clothing_ingredients_n"},
+   ingredientTitleNames = {"primary_pocket", "secondary_pocket", "strap_pad", "strap_adjustment", "reinforcement"},
+   ingredientSlotType = {0, 0, 0, 0, 3},
+   resourceTypes = {"fiberplast", "hide", "hide", "metal", "object/tangible/component/clothing/shared_reinforced_fiber_panels.iff"},
+   resourceQuantities = {20, 10, 10, 5, 1},
+   contribution = {100, 100, 100, 100, 100},
 
 
    targetTemplate = "object/tangible/wearables/backpack/backpack_s03.iff",

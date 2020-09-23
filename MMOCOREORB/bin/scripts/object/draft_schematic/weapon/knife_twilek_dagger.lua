@@ -51,23 +51,23 @@ object_draft_schematic_weapon_knife_twilek_dagger = object_draft_schematic_weapo
    complexity = 9, 
    size = 1, 
 
-   xpType = "crafting_general", 
-   xp = 40, 
+   xpType = "crafting_weapons_general", 
+   xp = 110, 
 
-   assemblySkill = "general_assembly", 
-   experimentingSkill = "general_experimentation", 
+   assemblySkill = "weapon_assembly", 
+   experimentingSkill = "weapon_experimentation", 
    customizationSkill = "clothing_customization", 
 
    customizationOptions = {},
    customizationStringNames = {},
    customizationDefaults = {},
 
-   ingredientTemplateNames = {"craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n"},
-   ingredientTitleNames = {"knife_shaft", "cutting_edge", "grip"},
-   ingredientSlotType = {0, 0, 0},
-   resourceTypes = {"steel", "metal_ferrous", "petrochem_inert"},
-   resourceQuantities = {9, 4, 7},
-   contribution = {100, 100, 100},
+    ingredientTemplateNames = {"craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n"},
+   ingredientTitleNames = {"melee_core", "grip", "edge","shaft", "fastener"},
+   ingredientSlotType = {1, 1, 3, 0, 0},
+   resourceTypes = {"object/tangible/component/weapon/shared_base_melee_core.iff", "object/tangible/component/weapon/shared_base_melee_grip.iff", "object/tangible/component/weapon/shared_base_melee_edge.iff", "metal", "metal", "metal"},
+   resourceQuantities = {1, 1, 1, 20, 6},
+   contribution = {100, 100, 100, 100, 100},
 
 
    targetTemplate = "object/weapon/melee/knife/knife_dagger.iff",

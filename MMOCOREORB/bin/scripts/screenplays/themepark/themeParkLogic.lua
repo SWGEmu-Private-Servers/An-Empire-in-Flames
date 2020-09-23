@@ -1540,6 +1540,7 @@ function ThemeParkLogic:notifyEnteredEscortArea(pActiveArea, pCreature)
 		deleteData(areaID .. ":escortNpcID")
 		deleteData(CreatureObject(pPlayer):getObjectID() .. ":escortAreaID")
 		SceneObject(pActiveArea):destroyObjectFromWorld()
+		dropObserver(MOUNTED, pPlayer)
 		return 1
 	end
 
@@ -1864,6 +1865,8 @@ function ThemeParkLogic:handleMissionReward(pConversingPlayer)
 			self:givePermission(pConversingPlayer, reward.permissionGroup)
 		elseif reward.rewardType == "item" then
 			self:giveItemReward(pConversingPlayer, reward.itemTemplate)
+		elseif reward.rewardType == "ability" then
+			self:giveAbility(pConversingPlayer, reward.ability)
 		end
 	end
 end
@@ -1876,6 +1879,16 @@ function ThemeParkLogic:givePermission(pConversingPlayer, permissionGroup)
 	end
 
 	PlayerObject(pGhost):addPermissionGroup(permissionGroup, true)
+end
+
+function ThemeParkLogic:giveAbility(pConversingPlayer, ability)
+	local pGhost = CreatureObject(pConversingPlayer):getPlayerObject()
+
+	if (pGhost == nil) then
+		return
+	end
+
+	PlayerObject(pGhost):addAbility(ability)
 end
 
 function ThemeParkLogic:giveBadge(pConversingPlayer, badge)
@@ -2028,6 +2041,7 @@ function ThemeParkLogic:cleanUpMission(pConversingPlayer)
 	end
 	deleteData(questAreaID .. ":ownerID")
 	deleteData(playerID .. ":questAreaID")
+	dropObserver(MOUNTED, pConversingPlayer)
 end
 
 function ThemeParkLogic:removeDeliverItem(pConversingPlayer)
@@ -2106,6 +2120,8 @@ function ThemeParkLogic:followPlayer(pConversingNpc, pConversingPlayer)
 	end
 
 	AiAgent(pConversingNpc):setAiTemplate("escort")
+
+	createObserver(MOUNTED, self.className, "escortMount", pConversingPlayer)
 end
 
 function ThemeParkLogic:getMissionType(activeNpcNumber, pConversingPlayer)
@@ -2136,6 +2152,39 @@ function ThemeParkLogic:escortedNpcCloseEnough(pConversingPlayer)
 	local pNpc = getSceneObject(objectID)
 
 	return pNpc ~= nil and SceneObject(pConversingPlayer):getDistanceTo(pNpc) < 64
+end
+
+function ThemeParkLogic:resetThemePark(pConversingPlayer)
+	if (pConversingPlayer == nil) then
+		return
+	end
+
+	-- reset currnt missions
+	self:resetCurrentMission(pConversingPlayer)
+	-- wipe all missions out
+	-- clear the root state
+	local state = CreatureObject(pConversingPlayer):getScreenPlayState(self.screenPlayState)
+	CreatureObject(pConversingPlayer):removeScreenPlayState(state, self.screenPlayState)
+	-- clear all missions
+	for i = 1, #self.npcMap do
+		local name = self.npcMap[i].spawnData.npcTemplate
+		local npcState = CreatureObject(pConversingPlayer):getScreenPlayState(self.screenPlayState .. "_mission_" .. name)
+		CreatureObject(pConversingPlayer):removeScreenPlayState(npcState, self.screenPlayState .. "_mission_" .. name)
+	end
+end
+
+function ThemeParkLogic:escortMount(pConversingPlayer)
+	if pConversingPlayer == nil then
+		return false
+	end
+	local objectID = readData(CreatureObject(pConversingPlayer):getObjectID() .. ":missionSpawn:no1")
+	local pNpc = getSceneObject(objectID)
+
+	if CreatureObject(pConversingPlayer):isInRangeWithObject(pNpc, 16) then
+		CreatureObject(pConversingPlayer):slotPassenger(pNpc)
+	end
+	
+	return 0
 end
 
 function ThemeParkLogic:resetThemePark(pConversingPlayer)

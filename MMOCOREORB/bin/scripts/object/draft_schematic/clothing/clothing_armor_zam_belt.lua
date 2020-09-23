@@ -48,7 +48,7 @@ object_draft_schematic_clothing_clothing_armor_zam_belt = object_draft_schematic
    customObjectName = "Mabari Armorweave Belt",
 
    craftingToolTab = 2, -- (See DraftSchematicObjectTemplate.h)
-   complexity = 20, 
+   complexity = 25, 
    size = 4, 
 
    xpType = "crafting_clothing_armor", 

@@ -46,22 +46,21 @@ ScatterShot2Command = {
 
 	damageMultiplier = 5.0,
 	speedMultiplier = 2.0,
-	healthCostMultiplier = 2.0,
-	actionCostMultiplier = 1.25,
-	mindCostMultiplier = 0.5,
+	healthCostMultiplier = 0.0,
+	actionCostMultiplier = 45,
+	mindCostMultiplier = 0,
 	accuracyBonus = 25,
 
-	animation = "fire_5_single", 
+	animation = "fire_5_single",
 	animType = GENERATE_RANGED,
 
 	combatSpam = "scatterblast",
 
-	poolsToDamage = HEALTH_ATTRIBUTE + ACTION_ATTRIBUTE + MIND_ATTRIBUTE,
-	
+	poolsToDamage = ACTION_ATTRIBUTE + MIND_ATTRIBUTE,
+
 	weaponType = CARBINEWEAPON,
 
 	range = -1
 }
 
 AddCommand(ScatterShot2Command)
-

@@ -36,6 +36,12 @@ singing_mountain_clan_slave = Creature:new {
 				{group = "loot_kit_parts", chance = 2000000},
 				{group = "tailor_components", chance = 1000000},
 			}
+		},
+		{
+			groups = {
+				{group = "smc_common", chance = 10000000},
+			},
+			lootChance = 42000
 		}
 	},
 	weapons = {},

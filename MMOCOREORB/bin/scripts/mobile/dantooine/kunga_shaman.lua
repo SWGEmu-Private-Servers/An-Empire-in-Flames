@@ -12,7 +12,7 @@ kunga_shaman = Creature:new {
 	baseHAM = 11000,
 	baseHAMmax = 14000,
 	armor = 1,
-	resists = {10,10,10,40,40,-1,-1,10,-1},
+	resists = {25,25,15,25,25,15,45,45,25},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -41,6 +41,12 @@ kunga_shaman = Creature:new {
 				{group = "wearables_uncommon", chance = 1000000},
 				{group = "power_crystals", chance = 500000}
 			}
+		},
+		{
+			groups = {
+				{group = "janta_common", chance = 10000000},
+			},
+			lootChance = 1500000
 		}
 	},
 	weapons = {"primitive_weapons"},

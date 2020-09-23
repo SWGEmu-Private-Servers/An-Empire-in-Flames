@@ -72,6 +72,9 @@ object_draft_schematic_structure_city_theater_naboo = object_draft_schematic_str
 
 	targetTemplate = "object/tangible/deed/city_deed/theater_naboo_deed.iff",
 
-	additionalTemplates = {}
+	additionalTemplates = {
+				"object/tangible/deed/city_deed/shared_theater_naboo_2_deed.iff",
+				"object/tangible/deed/city_deed/shared_theater_naboo_deed.iff",
+				}
 }
 ObjectTemplates:addTemplate(object_draft_schematic_structure_city_theater_naboo, "object/draft_schematic/structure/city/theater_naboo.iff")

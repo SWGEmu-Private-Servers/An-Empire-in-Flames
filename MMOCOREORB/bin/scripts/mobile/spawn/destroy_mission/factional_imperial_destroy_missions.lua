@@ -1,5 +1,5 @@
 factional_imperial_destroy_missions = {
-	minLevelCeiling = 20,
+	minLevelCeiling = 45,
 
 	lairSpawns = {
 		{
@@ -76,8 +76,8 @@ factional_imperial_destroy_missions = {
 		},
 		{
 			lairTemplateName = "global_rebel_base3_rebel_large_theater",
-			minDifficulty = 14,
-			maxDifficulty = 18,
+			minDifficulty = 45,
+			maxDifficulty = 85,
 			size = 25,
 		},
 		{
@@ -94,8 +94,8 @@ factional_imperial_destroy_missions = {
 		},
 		{
 			lairTemplateName = "global_rebel_base2_rebel_large_theater",
-			minDifficulty = 15,
-			maxDifficulty = 19,
+			minDifficulty = 45,
+			maxDifficulty = 85,
 			size = 25,
 		},
 		{
@@ -106,8 +106,8 @@ factional_imperial_destroy_missions = {
 		},
 		{
 			lairTemplateName = "global_rebel_base_rebel_large_theater",
-			minDifficulty = 16,
-			maxDifficulty = 20,
+			minDifficulty = 35,
+			maxDifficulty = 75,
 			size = 25,
 		},
 		{
@@ -150,6 +150,12 @@ factional_imperial_destroy_missions = {
 			lairTemplateName = "global_rebel_patrol_camp2_rebel_small_theater",
 			minDifficulty = 23,
 			maxDifficulty = 27,
+			size = 25,
+		},
+		{
+			lairTemplateName = "global_rebel_uprising_large_theater",
+			minDifficulty = 50,
+			maxDifficulty = 90,
 			size = 25,
 		},
 	}

@@ -42,10 +42,10 @@
 
 
 object_building_yavin_light_enclave = object_building_yavin_shared_light_enclave:new {
-	containerComponent = "EnclaveContainerComponent",
-	planetMapCategory = "cloningfacility",
-	templateType = CLONINGBUILDING,
-	facilityType = CLONER_LIGHT_JEDI_ONLY,
+--	containerComponent = "EnclaveContainerComponent",
+--	planetMapCategory = "cloningfacility",
+--	templateType = CLONINGBUILDING,
+--	facilityType = CLONER_LIGHT_JEDI_ONLY,
 
 	spawningPoints = {
 		{ x = 22, z = -24.1, y = 74, ow = -0.706572, ox = 0, oz = 0, oy = 0.707641, cellid = 24 }

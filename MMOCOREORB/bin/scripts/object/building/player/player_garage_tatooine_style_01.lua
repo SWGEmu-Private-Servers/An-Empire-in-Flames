@@ -44,15 +44,14 @@
 object_building_player_player_garage_tatooine_style_01 = object_building_player_shared_player_garage_tatooine_style_01:new {
 	lotSize = 0,
 	baseMaintenanceRate = 0,
-	allowedZones = {"dantooine", "lok", "tatooine"},
+	allowedZones = {"dantooine", "lok", "tatooine", "taanab"},
 	gameObjectType = 4102,
 	planetMapCategory = "garage",
 	cityRankRequired = 2,
 	abilityRequired = "place_garage",
 	uniqueStructure = true,
 	cityMaintenanceBase = 20000,
-	zoneComponent = "GarageZoneComponent",
-	dataObjectComponent = "GarageDataComponent",
+	zoneComponent = "StructureZoneComponent",
 	length = 5,
 	width = 5,
 	childObjects = {

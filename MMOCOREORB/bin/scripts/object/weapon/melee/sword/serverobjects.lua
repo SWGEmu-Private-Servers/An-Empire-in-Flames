@@ -43,29 +43,5 @@
 
 
 --Children folder includes
-includeFile("weapon/melee/sword/base/serverobjects.lua")
-includeFile("weapon/melee/sword/crafted_saber/serverobjects.lua")
-
--- Server Objects
-includeFile("weapon/melee/sword/bestine_quest_sword.lua")
-includeFile("weapon/melee/sword/sword_01.lua")
-includeFile("weapon/melee/sword/sword_01_noob.lua")
-includeFile("weapon/melee/sword/sword_02.lua")
-includeFile("weapon/melee/sword/sword_blade_ryyk.lua")
-includeFile("weapon/melee/sword/sword_curved_nyax.lua")
-includeFile("weapon/melee/sword/sword_lightsaber_anakin.lua")
-includeFile("weapon/melee/sword/sword_lightsaber_andael.lua")
-includeFile("weapon/melee/sword/sword_lightsaber_ben.lua")
-includeFile("weapon/melee/sword/sword_lightsaber_dugald.lua")
-includeFile("weapon/melee/sword/sword_lightsaber_leather.lua")
-includeFile("weapon/melee/sword/sword_lightsaber_luke.lua")
-includeFile("weapon/melee/sword/sword_lightsaber_luke_2h_test.lua")
-includeFile("weapon/melee/sword/sword_lightsaber_mace.lua")
-includeFile("weapon/melee/sword/sword_lightsaber_nebu.lua")
-includeFile("weapon/melee/sword/sword_lightsaber_obi.lua")
-includeFile("weapon/melee/sword/sword_lightsaber_quigon.lua")
-includeFile("weapon/melee/sword/sword_lightsaber_sleekblack.lua")
-includeFile("weapon/melee/sword/sword_lightsaber_sleeksilver.lua")
-includeFile("weapon/melee/sword/sword_lightsaber_vader.lua")
-includeFile("weapon/melee/sword/sword_nyax.lua")
-includeFile("weapon/melee/sword/sword_rantok.lua")
+includeFile("../custom_scripts/object/weapon/melee/sword/base/serverobjects.lua")
+includeFile("../custom_scripts/object/weapon/melee/sword/crafted_saber/serverobjects.lua")

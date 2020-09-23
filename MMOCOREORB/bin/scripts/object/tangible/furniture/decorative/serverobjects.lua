@@ -76,3 +76,13 @@ includeFile("tangible/furniture/decorative/stuffed_fish.lua")
 includeFile("tangible/furniture/decorative/tanning_hide_s01.lua")
 includeFile("tangible/furniture/decorative/tanning_hide_s02.lua")
 includeFile("tangible/furniture/decorative/tatooine_tapestry.lua")
+
+--EiF Adds
+includeFile("tangible/furniture/decorative/frn_all_cyborg_parts_rack.lua")
+includeFile("tangible/furniture/decorative/gcw_weapon_rack_02.lua")
+includeFile("tangible/furniture/decorative/jabba_drapes.lua")
+includeFile("tangible/furniture/decorative/jabba_fancyrug.lua")
+includeFile("tangible/furniture/decorative/must_display_case.lua")
+includeFile("tangible/furniture/decorative/pr_hoth_scaffold.lua")
+includeFile("tangible/furniture/decorative/cage_wall_s01.lua")
+includeFile("tangible/furniture/decorative/cargo_container_s01.lua")

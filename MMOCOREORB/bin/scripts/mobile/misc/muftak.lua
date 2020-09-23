@@ -23,6 +23,7 @@ muftak = Creature:new {
 	pvpBitmask = NONE,
 	creatureBitmask = PACK,
 	diet = HERBIVORE,
+  	scale = 1.3,
 
 	templates = {"object/mobile/muftak.iff"},
 	lootGroups = {},

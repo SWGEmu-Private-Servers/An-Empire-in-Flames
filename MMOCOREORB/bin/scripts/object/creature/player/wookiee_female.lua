@@ -59,7 +59,7 @@ object_creature_player_wookiee_female = object_creature_player_shared_wookiee_fe
 	},
 	defaultLanguage = 5,
 	startingItems = { "object/weapon/ranged/rifle/rifle_bowcaster.iff" },
-	startingSkills = { "species_wookiee", "social_language_basic_comprehend", "social_language_wookiee_comprehend", "social_language_wookiee_speak" }
+	startingSkills = { "species_wookiee", "social_language_basic_comprehend", "social_language_wookiee_comprehend", "social_language_wookiee_speak", "social_language_xcazik_comprehend", "social_language_xcazik_speak" }
 }
 
 ObjectTemplates:addTemplate(object_creature_player_wookiee_female, "object/creature/player/wookiee_female.iff")

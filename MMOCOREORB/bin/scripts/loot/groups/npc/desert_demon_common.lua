@@ -3,18 +3,16 @@ desert_demon_common = {
 	minimumLevel = 0,
 	maximumLevel = 0,
 	lootItems = {
-		{itemTemplate = "gambling_table_schematic", weight = 2000000},
-		{itemTemplate = "valley_view_painting", weight = 500000},
-		{itemTemplate = "skill_buff_heavy_weapon_accuracy", weight = 750000},
-		{itemTemplate = "skill_buff_heavy_weapon_speed", weight = 750000},
-		{itemTemplate = "skill_buff_melee_accuracy", weight = 750000},
-		{itemTemplate = "skill_buff_melee_defense", weight = 750000},
-		{itemTemplate = "skill_buff_pistol_accuracy", weight = 750000},
-		{itemTemplate = "skill_buff_pistol_speed", weight = 750000},
-		{itemTemplate = "skill_buff_ranged_accuracy", weight = 750000},
-		{itemTemplate = "skill_buff_ranged_defense", weight = 750000},
-		{itemTemplate = "skill_buff_thrown_accuracy", weight = 750000},
-		{itemTemplate = "skill_buff_thrown_speed", weight = 750000}
+		{itemTemplate = "gambling_table_schematic", weight = 906250},
+		{itemTemplate = "valley_view_painting", weight = 750000},
+		{itemTemplate = "gaming_kiosk_schematic", weight = 906250},
+		{itemTemplate = "tatooine_tapestry_schematic", weight = 906250},
+		{itemTemplate = "cantina_chair_schematic", weight = 906250},
+		{itemTemplate = "park_bench_schematic", weight = 906250},
+		{itemTemplate = "cantina_table_schematic", weight = 906250},
+		{itemTemplate = "parasol_schematic", weight = 906250},
+		{itemTemplate = "pitcher_full_schematic", weight = 906250},
+		{groupTemplate = "skill_buffs", weight = 2000000}
 	}
 }
 

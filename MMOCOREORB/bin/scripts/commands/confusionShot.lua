@@ -45,41 +45,38 @@ ConfusionShotCommand = {
         name = "confusionshot",
 
 	damageMultiplier = 3.0,
-	speedMultiplier = 2.3,
-	healthCostMultiplier = 1,
-	actionCostMultiplier = 1,
-	mindCostMultiplier = 1,
+	speedMultiplier = 2.0,
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 0,
+	mindCostMultiplier = 30,
 
 	stateEffects = {
-	  StateEffect( 
-		DIZZY_EFFECT, 
-		{}, 
-		{ "dizzy_defense" }, 
+	  StateEffect(
+		DIZZY_EFFECT,
+		{},
+		{ "dizzy_defense" },
 		{ "jedi_state_defense", "resistance_states" },
-		100, 
-		0, 
-		10 
+		100,
+		0,
+		10
 	  ),
-	  StateEffect( 
-		STUN_EFFECT, 
-		{}, 
-		{ "stun_defense" }, 
+	  StateEffect(
+		STUN_EFFECT,
+		{},
+		{ "stun_defense" },
 		{ "jedi_state_defense", "resistance_states" },
-		100, 
-		0, 
-		10 
+		100,
+		0,
+		10
 	  )
 	},
 
-	animation = "fire_5_special_single", 
+	animation = "fire_5_special_single",
 	animType = GENERATE_RANGED,
 
 	combatSpam = "confusionshot",
-	
-	weaponType = CARBINEWEAPON,
 
 	range = -1
 }
 
 AddCommand(ConfusionShotCommand)
-

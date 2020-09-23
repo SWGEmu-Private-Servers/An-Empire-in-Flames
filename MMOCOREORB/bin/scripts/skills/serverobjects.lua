@@ -41,4 +41,6 @@
 --which carries forward this exception.
 
 includeFile("language/serverobjects.lua")
+includeFile("signs/serverobjects.lua")
+includeFile("special/serverobjects.lua")
 includeFile("staff/serverobjects.lua")

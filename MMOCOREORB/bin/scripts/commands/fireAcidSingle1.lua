@@ -44,24 +44,36 @@
 FireAcidSingle1Command = {
         name = "fireacidsingle1",
 
-	damageMultiplier = 5,
-	speedMultiplier = 4,
-	healthCostMultiplier = 1.5,
-	actionCostMultiplier = 0.5,
-	mindCostMultiplier = 0.5,
-	accuracyBonus = 0,
+  damageMultiplier = 1.0,
+	speedMultiplier = 0.25,
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 0,
+	mindCostMultiplier = 20,
+	accuracyBonus = 50,
 
-	poolsToDamage = RANDOM_ATTRIBUTE,
+	poolsToDamage = MIND_ATTRIBUTE,
 
-	animation = "fire_acid_rifle_single_1", 
+	animation = "fire_acid_rifle_single_1",
 	animType = GENERATE_INTENSITY,
 
 	combatSpam = "fireacidsingle1",
-	
+  dotEffects = {
+    DotEffect(
+    ONFIRE,
+    {"resistance_fire", "fire_resist"},
+    MIND,
+    true,
+    0,
+    35,
+    100,
+    60,
+    30,
+    2
+    )
+  },
 	weaponType = SPECIALHEAVYWEAPON,
-	
+
 	range = 16
 }
 
 AddCommand(FireAcidSingle1Command)
-

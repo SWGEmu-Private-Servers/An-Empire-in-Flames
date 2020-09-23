@@ -14,12 +14,12 @@ function HyperdriveResearchFacilityScreenPlay:start()
 	if isZoneEnabled("rori") then
 		local pBuilding = getSceneObject(self.buildingID)
 		createObserver(FACTIONBASEFLIPPED, "HyperdriveResearchFacilityScreenPlay", "flipBase", pBuilding)
-
-		if getRandomNumber(100) >= 50 then
-			self:spawnRebels(pBuilding)
-		else
-			self:spawnImperials(pBuilding)
-		end
+		self:spawnImperials(pBuilding)
+--		if getRandomNumber(100) >= 50 then
+--			self:spawnRebels(pBuilding)
+--		else
+--			self:spawnImperials(pBuilding)
+--		end
 	end
 end
 

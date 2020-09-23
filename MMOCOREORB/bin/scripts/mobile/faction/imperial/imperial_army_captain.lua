@@ -48,7 +48,8 @@ imperial_army_captain = Creature:new {
 	conversationTemplate = "imperialRecruiterConvoTemplate",
 	reactionStf = "@npc_reaction/military",
 	personalityStf = "@hireling/hireling_military",
-	attacks = merge(brawlermaster,marksmanmaster)
+	attacks = merge(brawlermaster,marksmanmaster),
+	optionsBitmask =  CONVERSABLE
 }
 
 CreatureTemplates:addCreatureTemplate(imperial_army_captain, "imperial_army_captain")

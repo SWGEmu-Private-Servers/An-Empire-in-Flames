@@ -41,6 +41,7 @@
 --this exception also makes it possible to release a modified version 
 
 --Children folder includes
+includeFile("../custom_scripts/object/tangible/storyteller/prop/base/serverobjects.lua")
 includeFile("battlefield_marker/serverobjects.lua")
 includeFile("building/serverobjects.lua")
 includeFile("cell/serverobjects.lua")

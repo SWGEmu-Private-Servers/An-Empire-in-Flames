@@ -144,7 +144,7 @@ function CorelliaTyrenaScreenPlay:spawnMobiles()
 	spawnMobile(self.planet, "trainer_doctor", 0,21,0.26,-5,0,1935831)
 	spawnMobile(self.planet, "trainer_medic", 0,13.8906,0.26,3.8275,183,1935831)
 	spawnMobile(self.planet, "surgical_droid_21b", 60,-25.52,0.26,-3.48,5.78928,1935835)
-	spawnMobile(self.planet, "trainer_combatmedic", 0,-17,0.26,10,180,1935835)
+	spawnMobile(self.planet, "trainer_surveyor", 0,-17,0.26,10,180,1935835)
 	spawnMobile(self.planet, "trainer_doctor", 0,-24.2179,0.26,-3.63691,195,1935835)
 	spawnMobile(self.planet, "trainer_medic", 0,-15.9755,0.26,0.30427,15,1935835)
 	--2nd floor

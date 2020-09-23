@@ -10,7 +10,7 @@ sharnaff = Creature:new {
 	baseHAM = 8600,
 	baseHAMmax = 10600,
 	armor = 0,
-	resists = {15,15,15,120,120,120,120,150,-1},
+	resists = {25,25,15,25,25,15,45,45,25},
 	meatType = "meat_carnivore",
 	meatAmount = 450,
 	hideType = "hide_scaley",
@@ -19,7 +19,7 @@ sharnaff = Creature:new {
 	boneAmount = 180,
 	milkType = "milk_wild",
 	milk = 220,
-	tamingChance = 0,
+	tamingChance = 0.25,
 	ferocity = 2,
 	pvpBitmask = ATTACKABLE,
 	creatureBitmask = NONE,
@@ -27,6 +27,7 @@ sharnaff = Creature:new {
 	diet = CARNIVORE,
 
 	templates = {"object/mobile/sharnaff_hue.iff"},
+	controlDeviceTemplate = "object/intangible/pet/sharnaff_hue.iff",
 	hues = { 8, 9, 10, 11, 12, 13, 14, 15 },
 	lootGroups = {
 		{

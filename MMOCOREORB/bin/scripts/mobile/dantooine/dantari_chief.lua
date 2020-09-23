@@ -12,7 +12,7 @@ dantari_chief = Creature:new {
 	baseHAM = 9300,
 	baseHAMmax = 11300,
 	armor = 0,
-	resists = {35,50,50,-1,70,70,-1,0,-1},
+	resists = {40,40,60,40,40,30,60,40,40},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -37,6 +37,12 @@ dantari_chief = Creature:new {
 				{group = "clothing_attachments", chance = 500000},
 				{group = "wearables_all", chance = 2000000}
 			}
+		},
+		{
+			groups = {
+				{group = "janta_common", chance = 10000000},
+			},
+			lootChance = 1500000
 		}
 	},
 	weapons = {"primitive_weapons"},

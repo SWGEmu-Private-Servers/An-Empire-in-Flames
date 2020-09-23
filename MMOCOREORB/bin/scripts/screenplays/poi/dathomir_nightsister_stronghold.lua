@@ -125,7 +125,6 @@ function NightSisterStrongholdScreenPlay:spawnMobiles()
 
 	--in the cave, make difficulty 'scale' as player progresses into the cave, listed here from bottom to top:
 	spawnMobile("dathomir", "nightsister_sentinel",2400,-89.6414,-100.547,-149.769,54,4115626)
-	spawnMobile("dathomir", "grovo",2400,-82.0,-99.7,-93.1,-174,4115629)
 	spawnMobile("dathomir", "nightsister_spell_weaver",2400,-82.2,-100.0,-103.6,-161,4115629)
 	spawnMobile("dathomir", "nightsister_sentinel",720,-28.3439,-80.1922,-151.496,7,4115628)
 	spawnMobile("dathomir", "nightsister_sentinel",720,-22.2057,-80.5683,-151.813,2,4115628)
@@ -188,7 +187,7 @@ function NightSisterStrongholdScreenPlay:spawnMobiles()
 	spawnMobile("dathomir", "nightsister_initiate",600,5.27219,-24.4314,-26.0931,2,4115620)
 	spawnMobile("dathomir", "nightsister_initiate",600,2.20982,-11.8595,-2.93477,7,4115619)
 
-	self:respawnAxkvaMin()
+--	self:respawnAxkvaMin()
 
 	local pTrap = spawnSceneObject("dathomir", "object/static/terrain/corellia/rock_crystl_shrpbush_med.iff", -11.5, -64.6, -202.2, 4115624, 0.707107, 0, 0.707107, 0)
 
@@ -269,7 +268,7 @@ function NightSisterStrongholdScreenPlay:notifyEnteredTrapArea(pActiveArea, pPla
 end
 
 function NightSisterStrongholdScreenPlay:respawnAxkvaMin()
-	local pAxkvaMin = spawnMobile("dathomir", "axkva_min", 0, -90.5, -101, -102.2, 172, 4115629)
+	local pAxkvaMin = spawnMobile("dathomir", "axkva_min", 0, -90.5, -99, -99, 172, 4115629)
 
 	if (pAxkvaMin ~= nil) then
 		createObserver(STARTCOMBAT, "NightSisterStrongholdScreenPlay", "spawnGuards", pAxkvaMin)
@@ -279,7 +278,6 @@ end
 
 function NightSisterStrongholdScreenPlay:axkvaKilled(pAxkvaMin)
 	createEvent(86400 * 1000, "NightSisterStrongholdScreenPlay", "respawnAxkvaMin", nil, "")
-
 	return 1
 end
 
@@ -297,7 +295,7 @@ function NightSisterStrongholdScreenPlay:spawnGuards(pAxkvaMin)
 
 		if (pGuard == nil or CreatureObject(pGuard):isDead()) then
 			local guardData = self.axkvaGuards[i]
-			pGuard = spawnMobile("dathomir", "nightsister_protector", 0, guardData[1], guardData[2], guardData[3], 0, 4115629)
+			pGuard = spawnMobile("dathomir", "nightsister_sentinel", 0, guardData[1], guardData[2], guardData[3], 0, 4115629)
 
 			if (pGuard ~= nil) then
 				writeData("axkvaGuard:" .. i, SceneObject(pGuard):getObjectID())

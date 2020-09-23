@@ -70,7 +70,7 @@ object_draft_schematic_furniture_furniture_chair_upholstered = object_draft_sche
 	resourceQuantities = {90, 150},
 	contribution = {100, 100},
 
-	targetTemplate = "object/tangible/furniture/all/frn_all_chair_upholstered_s1.iff",
+	targetTemplate = "object/tangible/furniture/all/frn_all_chair_upholstered_hue_s1.iff",
 
 	additionalTemplates = {}
 }

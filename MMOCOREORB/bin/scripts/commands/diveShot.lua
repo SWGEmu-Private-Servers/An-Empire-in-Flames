@@ -46,31 +46,30 @@ DiveShotCommand = {
 
 	damageMultiplier = 2.5,
 	speedMultiplier = 1.5,
-	healthCostMultiplier = 0.5,
-	actionCostMultiplier = 0.75,
-	mindCostMultiplier = 0.5,
-	accuracyBonus = 50,
+	healthCostMultiplier = 0.0,
+	actionCostMultiplier = 30,
+	mindCostMultiplier = 0.0,
+	accuracyBonus = 30,
 
 	animation = "fire_acrobatic",
 
 	combatSpam = "diveshot",
-	
+
 	weaponType = PISTOLWEAPON,
 
 	range = -1,
 	stateEffects = {
-	  StateEffect( 
-	    ATTACKER_FORCE_PRONE, 
-	    {}, 
-	    {}, 
-	    {}, 
-	    100, 
-	    0, 
-	    0 
+	  StateEffect(
+	    ATTACKER_FORCE_PRONE,
+	    {},
+	    {},
+	    {},
+	    100,
+	    0,
+	    0
 	  )
 	},
 
 }
 
 AddCommand(DiveShotCommand)
-

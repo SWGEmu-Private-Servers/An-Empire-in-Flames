@@ -57,7 +57,7 @@ object_draft_schematic_furniture_furniture_couch_large = object_draft_schematic_
 
 	assemblySkill = "structure_assembly",
 	experimentingSkill = "structure_experimentation",
-	customizationSkill = "structure_customization",
+	customizationSkill = "structure_assembly",
 
 	customizationOptions = {},
 	customizationStringNames = {},
@@ -67,10 +67,10 @@ object_draft_schematic_furniture_furniture_couch_large = object_draft_schematic_
 	ingredientTitleNames = {"cushions", "frame"},
 	ingredientSlotType = {0, 0},
 	resourceTypes = {"hide", "metal"},
-	resourceQuantities = {150, 150},
+	resourceQuantities = {100, 100},
 	contribution = {100, 100},
 
-	targetTemplate = "object/tangible/furniture/all/frn_all_couch_lg_s1.iff",
+	targetTemplate = "object/tangible/furniture/all/frn_all_couch_lg_hue_s1.iff",
 
 	additionalTemplates = {}
 }

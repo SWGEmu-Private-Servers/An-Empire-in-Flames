@@ -44,37 +44,31 @@
 PanicShotCommand = {
         name = "panicshot",
 
-	damageMultiplier = 2.0,
-	speedMultiplier = 3.0,
-	healthCostMultiplier = 0.5,
-	actionCostMultiplier = 1.25,
-	mindCostMultiplier = 0.5,
-	accuracyBonus = 50,
+	damageMultiplier = 0.5,
+	speedMultiplier = 1.0,
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 0,
+	mindCostMultiplier = 45,
 
-	stateEffects = {
-	  StateEffect( 
-		NEXTATTACKDELAY_EFFECT, 
-		{}, 
-		{ "warcry_defense" }, 
-		{}, 
-		100, 
-		0, 
-		10 
+  stateEffects = {
+	  StateEffect(
+		INTIMIDATE_EFFECT,
+		{},
+		{ "intimidate_defense" },
+		{ "jedi_state_defense", "resistance_states" },
+		115,
+		0,
+		60
 	  )
 	},
 
-	animation = "fire_1_special_single", 
+	animation = "fire_1_special_single",
 	animType = GENERATE_RANGED,
 
 	combatSpam = "panicshot",
 
-	coneAction = true,
-	coneAngle = 45,
-	
-	weaponType = PISTOLWEAPON,
 
 	range = -1
 }
 
 AddCommand(PanicShotCommand)
-

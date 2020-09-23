@@ -45,9 +45,9 @@ CreatureAreaKnockdownCommand = {
 	name = "creatureareaknockdown",
 	damageMultiplier = 0.5,
 	speedMultiplier = 1,
-	
+
 	combatSpam = "attack",
-	animation = "creature_attack_special_2", 
+	animation = "creature_attack_special_2",
 	animType = GENERATE_INTENSITY,
 
 	healthCostMultiplier = 0,
@@ -65,13 +65,13 @@ CreatureAreaKnockdownCommand = {
 		10
 	  ),
 	  StateEffect(
-		KNOCKDOWN_EFFECT, 
-		{ "knockdownRecovery", "lastKnockdown" }, 
-		{ "knockdown_defense" }, 
-		{}, 
-		75, 
-		0, 
-		0 
+		KNOCKDOWN_EFFECT,
+		{ "knockdownRecovery", "lastKnockdown" },
+		{ "knockdown_defense" },
+		{},
+		100, 
+		0,
+		0
 	  )
 	},
 
@@ -81,4 +81,3 @@ CreatureAreaKnockdownCommand = {
 }
 
 AddCommand(CreatureAreaKnockdownCommand)
-

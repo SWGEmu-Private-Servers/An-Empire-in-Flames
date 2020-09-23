@@ -8616,6 +8616,12 @@ object_static_particle_shared_pt_geonosian_aquarium_fish = SharedStaticObjectTem
 
 ObjectTemplates:addClientTemplate(object_static_particle_shared_pt_geonosian_aquarium_fish, "object/static/particle/shared_pt_geonosian_aquarium_fish.iff")
 
+object_static_particle_shared_pt_geyser_1_optimized = SharedStaticObjectTemplate:new {
+	clientTemplateFileName = "object/static/particle/shared_pt_geyser_1_optimized.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_static_particle_shared_pt_geyser_1_optimized, "object/static/particle/shared_pt_geyser_1_optimized.iff")
+
 object_static_particle_shared_pt_green_gunk_spurt = SharedStaticObjectTemplate:new {
 	clientTemplateFileName = "object/static/particle/shared_pt_green_gunk_spurt.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups

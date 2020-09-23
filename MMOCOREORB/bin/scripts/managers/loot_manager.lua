@@ -49,9 +49,9 @@ legendaryChance = 1000000 --1 in 1,000,000
 --legendaryChance = 1000 --1 in 1000 for testing
 
 --Determines how much of an increase in the base stats will be applied to the object.
-yellowModifier = 1.5
-exceptionalModifier = 2.5
-legendaryModifier = 5.0
+yellowModifier = 1.0
+exceptionalModifier = 1.0
+legendaryModifier = 1.0
 
 --The chance for random skill mods to be on looted weapons/wearables
 skillModChance = 500 -- 1 in 500
@@ -107,6 +107,7 @@ lootableArmorAttachmentStatMods = {
 	"pistol_accuracy_while_standing",
 	"polearm_accuracy",
 	"polearm_speed",
+	"polearm_damage",
 	"posture_change_down_defense",
 	"posture_change_up_defense",
 	"ranged_defense",
@@ -121,11 +122,12 @@ lootableArmorAttachmentStatMods = {
 	"rifle_speed",
 	"slope_move",
 	"steadyaim",
-	"stored_pets",
+--	"stored_pets",
 	"stun_defense",
 	"take_cover",
 	"tame_aggro",
 	"tame_bonus",
+	"tame_level",
 	"tame_non_aggro",
 	"thrown_accuracy",
 	"thrown_speed",
@@ -157,7 +159,7 @@ lootableClothingAttachmentStatMods = {
 	"clothing_experimentation",
 	"clothing_repair",
 	"combat_bleeding_defense",
-	"combat_healing_ability",
+--	"combat_healing_ability",
 	"combat_medicine_assembly",
 	"combat_medicine_experimentation",
 	"counterattack",
@@ -177,10 +179,10 @@ lootableClothingAttachmentStatMods = {
 	"foraging",
 	"general_assembly",
 	"general_experimentation",
-	"grenade_assembly",
-	"grenade_experimentation",
+--	"grenade_assembly",
+--	"grenade_experimentation",
 	"group_slope_move",
-	"healing_ability",
+--	"healing_ability",
 	"healing_dance_mind",
 	"healing_dance_shock",
 	"healing_dance_wound",
@@ -200,7 +202,7 @@ lootableClothingAttachmentStatMods = {
 	"instrument_assembly",
 	"intimidate",
 	"intimidate_defense",
-	"keep_creature",
+--	"keep_creature",
 	"knockdown_defense",
 	"medical_foraging",
 	"medicine_assembly",
@@ -216,6 +218,7 @@ lootableClothingAttachmentStatMods = {
 	"pistol_accuracy_while_standing",
 	"polearm_accuracy",
 	"polearm_speed",
+	"polearm_damage",
 	"posture_change_down_defense",
 	"posture_change_up_defense",
 	"ranged_defense",
@@ -230,7 +233,7 @@ lootableClothingAttachmentStatMods = {
 	"rifle_speed",
 	"slope_move",
 	"steadyaim",
-	"stored_pets",
+--	"stored_pets",
 	"structure_assembly",
 	"structure_complexity",
 	"structure_experimentation",
@@ -240,6 +243,7 @@ lootableClothingAttachmentStatMods = {
 	"tame_aggro",
 	"tame_bonus",
 	"tame_non_aggro",
+	"tame_level",
 	"thrown_accuracy",
 	"thrown_speed",
 	"twohandmelee_accuracy",
@@ -440,6 +444,7 @@ lootableClothingStatMods = {
 	"pistol_accuracy_while_standing",
 	"polearm_accuracy",
 	"polearm_speed",
+	"polearm_damage",
 	"posture_change_down_defense",
 	"posture_change_up_defense",
 	"ranged_defense",

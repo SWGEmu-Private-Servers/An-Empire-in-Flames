@@ -72,6 +72,9 @@ object_draft_schematic_structure_city_theater_tatooine = object_draft_schematic_
 
 	targetTemplate = "object/tangible/deed/city_deed/theater_tatooine_deed.iff",
 
-	additionalTemplates = {}
+	additionalTemplates = {
+				"object/tangible/deed/city_deed/shared_theater_tatooine_2_deed.iff",
+				"object/tangible/deed/city_deed/shared_theater_tatooine_deed.iff",
+				}
 }
 ObjectTemplates:addTemplate(object_draft_schematic_structure_city_theater_tatooine, "object/draft_schematic/structure/city/theater_tatooine.iff")

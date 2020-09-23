@@ -51,5 +51,6 @@ includeFile("intangible/pet/serverobjects.lua")
 includeFile("intangible/ship/serverobjects.lua")
 includeFile("intangible/theater/serverobjects.lua")
 includeFile("intangible/vehicle/serverobjects.lua")
+includeFile("intangible/house/serverobjects.lua")
 
 -- Server Objects

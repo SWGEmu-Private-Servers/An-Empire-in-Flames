@@ -72,3 +72,6 @@ includeFile("draft_schematic/armor/component/heavy_armor_layer_heat.lua")
 includeFile("draft_schematic/armor/component/heavy_armor_layer_kinetic.lua")
 includeFile("draft_schematic/armor/component/heavy_armor_layer_restraint.lua")
 includeFile("draft_schematic/armor/component/heavy_armor_layer_stun.lua")
+
+--EiF additions
+includeFile("draft_schematic/armor/component/armor_layer_lightsaber.lua")

@@ -21,6 +21,7 @@ includeFile("groups/sith_shadow_intro_theater_datapad.lua")
 includeFile("groups/skill_buffs.lua")
 includeFile("groups/tailor_components.lua")
 includeFile("groups/treasure_map_group.lua")
+includeFile("groups/all_books.lua")
 
 -- armor sub-folder
 includeFile("groups/armor/armor_all.lua")
@@ -65,6 +66,7 @@ includeFile("groups/corellian_corvette/r2droid_loot.lua")
 
 -- creature sub-folder
 includeFile("groups/creature/brackaset_common.lua")
+includeFile("groups/creature/bol.lua")
 includeFile("groups/creature/fambaa_common.lua")
 includeFile("groups/creature/giant_dune_kimo_common.lua")
 includeFile("groups/creature/gurk_king_common.lua")
@@ -80,6 +82,7 @@ includeFile("groups/creature/krayt_pearls.lua")
 includeFile("groups/creature/peko_albatross.lua")
 includeFile("groups/creature/rancor_common.lua")
 includeFile("groups/creature/sharnaff_common.lua")
+includeFile("groups/creature/tauntaun.lua")
 includeFile("groups/creature/voritor_lizard_common.lua")
 
 -- death_watch_bunker sub-folder
@@ -160,6 +163,9 @@ includeFile("groups/npc/nyms_rare.lua")
 includeFile("groups/npc/plasma_thief_common.lua")
 includeFile("groups/npc/rebel_officer_common.lua")
 includeFile("groups/npc/skaak_tipper_common.lua")
+includeFile("groups/npc/skill_buffs.lua")
+includeFile("groups/npc/smc_common.lua")
+includeFile("groups/npc/spiderclan_common.lua")
 includeFile("groups/npc/stormtrooper_common.lua")
 includeFile("groups/npc/swooper_common.lua")
 includeFile("groups/npc/tusken_common.lua")
@@ -368,3 +374,8 @@ includeFile("groups/wearables/wearables_common.lua")
 includeFile("groups/wearables/wearables_rare.lua")
 includeFile("groups/wearables/wearables_scarce.lua")
 includeFile("groups/wearables/wearables_uncommon.lua")
+
+--eif
+--schematics
+includeFile("groups/schematics/bounty_hunter_armor_schematics.lua")
+includeFile("groups/schematics/leather_armor_schematics.lua")

@@ -1,7 +1,7 @@
 gungan_fambaa = Creature:new {
 	objectName = "@mob/creature_names:gungan_fambaa",
 	socialGroup = "gungan",
-	faction = "gungan",
+	faction = "",
 	level = 42,
 	chanceHit = 0.44,
 	damageMin = 345,
@@ -19,7 +19,7 @@ gungan_fambaa = Creature:new {
 	boneAmount = 725,
 	milkType = "milk_domesticated",
 	milk = 400,
-	tamingChance = 0,
+	tamingChance = 0.2,
 	ferocity = 3,
 	pvpBitmask = ATTACKABLE,
 	creatureBitmask = PACK,
@@ -27,6 +27,7 @@ gungan_fambaa = Creature:new {
 	diet = CARNIVORE,
 
 	templates = {"object/mobile/fambaa_hue.iff"},
+	controlDeviceTemplate = "object/intangible/pet/fambaa_hue.iff",
 	hues = { 16, 17, 18, 19, 20, 21, 22, 23 },
 	scale = 1.2,
 	lootGroups = {

@@ -12,7 +12,7 @@ singing_mountain_clan_councilwoman = Creature:new {
 	baseHAM = 261000,
 	baseHAMmax = 320000,
 	armor = 3,
-	resists = {100,35,35,100,100,100,100,100,-1},
+	resists = {75,75,55,75,75,95,55,95,75},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -42,6 +42,12 @@ singing_mountain_clan_councilwoman = Creature:new {
 				{group = "carbines", chance = 1000000},
 				{group = "wearables_rare", chance = 500000}
 			}
+		},
+		{
+			groups = {
+				{group = "smc_common", chance = 10000000},
+			},
+			lootChance = 250000
 		}
 	},
 	weapons = {"mixed_force_weapons"},

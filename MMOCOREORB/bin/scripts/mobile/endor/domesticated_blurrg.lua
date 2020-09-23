@@ -18,7 +18,7 @@ domesticated_blurrg = Creature:new {
 	boneType = "bone_avian",
 	boneAmount = 55,
 	milk = 0,
-	tamingChance = 0,
+	tamingChance = 0.1,
 	ferocity = 0,
 	pvpBitmask = ATTACKABLE,
 	creatureBitmask = PACK + HERD,
@@ -26,6 +26,7 @@ domesticated_blurrg = Creature:new {
 	diet = CARNIVORE,
 
 	templates = {"object/mobile/blurrg_hue.iff"},
+	controlDeviceTemplate = "object/intangible/pet/blurrg_hue.iff",
 	hues = { 0, 1, 2, 3, 4, 5, 6, 7 },
 	lootGroups = {},
 	weapons = {},

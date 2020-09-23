@@ -12,7 +12,7 @@ spiderclan_stalker = Creature:new {
 	baseHAM = 20000,
 	baseHAMmax = 25000,
 	armor = 1,
-	resists = {90,100,100,40,100,100,40,40,-1},
+	resists = {40,40,30,40,40,60,30,40,40},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -43,6 +43,12 @@ spiderclan_stalker = Creature:new {
 				{group = "wearables_common", chance = 500000},
 				{group = "wearables_uncommon", chance = 500000}
 			}
+		},
+		{
+			groups = {
+				{group = "spiderclan_common", chance = 10000000},
+			},
+			lootChance = 166666
 		}
 	},
 	weapons = {"mixed_force_weapons"},

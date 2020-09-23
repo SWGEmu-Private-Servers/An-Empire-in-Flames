@@ -12,7 +12,7 @@ janta_warrior = Creature:new {
 	baseHAM = 12000,
 	baseHAMmax = 15000,
 	armor = 2,
-	resists = {25,45,-1,45,45,100,45,-1,-1},
+	resists = {60,60,60,50,50,60,70,70,60},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -34,9 +34,15 @@ janta_warrior = Creature:new {
 		{
 			groups = {
 				{group = "junk", chance = 5500000},
-				{group = "janta_common", chance = 1500000},
+				{group = "color_crystals", chance = 1500000},
 				{group = "loot_kit_parts", chance = 3000000}
 			}
+		},
+		{
+			groups = {
+				{group = "janta_common", chance = 10000000},
+			},
+			lootChance = 1500000
 		}
 	},
 	weapons = {"primitive_weapons"},

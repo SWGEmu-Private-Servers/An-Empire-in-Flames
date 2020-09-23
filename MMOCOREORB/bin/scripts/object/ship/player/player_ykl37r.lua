@@ -43,6 +43,10 @@
 
 object_ship_player_player_ykl37r = object_ship_player_shared_player_ykl37r:new {
 
+	childObjects = {
+			{templateFile = "object/tangible/ship/components/chassis/awing_chassis_token.iff", x = -5, z = 0.74, y = -1.81, ox = 0, oy = 0.707107, oz = 0, ow = -0.707107, cellid = 1, containmentType = -1},
+	},
+
 }
 
 ObjectTemplates:addTemplate(object_ship_player_player_ykl37r, "object/ship/player/player_ykl37r.iff")

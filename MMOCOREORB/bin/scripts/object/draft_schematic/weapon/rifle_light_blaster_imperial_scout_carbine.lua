@@ -63,10 +63,10 @@ object_draft_schematic_weapon_rifle_light_blaster_imperial_scout_carbine = objec
    customizationDefaults = {},
 
    ingredientTemplateNames = {"craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n"},
-   ingredientTitleNames = {"frame_assembly", "receiver_assembly", "grip_assembly", "powerhandler", "barrel", "scope", "stock"},
+   ingredientTitleNames = {"frame_assembly", "receiver_assembly", "grip_assembly", "base_carbine_core", "barrel", "scope", "stock"},
    ingredientSlotType = {0, 0, 0, 1, 1, 3, 3},
-   resourceTypes = {"steel_ditanium", "iron_polonium", "metal", "object/tangible/component/weapon/shared_blaster_power_handler.iff", "object/tangible/component/weapon/shared_blaster_rifle_barrel.iff", "object/tangible/component/weapon/shared_scope_weapon.iff", "object/tangible/component/weapon/shared_stock.iff"},
-   resourceQuantities = {65, 25, 12, 4, 1, 1, 1},
+   resourceTypes = {"metal", "chemical", "metal", "object/tangible/component/weapon/shared_base_carbine_core.iff", "object/tangible/component/weapon/shared_base_carbine_barrel.iff", "object/tangible/component/weapon/shared_scope_weapon.iff", "object/tangible/component/weapon/shared_stock.iff"},
+   resourceQuantities = {12, 6, 3, 1, 1, 1, 1},
    contribution = {100, 100, 100, 100, 100, 100, 100},
    ingredientAppearance = {"", "", "", "", "muzzle", "scope", "stock"},
 

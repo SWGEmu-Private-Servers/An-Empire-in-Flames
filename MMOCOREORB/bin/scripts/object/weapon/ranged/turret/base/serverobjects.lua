@@ -45,4 +45,4 @@
 --Children folder includes
 
 -- Server Objects
-includeFile("weapon/ranged/turret/base/turret_base.lua")
+includeFile("../custom_scripts/object/weapon/ranged/turret/base/turret_base.lua")

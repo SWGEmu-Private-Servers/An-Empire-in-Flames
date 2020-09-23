@@ -44,11 +44,11 @@
 MindShot1Command = {
 	name = "mindshot1",
 
-	damageMultiplier = 1.5,
-	speedMultiplier = 1,
-	healthCostMultiplier = 0.5,
-	actionCostMultiplier = 0.5,
-	mindCostMultiplier = 2,
+	damageMultiplier = 2.0,
+	speedMultiplier = 1.0,
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 55,
+	mindCostMultiplier = 0,
 	accuracyBonus = 5,
 
 	poolsToDamage = MIND_ATTRIBUTE,
@@ -67,7 +67,8 @@ MindShot1Command = {
 		0,
 		100,
 		60,
-		120
+		16,
+		50
 	  )
 	},
 

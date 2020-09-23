@@ -1,7 +1,6 @@
 local ObjectManager = require("managers.object.object_manager")
 
 raceDroidEventPerk = ScreenPlay:new {
-	racePointRadius = 5
 }
 
 function raceDroidEventPerk:setRacePoint(pNpc, pointNum, x, y)
@@ -11,6 +10,22 @@ function raceDroidEventPerk:setRacePoint(pNpc, pointNum, x, y)
 
 	local count = readData(droidID .. ":raceDroidPerk:waypointCount")
 	writeData(droidID .. ":raceDroidPerk:waypointCount", count + 1)
+
+	local radius = readData(droidID .. ":raceDroidPerk:Radius")
+
+	if radius == nil or radius == 0 then
+		self:setRadius(pNpc, 5)
+	end
+end
+
+function raceDroidEventPerk:setRadius(pNpc, radius)
+	local droidID = SceneObject(pNpc):getObjectID()
+	writeData(droidID .. ":raceDroidPerk:Radius", radius)
+end
+
+function raceDroidEventPerk:getRadius(pNpc)
+	local droidID = SceneObject(pNpc):getObjectID()
+	return readData(droidID .. ":raceDroidPerk:Radius")
 end
 
 function raceDroidEventPerk:getRacePoint(pNpc, pointNum)
@@ -118,6 +133,19 @@ function raceDroidEventPerk:suiSetupCallback(pPlayer, pSui, eventIndex, args)
 	local curStep = readData(droidID .. ":setupStep")
 
 	if (curStep == 0) then
+		local radius = tonumber(args)
+
+		if radius == nil or radius < 0 or radius > 64 then
+			CreatureObject(pPlayer):sendSystemMessage("You must enter a radius value between 1 and 64.")
+			self:sendSetupSUI(pNpc, pPlayer)
+			return
+		end
+
+		self:setRadius(pNpc, radius)
+		writeData(droidID .. ":setupStep", curStep + 1)
+		self:sendSetupSUI(pNpc, pPlayer)
+
+	elseif (curStep == 1) then
 		local numWaypoints = tonumber(args)
 
 		if (numWaypoints == nil or numWaypoints < 2 or numWaypoints > 15) then
@@ -130,7 +158,7 @@ function raceDroidEventPerk:suiSetupCallback(pPlayer, pSui, eventIndex, args)
 		writeData(droidID .. ":setupStep", curStep + 1)
 		deleteData(droidID .. ":raceDroidPerk:waypointCount")
 		self:sendSetupSUI(pNpc, pPlayer)
-	elseif (curStep == 1) then
+	elseif (curStep == 2) then
 		local tokenizer = self:splitString(args, " ")
 
 		if (#tokenizer ~= 2 or tokenizer[1] == nil or tokenizer[1] == "" or tokenizer[2] == nil or tokenizer[2] == "") then
@@ -228,7 +256,7 @@ function raceDroidEventPerk:createNextRacePoint(pPlayer, pNpc)
 	end
 
 	local pointZ = getTerrainHeight(pNpc, nextPoint[1], nextPoint[2])
-	local pRacePoint = spawnActiveArea(SceneObject(pPlayer):getZoneName(), "object/active_area.iff", nextPoint[1], pointZ, nextPoint[2], self.racePointRadius, 0)
+	local pRacePoint = spawnActiveArea(SceneObject(pPlayer):getZoneName(), "object/active_area.iff", nextPoint[1], pointZ, nextPoint[2], self:getRadius(pNpc), 0)
 
 	if pRacePoint == nil then
 		return
@@ -364,6 +392,8 @@ function raceDroidEventPerk:sendStoredData(pNpc, pPlayer)
 
 	sui.setTitle("@event_perk:race_view_parameters")
 	sui.setPrompt("@event_perk:race_show_status0")
+
+	sui.add("Waypoint Radius: " .. self:getRadius(pNpc), "")
 
 	for i = 1, totalWaypoints, 1 do
 		local waypoint = self:getRacePoint(pNpc, i)

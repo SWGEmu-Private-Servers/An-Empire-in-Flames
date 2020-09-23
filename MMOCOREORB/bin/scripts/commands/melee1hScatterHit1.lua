@@ -44,18 +44,43 @@
 Melee1hScatterHit1Command = {
         name = "melee1hscatterhit1",
 
-	damageMultiplier = 3.0,
+	damageMultiplier = 2.75,
 	speedMultiplier = 1.5,
-	healthCostMultiplier = 1.0,
-	actionCostMultiplier = 1.0,
-	mindCostMultiplier = 1.5,
-        accuracyBonus = 25,
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 20,
+	mindCostMultiplier = 0,
+  accuracyBonus = 25,
 
-	animation = "combo_3b", 
+	animation = "combo_3b",
 	animType = GENERATE_INTENSITY,
 
-	poolsToDamage = HEALTH_ATTRIBUTE + ACTION_ATTRIBUTE + MIND_ATTRIBUTE,
-	
+	poolsToDamage = ACTION_ATTRIBUTE + MIND_ATTRIBUTE,
+
+  dotEffects = {
+	  DotEffect(
+		BLEEDING,
+		{ "resistance_bleeding", "bleed_resist" },
+		ACTION,
+		true,
+		0,
+		100,
+		60,
+		24,
+    40
+  ),
+    DotEffect(
+    BLEEDING,
+    { "resistance_bleeding", "bleed_resist" },
+    MIND,
+    true,
+    0,
+    100,
+    60,
+    24,
+    40
+  )
+	},
+
 	weaponType = ONEHANDMELEEWEAPON,
 
 	combatSpam = "scatterstab",
@@ -64,4 +89,3 @@ Melee1hScatterHit1Command = {
 }
 
 AddCommand(Melee1hScatterHit1Command)
-

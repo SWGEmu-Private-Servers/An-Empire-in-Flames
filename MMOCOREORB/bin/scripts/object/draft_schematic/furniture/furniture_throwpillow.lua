@@ -72,12 +72,7 @@ object_draft_schematic_furniture_furniture_throwpillow = object_draft_schematic_
    contribution = {100, 100},
 
 
-   targetTemplate = "object/tangible/furniture/all/frn_all_throwpillow_med_s01.iff",
-
-   additionalTemplates = {
-   		"object/tangible/furniture/all/shared_frn_all_throwpillow_med_s02.iff",
-   		"object/tangible/furniture/all/shared_frn_all_throwpillow_med_s03.iff"
-   }
+   targetTemplate = "object/tangible/furniture/all/frn_all_feather_pillow_hue_s01.iff",
 
 }
 ObjectTemplates:addTemplate(object_draft_schematic_furniture_furniture_throwpillow, "object/draft_schematic/furniture/furniture_throwpillow.iff")

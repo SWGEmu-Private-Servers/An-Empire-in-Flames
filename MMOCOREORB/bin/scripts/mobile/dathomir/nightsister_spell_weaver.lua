@@ -12,7 +12,7 @@ nightsister_spell_weaver = Creature:new {
 	baseHAM = 24000,
 	baseHAMmax = 30000,
 	armor = 2,
-	resists = {5,100,5,100,100,100,100,100,-1},
+	resists = {60,60,50,60,60,70,50,70,60},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -33,7 +33,7 @@ nightsister_spell_weaver = Creature:new {
 			groups = {
 				{group = "power_crystals", chance = 500000},
 				{group = "color_crystals", chance = 500000},
-				{group = "nightsister_common", chance = 2300000},
+				{group = "junk", chance = 2300000},
 				{group = "armor_attachments", chance = 300000},
 				{group = "clothing_attachments", chance = 300000},
 				{group = "melee_weapons", chance = 2100000},
@@ -43,6 +43,12 @@ nightsister_spell_weaver = Creature:new {
 				{group = "wearables_common", chance = 500000},
 				{group = "tailor_components", chance = 500000}
 			}
+		},
+		{
+			groups = {
+				{group = "nightsister_common", chance = 10000000},
+			},
+			lootChance = 191666
 		}
 	},
 	weapons = {"mixed_force_weapons"},

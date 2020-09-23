@@ -44,24 +44,23 @@
 PolearmLegHit1Command = {
 	name = "polearmleghit1",
 
-	damageMultiplier = 1.5,
-	speedMultiplier = 1.25,
-	accuracyBonus = 10,
-	
-	healthCostMultiplier = 1.0,
-	actionCostMultiplier = 0.5,
-	mindCostMultiplier = 0.5,
+	damageMultiplier = 1.0,
+	speedMultiplier = 0.25,
+	accuracyBonus = 50,
+
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 10,
+	mindCostMultiplier = 0,
 
 	animation = "attack_low_left_medium_0",
 
 	combatSpam = "legbruiser",
 
-	poolsToDamage = ACTION_ATTRIBUTE,
-	
+	poolsToDamage = HEALTH_ATTRIBUTE,
+
 	weaponType = POLEARMWEAPON,
 
-	range = -1
+	range = 12
 }
 
 AddCommand(PolearmLegHit1Command)
-

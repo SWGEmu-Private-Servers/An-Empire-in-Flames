@@ -22,24 +22,10 @@ trainerSkills = {
 	},
 
 	trainer_brawler = {
-		"combat_brawler_novice",
-		"combat_brawler_master",
-		"combat_brawler_unarmed_01",
-		"combat_brawler_unarmed_02",
-		"combat_brawler_unarmed_03",
-		"combat_brawler_unarmed_04",
-		"combat_brawler_1handmelee_01",
-		"combat_brawler_1handmelee_02",
-		"combat_brawler_1handmelee_03",
-		"combat_brawler_1handmelee_04",
-		"combat_brawler_2handmelee_01",
-		"combat_brawler_2handmelee_02",
-		"combat_brawler_2handmelee_03",
-		"combat_brawler_2handmelee_04",
-		"combat_brawler_polearm_01",
-		"combat_brawler_polearm_02",
-		"combat_brawler_polearm_03",
-		"combat_brawler_polearm_04"
+		"combat_1hsword_novice",
+		"combat_2hsword_novice",
+		"combat_unarmed_novice",
+		"combat_polearm_novice",
 	},
 
 	trainer_entertainer = {
@@ -64,24 +50,9 @@ trainerSkills = {
 	},
 
 	trainer_marksman = {
-		"combat_marksman_novice",
-		"combat_marksman_master",
-		"combat_marksman_rifle_01",
-		"combat_marksman_rifle_02",
-		"combat_marksman_rifle_03",
-		"combat_marksman_rifle_04",
-		"combat_marksman_pistol_01",
-		"combat_marksman_pistol_02",
-		"combat_marksman_pistol_03",
-		"combat_marksman_pistol_04",
-		"combat_marksman_carbine_01",
-		"combat_marksman_carbine_02",
-		"combat_marksman_carbine_03",
-		"combat_marksman_carbine_04",
-		"combat_marksman_support_01",
-		"combat_marksman_support_02",
-		"combat_marksman_support_03",
-		"combat_marksman_support_04"
+		"combat_rifleman_novice",
+		"combat_pistol_novice",
+		"combat_carbine_novice",
 	},
 
 	trainer_medic = {
@@ -106,24 +77,11 @@ trainerSkills = {
 	},
 
 	trainer_scout = {
-		"outdoors_scout_novice",
-		"outdoors_scout_master",
-		"outdoors_scout_movement_01",
-		"outdoors_scout_movement_02",
-		"outdoors_scout_movement_03",
-		"outdoors_scout_movement_04",
-		"outdoors_scout_tools_01",
-		"outdoors_scout_tools_02",
-		"outdoors_scout_tools_03",
-		"outdoors_scout_tools_04",
-		"outdoors_scout_harvest_01",
-		"outdoors_scout_harvest_02",
-		"outdoors_scout_harvest_03",
-		"outdoors_scout_harvest_04",
-		"outdoors_scout_camp_01",
-		"outdoors_scout_camp_02",
-		"outdoors_scout_camp_03",
-		"outdoors_scout_camp_04"
+		"outdoors_bio_engineer_novice",
+		"outdoors_ranger_novice",
+		"outdoors_creaturehandler_novice",
+		"outdoors_squadleader_novice",
+		"crafting_surveyor_novice",
 	},
 
 	-- Elite Professions
@@ -591,7 +549,6 @@ trainerSkills = {
 	},
 
 	trainer_shipwright = {
-		"crafting_shipwright_novice",
 		"crafting_shipwright_master",
 		"crafting_shipwright_engineering_01",
 		"crafting_shipwright_engineering_02",
@@ -651,6 +608,15 @@ trainerSkills = {
 		"outdoors_squadleader_support_02",
 		"outdoors_squadleader_support_03",
 		"outdoors_squadleader_support_04"
+	},
+
+	trainer_surveyor = {
+		"crafting_surveyor_novice",
+		"crafting_surveyor_master",
+		"crafting_surveyor_sampling_01",
+		"crafting_surveyor_sampling_02",
+		"crafting_surveyor_sampling_03",
+		"crafting_surveyor_sampling_04",
 	},
 
 	trainer_tailor = {

@@ -1,8 +1,10 @@
-frsEnabled = 1
+frsEnabled = 0
 
 -- Object ID of Enclave buildings
 lightEnclaveID = 8525417
 darkEnclaveID = 3435626
+--lightEnclaveID = 0
+--darkEnclaveID = 0
 
 petitionInterval = 86400000 -- 1 day
 votingInterval = 86400000 -- 1 day
@@ -57,40 +59,76 @@ darkRankingData = {
 	{ 11, "force_rank_dark_master", 400000, 1, "object/tangible/wearables/robe/robe_jedi_dark_s05.iff" },
 }
 
+--enclaveRoomRequirements = {
+	-- Light enclave
+--	{ 8525444, -1 }, -- entrancehall1
+--	{ 8525421, 1 }, -- tier1hall1
+--	{ 8525420, 1 }, -- tier1room
+--	{ 8525419, 1 }, -- tier1hall2
+--	{ 8525424, 5 }, -- tier2hall1
+--	{ 8525423, 5 }, -- tier2room
+--	{ 8525422, 5 }, -- tier2hall2
+--	{ 8525433, 8 }, -- tier3hall1
+--	{ 8525432, 8 }, -- tier3room
+--	{ 8525431, 8 }, -- tier3hall2
+--	{ 8525430, 10 }, -- tier4hall1
+--	{ 8525429, 10 }, -- tier4room
+--	{ 8525428, 10 }, -- tier4hall2
+--	{ 8525427, 11 }, -- tier5hall1
+--	{ 8525426, 11 }, -- tier5room
+--	{ 8525425, 11 }, -- tier5hall2
+	-- Dark enclave
+--	{ 3435626, -1 }, -- ramp1
+--	{ 3435644, 1 }, -- hallwayb1
+--	{ 3435650, 1 }, -- council1
+--	{ 3435637, 5 }, -- hallwaya1
+--	{ 3435652, 5 }, -- council3
+--	{ 3435638, 8 }, -- hallwaya2
+--	{ 3435653, 8 }, -- council4
+--	{ 3435645, 8 }, -- hallwayb2
+--	{ 3435639, 10 }, -- hallwaya3
+--	{ 3435646, 10 }, -- hallwayb3
+--	{ 3435651, 10 }, -- council2
+--	{ 3435640, 11 }, -- hallwaya4
+--	{ 3435647, 11 }, -- hallwayb4
+--	{ 3435641, 11 }, -- chamberramp
+--	{ 3435642, 11 }, -- chamber
+--}
+
 enclaveRoomRequirements = {
 	-- Light enclave
 	{ 8525444, -1 }, -- entrancehall1
-	{ 8525421, 1 }, -- tier1hall1
-	{ 8525420, 1 }, -- tier1room
-	{ 8525419, 1 }, -- tier1hall2
-	{ 8525424, 5 }, -- tier2hall1
-	{ 8525423, 5 }, -- tier2room
-	{ 8525422, 5 }, -- tier2hall2
-	{ 8525433, 8 }, -- tier3hall1
-	{ 8525432, 8 }, -- tier3room
-	{ 8525431, 8 }, -- tier3hall2
-	{ 8525430, 10 }, -- tier4hall1
-	{ 8525429, 10 }, -- tier4room
-	{ 8525428, 10 }, -- tier4hall2
-	{ 8525427, 11 }, -- tier5hall1
-	{ 8525426, 11 }, -- tier5room
-	{ 8525425, 11 }, -- tier5hall2
+	{ 8525421, -1 }, -- tier1hall1
+	{ 8525420, -1 }, -- tier1room
+	{ 8525419, -1 }, -- tier1hall2
+	{ 8525424, -1 }, -- tier2hall1
+	{ 8525423, -1 }, -- tier2room
+	{ 8525422, -1 }, -- tier2hall2
+	{ 8525433, -1 }, -- tier3hall1
+	{ 8525432, -1 }, -- tier3room
+	{ 8525431, -1 }, -- tier3hall2
+	{ 8525430, -1 }, -- tier4hall1
+	{ 8525429, -1 }, -- tier4room
+	{ 8525428, -1 }, -- tier4hall2
+	{ 8525427, -1 }, -- tier5hall1
+	{ 8525426, -1 }, -- tier5room
+	{ 8525425, -1 }, -- tier5hall2
 	-- Dark enclave
 	{ 3435626, -1 }, -- ramp1
-	{ 3435644, 1 }, -- hallwayb1
-	{ 3435650, 1 }, -- council1
-	{ 3435637, 5 }, -- hallwaya1
-	{ 3435652, 5 }, -- council3
-	{ 3435638, 8 }, -- hallwaya2
-	{ 3435653, 8 }, -- council4
-	{ 3435645, 8 }, -- hallwayb2
-	{ 3435639, 10 }, -- hallwaya3
-	{ 3435646, 10 }, -- hallwayb3
-	{ 3435651, 10 }, -- council2
-	{ 3435640, 11 }, -- hallwaya4
-	{ 3435647, 11 }, -- hallwayb4
-	{ 3435641, 11 }, -- chamberramp
-	{ 3435642, 11 }, -- chamber
+	{ 3435644, -1 }, -- hallwayb1
+	{ 3435650, -1 }, -- council1
+	{ 3435637, -1 }, -- hallwaya1
+	{ 3435652, -1 }, -- council3
+	{ 3435638, -1 }, -- hallwaya2
+	{ 3435653, -1 }, -- council4
+	{ 3435645, -1 }, -- hallwayb2
+	{ 3435639, -1 }, -- hallwaya3
+	{ 3435646, -1 }, -- hallwayb3
+	{ 3435651, -1 }, -- council2
+	{ 3435640, -1 }, -- hallwaya4
+	{ 3435647, -1 }, -- hallwayb4
+	{ 3435641, -1 }, -- chamberramp
+	{ 3435642, -1 }, -- chamber
 }
 
 -- Key followed by values for player rank 0 through 11

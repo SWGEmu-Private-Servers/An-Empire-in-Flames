@@ -12,7 +12,7 @@ escaped_singing_mountain_clan_slave = Creature:new {
 	baseHAM = 7200,
 	baseHAMmax = 8800,
 	armor = 0,
-	resists = {25,20,0,-1,0,-1,-1,0,-1},
+	resists = {25,25,45,25,25,45,15,15,25},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -36,6 +36,12 @@ escaped_singing_mountain_clan_slave = Creature:new {
 				{group = "loot_kit_parts", chance = 1500000},
 				{group = "wearables_common", chance = 1500000}
 			}
+		},
+		{
+			groups = {
+				{group = "smc_common", chance = 10000000},
+			},
+			lootChance = 42000
 		}
 	},
 	weapons = {"primitive_weapons"},

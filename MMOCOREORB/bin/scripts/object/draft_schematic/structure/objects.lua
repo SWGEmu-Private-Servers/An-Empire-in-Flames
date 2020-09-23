@@ -2637,3 +2637,12 @@ object_draft_schematic_structure_shared_tatooine_house_guild_hall_style_02 = Sha
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_tatooine_house_guild_hall_style_02, "object/draft_schematic/structure/shared_tatooine_house_guild_hall_style_02.iff")
+
+
+
+
+object_draft_schematic_structure_shared_tatooine_house_small_style_03 = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/structure/shared_tatooine_house_small_style_03.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_structure_shared_tatooine_house_small_style_03, "object/draft_schematic/structure/shared_tatooine_house_small_style_03.iff")

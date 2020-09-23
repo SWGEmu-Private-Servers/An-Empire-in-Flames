@@ -10,7 +10,7 @@ tusken_raid_leader = Creature:new {
 	baseHAM = 10000,
 	baseHAMmax = 12000,
 	armor = 0,
-	resists = {35,25,0,60,-1,30,0,-1,-1},
+	resists = {25,25,25,45,15,25,25,25,25},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -29,17 +29,22 @@ tusken_raid_leader = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "junk", chance = 1500000},
-				{group = "tusken_common", chance = 3500000},
+				{group = "junk", chance = 3000000},
 				{group = "wearables_common", chance = 1000000},
 				{group = "wearables_uncommon", chance = 500000},
 				{group = "bone_armor", chance = 750000},
-				{group = "chitin_armor", chance = 750000},
+				{group = "chitin_armor", chance = 1250000},
 				{group = "armor_attachments", chance = 500000},
 				{group = "clothing_attachments", chance = 500000},
-				{group = "color_crystals", chance = 500000},
-				{group = "power_crystals", chance = 500000}
+				{group = "color_crystals", chance = 1250000},
+				{group = "power_crystals", chance = 1250000}
 			}
+		},
+		{
+			groups = {
+				{group = "tusken_common", chance = 10000000},
+			},
+			lootChance = 3500000
 		}
 	},
 	weapons = {"tusken_weapons"},

@@ -46,52 +46,52 @@ FullAutoSingle1Command = {
 
 	damageMultiplier = 2,
 	speedMultiplier = 1.5,
-	healthCostMultiplier = 1.75,
-	actionCostMultiplier = 2.5,
-	mindCostMultiplier = 0.5,
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 30,
+	mindCostMultiplier = 0,
 	accuracyBonus = 25,
 
-	animation = "fire_5_special_single", 
+	animation = "fire_5_special_single",
 	animType = GENERATE_RANGED,
 
 	combatSpam = "fullautoattack",
 
 	stateEffects = {
-	  StateEffect( 
-		DIZZY_EFFECT, 
-		{}, 
-		{ "dizzy_defense" }, 
+
+	  StateEffect(
+		DIZZY_EFFECT,
+		{},
+		{ "dizzy_defense" },
 		{ "jedi_state_defense", "resistance_states" },
-		30, 
-		0, 
-		30 
+		80,
+		0,
+		30
 	  ),
-	  StateEffect( 
-		BLIND_EFFECT, 
-		{}, 
-		{ "blind_defense" }, 
-		{ "jedi_state_defense", "resistance_states" }, 
-		30, 
-		0, 
-		40 
-	  ),
-	  StateEffect( 
-		STUN_EFFECT, 
-		{}, 
-		{ "stun_defense" }, 
+	  StateEffect(
+		BLIND_EFFECT,
+		{},
+		{ "blind_defense" },
 		{ "jedi_state_defense", "resistance_states" },
-		30, 
-		0, 
-		30 
+		80,
+		0,
+		30
+	  ),
+	  StateEffect(
+		STUN_EFFECT,
+		{},
+		{ "stun_defense" },
+		{ "jedi_state_defense", "resistance_states" },
+		80, 
+		0,
+		30
 	  )
 	},
 
 	poolsToDamage = RANDOM_ATTRIBUTE,
-	
+
 	weaponType = CARBINEWEAPON,
 
 	range = -1
 }
 
 AddCommand(FullAutoSingle1Command)
-

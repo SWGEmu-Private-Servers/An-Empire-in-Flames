@@ -12,7 +12,7 @@ mokk_harvester = Creature:new {
 	baseHAM = 8400,
 	baseHAMmax = 10200,
 	armor = 0,
-	resists = {15,40,15,-1,-1,60,60,-1,-1},
+	resists = {25,25,15,25,25,15,45,45,25},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -41,6 +41,12 @@ mokk_harvester = Creature:new {
 				{group = "wearables_uncommon", chance = 1000000},
 				{group = "color_crystals", chance = 500000}
 			}
+		},
+		{
+			groups = {
+				{group = "janta_common", chance = 10000000},
+			},
+			lootChance = 1500000
 		}
 	},
 	weapons = {"primitive_weapons"},

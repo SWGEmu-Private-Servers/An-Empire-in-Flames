@@ -130,3 +130,12 @@ includeFile("draft_schematic/weapon/sword.lua")
 includeFile("draft_schematic/weapon/sword_curved.lua")
 includeFile("draft_schematic/weapon/sword_ryyk_blade.lua")
 includeFile("draft_schematic/weapon/turbo_laser.lua")
+
+--crafting revamp files
+includeFile("draft_schematic/weapon/pistol_alliance_disruptor.lua")
+includeFile("draft_schematic/weapon/carbine_alliance_needler.lua")
+includeFile("draft_schematic/weapon/carbine_bowcaster.lua")
+includeFile("draft_schematic/weapon/carbine_berserker.lua")
+includeFile("draft_schematic/weapon/pistol_a280.lua")
+includeFile("draft_schematic/weapon/carbine_a280.lua")
+includeFile("draft_schematic/weapon/rifle_a280.lua")

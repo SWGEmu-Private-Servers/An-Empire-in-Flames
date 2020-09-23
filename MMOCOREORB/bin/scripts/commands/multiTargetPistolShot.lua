@@ -44,12 +44,12 @@
 MultiTargetPistolShotCommand = {
         name = "multitargetpistolshot",
 
-	damageMultiplier = 4.2,
-	speedMultiplier = 3.5,
-	healthCostMultiplier = 0.5,
-	actionCostMultiplier = 1.25,
-	mindCostMultiplier = 0.5,
-	accuracyBonus = 50,
+	damageMultiplier = 4.0,
+	speedMultiplier = 2.0,
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 40,
+	mindCostMultiplier = 0,
+	accuracyBonus = 30,
 
 	areaAction = true,
         areaRange = 32,
@@ -60,11 +60,10 @@ MultiTargetPistolShotCommand = {
 	animType = GENERATE_RANGED,
 
 	combatSpam = "pistolmultishot",
-	
+
 	weaponType = PISTOLWEAPON,
 
 	range = -1
 }
 
 AddCommand(MultiTargetPistolShotCommand)
-

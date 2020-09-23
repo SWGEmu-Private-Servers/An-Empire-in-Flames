@@ -342,10 +342,10 @@ function TatooineMosEnthaScreenPlay:spawnMobiles()
 
 	--Med Center
 	spawnMobile(self.planet, "surgical_droid_21b",60,-25.52,0.26,-3.48,142.122,1153586)
-	spawnMobile(self.planet, "trainer_combatmedic",0,-16.4794,0.26,9.71928,162,1153586)
+	spawnMobile(self.planet, "trainer_surveyor",0,-16.4794,0.26,9.71928,162,1153586)
 	spawnMobile(self.planet, "trainer_doctor",0,-24.6019,0.26,-3.96049,212,1153586)
 	spawnMobile(self.planet, "trainer_medic",0,-17.0194,0.26,-1.8269,149,1153586)
-	spawnMobile(self.planet, "trainer_combatmedic",0,28,0.26,6.3,227,1153582)
+	spawnMobile(self.planet, "trainer_surveyor",0,28,0.26,6.3,227,1153582)
 	spawnMobile(self.planet, "trainer_doctor",0,20,0.26,-5.6,87,1153582)
 	spawnMobile(self.planet, "trainer_medic",0,14.1436,0.26,4.6585,190,1153582)
 

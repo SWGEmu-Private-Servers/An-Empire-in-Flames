@@ -43,35 +43,34 @@
 
 Melee2hArea1Command = {
         name = "melee2harea1",
-	damageMultiplier = 2.0,
+	damageMultiplier = 2.5,
 	speedMultiplier = 1.5,
-	healthCostMultiplier = 0.5,
-	actionCostMultiplier = 1.5,
-	mindCostMultiplier = 0.50,
-        accuracyBonus = 10,
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 15,
+	mindCostMultiplier = 0,
+  accuracyBonus = 15,
 
-	areaRange = 16,
-	areaAction = true,
-	stateEffects = {
-	  StateEffect( 
-		POSTUREDOWN_EFFECT, 
-		{ "postureDownRecovery" }, 
-		{ "posture_change_down_defense" }, 
-		{},
-		100, 
-		0, 
-		0 
-	  )
-	},
+  coneAngle = 270,
+	coneAction = true,
+  stateEffects = {
+    StateEffect(
+    INTIMIDATE_EFFECT,
+    { "intimidate_defense" },
+		{ "jedi_state_defense", "resistance_states" },
+    {},
+    55,
+    0,
+    30
+    )
+  },
 
 	animation = "lower_posture_2hmelee_2",
 
 	combatSpam = "descendingstrike",
-	
+
 	weaponType = TWOHANDMELEEWEAPON,
 
-	range = -1
+	range = 8
 }
 
 AddCommand(Melee2hArea1Command)
-

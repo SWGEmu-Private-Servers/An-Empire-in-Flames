@@ -18,7 +18,7 @@ domestic_tusk_cat = Creature:new {
 	boneType = "bone_mammal",
 	boneAmount = 40,
 	milk = 0,
-	tamingChance = 0,
+	tamingChance = 0.25,
 	ferocity = 8,
 	pvpBitmask = ATTACKABLE,
 	creatureBitmask = PACK,
@@ -26,6 +26,7 @@ domestic_tusk_cat = Creature:new {
 	diet = CARNIVORE,
 
 	templates = {"object/mobile/tusk_cat_hue.iff"},
+	controlDeviceTemplate = "object/intangible/pet/tusk_cat_hue.iff",
 	hues = { 0, 1, 2, 3, 4, 5, 6, 7 },
 	lootGroups = {},
 	weapons = {},

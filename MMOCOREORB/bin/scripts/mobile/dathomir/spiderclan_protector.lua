@@ -12,7 +12,7 @@ spiderclan_protector = Creature:new {
 	baseHAM = 50000,
 	baseHAMmax = 61000,
 	armor = 2,
-	resists = {45,95,100,65,100,100,55,100,-1},
+	resists = {60,60,50,60,60,70,50,70,60},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -42,6 +42,12 @@ spiderclan_protector = Creature:new {
 				{group = "carbines", chance = 1000000},
 				{group = "wearables_all", chance = 500000}
 			}
+		},
+		{
+			groups = {
+				{group = "spiderclan_common", chance = 10000000},
+			},
+			lootChance = 191666
 		}
 	},
 	weapons = {"mixed_force_weapons"},

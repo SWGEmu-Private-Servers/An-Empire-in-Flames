@@ -1,8 +1,8 @@
 dev = {
 	level = 14,
 	name = "dev",
+	tag = "Starsider-Dev",
 	flag = 2, -- Developer
-	tag = "SWGEmu-Dev",
 	skills = {
 		"admin_base",
 		"admin_debug_01",

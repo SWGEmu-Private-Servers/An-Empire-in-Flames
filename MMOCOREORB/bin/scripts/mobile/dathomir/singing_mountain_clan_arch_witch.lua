@@ -12,7 +12,7 @@ singing_mountain_clan_arch_witch = Creature:new {
 	baseHAM = 24000,
 	baseHAMmax = 30000,
 	armor = 2,
-	resists = {100,5,5,100,100,100,100,100,-1},
+	resists = {75,75,55,75,75,95,55,95,75},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -43,6 +43,12 @@ singing_mountain_clan_arch_witch = Creature:new {
 				{group = "wearables_uncommon", chance = 500000},
 				{group = "tailor_components", chance = 500000}
 			}
+		},
+		{
+			groups = {
+				{group = "smc_common", chance = 10000000},
+			},
+			lootChance = 196666
 		}
 	},
 	weapons = {"mixed_force_weapons"},

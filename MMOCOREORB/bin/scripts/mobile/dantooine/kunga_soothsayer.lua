@@ -12,7 +12,7 @@ kunga_soothsayer = Creature:new {
 	baseHAM = 5900,
 	baseHAMmax = 7200,
 	armor = 0,
-	resists = {15,40,15,-1,-1,60,40,-1,-1},
+	resists = {25,25,15,25,25,15,45,45,25},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -33,14 +33,21 @@ kunga_soothsayer = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "junk", chance = 3500000},
+				{group = "junk", chance = 2000000},
 				{group = "loot_kit_parts", chance = 3000000},
 				{group = "armor_attachments", chance = 500000},
 				{group = "clothing_attachments", chance = 500000},
 				{group = "wearables_common", chance = 1000000},
+				{group = "color_crystals", chance = 1500000},
 				{group = "wearables_uncommon", chance = 1000000},
 				{group = "power_crystals", chance = 500000}
 			}
+		},
+		{
+			groups = {
+				{group = "janta_common", chance = 10000000},
+			},
+			lootChance = 1500000
 		}
 	},
 	weapons = {"primitive_weapons"},

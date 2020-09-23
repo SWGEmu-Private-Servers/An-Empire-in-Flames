@@ -43,35 +43,35 @@
 
 PolearmHit2Command = {
         name = "polearmhit2",
+	damageMultiplier = 3.7,
+	speedMultiplier = 1.75,
+  accuracyBonus = 15,
 
-	damageMultiplier = 2.5,
-	speedMultiplier = 2.0,
-	healthCostMultiplier = 1.5,
-	actionCostMultiplier = 1.0,
-	mindCostMultiplier = 1.0,
-	accuracyBonus = 10,
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 15,
+	mindCostMultiplier = 0,
 
-	stateEffects = {
-	  StateEffect( 
-		STUN_EFFECT, 
-		{}, 
-		{ "stun_defense" }, 
-		{ "jedi_state_defense", "resistance_states" },
-		75, 
-		0, 
-		45 
+
+  stateEffects = {
+	  StateEffect(
+		DIZZY_EFFECT,
+		{},
+		{ "dizzy_defense", "resistance_states" },
+		{ "jedi_state_defense" },
+		75,
+		0,
+		30
 	  )
 	},
 
-	animation = "combo_3a", 
+	animation = "combo_3a",
 	animType = GENERATE_INTENSITY,
 
 	combatSpam = "bonesmasher",
-	
+
 	weaponType = POLEARMWEAPON,
 
-	range = -1
+	range = 12
 }
 
 AddCommand(PolearmHit2Command)
-

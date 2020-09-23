@@ -33,7 +33,22 @@ lifeDayScreenplay = ScreenPlay:new {
 	randomGifts = {"object/tangible/loot/quest/lifeday_orb.iff",
 		"object/tangible/painting/painting_wookiee_m.iff",
 		"object/tangible/painting/painting_wookiee_f.iff",
-		"object/tangible/painting/painting_trees_s01.iff"},
+		"object/tangible/painting/painting_trees_s01.iff",
+	    "object/tangible/furniture/lifeday/lifeday_banner_s01.iff",
+	    "object/tangible/furniture/lifeday/lifeday_banner_s02.iff",
+	    "object/tangible/furniture/lifeday/lifeday_banner_s03.iff",
+	    "object/tangible/furniture/lifeday/lifeday_bunting.iff",
+	    "object/tangible/furniture/lifeday/lifeday_incense_burner.iff",
+	    "object/tangible/furniture/lifeday/lifeday_mini_tree.iff",
+	    "object/tangible/furniture/lifeday/lifeday_painting_2010_s01.iff",
+	    "object/tangible/furniture/lifeday/lifeday_painting_2010_s02.iff",
+	    "object/tangible/furniture/lifeday/lifeday_painting_2010_s03.iff",
+	    "object/tangible/furniture/lifeday/lifeday_painting_s01.iff",
+	    "object/tangible/furniture/lifeday/lifeday_painting_s02.iff",
+	    "object/tangible/furniture/lifeday/lifeday_painting_s03.iff",
+	    "object/tangible/furniture/lifeday/lifeday_painting_s04.iff",
+	    "object/tangible/furniture/lifeday/lifeday_painting_s05.iff",
+	    "object/tangible/furniture/lifeday/lifeday_wreath.iff"},
 
 	robe = "object/tangible/wearables/wookiee/wke_lifeday_robe.iff"
 }

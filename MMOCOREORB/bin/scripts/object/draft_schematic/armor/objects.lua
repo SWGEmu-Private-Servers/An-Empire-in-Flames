@@ -1559,3 +1559,31 @@ object_draft_schematic_armor_shared_shield_generator_vehicular = SharedDraftSche
 }
 
 ObjectTemplates:addClientTemplate(object_draft_schematic_armor_shared_shield_generator_vehicular, "object/draft_schematic/armor/shared_shield_generator_vehicular.iff")
+
+--armor core
+object_draft_schematic_armor_shared_armor_core = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/armor/shared_armor_core.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_armor_shared_armor_core, "object/draft_schematic/armor/shared_armor_core.iff")
+
+--basic armor segment
+object_draft_schematic_armor_shared_armor_segment_basic = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/armor/shared_armor_segment_basic.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_armor_shared_armor_segment_basic, "object/draft_schematic/armor/shared_armor_segment_basic.iff")
+
+--exotic armor segment
+object_draft_schematic_armor_shared_armor_segment_exotic = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/armor/shared_armor_segment_exotic.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_armor_shared_armor_segment_exotic, "object/draft_schematic/armor/shared_armor_segment_exotic.iff")
+
+--laminated armor segment
+object_draft_schematic_armor_shared_armor_segment_laminated = SharedDraftSchematicObjectTemplate:new {
+	clientTemplateFileName = "object/draft_schematic/armor/shared_armor_segment_laminated.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_draft_schematic_armor_shared_armor_segment_laminated, "object/draft_schematic/armor/shared_armor_segment_laminated.iff")

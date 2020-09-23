@@ -61,8 +61,8 @@ raxa_binn_missions =
 npcMapRaxaBinn =
 	{
 		{
-			spawnData = { npcTemplate = "raxa_binn", x = -4.0, z = 0.1, y = -4.2, direction = 140, cellID = 4505669, position = SIT },
-			worldPosition = { x = 3643, y = -6465 },
+			spawnData = { npcTemplate = "raxa_binn", x = 0.5, z = 0.63, y = 3.32, direction = 90, cellID = 4505634, position = SIT },
+			worldPosition = { x = 3690, y = -6456 },
 			npcNumber = 1,
 			stfFile = "@static_npc/rori/rori_rebeloutpost_raxa_binn",
 			missions = raxa_binn_missions

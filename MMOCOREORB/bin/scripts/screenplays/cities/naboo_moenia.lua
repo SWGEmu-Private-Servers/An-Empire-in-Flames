@@ -119,8 +119,8 @@ function NabooMoeniaScreenPlay:spawnMobiles()
 	spawnMobile("naboo", "trainer_weaponsmith",0,-2.5,1.13306,-8.4,91,1717556)
 
 	--Med Center
-	spawnMobile("naboo", "trainer_combatmedic",0,27.0188,0.26,5.47931,82,1717502)
-	spawnMobile("naboo", "trainer_combatmedic",0,-16.404,0.26,10.6808,172,1717506)
+	spawnMobile("naboo", "trainer_surveyor",0,27.0188,0.26,5.47931,82,1717502)
+	spawnMobile("naboo", "trainer_surveyor",0,-16.404,0.26,10.6808,172,1717506)
 	spawnMobile("naboo", "trainer_doctor",0,19.6344,0.26,-4.81265,37,1717502)
 	spawnMobile("naboo", "trainer_doctor",0,-25,0.26,-4,180,1717506)
 	spawnMobile("naboo", "trainer_medic",0,-17.2255,0.26,-1.2311,150,1717506)

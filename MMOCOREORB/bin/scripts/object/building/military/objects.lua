@@ -2954,3 +2954,10 @@ object_building_military_shared_small_imperial_cloning_facility_s02 = SharedBuil
 }
 
 ObjectTemplates:addClientTemplate(object_building_military_shared_small_imperial_cloning_facility_s02, "object/building/military/shared_small_imperial_cloning_facility_s02.iff")
+
+object_building_military_shared_outpost_hangar = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/military/shared_outpost_hangar.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_building_military_shared_outpost_hangar, "object/building/military/shared_outpost_hangar.iff")
+

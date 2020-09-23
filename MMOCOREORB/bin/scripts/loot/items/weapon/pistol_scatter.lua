@@ -6,19 +6,19 @@ pistol_scatter = {
 	customObjectName = "",
 	directObjectTemplate = "object/weapon/ranged/pistol/pistol_scatter.iff",
 	craftingValues = {
-		{"mindamage",43,87,0},
-		{"maxdamage",59,102,0},
-		{"attackspeed",5.4,3.9,0},
-		{"woundchance",10,24,0},
-		{"hitpoints",750,750,0},
-		{"attackhealthcost",24,12,0},
-		{"attackactioncost",63,35,0},
-		{"attackmindcost",24,12,0},
-		{"roundsused",30,30,0},
-		{"zerorangemod",-45,-25,0},
-		{"maxrangemod",-95,-65,0},
-		{"midrange",7,7,0},
-		{"midrangemod",18,35,0},
+		{"mindamage",275,350,0},
+		{"maxdamage",501,605,0},
+		{"attackspeed",4.1,3.0,0},
+		{"woundchance",4,5,0},
+		{"roundsused",5,20,0},
+		{"hitpoints",450,1000,0},
+		{"zerorangemod",-5,5,0},
+		{"maxrangemod",-120,-120,0},
+		{"midrange",16,16,0},
+		{"midrangemod",10,22,0},
+		{"attackhealthcost",65,60,0},
+		{"attackactioncost",65,60,0},
+		{"attackmindcost",65,60,0},
 	},
 	customizationStringNames = {},
 	customizationValues = {},
@@ -26,8 +26,8 @@ pistol_scatter = {
 	-- randomDotChance: The chance of this weapon object dropping with a random dot on it. Higher number means less chance. Set to 0 to always have a random dot.
 	randomDotChance = 625,
 	junkDealerTypeNeeded = JUNKARMS,
-	junkMinValue = 30,
-	junkMaxValue = 55
+	junkMinValue = 60,
+	junkMaxValue = 105
 
 }
 

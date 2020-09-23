@@ -45,17 +45,31 @@ Melee1hBodyHit1Command = {
 	name = "melee1hbodyhit1",
 
 	damageMultiplier = 1.5,
-	speedMultiplier = 1.5,
-	healthCostMultiplier = 0.5,
-	actionCostMultiplier = 0.5,
-	mindCostMultiplier = 0.625,
+	speedMultiplier = 0.5,
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 15,
+	mindCostMultiplier = 0,
         accuracyBonus = 25,
 
 	poolsToDamage = HEALTH_ATTRIBUTE,
 	weaponType = ONEHANDMELEEWEAPON,
 
-	animation = "counter_high_right", 
+	animation = "counter_high_right",
 	animType = GENERATE_INTENSITY,
+
+	dotEffects = {
+    DotEffect(
+    BLEEDING,
+    { "resistance_bleeding", "bleed_resist" },
+    HEALTH,
+    true,
+    0,
+    50,
+    60,
+    16,
+    50
+    )
+  },
 
 	combatSpam = "saimai",
 
@@ -63,4 +77,3 @@ Melee1hBodyHit1Command = {
 }
 
 AddCommand(Melee1hBodyHit1Command)
-

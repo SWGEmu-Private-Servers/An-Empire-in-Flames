@@ -1397,3 +1397,11 @@ object_building_player_construction_shared_construction_player_house_tatooine_sm
 }
 
 ObjectTemplates:addClientTemplate(object_building_player_construction_shared_construction_player_house_tatooine_small_style_01, "object/building/player/construction/shared_construction_player_house_tatooine_small_style_01.iff")
+
+
+object_building_player_construction_shared_construction_stronghold = SharedBuildingObjectTemplate:new {
+	clientTemplateFileName = "object/building/player/construction/shared_construction_stronghold.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_building_player_construction_shared_construction_stronghold, "object/building/player/construction/shared_construction_stronghold.iff")
+

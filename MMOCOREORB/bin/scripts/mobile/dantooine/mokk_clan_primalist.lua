@@ -12,7 +12,7 @@ mokk_clan_primalist = Creature:new {
 	baseHAM = 10000,
 	baseHAMmax = 12000,
 	armor = 1,
-	resists = {15,50,0,-1,-1,60,60,-1,-1},
+	resists = {25,25,15,25,25,15,45,45,25},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -41,6 +41,12 @@ mokk_clan_primalist = Creature:new {
 				{group = "wearables_uncommon", chance = 1000000},
 				{group = "color_crystals", chance = 500000}
 			}
+		},
+		{
+			groups = {
+				{group = "janta_common", chance = 10000000},
+			},
+			lootChance = 1500000
 		}
 	},
 	weapons = {"primitive_weapons"},

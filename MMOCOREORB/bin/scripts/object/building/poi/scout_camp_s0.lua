@@ -61,7 +61,7 @@ object_building_poi_scout_camp_s0 = object_building_poi_shared_scout_camp_s0:new
 	duration = 3600,
 	radius = 12,
 	experience = 360,
-	skillRequired = 5,
+	skillRequired = 0,
 
 	childObjects = {
 		{templateFile = "object/tangible/camp/camp_control_panel.iff", x = 2.62, z = 0, y = 1.11, ox = 0, oy = -0.895, oz = 0, ow =  0.446, cellid = -1, containmentType = -1},

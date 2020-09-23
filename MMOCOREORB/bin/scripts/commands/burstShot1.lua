@@ -44,24 +44,23 @@
 BurstShot1Command = {
         name = "burstshot1",
 
-	damageMultiplier = 4.0,
-	speedMultiplier = 2.0,
-	healthCostMultiplier = 1.75,
-	actionCostMultiplier = 1.25,
-	mindCostMultiplier = 0.5,
+	damageMultiplier = 3.0,
+	speedMultiplier = 1.4,
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 30,
+	mindCostMultiplier = 0,
         accuracyBonus = 25,
 
 	poolsToDamage = RANDOM_ATTRIBUTE,
 
-	animation = "fire_7_single", 
+	animation = "fire_7_single",
 	animType = GENERATE_RANGED,
 
 	combatSpam = "burstshot",
-	
+
 	weaponType = CARBINEWEAPON,
 
 	range = -1
 }
 
 AddCommand(BurstShot1Command)
-

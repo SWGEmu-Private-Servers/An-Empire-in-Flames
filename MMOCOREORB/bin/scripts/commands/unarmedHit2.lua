@@ -44,22 +44,23 @@
 UnarmedHit2Command = {
         name = "unarmedhit2",
 
-	damageMultiplier = 3.0,
-	speedMultiplier = 2.5,
-	healthCostMultiplier = 1.5,
-	actionCostMultiplier = 1.5,
-	mindCostMultiplier = 1.5,
-        accuracyBonus = 15,
+	damageMultiplier = 3.8,
+	speedMultiplier = 1.75,
+  accuracyBonus = 15,
 
-	animation = "combo_3a", 
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 10,
+	mindCostMultiplier = 0,
+
+
+	animation = "combo_3a",
 	animType = GENERATE_INTENSITY,
 
 	combatSpam = "goraxsmash",
-	
+
 	weaponType = UNARMEDWEAPON,
 
 	range = -1
 }
 
 AddCommand(UnarmedHit2Command)
-

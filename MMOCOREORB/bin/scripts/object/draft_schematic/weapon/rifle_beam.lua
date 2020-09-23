@@ -48,11 +48,12 @@ object_draft_schematic_weapon_rifle_beam = object_draft_schematic_weapon_shared_
    customObjectName = "Beam Rifle",
 
    craftingToolTab = 1, -- (See DraftSchematicObjectTemplate.h)
-   complexity = 50, 
+   complexity = 28, 
    size = 1, 
+   factoryCrateSize = 0,
 
    xpType = "crafting_weapons_general", 
-   xp = 340, 
+   xp = 150, 
 
    assemblySkill = "weapon_assembly", 
    experimentingSkill = "weapon_experimentation", 
@@ -63,11 +64,12 @@ object_draft_schematic_weapon_rifle_beam = object_draft_schematic_weapon_shared_
    customizationDefaults = {},
 
    ingredientTemplateNames = {"craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n"},
-   ingredientTitleNames = {"frame_assembly", "receiver_assembly", "grip_assembly", "powerhandler", "barrel", "stock", "scope"},
-   ingredientSlotType = {0, 0, 0, 1, 1, 3, 2},
-   resourceTypes = {"steel", "iron", "metal", "object/tangible/component/weapon/shared_blaster_power_handler.iff", "object/tangible/component/weapon/shared_blaster_rifle_barrel.iff", "object/tangible/component/weapon/shared_stock.iff", "object/tangible/component/weapon/shared_scope_weapon.iff"},
-   resourceQuantities = {120, 60, 15, 4, 1, 1, 1},
+   ingredientTitleNames = {"frame_assembly", "receiver_assembly", "grip_assembly", "base_rifle_core", "barrel", "scope", "stock"},
+   ingredientSlotType = {0, 0, 0, 1, 1, 3, 3},
+   resourceTypes = {"metal", "chemical", "metal", "object/tangible/component/weapon/shared_base_rifle_core.iff", "object/tangible/component/weapon/shared_base_rifle_barrel.iff", "object/tangible/component/weapon/shared_scope_weapon.iff", "object/tangible/component/weapon/shared_stock.iff"},
+   resourceQuantities = {12, 6, 3, 1, 1, 1, 1},
    contribution = {100, 100, 100, 100, 100, 100, 100},
+   ingredientAppearance = {"", "", "", "", "muzzle", "scope", "stock"},
 
 
    targetTemplate = "object/weapon/ranged/rifle/rifle_beam.iff",

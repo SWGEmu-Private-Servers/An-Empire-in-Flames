@@ -18,15 +18,7 @@ social_language_ithorian_speak = {
 	apprenticeshipsRequired = 0,
 	statsRequired = {},
 	speciesRequired = {
-		"bothan",
-		"human",
-		"moncal",
-		"rodian",
-		"trandoshan",
-		"twilek",
-		"zabrak",
 		"ithorian",
-		"sullustan"
 	},
 	jediStateRequired = 0,
 	skillAbility = {},

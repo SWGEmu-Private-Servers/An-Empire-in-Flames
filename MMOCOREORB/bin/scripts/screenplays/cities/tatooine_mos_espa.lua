@@ -45,7 +45,7 @@ function TatooineMosEspaScreenPlay:start()
 	if (isZoneEnabled(self.planet)) then
 		self:spawnMobiles()
 		self:spawnSceneObjects()
-		self:spawnGcwMobiles()
+--		self:spawnGcwMobiles()
 	end
 end
 
@@ -215,7 +215,7 @@ function TatooineMosEspaScreenPlay:spawnMobiles()
 	spawnMobile(self.planet, "trainer_merchant",0,12,1.13306,6,180,1256019)
 
 	--Med Center
-	spawnMobile(self.planet, "trainer_combatmedic",0,7.93319,0.184067,5.54261,86,4005424)
+	spawnMobile(self.planet, "trainer_surveyor",0,7.93319,0.184067,5.54261,86,4005424)
 
 	--Hotel
 	pNpc = spawnMobile(self.planet, "commoner_technician",60,20.2715,1.28309,-1.14578,360.011,1261018)
@@ -313,7 +313,7 @@ function TatooineMosEspaScreenPlay:spawnMobiles()
 	spawnMobile(self.planet, "informant_npc_lvl_2",0,-2879,5,2555,135,0)
 
 	--Jawa's
-	pNpc = spawnMobile(self.planet, "jawa",300,-2930.03,5,2038.02,270.008,0)
+--[[	pNpc = spawnMobile(self.planet, "jawa",300,-2930.03,5,2038.02,270.008,0)
 	self:setMoodString(pNpc, "conversation")
 	pNpc = spawnMobile(self.planet, "jawa",300,-2932.03,5,2038.02,90.0027,0)
 	self:setMoodString(pNpc, "conversation")
@@ -359,7 +359,7 @@ function TatooineMosEspaScreenPlay:spawnMobiles()
 	spawnMobile(self.planet, "jawa_thief",300,-2867.6,5,2421.4,-130,0)
 	spawnMobile(self.planet, "jawa_thief",300,-2848.8,5,2430.5,103,0)
 	spawnMobile(self.planet, "jawa_thief",300,-2739.1,5,2175.5,-96,0)
-	spawnMobile(self.planet, "jawa_thief",300,-2736.1,5,2188.86,69.1613,0)
+	spawnMobile(self.planet, "jawa_thief",300,-2736.1,5,2188.86,69.1613,0) ]]--
 
 	--More misc outside
 	spawnMobile(self.planet, "junk_dealer", 0, -2750.9, 5, 2057, 132, 0)
@@ -397,7 +397,7 @@ function TatooineMosEspaScreenPlay:spawnMobiles()
 	spawnMobile(self.planet, "scientist",60,-2913.31,5,2566.89,167.24,0)
 	spawnMobile(self.planet, "scientist",60,-2969.78,5,2469.4,58.2554,0)
 	spawnMobile(self.planet, "scientist",60,-2860.55,5,2534.77,227.149,0)
-	spawnMobile(self.planet, "thug",300,-2857.9,5,2250.18,156.767,0)
+--[[	spawnMobile(self.planet, "thug",300,-2857.9,5,2250.18,156.767,0)
 	spawnMobile(self.planet, "thug",300,-2731.61,5,2242.41,339.94,0)
 	spawnMobile(self.planet, "thug",300,-2748.23,5,2031.47,337.983,0)
 	spawnMobile(self.planet, "thug",300,-2794.64,5,2327.09,109.693,0)
@@ -405,7 +405,7 @@ function TatooineMosEspaScreenPlay:spawnMobiles()
 	spawnMobile(self.planet, "thug",300,-2994.3,5.5,2331.4,165,0)
 	spawnMobile(self.planet, "thug",300,-2964.35,5,2536.74,244.766,0)
 	spawnMobile(self.planet, "thug",300,-3065.25,5,2142.42,155.455,0)
-	spawnMobile(self.planet, "thug",300,-2919.38,5,2143.08,304.531,0)
+	spawnMobile(self.planet, "thug",300,-2919.38,5,2143.08,304.531,0) ]]--
 	pNpc = spawnMobile(self.planet, "trace_lyson",60,-2909.17,5,2180.03,180,0)
 	self:setMoodString(pNpc, "calm")
 	spawnMobile(self.planet, "trainer_1hsword",0,-2964,5,2021,33,0)
@@ -426,7 +426,7 @@ function TatooineMosEspaScreenPlay:spawnMobiles()
 	spawnMobile(self.planet, "trainer_weaponsmith",0,-2869,5,2146,8,0)
 
 	--Creatures
-	spawnMobile(self.planet, "dwarf_eopie",300,-3217.87,6.7851,2010.86,329.47,0)
+--[[	spawnMobile(self.planet, "dwarf_eopie",300,-3217.87,6.7851,2010.86,329.47,0)
 	spawnMobile(self.planet, "dwarf_eopie",300,-3205.35,6.01035,2016.06,32.4216,0)
 	spawnMobile(self.planet, "dwarf_eopie",300,-3208.98,6.12053,2017.03,118.154,0)
 	spawnMobile(self.planet, "dwarf_eopie",300,-3246.28,5.42038,2218.4,130.138,0)
@@ -576,4 +576,5 @@ function TatooineMosEspaScreenPlay:spawnMobiles()
 	spawnMobile(self.planet, "worrt",300,-2589.82,5,2226.13,110.267,0)
 	spawnMobile(self.planet, "worrt",300,-2613.31,5.08118,1969.82,347.531,0)
 	spawnMobile(self.planet, "worrt",300,-2628.18,5.04651,1955.15,351.895,0)
+]]--
 end

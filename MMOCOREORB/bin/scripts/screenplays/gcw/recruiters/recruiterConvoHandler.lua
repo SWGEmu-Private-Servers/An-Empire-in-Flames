@@ -1,6 +1,36 @@
 local ObjectManager = require("managers.object.object_manager")
 
-RecruiterConvoHandler = conv_handler:new {}
+RecruiterConvoHandler = conv_handler:new {
+
+	factionTravelMap = {
+		--ID, planet, defensive coordinates, offensive coordinates
+		{ "CorelliaCoronet", "corellia", -46, 28, -4724, 0, -178, 28, -4894, 0},
+		{ "CorelliaKorVella", "corellia", -3149, 31, 2893, 0, -3240, 28.5, 2720, 0},
+		{ "CorelliaDoabaGuerfel", "corellia", 3369, 308, 5607, 0, 3245, 300, 5447, 0},
+		{ "CorelliaTyrena", "corellia", -4977, 21, -2220, 0, -5160, 21, -2386, 0},
+		{ "DantooineMining", "dantooine", -641, 0, 2484, 0, -616, 0, 2649, 0},
+		{ "DantooineMilitary", "dantooine", -4224, 0, -2365, 0, -4053, 0, -2397, 0},
+		{ "DantooineAgro", "dantooine", 1585, 0, -6402, 0, 1509, 0, -6520, 0},
+		{ "DathomirScience", "dathomir", -75, 18, -1585, 0, 74.75, 33.24, -1539.06, 0},
+		{ "DathomirTrade", "dathomir", 592, 6, 3087, 0, 445.75, 15.03, 3049.19, 0},
+		{ "EndorResearch", "endor", 3216, 24, -3463, 0, 3052, 12.12, -3480, 0},
+		{ "EndorSmuggler", "endor", -949, 73, 1549, 0, -980, 83.03, 1686, 0},
+		{ "NabooKaadara", "naboo", 5297, -192, 6645, 0, 5053, -192, 6752, 0},
+		{ "NabooKeren", "naboo", 1346, 13, 2783, 0, 1403, 12, 2637, 0},
+		{ "NabooMoenia", "naboo", 4723, 4, -4636, 0, 4827, 4, -4545, 0},
+		{ "NabooTheed", "naboo", -5552, 6, 4468, 0, -5515, 6, 3849, 0},
+		{ "RoriNarmle", "rori", -5380, 80, -2170, 0, -5168, 80, -2115, 0},
+		{ "RoriRestuss", "rori", 5350, 80, 5750, 0, 5315, 80, 5495, 0},
+		{ "TaanabPandath", "taanab", 2078, 45, 5401, 0, 2202, 44.51, 5503, 0},
+		{ "TaanabStarhunter", "taanab", 3630, 31.7, -5418, 0, 3476, 36.67, -5319, 0},
+		{ "TalusDearic", "talus", 211, 6, -2930, 0, 364, 6, -2779, 0},
+		{ "TalusNashal", "talus", 4495, 2, 5360, 0, 4328, 2, 5205, 0},
+		{ "Yavin4Mining", "yavin4", -289.8, 35, 4881.2, 0, -93, 12.25, 4867.55, 0},
+		{ "Yavin4Military", "yavin4", 4034, 37, -6233, 0, 4027.4, 31.7, -6416.6, 0},
+		{ "Yavin4Labor", "yavin4", -6935, 73, -5707, 0, -7136.5, 54.4, -5715.0, 0},
+	},
+
+}
 
 function RecruiterConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, selectedOption, pConvScreen)
 	local pGhost = CreatureObject(pPlayer):getPlayerObject()
@@ -21,6 +51,59 @@ function RecruiterConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, s
 		else
 			clonedConversation:addOption("@conversation/faction_recruiter_imperial:s_324", "faction_purchase")
 		end
+
+		local CorelliaInvasionStatus = tonumber(getQuestStatus("gcw_manager:corelliainvasion"))
+		if (CorelliaInvasionStatus == 1) then
+			clonedConversation:addOption("Troop Movement: Corellia", "Corellia")
+		end
+
+
+		local DantooineInvasionStatus = tonumber(getQuestStatus("gcw_manager:dantooineinvasion"))
+		if (DantooineInvasionStatus == 1) then
+			clonedConversation:addOption("Troop Movement: Dantooine", "Dantooine")
+		end
+
+
+		local DathomirInvasionStatus = tonumber(getQuestStatus("gcw_manager:dathomirinvasion"))
+		if (DathomirInvasionStatus == 1) then
+			clonedConversation:addOption("Troop Movement: Dathomir", "Dathomir")
+		end
+
+
+		local EndorInvasionStatus = tonumber(getQuestStatus("gcw_manager:endorinvasion"))
+		if (EndorInvasionStatus == 1) then
+			clonedConversation:addOption("Troop Movement: Endor", "Endor")
+		end
+
+
+		local NabooInvasionStatus = tonumber(getQuestStatus("gcw_manager:nabooinvasion"))
+		if (NabooInvasionStatus == 1) then
+			clonedConversation:addOption("Troop Movement: Naboo", "Naboo")
+		end
+
+
+		local RoriInvasionStatus = tonumber(getQuestStatus("gcw_manager:roriinvasion"))
+		if (RoriInvasionStatus == 1) then
+			clonedConversation:addOption("Troop Movement: Rori", "Rori")
+		end
+
+
+		local TaanabInvasionStatus = tonumber(getQuestStatus("gcw_manager:taanabinvasion"))
+		if (TaanabInvasionStatus == 1) then
+			clonedConversation:addOption("Troop Movement: Taanab", "Taanab")
+		end
+
+
+		local TalusInvasionStatus = tonumber(getQuestStatus("gcw_manager:talusinvasion"))
+		if (TalusInvasionStatus == 1) then
+			clonedConversation:addOption("Troop Movement: Talus", "Talus")
+		end
+
+
+		local Yavin4InvasionStatus = tonumber(getQuestStatus("gcw_manager:yavin4invasion"))
+		if (Yavin4InvasionStatus == 1) then
+			clonedConversation:addOption("Troop Movement: Yavin 4", "Yavin4")
+		end
 	elseif (screenID == "greet_member_start_overt" or screenID == "stay_special_forces" or screenID == "stay_overt" or screenID == "dont_resign_overt") then
 		self:updateScreenWithPromotions(pPlayer, pConvTemplate, pConvScreen, recruiterScreenplay:getRecruiterFaction(pNpc))
 		self:updateScreenWithBribe(pPlayer, pNpc, pConvTemplate, pConvScreen, recruiterScreenplay:getRecruiterFaction(pNpc))
@@ -28,6 +111,59 @@ function RecruiterConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, s
 			clonedConversation:addOption("@conversation/faction_recruiter_rebel:s_480", "faction_purchase")
 		else
 			clonedConversation:addOption("@conversation/faction_recruiter_imperial:s_324", "faction_purchase")
+		end
+
+		local CorelliaInvasionStatus = tonumber(getQuestStatus("gcw_manager:corelliainvasion"))
+		if (CorelliaInvasionStatus == 1) then
+			clonedConversation:addOption("Troop Movement: Corellia", "Corellia")
+		end
+
+
+		local DantooineInvasionStatus = tonumber(getQuestStatus("gcw_manager:dantooineinvasion"))
+		if (DantooineInvasionStatus == 1) then
+			clonedConversation:addOption("Troop Movement: Dantooine", "Dantooine")
+		end
+
+
+		local DathomirInvasionStatus = tonumber(getQuestStatus("gcw_manager:dathomirinvasion"))
+		if (DathomirInvasionStatus == 1) then
+			clonedConversation:addOption("Troop Movement: Dathomir", "Dathomir")
+		end
+
+
+		local EndorInvasionStatus = tonumber(getQuestStatus("gcw_manager:endorinvasion"))
+		if (EndorInvasionStatus == 1) then
+			clonedConversation:addOption("Troop Movement: Endor", "Endor")
+		end
+
+
+		local NabooInvasionStatus = tonumber(getQuestStatus("gcw_manager:nabooinvasion"))
+		if (NabooInvasionStatus == 1) then
+			clonedConversation:addOption("Troop Movement: Naboo", "Naboo")
+		end
+
+
+		local RoriInvasionStatus = tonumber(getQuestStatus("gcw_manager:roriinvasion"))
+		if (RoriInvasionStatus == 1) then
+			clonedConversation:addOption("Troop Movement: Rori", "Rori")
+		end
+
+
+		local TaanabInvasionStatus = tonumber(getQuestStatus("gcw_manager:taanabinvasion"))
+		if (TaanabInvasionStatus == 1) then
+			clonedConversation:addOption("Troop Movement: Taanab", "Taanab")
+		end
+
+
+		local TalusInvasionStatus = tonumber(getQuestStatus("gcw_manager:talusinvasion"))
+		if (TalusInvasionStatus == 1) then
+			clonedConversation:addOption("Troop Movement: Talus", "Talus")
+		end
+
+
+		local Yavin4InvasionStatus = tonumber(getQuestStatus("gcw_manager:yavin4invasion"))
+		if (Yavin4InvasionStatus == 1) then
+			clonedConversation:addOption("Troop Movement: Yavin 4", "Yavin4")
 		end
 
 	elseif (screenID == "accept_join") then
@@ -122,6 +258,8 @@ function RecruiterConvoHandler:runScreenHandlers(pConvTemplate, pPlayer, pNpc, s
 		clonedConversation:setDialogTextDI(getImperialScore(zoneName))
 		clonedConversation:setDialogTextTO(getRebelScore(zoneName))
 
+	else
+		self:troopMovement(screenID, pPlayer)
 	end
 
 	return pConvScreen
@@ -249,4 +387,45 @@ function RecruiterConvoHandler:updateScreenWithPromotions(pPlayer, pConvTemplate
 	end
 
 	self:addRankReviewOption(faction, screenObject)
+end
+
+function RecruiterConvoHandler:troopMovement(factionDestination, pPlayer)
+
+	local player = LuaSceneObject(pPlayer)		
+
+	local planet = ""
+
+	local faction = 1
+	local factionText = "imperial"	
+
+	if CreatureObject(pPlayer):isRebel() then
+		faction = 2
+		factionText = "rebel"
+	end
+
+	local targetCity = factionDestination
+	
+	targetCity = string.gsub(targetCity, factionText, "")
+
+	map = self.factionTravelMap
+
+	for i = 1, #map, 1 do
+		local destination = map[i]
+		if destination[1] == targetCity then
+			local planetControl = tonumber(getQuestStatus("gcw_manager:" .. destination[2]))
+			if planetControl == faction then
+				if player:getZoneName(planet) == destination[2] then
+					player:teleport(destination[2], destination[3], destination[4],destination[5], destination[6])
+				else
+					player:switchZone(destination[2], destination[3], destination[4],destination[5], destination[6])
+				end
+			else
+				if player:getZoneName(planet) == destination[2] then
+					player:teleport(destination[2], destination[7], destination[8],destination[9], destination[10])
+				else
+					player:switchZone(destination[2], destination[7], destination[8],destination[9], destination[10])
+				end						
+			end
+		end
+	end
 end

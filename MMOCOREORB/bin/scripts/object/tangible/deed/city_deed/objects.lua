@@ -4642,3 +4642,137 @@ object_tangible_deed_city_deed_shared_theater_tatooine_deed = SharedTangibleObje
 }
 
 ObjectTemplates:addClientTemplate(object_tangible_deed_city_deed_shared_theater_tatooine_deed, "object/tangible/deed/city_deed/shared_theater_tatooine_deed.iff")
+
+--NPC Structures
+--Tatooine Cantina
+object_tangible_deed_city_deed_shared_cantina_tatooine_2_deed = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/deed/city_deed/shared_cantina_tatooine_2_deed.iff"}
+ObjectTemplates:addClientTemplate(object_tangible_deed_city_deed_shared_cantina_tatooine_2_deed, "object/tangible/deed/city_deed/shared_cantina_tatooine_2_deed.iff")
+
+--Tatooine Tavern
+object_tangible_deed_city_deed_shared_cantina_tatooine_3_deed = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/deed/city_deed/shared_cantina_tatooine_3_deed.iff"}
+ObjectTemplates:addClientTemplate(object_tangible_deed_city_deed_shared_cantina_tatooine_3_deed, "object/tangible/deed/city_deed/shared_cantina_tatooine_3_deed.iff")
+
+--Tatooine City Hall
+object_tangible_deed_city_deed_shared_cityhall_tatooine_2_deed = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/deed/city_deed/shared_cityhall_tatooine_2_deed.iff"}
+ObjectTemplates:addClientTemplate(object_tangible_deed_city_deed_shared_cityhall_tatooine_2_deed, "object/tangible/deed/city_deed/shared_cityhall_tatooine_2_deed.iff")
+
+--Tatooine Hospital (Large)
+object_tangible_deed_city_deed_shared_hospital_tatooine_2_deed = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/deed/city_deed/shared_hospital_tatooine_2_deed.iff"}
+ObjectTemplates:addClientTemplate(object_tangible_deed_city_deed_shared_hospital_tatooine_2_deed, "object/tangible/deed/city_deed/shared_hospital_tatooine_2_deed.iff")
+
+--Tatooine Hospital (Small)
+object_tangible_deed_city_deed_shared_hospital_tatooine_3_deed = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/deed/city_deed/shared_hospital_tatooine_3_deed.iff"}
+ObjectTemplates:addClientTemplate(object_tangible_deed_city_deed_shared_hospital_tatooine_3_deed, "object/tangible/deed/city_deed/shared_hospital_tatooine_3_deed.iff")
+
+--Tatooine Theater
+object_tangible_deed_city_deed_shared_theater_tatooine_2_deed = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/deed/city_deed/shared_theater_tatooine_2_deed.iff"}
+ObjectTemplates:addClientTemplate(object_tangible_deed_city_deed_shared_theater_tatooine_2_deed, "object/tangible/deed/city_deed/shared_theater_tatooine_2_deed.iff")
+
+--Corellia Cantina
+object_tangible_deed_city_deed_shared_cantina_corellia_2_deed = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/deed/city_deed/shared_cantina_corellia_2_deed.iff"}
+ObjectTemplates:addClientTemplate(object_tangible_deed_city_deed_shared_cantina_corellia_2_deed, "object/tangible/deed/city_deed/shared_cantina_corellia_2_deed.iff")
+
+--Corellia City Hall
+object_tangible_deed_city_deed_shared_cityhall_corellia_2_deed = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/deed/city_deed/shared_cityhall_corellia_2_deed.iff"}
+ObjectTemplates:addClientTemplate(object_tangible_deed_city_deed_shared_cityhall_corellia_2_deed, "object/tangible/deed/city_deed/shared_cityhall_corellia_2_deed.iff")
+
+--Corellia Hospital (Large)
+object_tangible_deed_city_deed_shared_hospital_corellia_2_deed = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/deed/city_deed/shared_hospital_corellia_2_deed.iff"}
+ObjectTemplates:addClientTemplate(object_tangible_deed_city_deed_shared_hospital_corellia_2_deed, "object/tangible/deed/city_deed/shared_hospital_corellia_2_deed.iff")
+
+--Corellia Hospital (Small)
+object_tangible_deed_city_deed_shared_hospital_corellia_3_deed = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/deed/city_deed/shared_hospital_corellia_3_deed.iff"}
+ObjectTemplates:addClientTemplate(object_tangible_deed_city_deed_shared_hospital_corellia_3_deed, "object/tangible/deed/city_deed/shared_hospital_corellia_3_deed.iff")
+
+--Tatooine Theater
+object_tangible_deed_city_deed_shared_theater_corellia_2_deed = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/deed/city_deed/shared_theater_corellia_2_deed.iff"}
+ObjectTemplates:addClientTemplate(object_tangible_deed_city_deed_shared_theater_corellia_2_deed, "object/tangible/deed/city_deed/shared_theater_corellia_2_deed.iff")
+
+--Naboo Cantina
+object_tangible_deed_city_deed_shared_cantina_naboo_2_deed = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/deed/city_deed/shared_cantina_naboo_2_deed.iff"}
+ObjectTemplates:addClientTemplate(object_tangible_deed_city_deed_shared_cantina_naboo_2_deed, "object/tangible/deed/city_deed/shared_cantina_naboo_2_deed.iff")
+
+--Naboo City Hall
+object_tangible_deed_city_deed_shared_cityhall_naboo_2_deed = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/deed/city_deed/shared_cityhall_naboo_2_deed.iff"}
+ObjectTemplates:addClientTemplate(object_tangible_deed_city_deed_shared_cityhall_naboo_2_deed, "object/tangible/deed/city_deed/shared_cityhall_naboo_2_deed.iff")
+
+--Naboo Hospital (Large)
+object_tangible_deed_city_deed_shared_hospital_naboo_2_deed = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/deed/city_deed/shared_hospital_naboo_2_deed.iff"}
+ObjectTemplates:addClientTemplate(object_tangible_deed_city_deed_shared_hospital_naboo_2_deed, "object/tangible/deed/city_deed/shared_hospital_naboo_2_deed.iff")
+
+--Naboo Hospital (Small)
+object_tangible_deed_city_deed_shared_hospital_naboo_3_deed = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/deed/city_deed/shared_hospital_naboo_3_deed.iff"}
+ObjectTemplates:addClientTemplate(object_tangible_deed_city_deed_shared_hospital_naboo_3_deed, "object/tangible/deed/city_deed/shared_hospital_naboo_3_deed.iff")
+
+--Naboo Theater
+object_tangible_deed_city_deed_shared_theater_naboo_2_deed = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/deed/city_deed/shared_theater_naboo_2_deed.iff"}
+ObjectTemplates:addClientTemplate(object_tangible_deed_city_deed_shared_theater_naboo_2_deed, "object/tangible/deed/city_deed/shared_theater_naboo_2_deed.iff")
+
+--Walls
+--Corellia Long 01
+object_tangible_deed_city_deed_shared_wall_long_corellia_01_deed = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/deed/city_deed/shared_wall_long_corellia_01_deed.iff"}
+ObjectTemplates:addClientTemplate(object_tangible_deed_city_deed_shared_wall_long_corellia_01_deed, "object/tangible/deed/city_deed/shared_wall_long_corellia_01_deed.iff")
+
+--Corellia Long 02
+object_tangible_deed_city_deed_shared_wall_long_corellia_02_deed = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/deed/city_deed/shared_wall_long_corellia_02_deed.iff"}
+ObjectTemplates:addClientTemplate(object_tangible_deed_city_deed_shared_wall_long_corellia_02_deed, "object/tangible/deed/city_deed/shared_wall_long_corellia_02_deed.iff")
+
+--Corellia Long 03
+object_tangible_deed_city_deed_shared_wall_long_corellia_03_deed = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/deed/city_deed/shared_wall_long_corellia_03_deed.iff"}
+ObjectTemplates:addClientTemplate(object_tangible_deed_city_deed_shared_wall_long_corellia_03_deed, "object/tangible/deed/city_deed/shared_wall_long_corellia_03_deed.iff")
+
+--Corellia Long 04
+object_tangible_deed_city_deed_shared_wall_long_corellia_04_deed = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/deed/city_deed/shared_wall_long_corellia_04_deed.iff"}
+ObjectTemplates:addClientTemplate(object_tangible_deed_city_deed_shared_wall_long_corellia_04_deed, "object/tangible/deed/city_deed/shared_wall_long_corellia_04_deed.iff")
+
+--Dathomir City Hall
+object_tangible_deed_city_deed_shared_cityhall_dathomir_deed = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/deed/city_deed/shared_cityhall_dathomir_deed.iff"}
+ObjectTemplates:addClientTemplate(object_tangible_deed_city_deed_shared_cityhall_dathomir_deed, "object/tangible/deed/city_deed/shared_cityhall_dathomir_deed.iff")
+
+
+--Dathomir Shuttleport
+object_tangible_deed_city_deed_shared_shuttleport_dathomir_deed = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/deed/city_deed/shared_shuttleport_dathomir_deed.iff"}
+ObjectTemplates:addClientTemplate(object_tangible_deed_city_deed_shared_shuttleport_dathomir_deed, "object/tangible/deed/city_deed/shared_shuttleport_dathomir_deed.iff")
+
+
+--Dathomir Garage
+object_tangible_deed_city_deed_shared_garage_dathomir_deed = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/deed/city_deed/shared_garage_dathomir_deed.iff"}
+ObjectTemplates:addClientTemplate(object_tangible_deed_city_deed_shared_garage_dathomir_deed, "object/tangible/deed/city_deed/shared_garage_dathomir_deed.iff")
+
+--Imperial City Hall
+object_tangible_deed_city_deed_shared_cityhall_imperial_deed = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/deed/city_deed/shared_cityhall_imperial_deed.iff"}
+ObjectTemplates:addClientTemplate(object_tangible_deed_city_deed_shared_cityhall_imperial_deed, "object/tangible/deed/city_deed/shared_cityhall_imperial_deed.iff")
+
+--Republic City Hall
+object_tangible_deed_city_deed_shared_cityhall_republic_deed = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/deed/city_deed/shared_cityhall_republic_deed.iff"}
+ObjectTemplates:addClientTemplate(object_tangible_deed_city_deed_shared_cityhall_republic_deed, "object/tangible/deed/city_deed/shared_cityhall_republic_deed.iff")
+
+--Vote Center
+object_tangible_deed_city_deed_shared_vote_center_deed = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/deed/city_deed/shared_vote_center_deed.iff"}
+ObjectTemplates:addClientTemplate(object_tangible_deed_city_deed_shared_vote_center_deed, "object/tangible/deed/city_deed/shared_vote_center_deed.iff")

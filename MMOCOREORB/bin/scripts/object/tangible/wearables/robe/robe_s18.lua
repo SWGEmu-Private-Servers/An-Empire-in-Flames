@@ -45,7 +45,8 @@ object_tangible_wearables_robe_robe_s18 = object_tangible_wearables_robe_shared_
 	playerRaces = { "object/creature/player/wookiee_male.iff",
 				"object/creature/player/wookiee_female.iff",
 				"object/mobile/vendor/wookiee_female.iff",
-				"object/mobile/vendor/wookiee_male.iff" },
+				"object/mobile/vendor/wookiee_male.iff",
+				"object/creature/player/talz_male.iff", },
 
 	numberExperimentalProperties = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
 	experimentalProperties = {"XX", "XX", "XX", "XX", "XX", "XX", "XX", "XX", "XX", "XX", "XX", "XX", "XX", "XX", "XX", "XX"},

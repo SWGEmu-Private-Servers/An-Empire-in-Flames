@@ -1869,3 +1869,43 @@ object_tangible_furniture_decorative_shared_tatooine_tapestry = SharedTangibleOb
 }
 
 ObjectTemplates:addClientTemplate(object_tangible_furniture_decorative_shared_tatooine_tapestry, "object/tangible/furniture/decorative/shared_tatooine_tapestry.iff")
+
+--EiF Adds
+object_tangible_furniture_decorative_shared_frn_all_cyborg_parts_rack = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/furniture/decorative/shared_frn_all_cyborg_parts_rack.iff"}
+ObjectTemplates:addClientTemplate(object_tangible_furniture_decorative_shared_frn_all_cyborg_parts_rack, "object/tangible/furniture/decorative/shared_frn_all_cyborg_parts_rack.iff")
+
+
+object_tangible_furniture_decorative_shared_gcw_weapon_rack_02 = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/furniture/decorative/shared_gcw_weapon_rack_02.iff"}
+ObjectTemplates:addClientTemplate(object_tangible_furniture_decorative_shared_gcw_weapon_rack_02, "object/tangible/furniture/decorative/shared_gcw_weapon_rack_02.iff")
+
+
+object_tangible_furniture_decorative_shared_jabba_drapes = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/furniture/decorative/shared_jabba_drapes.iff"}
+ObjectTemplates:addClientTemplate(object_tangible_furniture_decorative_shared_jabba_drapes, "object/tangible/furniture/decorative/shared_jabba_drapes.iff")
+
+
+object_tangible_furniture_decorative_shared_jabba_fancyrug = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/furniture/decorative/shared_jabba_fancyrug.iff"}
+ObjectTemplates:addClientTemplate(object_tangible_furniture_decorative_shared_jabba_fancyrug, "object/tangible/furniture/decorative/shared_jabba_fancyrug.iff")
+
+
+object_tangible_furniture_decorative_shared_must_display_case = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/furniture/decorative/shared_must_display_case.iff"}
+ObjectTemplates:addClientTemplate(object_tangible_furniture_decorative_shared_must_display_case, "object/tangible/furniture/decorative/shared_must_display_case.iff")
+
+
+object_tangible_furniture_decorative_shared_pr_hoth_scaffold = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/furniture/decorative/shared_pr_hoth_scaffold.iff"}
+ObjectTemplates:addClientTemplate(object_tangible_furniture_decorative_shared_pr_hoth_scaffold, "object/tangible/furniture/decorative/shared_pr_hoth_scaffold.iff")
+
+
+object_tangible_furniture_decorative_shared_cage_wall_s01 = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/furniture/decorative/shared_cage_wall_s01.iff"}
+ObjectTemplates:addClientTemplate(object_tangible_furniture_decorative_shared_cage_wall_s01, "object/tangible/furniture/decorative/shared_cage_wall_s01.iff")
+
+
+object_tangible_furniture_decorative_shared_cargo_container_s01 = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/furniture/decorative/shared_cargo_container_s01.iff"}
+ObjectTemplates:addClientTemplate(object_tangible_furniture_decorative_shared_cargo_container_s01, "object/tangible/furniture/decorative/shared_cargo_container_s01.iff")

@@ -44,38 +44,35 @@
 TorsoShotCommand = {
         name = "torsoshot",
 
-	damageMultiplier = 3.0,
-	speedMultiplier = 2.3,
-	healthCostMultiplier = 1,
-	actionCostMultiplier = 1,
-	mindCostMultiplier = 1,
+	damageMultiplier = 4.5,
+	speedMultiplier = 1.50,
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 0,
+	mindCostMultiplier = 40,
 
-	poolsToDamage = HEALTH_ATTRIBUTE,
+	poolsToDamage = RANDOM_ATTRIBUTE,
 
-	animation = "fire_3_special_single", 
+	animation = "fire_3_special_single",
 	animType = GENERATE_RANGED,
 
 	combatSpam = "torsoshot",
 
 	dotEffects = {
-	  DotEffect( 
-		ONFIRE, 
+	  DotEffect(
+		ONFIRE,
 		{ "resistance_fire", "fire_resist" },
-		HEALTH,
+		ATTACK_POOL,
 		true,
 		0,
-		100,
-		30, 
+		75,
 		30,
-		50,
+		15,
+		25,
 		10
 	  )
 	},
-	
-	weaponType = PISTOLWEAPON,
 
 	range = -1
 }
 
 AddCommand(TorsoShotCommand)
-

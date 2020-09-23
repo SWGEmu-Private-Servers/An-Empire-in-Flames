@@ -1,5 +1,5 @@
 lesser_prophet_of_the_light_side = Creature:new {
-	objectName = "@mob/creature_names:lesser_prophet_of_the_dark_side",
+	objectName = "@mob/creature_names:jedi_initiate",
 	randomNameType = NAME_GENERIC,
 	randomNameTag = true,
 	socialGroup = "rebel",
@@ -12,7 +12,7 @@ lesser_prophet_of_the_light_side = Creature:new {
 	baseHAM = 13000,
 	baseHAMmax = 16000,
 	armor = 1,
-	resists = {40,40,40,40,40,40,40,40,-1},
+	resists = {40,40,40,40,40,40,40,40,40},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -27,26 +27,28 @@ lesser_prophet_of_the_light_side = Creature:new {
 	optionsBitmask = AIENABLED,
 	diet = HERBIVORE,
 
-	templates = { "light_jedi" },
+	templates = {	"object/mobile/dressed_jedi_female_togruta_01.iff",
+			"object/mobile/dressed_jedi_female_togruta_02.iff",
+			"object/mobile/dressed_jedi_male_duros.iff",
+			"object/mobile/dressed_jedi_male_gungan.iff",
+			"object/mobile/dressed_jedi_male_iktotchi.iff",
+			"object/mobile/dressed_jedi_male_nikto.iff",
+			"object/mobile/dressed_jedi_male_weequay.iff",
+			"object/mobile/dressed_jedi_male_wookiee.iff",
+	},
 	lootGroups = {
 		{
 			groups = {
-				{group = "holocron_light", chance = 600000},
-				{group = "power_crystals", chance = 600000},
-				{group = "color_crystals", chance = 1000000},
-				{group = "rifles", chance = 1300000},
-				{group = "pistols", chance = 1300000},
-				{group = "melee_weapons", chance = 1300000},
-				{group = "armor_attachments", chance = 900000},
-				{group = "clothing_attachments", chance = 900000},
-				{group = "carbines", chance = 1300000},
-				{group = "wearables_rare", chance = 800000}
-			}
+				{group = "armor_attachments", chance = 3000000},
+				{group = "clothing_attachments", chance = 3000000},
+				{group = "wearables_rare", chance = 4000000}
+			},
+			lootChance = 2500000
 		}
 	},
-	weapons = {"light_jedi_weapons"},
+	weapons = {"vortex_weapons"},
 	conversationTemplate = "",
-	attacks = merge(lightsabermaster,forcewielder)
+	attacks = merge(swordsmanmaster,pikemanmaster,forcepowermaster)
 }
 
 CreatureTemplates:addCreatureTemplate(lesser_prophet_of_the_light_side, "lesser_prophet_of_the_light_side")

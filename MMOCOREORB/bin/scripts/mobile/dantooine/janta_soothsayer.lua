@@ -12,7 +12,7 @@ janta_soothsayer = Creature:new {
 	baseHAM = 12000,
 	baseHAMmax = 14000,
 	armor = 0,
-	resists = {-1,40,-1,0,0,70,0,-1,-1},
+	resists = {40,40,60,40,40,30,60,40,40},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -34,9 +34,15 @@ janta_soothsayer = Creature:new {
 		{
 			groups = {
 				{group = "junk", chance = 5500000},
-				{group = "janta_common", chance = 1500000},
+				{group = "color_crystals", chance = 1500000},
 				{group = "loot_kit_parts", chance = 3000000}
 			}
+		},
+		{
+			groups = {
+				{group = "janta_common", chance = 10000000},
+			},
+			lootChance = 1500000
 		}
 	},
 	weapons = {"primitive_weapons"},

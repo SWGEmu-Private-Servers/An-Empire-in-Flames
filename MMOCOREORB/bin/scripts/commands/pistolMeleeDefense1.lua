@@ -46,10 +46,10 @@ PistolMeleeDefense1Command = {
 
 	damageMultiplier = 3.0,
 	speedMultiplier = 2.0,
-	healthCostMultiplier = 0.50,
-	actionCostMultiplier = 0.75,
-	mindCostMultiplier = 0.50,
-        accuracyBonus = 50,
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 25,
+	mindCostMultiplier = 0,
+        accuracyBonus = 30,
 
 	stateEffects = {
 	  StateEffect( 
@@ -65,15 +65,14 @@ PistolMeleeDefense1Command = {
 
 	poolsToDamage = RANDOM_ATTRIBUTE,
 
-	animation = "ranged_melee", 
+	animation = "ranged_melee",
 	animType = GENERATE_INTENSITY,
 
 	combatSpam = "pistolwhip",
-	
+
 	weaponType = PISTOLWEAPON,
 
 	range = 10
 }
 
 AddCommand(PistolMeleeDefense1Command)
-

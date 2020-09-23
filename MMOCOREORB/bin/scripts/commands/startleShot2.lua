@@ -44,25 +44,25 @@
 StartleShot2Command = {
         name = "startleshot2",
 
-	damageMultiplier = 4.0,
-	speedMultiplier = 2.0,
-	healthCostMultiplier = 0.5,
-	actionCostMultiplier = 0.5,
-	mindCostMultiplier = 2.0,
+	damageMultiplier = 1.0,
+	speedMultiplier = 1.0,
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 50,
+	mindCostMultiplier = 0,
 	accuracyBonus = 5,
-	
+
 	coneAngle = 60,
-	coneAction = true,	
+	coneAction = true,
 
 	stateEffects = {
-	  StateEffect( 
-		POSTUREUP_EFFECT, 
-		{ "postureUpRecovery" }, 
-		{ "posture_change_up_defense" }, 
-		{}, 
-		100, 
-		0, 
-		0 
+	  StateEffect(
+		POSTUREUP_EFFECT,
+		{ "postureUpRecovery" },
+		{ "posture_change_up_defense" },
+		{},
+		120, 
+		0,
+		0
 	  )
 	},
 
@@ -71,11 +71,10 @@ StartleShot2Command = {
 	animation = "fire_defender_posture_change_up",
 
 	combatSpam = "startleshot",
-	
+
 	weaponType = RIFLEWEAPON,
 
 	range = -1
 }
 
 AddCommand(StartleShot2Command)
-

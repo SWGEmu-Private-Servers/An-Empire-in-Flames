@@ -42,11 +42,13 @@
 
 
 object_building_naboo_palace_naboo_theed = object_building_naboo_shared_palace_naboo_theed:new {
-
-
-
-
-
+	gameObjectType = 515,
+	pvpStatusBitmask = 0,
+	alwaysPublic = 1,
+	dataObjectComponent = "DestructibleBuildingDataComponent",
+	containerComponent = "GCWBaseContainerComponent",
+	factionBaseType = 2,
+	childObjects = { },
 }
 
 ObjectTemplates:addTemplate(object_building_naboo_palace_naboo_theed, "object/building/naboo/palace_naboo_theed.iff")

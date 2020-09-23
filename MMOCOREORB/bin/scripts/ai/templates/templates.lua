@@ -1,6 +1,7 @@
 includeAiFile("templates/example.lua")
 includeAiFile("templates/cantinacrackdown.lua")
 includeAiFile("templates/stationary.lua")
+includeAiFile("templates/stationaryboss.lua")
 includeAiFile("templates/stationarynoleash.lua")
 includeAiFile("templates/follow.lua")
 includeAiFile("templates/wait.lua")
@@ -17,6 +18,7 @@ includeAiFile("templates/combatmovepet.lua")
 includeAiFile("templates/villageraider.lua")
 includeAiFile("templates/enclavesentinel.lua")
 includeAiFile("templates/deathwatchdefender.lua")
+includeAiFile("templates/auctionbidder.lua")
 
 getTarget = {
 	{CREATURE_PET, "gettargetpetc"},

@@ -61,3 +61,12 @@ includeFile("tangible/wearables/bodysuit/bodysuit_s16.lua")
 includeFile("tangible/wearables/bodysuit/bodysuit_sarlacc_coverall.lua")
 includeFile("tangible/wearables/bodysuit/bodysuit_tie_fighter.lua")
 includeFile("tangible/wearables/bodysuit/bodysuit_tie_fighter_quest.lua")
+
+--Additions
+includeFile("tangible/wearables/bodysuit/bodysuit_dug_s01.lua")
+includeFile("tangible/wearables/bodysuit/bodysuit_dug_s02.lua")
+includeFile("tangible/wearables/bodysuit/bodysuit_dug_s03.lua")
+includeFile("tangible/wearables/bodysuit/bodysuit_togorian_s01.lua")
+includeFile("tangible/wearables/bodysuit/bodysuit_togorian_s02.lua")
+includeFile("tangible/wearables/bodysuit/bodysuit_togorian_s03.lua")
+includeFile("tangible/wearables/bodysuit/bodysuit_prisoner.lua")

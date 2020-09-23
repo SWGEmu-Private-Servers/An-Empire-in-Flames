@@ -40,6 +40,12 @@
 --this exception also makes it possible to release a modified version
 --which carries forward this exception.
 
+object_creature_npc_base_shared_toydarian_base_male = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/creature/npc/base/shared_toydarian_base_male.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_creature_npc_base_shared_toydarian_base_male, "object/creature/npc/base/shared_toydarian_base_male.iff")
+------------------------------------------------------------------------------------------------------------------------------------
 
 object_creature_npc_base_shared_aqualish_base_female = SharedCreatureObjectTemplate:new {
 	clientTemplateFileName = "object/creature/npc/base/shared_aqualish_base_female.iff"

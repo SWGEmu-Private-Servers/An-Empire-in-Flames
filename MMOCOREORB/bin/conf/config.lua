@@ -61,7 +61,7 @@ Core3 = {
 	DBSecret = "swgemus3cr37!", -- Change this! This value should be unique and of reasonable length.
 
 	LoginPort = 44453,
-	LoginProcessingThreads = 1,
+	LoginProcessingThreads = 5,
 	LoginAllowedConnections = 3000,
 	LoginRequiredVersion = "20050408-18:00",
 
@@ -83,7 +83,7 @@ Core3 = {
 	PingPort = 44462,
 	PingAllowedConnections = 3000,
 
-	ZoneProcessingThreads = 10,
+	ZoneProcessingThreads = 40,
 	ZoneAllowedConnections = 30000,
 	ZoneGalaxyID = 2, --The actual zone server's galaxyID. Should coordinate with your login server.
 
@@ -91,51 +91,59 @@ Core3 = {
 	--To save on RAM and CPU usage, you should only enable the zones you need.
 	--In order to disable a zone, all you have to do is comment it out.
 	ZonesEnabled = {
-	--"09",
-	--"10",
-	--"11",
-	--"character_farm",
-	--"cinco_city_test_m5",
-	--"corellia",
-	--"creature_test",
-	--"dantooine",
-	--"dathomir",
-	--"dungeon1",
-	--"endor",
-	--"endor_asommers",
-	--"floratest",
-	--"godclient_test",
-	--"lok",
-	--"naboo",
-	--"otoh_gunga",
-	--"rivertest",
-	--"rori",
-	--"runtimerules",
-	--"simple",
-	--"space_09",
-	--"space_corellia",
-	--"space_corellia_2",
-	--"space_dantooine",
-	--"space_dathomir",
-	--"space_endor",
-	--"space_env",
-	--"space_halos",
-	--"space_heavy1",
-	--"space_light1",
-	--"space_lok",
-	--"space_naboo",
-	--"space_naboo_2",
-	--"space_tatooine",
-	--"space_tatooine_2",
-	--"space_yavin4",
-	--"taanab",
-	--"talus",
-	"tatooine",
-	--"test_wearables",
-	"tutorial",
-	--"umbra",
-	--"watertabletest",
-	--"yavin4"
+		--"09",
+		--"10",
+		--"11",
+		--"character_farm",
+		--"cinco_city_test_m5",
+		"chandrila",
+		"corellia",
+		"coruscant",
+		--"creature_test",
+		"dantooine",
+		"dathomir",
+		"dungeon1",
+		"endor",
+		--"endor_asommers",
+		--"floratest",
+		--"godclient_test",
+		"hoth",
+		"kashyyyk",
+		"kuat",
+		"lok",
+	--	"mandalore",
+		"moncal",
+		"naboo",
+		"ordmantell",
+		--"otoh_gunga",
+		--"rivertest",
+		"rori",
+		--"runtimerules",
+		--"simple",
+		--"space_09",
+		--"space_corellia",
+		--"space_corellia_2",
+		--"space_dantooine",
+		--"space_dathomir",
+		--"space_endor",
+		--"space_env",
+		--"space_halos",
+		--"space_heavy1",
+		--"space_light1",
+		--"space_lok",
+		--"space_naboo",
+		--"space_naboo_2",
+		--"space_tatooine",
+		--"space_tatooine_2",
+		--"space_yavin4",
+		"taanab",
+		"talus",
+		"tatooine",
+		--"test_wearables",
+		"tutorial",
+		--"umbra",
+		--"watertabletest",
+		"yavin4",
 	},
 
 
@@ -144,6 +152,24 @@ Core3 = {
 
 	-- Each tre file (order is important!)
 	TreFiles = {
+		"starsider_top.tre",
+		"starsider18.tre",
+		"starsider16.tre",
+		"starsider15.tre",
+		"starsider14.tre",
+		"starsider13.tre",
+		"starsider12.tre",
+		"starsider11.tre",
+		"starsider10.tre",
+		"starsider09.tre",
+		"starsider08.tre",
+		"starsider07.tre",
+		"starsider06.tre",
+		"starsider05.tre",
+		"starsider04.tre",
+		"starsider03.tre",
+		"starsider02.tre",
+		"starsider01.tre",
 		"default_patch.tre",
 		"patch_sku1_14_00.tre",
 		"patch_14_00.tre",
@@ -197,8 +223,9 @@ Core3 = {
 		"bottom.tre"
 	},
 
+
 	-- Status Server Config
-	StatusPort = 44455,
+	StatusPort = 44453,
 	StatusAllowedConnections = 500,
 	StatusInterval = 30, -- interval to check if zone is locked up (in seconds)
 
@@ -235,8 +262,9 @@ Core3 = {
 
 	CharacterBuilderEnabled = "true", -- Enable character builder terminals by default
 
-	PlayerLogLevel = 4, -- -1 NONE, 0 FATAL, 1 ERROR, 2 WARNING, 3 LOG, 4 INFO, 5 DEBUG
+	PlayerLogLevel = 2, -- -1 NONE, 0 FATAL, 1 ERROR, 2 WARNING, 3 LOG, 4 INFO, 5 DEBUG
 	MaxLogLines = 1000000, -- how often to rotate log (currently only log/player.log rotates)
 }
 
 -- NOTE: conf/config-local.lua is parsed after this file if it exists
+

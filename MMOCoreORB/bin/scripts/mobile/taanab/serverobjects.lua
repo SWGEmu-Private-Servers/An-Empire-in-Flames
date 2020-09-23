@@ -1,0 +1,11 @@
+includeFile("taanab/nerf_grassland.lua")
+includeFile("taanab/nerf.lua")
+includeFile("taanab/nerf_male.lua")
+includeFile("taanab/nerf_female.lua")
+includeFile("taanab/ambrian_staga.lua")
+includeFile("taanab/ambrian_staga_male.lua")
+includeFile("taanab/ambrian_staga_female.lua")
+includeFile("taanab/norulac_raider.lua")
+includeFile("taanab/norulac_raider_captain.lua")
+includeFile("taanab/norulac_raider_commando.lua")
+

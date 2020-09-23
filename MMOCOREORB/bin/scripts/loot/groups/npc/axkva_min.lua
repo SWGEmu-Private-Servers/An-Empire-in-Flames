@@ -5,8 +5,7 @@ axkva_min = {
 	minimumLevel = 0,
 	maximumLevel = 0,
 	lootItems = {
-		{itemTemplate = "nightsister_lance_schematic", weight = 4000000},
-		{itemTemplate = "nightsister_vibro_unit", weight = 6000000}
+		{itemTemplate = "nightsister_lance_schematic", weight = 10000000}
 	}
 }
 

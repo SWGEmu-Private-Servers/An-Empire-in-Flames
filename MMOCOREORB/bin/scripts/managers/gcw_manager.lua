@@ -1,5 +1,5 @@
 --frequency of sanity check in seconds
-gcwCheckTimer = 3600
+gcwCheckTimer = 1800
 
 --Amount of time in seconds that a base will be vulnerable
 vulnerabilityDuration = 10800
@@ -13,7 +13,7 @@ powerSwitchCount = 7
 resetTimer = 1209600
 
 -- amount of time in seconds to wait when a slice fails
-sliceCooldown = 120
+sliceCooldown = 60
 
 dnaNucleotides = { "A", "G", "C", "T" }
 dnaPairs = { "AT", "TA", "GC", "CG" }
@@ -23,7 +23,7 @@ totalDNASamples = 44
 dnaStrandLength = 23
 
 -- Amount of time in seconds that a base destruction takes after the countdown is initiated
-destructionTimer = 600
+destructionTimer = 30
 
 -- maximum bases per planet
 maxBases = 25
@@ -41,76 +41,81 @@ reactivationTimer = 300
 -- X seconds after the last manual activity the turret will be able to auto fire
 turretAutoFireTimeout = 20
 
-maxBasesPerPlayer = 3
+maxBasesPerPlayer = 1
 
 -- xp bonus for faction controlling a planet
 bonusXP = 15
 
--- Crackdown settings
-crackdownScansEnabled = false
 -- thresholds for scaling crackdown npc's difficulty, first threshold should always be 0.
 difficutlyScalingThresholds = {0, 64}
-crackdownScanPrivilegedPlayers = false
 
 -- discount percentage for side losing&winning the gcw.  negative value of increase in price (penality).  positive for a decrease (Bonus)
 
-winnerBonus = 0
+winnerBonus = 10
 loserBonus = -30
 
 -- Spawn turrets and minefields when base is placed 1=true 0=false
 spawnDefenses = 1
 
 -- Amount of time to delay vulnerability in seconds afer placing base
-initialVulnerabilityDelay = 0
+initialVulnerabilityDelay = 60
 
 racialPenaltyEnabled = 1
 
 -- assign points to each type of base
 -- s01=Forward Outpost, s02 = Field Hospital , s03 = Tactical Center, s04 = Detach HQ
 HQValues = {
-	{"object/building/faction_perk/hq/hq_s01_imp_pvp.iff", 2},
-	{"object/building/faction_perk/hq/hq_s01_imp.iff", 1},
-	{"object/building/faction_perk/hq/hq_s02_imp_pvp.iff", 6},
-	{"object/building/faction_perk/hq/hq_s02_imp.iff" , 3},
-	{"object/building/faction_perk/hq/hq_s03_imp_pvp.iff" , 8},
-	{"object/building/faction_perk/hq/hq_s03_imp.iff", 4},
-	{"object/building/faction_perk/hq/hq_s04_imp_pvp.iff", 20},
-	{"object/building/faction_perk/hq/hq_s04_imp.iff", 10},
-	{"object/building/faction_perk/hq/hq_s01_rebel_pvp.iff", 2},
-	{"object/building/faction_perk/hq/hq_s01_rebel.iff", 1},
-	{"object/building/faction_perk/hq/hq_s02_rebel_pvp.iff", 6},
-	{"object/building/faction_perk/hq/hq_s02_rebel.iff" , 3},
-	{"object/building/faction_perk/hq/hq_s03_rebel_pvp.iff" , 8},
-	{"object/building/faction_perk/hq/hq_s03_rebel.iff", 4},
-	{"object/building/faction_perk/hq/hq_s04_rebel_pvp.iff", 20},
-	{"object/building/faction_perk/hq/hq_s04_rebel.iff", 10},
-	{"object/building/general/rori_hyperdrive_research_facility.iff", 2},
-	{"object/building/general/bunker_imperial_weapons_research_facility_01.iff", 2},
-	{"object/building/general/bunker_imperial_detainment_center_01.iff", 2},
-	{"object/building/general/bunker_rebel_weapons_depot.iff", 2},
-
+	{"object/building/faction_perk/hq/hq_s01_imp_pvp.iff", 0},
+	{"object/building/faction_perk/hq/hq_s01_imp.iff", 0},
+	{"object/building/faction_perk/hq/hq_s02_imp_pvp.iff", 0},
+	{"object/building/faction_perk/hq/hq_s02_imp.iff" , 0},
+	{"object/building/faction_perk/hq/hq_s03_imp_pvp.iff" , 0},
+	{"object/building/faction_perk/hq/hq_s03_imp.iff", 0},
+	{"object/building/faction_perk/hq/hq_s04_imp_pvp.iff", 0},
+	{"object/building/faction_perk/hq/hq_s04_imp.iff", 0},
+	{"object/building/faction_perk/hq/hq_s01_rebel_pvp.iff", 0},
+	{"object/building/faction_perk/hq/hq_s01_rebel.iff", 0},
+	{"object/building/faction_perk/hq/hq_s02_rebel_pvp.iff", 0},
+	{"object/building/faction_perk/hq/hq_s02_rebel.iff" , 0},
+	{"object/building/faction_perk/hq/hq_s03_rebel_pvp.iff" , 0},
+	{"object/building/faction_perk/hq/hq_s03_rebel.iff", 0},
+	{"object/building/faction_perk/hq/hq_s04_rebel_pvp.iff", 0},
+	{"object/building/faction_perk/hq/hq_s04_rebel.iff", 0},
+	{"object/building/general/rori_hyperdrive_research_facility.iff", 0},
+	{"object/building/general/bunker_imperial_weapons_research_facility_01.iff", 0},
+	{"object/building/general/bunker_imperial_detainment_center_01.iff", 0},
+	{"object/building/general/bunker_rebel_weapons_depot.iff", 0},
+	{"object/building/corellia/starport_corellia.iff", 20},
+	{"object/building/naboo/starport_naboo.iff", 20},
+	{"object/building/tatooine/starport_tatooine.iff", 20},
+--	{"object/building/naboo/hangar_naboo_theed.iff", 20},
+	{"object/building/military/outpost_starport.iff", 20},
+	{"object/building/military/outpost_cloning_facility.iff", 0},
+	{"object/building/military/outpost_cloning_facility_s02.iff", 0},
+	{"object/building/military/outpost_cloning_facility_s03.iff", 0},
+	{"object/building/naboo/palace_naboo_theed.iff", 20}
 }
 
 -- race (raceid, penalty_multiplier)
 -- raceid found in creatureobject
 --HUMAN = 0; RODIAN = 1; TRANDOSHAN = 2; MONCAL = 3; WOOKIE = 4; BOTHAN = 5; TWILEK = 6; ZABRAK = 7; ITHORIAN = 0x21; SULLUSTAN = 0x31;
 imperial_racial_penalty = {
-	{0, 1},
-	{1, 3}, --rodian
-	{2, 2}, -- trando
-	{3, 3}, -- moncal
-	{4, 3}, -- wookie
-	{5, 2},  -- bothan
-	{6, 1.5}, -- twilek
-	{7, 2},  -- zabrack
-	{33, 2}, --ithorian
-	{49, 2}, -- sullustan
 
+	{0, 1},
+	{1, 1}, --rodian
+	{2, 1}, -- trando
+	{3, 1}, -- moncal
+	{4, 1}, -- wookie
+	{5, 1},  -- bothan
+	{6, 1}, -- twilek
+	{7, 1},  -- zabrack
+	{33, 1}, --ithorian
+	{49, 1}, -- sullustan
 }
 
 strongholdCities = {
 	imperial = {"bela_vistal", "deeja_peak", "bestine"},
-	rebel = {"vreni_island", "moenia", "anchorhead"}
+	rebel = {"vreni_island", "moenia", "anchorhead", "moncal_city", "dac_city"}
 }
 
 terminalTemplates = {

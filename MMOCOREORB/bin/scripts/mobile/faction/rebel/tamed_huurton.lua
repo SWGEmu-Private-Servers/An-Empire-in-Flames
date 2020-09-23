@@ -1,7 +1,7 @@
 tamed_huurton = Creature:new {
 	objectName = "@mob/creature_names:rebel_tamed_huurton",
 	socialGroup = "rebel",
-	faction = "rebel",
+	faction = "",
 	level = 12,
 	chanceHit = 0.29,
 	damageMin = 130,
@@ -18,7 +18,7 @@ tamed_huurton = Creature:new {
 	boneType = "bone_mammal",
 	boneAmount = 12,
 	milk = 0,
-	tamingChance = 0,
+	tamingChance = 0.15,
 	ferocity = 0,
 	pvpBitmask = ATTACKABLE,
 	creatureBitmask = PACK + HERD,

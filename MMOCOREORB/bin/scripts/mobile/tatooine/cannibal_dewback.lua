@@ -18,7 +18,7 @@ cannibal_dewback = Creature:new {
 	boneType = "bone_mammal",
 	boneAmount = 185,
 	milk = 0,
-	tamingChance = 0,
+	tamingChance = 0.25,
 	ferocity = 6,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = STALKER,
@@ -26,6 +26,7 @@ cannibal_dewback = Creature:new {
 	diet = CARNIVORE,
 
 	templates = {"object/mobile/dewback_hue.iff"},
+	controlDeviceTemplate = "object/intangible/pet/dewback_hue.iff",
 	hues = { 24, 25, 26, 27, 28, 29, 30, 31 },
 	scale = 1.1,
 	lootGroups = {},

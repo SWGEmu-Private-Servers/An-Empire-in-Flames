@@ -12,7 +12,7 @@ escaped_nightsister_slave = Creature:new {
 	baseHAM = 7200,
 	baseHAMmax = 8800,
 	armor = 0,
-	resists = {35,35,15,-1,-1,-1,-1,15,-1},
+	resists = {25,25,45,25,25,45,15,15,25},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -31,12 +31,18 @@ escaped_nightsister_slave = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "nightsister_common", chance = 500000},
+				{group = "junk", chance = 500000},
 				{group = "junk", chance = 4500000},
 				{group = "tailor_components", chance = 2000000},
 				{group = "loot_kit_parts", chance = 1500000},
 				{group = "wearables_common", chance = 1500000}
 			}
+		},
+		{
+			groups = {
+				{group = "nightsister_common", chance = 10000000},
+			},
+			lootChance = 42000
 		}
 	},
 	weapons = {"primitive_weapons"},

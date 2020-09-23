@@ -6,19 +6,19 @@ pistol_sr_combat = {
 	customObjectName = "",
 	directObjectTemplate = "object/weapon/ranged/pistol/pistol_srcombat.iff",
 	craftingValues = {
-		{"mindamage",28,55,0},
-		{"maxdamage",63,122,0},
-		{"attackspeed",5.7,4.3,0},
-		{"woundchance",6,13,0},
-		{"hitpoints",750,750,0},
-		{"attackhealthcost",36,20,0},
-		{"attackactioncost",54,29,0},
-		{"attackmindcost",23,12,0},
+		{"mindamage",275,350,0},
+		{"maxdamage",501,605,0},
+		{"attackspeed",4.1,3.0,0},
+		{"woundchance",4,5,0},
 		{"roundsused",5,20,0},
-		{"zerorangemod",0,10,0},
-		{"maxrangemod",-80,-80,0},
-		{"midrange",12,12,0},
-		{"midrangemod",-20,-20,0},
+		{"hitpoints",450,1000,0},
+		{"zerorangemod",-5,5,0},
+		{"maxrangemod",-120,-120,0},
+		{"midrange",16,16,0},
+		{"midrangemod",10,22,0},
+		{"attackhealthcost",65,60,0},
+		{"attackactioncost",65,60,0},
+		{"attackmindcost",65,60,0},
 	},
 	customizationStringNames = {},
 	customizationValues = {},
@@ -26,8 +26,8 @@ pistol_sr_combat = {
 	-- randomDotChance: The chance of this weapon object dropping with a random dot on it. Higher number means less chance. Set to 0 to always have a random dot.
 	randomDotChance = 625,
 	junkDealerTypeNeeded = JUNKARMS,
-	junkMinValue = 25,
-	junkMaxValue = 45
+	junkMinValue = 45,
+	junkMaxValue = 75
 
 }
 

@@ -12,7 +12,7 @@ spiderclan_crawler = Creature:new {
 	baseHAM = 12000,
 	baseHAMmax = 15000,
 	armor = 1,
-	resists = {30,100,100,30,100,100,100,100,-1},
+	resists = {60,60,70,60,60,70,50,50,60},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -43,6 +43,12 @@ spiderclan_crawler = Creature:new {
 				{group = "wearables_common", chance = 500000},
 				{group = "wearables_uncommon", chance = 500000}
 			}
+		},
+		{
+			groups = {
+				{group = "spiderclan_common", chance = 10000000},
+			},
+			lootChance = 166666
 		}
 	},
 	weapons = {"mixed_force_weapons"},

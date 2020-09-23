@@ -303,8 +303,8 @@ function NabooTheedScreenPlay:spawnMobiles()
 	spawnMobile(self.planet, "mott_calf", 300, getRandomNumber(10) + -4939.35, 6, getRandomNumber(10) + 3653.82, getRandomNumber(360), 0)
 
 	--Med Center
-	spawnMobile(self.planet, "trainer_combatmedic",0,-16.4871,0.26,10.7738,176,1697364)
-	spawnMobile(self.planet, "trainer_combatmedic",0,26.5469,0.26,5.31169,90,1697360)
+	spawnMobile(self.planet, "trainer_surveyor",0,-16.4871,0.26,10.7738,176,1697364)
+	spawnMobile(self.planet, "trainer_surveyor",0,26.5469,0.26,5.31169,90,1697360)
 	spawnMobile(self.planet, "trainer_doctor",0,16.0979,0.26,-0.105232,266,1697360)
 	spawnMobile(self.planet, "trainer_medic",0,13.7645,0.26,4.7703,149,1697360)
 	spawnMobile(self.planet, "trainer_medic",0,-17.1613,0.26,-0.82884,167,1697364)
@@ -359,6 +359,7 @@ function NabooTheedScreenPlay:spawnMobiles()
 	pNpc = spawnMobile(self.planet, "junk_dealer", 0, -5.8, -0.9, -20.9, -52, 96)
 	if pNpc ~= nil then
 		AiAgent(pNpc):setConvoTemplate("junkDealerArmsConvoTemplate")
+		self:setMoodString(pNpc, "conversation")
 	end
 
 	--Hotel

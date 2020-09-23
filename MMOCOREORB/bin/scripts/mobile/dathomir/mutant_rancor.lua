@@ -10,7 +10,7 @@ mutant_rancor = Creature:new {
 	baseHAM = 12000,
 	baseHAMmax = 15000,
 	armor = 1,
-	resists = {145,160,25,200,200,200,25,25,-1},
+	resists = {60,60,70,60,60,70,50,50,60},
 	meatType = "meat_carnivore",
 	meatAmount = 1000,
 	hideType = "hide_leathery",
@@ -26,6 +26,7 @@ mutant_rancor = Creature:new {
 	diet = CARNIVORE,
 
 	templates = {"object/mobile/mutant_rancor.iff"},
+	controlDeviceTemplate = "object/intangible/pet/rancor_hue.iff",
 	hues = { 0, 1, 2, 3, 4, 5, 6, 7 },
 	scale = 1.15,
 	lootGroups = {

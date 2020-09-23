@@ -18,7 +18,7 @@ elder_snorbal_male = Creature:new {
 	boneType = "bone_mammal",
 	boneAmount = 420,
 	milk = 0,
-	tamingChance = 0,
+	tamingChance = 0.1,
 	ferocity = 0,
 	pvpBitmask = ATTACKABLE,
 	creatureBitmask = PACK + HERD,
@@ -26,6 +26,7 @@ elder_snorbal_male = Creature:new {
 	diet = HERBIVORE,
 
 	templates = {"object/mobile/elder_snorbal_male.iff"},
+	controlDeviceTemplate = "object/intangible/pet/snorbal_hue.iff",
 	hues = { 0, 1, 2, 3, 4, 5, 6, 7 },
 	scale = 1.2,
 	lootGroups = {},

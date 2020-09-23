@@ -18,7 +18,7 @@ narglatch_hunter = Creature:new {
 	boneType = "bone_mammal",
 	boneAmount = 35,
 	milk = 0,
-	tamingChance = 0,
+	tamingChance = 0.25,
 	ferocity = 9,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = PACK + KILLER + STALKER,
@@ -26,6 +26,7 @@ narglatch_hunter = Creature:new {
 	diet = CARNIVORE,
 
 	templates = {"object/mobile/narglatch_hue.iff"},
+	controlDeviceTemplate = "object/intangible/pet/narglatch_hue.iff",
 	hues = { 24, 25, 26, 27, 28, 29, 30, 31 },
 	scale = 0.85,
 	lootGroups = {},

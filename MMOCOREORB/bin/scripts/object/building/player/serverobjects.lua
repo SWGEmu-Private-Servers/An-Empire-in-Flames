@@ -49,6 +49,7 @@ includeFile("building/player/construction/serverobjects.lua")
 -- Server Objects
 includeFile("building/player/construction_structure.lua")
 includeFile("building/player/player_garage_corellia_style_01.lua")
+includeFile("building/player/player_garage_dathomir_style_01.lua")
 includeFile("building/player/player_garage_naboo_style_01.lua")
 includeFile("building/player/player_garage_tatooine_style_01.lua")
 includeFile("building/player/player_guildhall_corellia_style_01.lua")

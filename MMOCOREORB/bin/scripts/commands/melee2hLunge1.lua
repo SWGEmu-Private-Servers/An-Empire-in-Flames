@@ -44,20 +44,20 @@
 Melee2hLunge1Command = {
 	name = "melee2hlunge1",
 
-	damageMultiplier = 1.0,
-	speedMultiplier = 1.5,
+	damageMultiplier = 0.5,
+	speedMultiplier = 1.0,
 	accuracyBonus = 10,
-	
-	healthCostMultiplier = 1.0,
-	actionCostMultiplier = 0.5,
-	mindCostMultiplier = 0.5,
+
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 15,
+	mindCostMultiplier = 0,
 
 	animation = "lower_posture_2hmelee_1",
 
 	combatSpam = "lungeslam",
 
 	range = 20,
-	
+
 	weaponType = TWOHANDMELEEWEAPON,
 
 	stateEffects = {
@@ -68,11 +68,10 @@ Melee2hLunge1Command = {
 		{},
 		100, 
 		0, 
-		0 
+		0
 	  )
 	}
 
 }
 
 AddCommand(Melee2hLunge1Command)
-

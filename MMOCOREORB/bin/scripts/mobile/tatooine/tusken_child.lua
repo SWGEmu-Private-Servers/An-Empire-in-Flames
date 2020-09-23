@@ -30,12 +30,17 @@ tusken_child = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "junk", chance = 3500000},
-				{group = "tusken_common", chance = 3000000},
-				{group = "wearables_common", chance = 2000000},
+				{group = "junk", chance = 5500000},
+				{group = "wearables_common", chance = 3000000},
 				{group = "bone_armor", chance = 750000},
 				{group = "chitin_armor", chance = 750000},
 			}
+		},
+		{
+			groups = {
+				{group = "tusken_common", chance = 10000000},
+			},
+			lootChance = 3000000
 		}
 	},
 	weapons = {"primitive_weapons"},

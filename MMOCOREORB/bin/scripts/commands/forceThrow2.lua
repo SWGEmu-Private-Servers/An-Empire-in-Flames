@@ -44,8 +44,8 @@
 ForceThrow2Command = {
 	name = "forcethrow2",
 
-	minDamage = 250,
-	maxDamage = 500,
+	minDamage = 1500,
+	maxDamage = 5000,
 	speed = 4.0,
 	forceCost = 56,
 	visMod = 25,
@@ -78,7 +78,7 @@ ForceThrow2Command = {
 	frsDarkMinDamageModifier = 3,
 	frsDarkMaxDamageModifier = 6,
 
-	range = 32
+	range = 64
 }
 
 AddCommand(ForceThrow2Command)

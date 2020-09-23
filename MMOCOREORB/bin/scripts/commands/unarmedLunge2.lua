@@ -44,20 +44,20 @@
 UnarmedLunge2Command = {
 	name = "unarmedlunge2",
 
-	damageMultiplier = 3.0,
-	speedMultiplier = 2.0,
+	damageMultiplier = 0.50,
+	speedMultiplier = 1.0,
 	accuracyBonus = 15,
-	
-	healthCostMultiplier = 1.5,
-	actionCostMultiplier = 1.5,
-	mindCostMultiplier = 1.5,
+
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 30,
+	mindCostMultiplier = 0,
 
 	animation = "knockdown_unarmed_1",
 
 	combatSpam = "lungeshiak",
 
 	range = 20,
-	
+
 	weaponType = UNARMEDWEAPON,
 
 	stateEffects = {
@@ -75,4 +75,3 @@ UnarmedLunge2Command = {
 }
 
 AddCommand(UnarmedLunge2Command)
-

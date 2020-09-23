@@ -73,14 +73,14 @@ OldCityGracePeriod = 4320
 EnableCityWarn = false
 
 --The number of citizens required to achieve each city rank. (Outpost, Village, Township, City, Metropolis)
-CitizensPerRank = {2, 4, 6, 8, 10}
+CitizensPerRank = {5, 10, 15, 20, 25}
 --CitizensPerRank = {10, 20, 35, 55, 85}
 
 --The radius in meters of the city at each city rank. (Outpost, Village, Township, City, Metropolis)
-RadiusPerRank = {150, 200, 300, 400, 450}
+RadiusPerRank = {300, 350, 400, 450, 500}
 
 -- Maximum for each rank.  ex. rank 1 = DecorationsPerRank * 1, rank 5 = DecorationsPerRank * 5
-DecorationsPerRank = 10
+DecorationsPerRank = 20
 TrainersPerRank = 3
 MissionTerminalsPerRank = 3
 
@@ -95,14 +95,17 @@ maintenanceDiscount = 1.0
 	The maximum amount of cities per rank is 255.
 --]]
 CitiesAllowed = {
+	{"chandrila", {0, 0, 0, 0, 0}},
 	{"corellia", {20, 20, 15, 10, 10}},
 	{"dantooine", {50, 50, 30, 20, 20}},
-	{"dathomir", {0, 0, 0, 0, 0}},
+	{"dathomir", {1, 1, 1, 1, 1}},
 	{"endor", {0, 0, 0, 0, 0}},
+	{"kuat", {20, 20, 15, 10, 10}},
 	{"lok", {50, 50, 30, 20, 20}},
 	{"naboo", {20, 20, 15, 10, 10}},
 	{"rori", {50, 50, 30, 20, 20}},
 	{"talus", {50, 50, 30, 20, 20}},
+	{"taanab", {20, 20, 15, 10, 5}},
 	{"tatooine", {20, 20, 15, 10, 10}},
 	{"yavin4", {0, 0, 0, 0, 0}}
 }

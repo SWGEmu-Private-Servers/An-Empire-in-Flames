@@ -134,7 +134,7 @@ function eventPromoterScreenplay:giveItem(pPlayer, deedData)
 		if (PlayerObject(pGhost):hasEventPerk("shuttle_beacon")) then
 			CreatureObject(pPlayer):sendSystemMessage("@event_perk:only_one_shuttle_beacon")
 			return
-		elseif (PlayerObject(pGhost):getEventPerkCount() >= 5) then
+		elseif (PlayerObject(pGhost):getEventPerkCount() >= 50) then
 			CreatureObject(pPlayer):sendSystemMessage("@event_perk:pro_too_many_perks")
 			return
 		end

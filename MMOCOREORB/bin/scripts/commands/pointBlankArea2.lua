@@ -46,23 +46,22 @@ PointBlankArea2Command = {
 
 	damageMultiplier = 4.0,
 	speedMultiplier = 1.5,
-	healthCostMultiplier = 0.5,
-	actionCostMultiplier = 1.5,
-	mindCostMultiplier = 0.5,
-	accuracyBonus = 50,
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 45,
+	mindCostMultiplier = 0,
+	accuracyBonus = 25,
 
 	coneAngle = 60,
 	coneAction = true,
 
-	animation = "fire_area_no_trails", 
+	animation = "fire_area_no_trails",
 	animType = GENERATE_INTENSITY,
 
 	combatSpam = "areashot",
-	
+
 	weaponType = PISTOLWEAPON,
 
 	range = 12
 }
 
 AddCommand(PointBlankArea2Command)
-

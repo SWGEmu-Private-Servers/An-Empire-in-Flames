@@ -44,49 +44,37 @@
 ActionShot1Command = {
 	name = "actionshot1",
 
-	damageMultiplier = 1.0,
-	speedMultiplier = 1.5,
-	healthCostMultiplier = 1.75,
-	actionCostMultiplier = 1.25,
-	mindCostMultiplier = 0.5,
+	damageMultiplier = 2.0,
+	speedMultiplier = 1.0,
+	healthCostMultiplier = 0.0,
+	actionCostMultiplier = 20.0,
+	mindCostMultiplier = 0.0,
 	accuracyBonus = 25,
 
 	poolsToDamage = ACTION_ATTRIBUTE,
 
-	animation = "fire_3_single", 
+	animation = "fire_3_single",
 	animType = GENERATE_RANGED,
 
 	combatSpam = "sapshot",
-	    
-	stateEffects = {
-	  StateEffect( 
-		POSTUREDOWN_EFFECT, 
-		{ "postureDownRecovery" }, 
-		{ "posture_change_down_defense" }, 
-		{},
-		100, 
-		0, 
-		0 
-	  )
-	},	
-	  
+
 	dotEffects = {
-	  DotEffect( 
-		BLEEDING, 
+	  DotEffect(
+		BLEEDING,
 		{ "resistance_bleeding", "bleed_resist" },
 		ACTION,
 		true,
 		0,
 		100,
-		60, 
-		60
-	  )	  
+		60,
+		16,
+		50
+	  )
 	},
-	
+
 	weaponType = CARBINEWEAPON,
 
 	range = -1
 }
 
 AddCommand(ActionShot1Command)
-

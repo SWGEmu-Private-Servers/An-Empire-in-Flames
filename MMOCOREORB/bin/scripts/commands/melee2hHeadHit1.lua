@@ -44,18 +44,18 @@
 Melee2hHeadHit1Command = {
 	name = "melee2hheadhit1",
 
-	damageMultiplier = 1.5,
-	speedMultiplier = 1.25,
-	healthCostMultiplier = 0.5,
-	actionCostMultiplier = 1.0,
-	mindCostMultiplier = 0.5,
-        accuracyBonus = 10,
+	damageMultiplier = 1.0,
+	speedMultiplier = 0.25,
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 15,
+	mindCostMultiplier = 0,
+        accuracyBonus = 50,
 
-	poolsToDamage = MIND_ATTRIBUTE,
-	
+	poolsToDamage = HEALTH_ATTRIBUTE,
+
 	weaponType = TWOHANDMELEEWEAPON,
 
-	animation = "combo_2d", 
+	animation = "combo_2d",
 	animType = GENERATE_INTENSITY,
 
 	combatSpam = "scalpblow",
@@ -65,4 +65,3 @@ Melee2hHeadHit1Command = {
 }
 
 AddCommand(Melee2hHeadHit1Command)
-

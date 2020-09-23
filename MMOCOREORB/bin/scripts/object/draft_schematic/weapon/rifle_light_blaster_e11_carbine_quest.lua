@@ -50,6 +50,7 @@ object_draft_schematic_weapon_rifle_light_blaster_e11_carbine_quest = object_dra
    craftingToolTab = 1, -- (See DraftSchematicObjectTemplate.h)
    complexity = 30, 
    size = 1, 
+   factoryCrateSize = 0,
 
    xpType = "crafting_weapons_general", 
    xp = 140, 
@@ -62,12 +63,13 @@ object_draft_schematic_weapon_rifle_light_blaster_e11_carbine_quest = object_dra
    customizationStringNames = {},
    customizationDefaults = {},
 
-   ingredientTemplateNames = {"craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n"},
-   ingredientTitleNames = {"frame_assembly", "receiver_assembly", "grip_assembly", "inducer", "powerhandler", "barrel", "scope", "stock"},
-   ingredientSlotType = {0, 0, 0, 0, 1, 1, 3, 3},
-   resourceTypes = {"iron_plumbum", "metal_ferrous", "metal", "copper_diatium", "object/tangible/component/weapon/shared_blaster_power_handler.iff", "object/tangible/component/weapon/shared_blaster_rifle_barrel.iff", "object/tangible/component/weapon/shared_scope_weapon.iff", "object/tangible/component/weapon/shared_stock.iff"},
-   resourceQuantities = {40, 20, 9, 10, 1, 1, 1, 1},
-   contribution = {100, 100, 100, 100, 100, 100, 100, 100},
+   ingredientTemplateNames = {"craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n"},
+   ingredientTitleNames = {"frame_assembly", "receiver_assembly", "grip_assembly", "base_carbine_core", "barrel", "scope", "stock"},
+   ingredientSlotType = {0, 0, 0, 1, 1, 3, 3},
+   resourceTypes = {"metal", "chemical", "metal", "object/tangible/component/weapon/shared_base_carbine_core.iff", "object/tangible/component/weapon/shared_base_carbine_barrel.iff", "object/tangible/component/weapon/shared_scope_weapon.iff", "object/tangible/component/weapon/shared_stock.iff"},
+   resourceQuantities = {12, 6, 3, 1, 1, 1, 1},
+   contribution = {100, 100, 100, 100, 100, 100, 100},
+   ingredientAppearance = {"", "", "", "", "muzzle", "scope", "stock"},
 
 
    targetTemplate = "object/weapon/ranged/carbine/carbine_e11_quest.iff",
@@ -80,9 +82,9 @@ object_draft_schematic_weapon_rifle_light_blaster_e11_carbine_quest = object_dra
 		{
 			{"type", 4}, -- 1 = Poison, 2 = Disease, 3 = Fire, 4 = Bleed
 			{"attribute", 0}, -- See CreatureAttributes.h in src for numbers.
-			{"strength", 150},
-			{"duration", 60},
-			{"potency", 75},
+			{"strength", 300},
+			{"duration", 120},
+			{"potency", 150},
 			{"uses", 9000}
 		}
 	},

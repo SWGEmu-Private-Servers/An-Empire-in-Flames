@@ -44,35 +44,37 @@
 UnarmedStun1Command = {
 	name = "unarmedstun1",
 
-	damageMultiplier = 1.25,
-	speedMultiplier = 2.0,
+	damageMultiplier = 1.0,
+	speedMultiplier = 1.0,
 	accuracyBonus = 15,
-	
-	healthCostMultiplier = 1.5,
-	actionCostMultiplier = 1.5,
-	mindCostMultiplier = 1.5,
 
-	animation = "combo_4c", 
+	healthCostMultiplier = 0,
+	actionCostMultiplier = 25,
+	mindCostMultiplier = 0,
+
+	areaAction = true,
+	areaRange = 6,
+
+	animation = "combo_4c",
 	animType = GENERATE_INTENSITY,
 
 	combatSpam = "screamingsquill",
 
 	stateEffects = {
-	  StateEffect( 
-		STUN_EFFECT, 
-		{}, 
-		{ "stun_defense" }, 
+	  StateEffect(
+		STUN_EFFECT,
+		{},
+		{ "stun_defense" },
 		{ "jedi_state_defense", "resistance_states" },
-		100, 
-		0, 
-		60 
+		125,
+		0,
+		60
 	  )
 	},
-	
+
 	weaponType = UNARMEDWEAPON,
 
-	range = -1
+	range = 6
 }
 
 AddCommand(UnarmedStun1Command)
-

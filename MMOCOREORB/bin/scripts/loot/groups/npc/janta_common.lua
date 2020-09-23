@@ -7,10 +7,14 @@ janta_common = {
 	lootItems = {
 		{itemTemplate = "janta_blood", weight = 2500000},
 		{itemTemplate = "knife_janta", weight = 1500000},
-		{itemTemplate = "janta_hides", weight = 3500000},
+		{itemTemplate = "janta_hides", weight = 2000000},
 		{itemTemplate = "spear_rack_schematic", weight = 500000},
-		{groupTemplate = "wearables_common", weight = 1000000},
-		{groupTemplate = "wearables_uncommon", weight = 500000},
+		{itemTemplate = "hanging_planter_schematic", weight = 500000},
+		{itemTemplate = "necklace_primative_schematic", weight = 500000},
+		{itemTemplate = "campfire_schematic", weight = 500000},
+		{itemTemplate = "park_bench_schematic", weight = 500000},
+		{itemTemplate = "assorted_fruit_schematic", weight = 500000},
+		{itemTemplate = "stuffed_fish_schematic", weight = 500000},
 		{groupTemplate = "power_crystals", weight = 500000}
 	}
 }

@@ -12,7 +12,7 @@ spiderclan_sentinel = Creature:new {
 	baseHAM = 21000,
 	baseHAMmax = 26000,
 	armor = 1,
-	resists = {55,100,45,60,100,100,35,100,-1},
+	resists = {60,60,50,60,60,70,50,70,60},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -43,6 +43,12 @@ spiderclan_sentinel = Creature:new {
 				{group = "wearables_common", chance = 500000},
 				{group = "wearables_uncommon", chance = 500000}
 			}
+		},
+		{
+			groups = {
+				{group = "spiderclan_common", chance = 10000000},
+			},
+			lootChance = 166666
 		}
 	},
 	weapons = {"mixed_force_weapons"},

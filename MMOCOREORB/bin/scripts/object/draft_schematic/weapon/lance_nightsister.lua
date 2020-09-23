@@ -50,6 +50,7 @@ object_draft_schematic_weapon_lance_nightsister = object_draft_schematic_weapon_
    craftingToolTab = 1, -- (See DraftSchematicObjectTemplate.h)
    complexity = 35, 
    size = 1, 
+   factoryCrateSize = 0,
 
    xpType = "crafting_weapons_general", 
    xp = 250, 
@@ -62,12 +63,12 @@ object_draft_schematic_weapon_lance_nightsister = object_draft_schematic_weapon_
    customizationStringNames = {},
    customizationDefaults = {},
 
-   ingredientTemplateNames = {"craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n"},
-   ingredientTitleNames = {"lance_shaft", "vibro_unit_and_power_cell_brackets", "grip", "vibration_generator"},
-   ingredientSlotType = {0, 0, 0, 1},
-   resourceTypes = {"steel_quadranium", "copper_polysteel", "metal", "object/tangible/component/weapon/shared_vibro_unit_nightsister.iff"},
-   resourceQuantities = {60, 30, 15, 2},
-   contribution = {100, 100, 100, 100},
+    ingredientTemplateNames = {"craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n", "craft_weapon_ingredients_n"},
+   ingredientTitleNames = {"melee_core", "grip", "edge","shaft", "fastener"},
+   ingredientSlotType = {1, 1, 3, 0, 0},
+   resourceTypes = {"object/tangible/component/weapon/shared_base_melee_core.iff", "object/tangible/component/weapon/shared_base_melee_grip.iff", "object/tangible/component/weapon/shared_base_melee_edge.iff", "metal", "metal", "metal"},
+   resourceQuantities = {1, 1, 1, 20, 6},
+   contribution = {100, 100, 100, 100, 100},
 
 
    targetTemplate = "object/weapon/melee/polearm/lance_nightsister.iff",
@@ -80,7 +81,7 @@ object_draft_schematic_weapon_lance_nightsister = object_draft_schematic_weapon_
 			{"type", 2}, -- 1 = Poison, 2 = Disease, 3 = Fire, 4 = Bleed
 			{"attribute", 0}, -- See CreatureAttributes.h in src for numbers.
 			{"strength", 40},
-			{"duration", 1200},
+			{"duration", 300},
 			{"potency", 70},
 			{"uses", 9000}
 		},
@@ -88,7 +89,7 @@ object_draft_schematic_weapon_lance_nightsister = object_draft_schematic_weapon_
 			{"type", 2}, -- 1 = Poison, 2 = Disease, 3 = Fire, 4 = Bleed
 			{"attribute", 2}, -- See CreatureAttributes.h in src for numbers.
 			{"strength", 40},
-			{"duration", 1200},
+			{"duration", 300},
 			{"potency", 70},
 			{"uses", 9000}
 		}

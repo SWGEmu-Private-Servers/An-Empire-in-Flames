@@ -1810,3 +1810,16 @@ object_tangible_furniture_city_shared_streetlamp_med_red_02 = SharedTangibleObje
 }
 
 ObjectTemplates:addClientTemplate(object_tangible_furniture_city_shared_streetlamp_med_red_02, "object/tangible/furniture/city/shared_streetlamp_med_red_02.iff")
+
+object_tangible_furniture_city_shared_imperial_flag = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/furniture/city/shared_imperial_flag.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_furniture_city_shared_imperial_flag, "object/tangible/furniture/city/shared_imperial_flag.iff")
+
+object_tangible_furniture_city_shared_rebel_flag = SharedTangibleObjectTemplate:new {
+	clientTemplateFileName = "object/tangible/furniture/city/shared_rebel_flag.iff"
+}
+
+ObjectTemplates:addClientTemplate(object_tangible_furniture_city_shared_rebel_flag, "object/tangible/furniture/city/shared_rebel_flag.iff")
+

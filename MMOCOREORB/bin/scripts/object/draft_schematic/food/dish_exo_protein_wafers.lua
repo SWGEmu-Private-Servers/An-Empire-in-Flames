@@ -51,12 +51,12 @@ object_draft_schematic_food_dish_exo_protein_wafers = object_draft_schematic_foo
    complexity = 3, 
    size = 1, 
 
-   xpType = "crafting_general", 
+   xpType = "crafting_food_general", 
    xp = 30, 
 
-   assemblySkill = "general_assembly", 
-   experimentingSkill = "general_experimentation", 
-   customizationSkill = "clothing_customization", 
+   assemblySkill = "food_assembly", 
+   experimentingSkill = "food_experimentation", 
+   customizationSkill = "food_customization", 
 
    customizationOptions = {},
    customizationStringNames = {},
